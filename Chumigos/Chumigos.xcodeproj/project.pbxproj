@@ -16,6 +16,8 @@
 		26C186CF24BE4AA70094AEC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */; };
 		26C186DA24BE4AA70094AEC1 /* ChumigosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186D924BE4AA70094AEC1 /* ChumigosTests.swift */; };
 		26C186E524BE4AA70094AEC1 /* ChumigosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */; };
+		ABCDB23C24BF709E00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB23B24BF709E00F9A9B8 /* CloudKit.framework */; };
+		ABCDB23E24BF74F400F9A9B8 /* CKStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDB23D24BF74F400F9A9B8 /* CKStandard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		26C186E024BE4AA70094AEC1 /* ChumigosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChumigosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChumigosUITests.swift; sourceTree = "<group>"; };
 		26C186E624BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABCDB23924BF6FD000F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
+		ABCDB23B24BF709E00F9A9B8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		ABCDB23D24BF74F400F9A9B8 /* CKStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKStandard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABCDB23C24BF709E00F9A9B8 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +91,7 @@
 				26C186D824BE4AA70094AEC1 /* ChumigosTests */,
 				26C186E324BE4AA70094AEC1 /* ChumigosUITests */,
 				26C186BD24BE4AA50094AEC1 /* Products */,
+				ABCDB23A24BF709E00F9A9B8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +108,7 @@
 		26C186BE24BE4AA50094AEC1 /* Chumigos */ = {
 			isa = PBXGroup;
 			children = (
+				ABCDB23924BF6FD000F9A9B8 /* Chumigos.entitlements */,
 				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
 				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
 				26C186C624BE4AA50094AEC1 /* ContentView.swift */,
@@ -108,6 +116,7 @@
 				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
 				26C186D024BE4AA70094AEC1 /* Info.plist */,
 				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
+				ABCDB23F24BF750200F9A9B8 /* Service */,
 				26C186CA24BE4AA70094AEC1 /* Preview Content */,
 			);
 			path = Chumigos;
@@ -137,6 +146,22 @@
 				26C186E624BE4AA70094AEC1 /* Info.plist */,
 			);
 			path = ChumigosUITests;
+			sourceTree = "<group>";
+		};
+		ABCDB23A24BF709E00F9A9B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABCDB23B24BF709E00F9A9B8 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ABCDB23F24BF750200F9A9B8 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				ABCDB23D24BF74F400F9A9B8 /* CKStandard.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +297,7 @@
 			files = (
 				26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */,
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
+				ABCDB23E24BF74F400F9A9B8 /* CKStandard.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
 			);
@@ -438,16 +464,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
-				DEVELOPMENT_TEAM = L3PV92TM5K;
+				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Chumigos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.annderson.Chumigos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mc.Chumigos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,16 +485,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
-				DEVELOPMENT_TEAM = L3PV92TM5K;
+				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Chumigos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.annderson.Chumigos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mc.Chumigos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
