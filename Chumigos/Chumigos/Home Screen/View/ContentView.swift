@@ -9,8 +9,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var viewModel = HomeScreenViewModel()
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Text(viewModel.getHelloWorld())
+            Button(action: {
+                self.viewModel.setHelloWorld(newName: "aaa")
+            }) {
+                Text("aaa")
+            }
+        }
     }
 }
 

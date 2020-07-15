@@ -18,6 +18,7 @@
 		26C186E524BE4AA70094AEC1 /* ChumigosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */; };
 		ABCDB23C24BF709E00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB23B24BF709E00F9A9B8 /* CloudKit.framework */; };
 		ABCDB23E24BF74F400F9A9B8 /* CKStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDB23D24BF74F400F9A9B8 /* CKStandard.swift */; };
+		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		ABCDB23924BF6FD000F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
 		ABCDB23B24BF709E00F9A9B8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		ABCDB23D24BF74F400F9A9B8 /* CKStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKStandard.swift; sourceTree = "<group>"; };
+		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +114,14 @@
 				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
 				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
 				26C186C624BE4AA50094AEC1 /* ContentView.swift */,
-				26C186C824BE4AA70094AEC1 /* Assets.xcassets */,
 				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
 				26C186D024BE4AA70094AEC1 /* Info.plist */,
 				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
 				ABCDB23F24BF750200F9A9B8 /* Service */,
+				E74D7F8824BF7318000BF076 /* Support */,
+				E74D7F8424BF70F1000BF076 /* Model */,
+				E74D7F8724BF72BA000BF076 /* Home Screen */,
+				26C186C824BE4AA70094AEC1 /* Assets.xcassets */,
 				26C186CA24BE4AA70094AEC1 /* Preview Content */,
 			);
 			path = Chumigos;
@@ -162,6 +167,48 @@
 				ABCDB23D24BF74F400F9A9B8 /* CKStandard.swift */,
 			);
 			path = Service;
+		E74D7F8424BF70F1000BF076 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E74D7F8524BF70F7000BF076 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		E74D7F8624BF7104000BF076 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26C186C624BE4AA50094AEC1 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E74D7F8724BF72BA000BF076 /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E74D7F8524BF70F7000BF076 /* View Model */,
+				E74D7F8624BF7104000BF076 /* View */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		E74D7F8824BF7318000BF076 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				26C186D024BE4AA70094AEC1 /* Info.plist */,
+				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
+				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
+				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
+				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +347,7 @@
 				ABCDB23E24BF74F400F9A9B8 /* CKStandard.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
+				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,7 +517,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Chumigos/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Chumigos/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -490,7 +538,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Chumigos/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Chumigos/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
