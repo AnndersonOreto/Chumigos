@@ -16,6 +16,7 @@
 		26C186CF24BE4AA70094AEC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */; };
 		26C186DA24BE4AA70094AEC1 /* ChumigosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186D924BE4AA70094AEC1 /* ChumigosTests.swift */; };
 		26C186E524BE4AA70094AEC1 /* ChumigosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */; };
+		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		26C186E024BE4AA70094AEC1 /* ChumigosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChumigosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChumigosUITests.swift; sourceTree = "<group>"; };
 		26C186E624BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,13 +103,10 @@
 		26C186BE24BE4AA50094AEC1 /* Chumigos */ = {
 			isa = PBXGroup;
 			children = (
-				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
-				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
-				26C186C624BE4AA50094AEC1 /* ContentView.swift */,
+				E74D7F8824BF7318000BF076 /* Support */,
+				E74D7F8424BF70F1000BF076 /* Model */,
+				E74D7F8724BF72BA000BF076 /* Home Screen */,
 				26C186C824BE4AA70094AEC1 /* Assets.xcassets */,
-				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
-				26C186D024BE4AA70094AEC1 /* Info.plist */,
-				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
 				26C186CA24BE4AA70094AEC1 /* Preview Content */,
 			);
 			path = Chumigos;
@@ -137,6 +136,50 @@
 				26C186E624BE4AA70094AEC1 /* Info.plist */,
 			);
 			path = ChumigosUITests;
+			sourceTree = "<group>";
+		};
+		E74D7F8424BF70F1000BF076 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E74D7F8524BF70F7000BF076 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		E74D7F8624BF7104000BF076 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26C186C624BE4AA50094AEC1 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E74D7F8724BF72BA000BF076 /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E74D7F8524BF70F7000BF076 /* View Model */,
+				E74D7F8624BF7104000BF076 /* View */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		E74D7F8824BF7318000BF076 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				26C186D024BE4AA70094AEC1 /* Info.plist */,
+				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
+				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
+				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
+				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +317,7 @@
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
+				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,14 +484,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
-				DEVELOPMENT_TEAM = L3PV92TM5K;
+				DEVELOPMENT_TEAM = RL63GUXBB4;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Chumigos/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Chumigos/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.annderson.Chumigos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.piccoli.Chumigos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -460,14 +504,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
-				DEVELOPMENT_TEAM = L3PV92TM5K;
+				DEVELOPMENT_TEAM = RL63GUXBB4;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Chumigos/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Chumigos/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.annderson.Chumigos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.piccoli.Chumigos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
