@@ -10,10 +10,14 @@ import Foundation
 
 class HomeScreenViewModel: ObservableObject {
     
-    @Published var hello = "Hello World!"
+    @Published private var hello = "Hello World!"
     
     func getHelloWorld() -> String {
-        return "Hello World!"
+        return hello
+    }
+    
+    func setHelloWorld(newName: String) {
+        hello = newName
     }
     
 }

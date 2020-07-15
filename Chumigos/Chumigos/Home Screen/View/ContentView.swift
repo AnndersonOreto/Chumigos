@@ -14,8 +14,12 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text(viewModel.hello)
             Text(viewModel.getHelloWorld())
+            Button(action: {
+                self.viewModel.setHelloWorld(newName: "aaa")
+            }) {
+                Text("aaa")
+            }
         }
     }
 }
