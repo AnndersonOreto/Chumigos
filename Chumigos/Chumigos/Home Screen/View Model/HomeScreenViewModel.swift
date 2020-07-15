@@ -13,7 +13,7 @@ class HomeScreenViewModel: ObservableObject {
     @Published private var hello = "Hello World!"
     
     func getHelloWorld() -> String {
-        return hello
+        return NSLocalizedString(hello, comment: "teste")
     }
     
     func setHelloWorld(newName: String) {

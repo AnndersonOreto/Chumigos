@@ -16,9 +16,9 @@ struct ContentView: View {
         VStack {
             Text(viewModel.getHelloWorld())
             Button(action: {
-                self.viewModel.setHelloWorld(newName: "aaa")
+                self.viewModel.setHelloWorld(newName: "aaaa")
             }) {
-                Text("aaa")
+                Text("Hello World!")
             }
         }
     }
@@ -26,6 +26,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environment(\.locale, .init(identifier: "fr"))
     }
 }
