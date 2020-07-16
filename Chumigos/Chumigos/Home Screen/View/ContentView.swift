@@ -16,7 +16,9 @@ struct ContentView: View {
         VStack {
             Text(viewModel.getHelloWorld())
             Button(action: {
-                self.viewModel.setHelloWorld(newName: "aaaa")
+                
+                Functions().generateSequence(num_of_patterns: 2, sizes: [3,2], repetition: 2)
+                
             }) {
                 Text("Hello World!")
             }

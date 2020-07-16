@@ -16,6 +16,7 @@
 		26C186CF24BE4AA70094AEC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */; };
 		26C186DA24BE4AA70094AEC1 /* ChumigosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186D924BE4AA70094AEC1 /* ChumigosTests.swift */; };
 		26C186E524BE4AA70094AEC1 /* ChumigosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */; };
+		AA631AC624C0D6B100310AD4 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA631AC524C0D6B100310AD4 /* Functions.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
 		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
@@ -54,6 +55,7 @@
 		26C186E024BE4AA70094AEC1 /* ChumigosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChumigosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChumigosUITests.swift; sourceTree = "<group>"; };
 		26C186E624BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA631AC524C0D6B100310AD4 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
 		ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
@@ -112,12 +114,13 @@
 		26C186BE24BE4AA50094AEC1 /* Chumigos */ = {
 			isa = PBXGroup;
 			children = (
-				ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */,
+				AA631AC424C0D68D00310AD4 /* Sequence Game */,
 				E78DA52A24BF7B42001A3079 /* Localized Strings */,
 				E74D7F8824BF7318000BF076 /* Support */,
 				E74D7F8424BF70F1000BF076 /* Model */,
 				E74D7F8724BF72BA000BF076 /* Home Screen */,
 				26C186C824BE4AA70094AEC1 /* Assets.xcassets */,
+				ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */,
 				26C186CA24BE4AA70094AEC1 /* Preview Content */,
 			);
 			path = Chumigos;
@@ -147,6 +150,14 @@
 				26C186E624BE4AA70094AEC1 /* Info.plist */,
 			);
 			path = ChumigosUITests;
+			sourceTree = "<group>";
+		};
+		AA631AC424C0D68D00310AD4 /* Sequence Game */ = {
+			isa = PBXGroup;
+			children = (
+				AA631AC524C0D6B100310AD4 /* Functions.swift */,
+			);
+			path = "Sequence Game";
 			sourceTree = "<group>";
 		};
 		ABCDB24124BF88EE00F9A9B8 /* Frameworks */ = {
@@ -347,6 +358,7 @@
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
+				AA631AC624C0D6B100310AD4 /* Functions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
