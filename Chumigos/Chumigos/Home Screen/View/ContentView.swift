@@ -20,6 +20,8 @@ struct ContentView: View {
             }) {
                 Text("Hello World!")
             }
+        }.onAppear {
+            
         }
     }
 }
