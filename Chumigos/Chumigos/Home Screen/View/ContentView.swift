@@ -7,27 +7,32 @@
 //
 
 import SwiftUI
+import SpriteKit
 
 struct ContentView: View {
     
     @ObservedObject var viewModel = HomeScreenViewModel()
     
+    var scene: SKScene {
+        let scene = SequenceGameScene()
+        scene.size = CGSize(width: 300, height: 400)
+        scene.scaleMode = .fill
+        return scene
+    }
+    
     var body: some View {
-        VStack {
-            Text(viewModel.getHelloWorld())
-            Button(action: {
-                
-                Functions().generateSequence(num_of_patterns: 2, sizes: [3,2], repetition: 2)
-                
-            }) {
-                Text("Hello World!")
+        NavigationView {
+            VStack {
+                NavigationLink(destination: SequenceGameView()) {
+                    Text("Jogo da Sequencia")
+                }
             }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.locale, .init(identifier: "fr"))
+        ContentView().environment(\.locale, .init(identifier: "en"))
     }
 }

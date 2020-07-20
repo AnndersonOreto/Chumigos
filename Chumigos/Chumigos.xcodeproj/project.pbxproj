@@ -20,6 +20,9 @@
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
 		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
+		E7FDEB8624C22FCD008DDAEB /* SequenceGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FDEB8524C22FCD008DDAEB /* SequenceGameScene.swift */; };
+		E7FDEB8B24C2323D008DDAEB /* SequenceGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FDEB8A24C2323D008DDAEB /* SequenceGameView.swift */; };
+		E7FDEB9124C23D33008DDAEB /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FDEB9024C23D32008DDAEB /* SceneView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,9 @@
 		E78DA52E24BF7C17001A3079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E78DA53024BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E78DA53124BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E7FDEB8524C22FCD008DDAEB /* SequenceGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceGameScene.swift; sourceTree = "<group>"; };
+		E7FDEB8A24C2323D008DDAEB /* SequenceGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceGameView.swift; sourceTree = "<group>"; };
+		E7FDEB9024C23D32008DDAEB /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +120,7 @@
 		26C186BE24BE4AA50094AEC1 /* Chumigos */ = {
 			isa = PBXGroup;
 			children = (
-				AA631AC424C0D68D00310AD4 /* Sequence Game */,
+				E7FDEB8724C2312A008DDAEB /* Games */,
 				E78DA52A24BF7B42001A3079 /* Localized Strings */,
 				E74D7F8824BF7318000BF076 /* Support */,
 				E74D7F8424BF70F1000BF076 /* Model */,
@@ -156,6 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				AA631AC524C0D6B100310AD4 /* Functions.swift */,
+				E7FDEB8524C22FCD008DDAEB /* SequenceGameScene.swift */,
+				E7FDEB8A24C2323D008DDAEB /* SequenceGameView.swift */,
 			);
 			path = "Sequence Game";
 			sourceTree = "<group>";
@@ -218,6 +226,15 @@
 				E78DA52F24BF7C17001A3079 /* Localizable.strings */,
 			);
 			path = "Localized Strings";
+			sourceTree = "<group>";
+		};
+		E7FDEB8724C2312A008DDAEB /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				E7FDEB9024C23D32008DDAEB /* SceneView.swift */,
+				AA631AC424C0D68D00310AD4 /* Sequence Game */,
+			);
+			path = Games;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,7 +371,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */,
+				E7FDEB9124C23D33008DDAEB /* SceneView.swift in Sources */,
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
+				E7FDEB8624C22FCD008DDAEB /* SequenceGameScene.swift in Sources */,
+				E7FDEB8B24C2323D008DDAEB /* SequenceGameView.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
