@@ -11,10 +11,40 @@ import SpriteKit
 class SequenceGameScene: SKScene {
     
     override func didMove(to view: SKView) {
-        let box = SKSpriteNode(color: UIColor.red, size: CGSize(width: 0.90, height: 0.90))
-        box.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        addChild(box)
+        setupGame()
+    }
+    
+    func setupGame() {
         
+        if let sequence = Functions().generateSequence(num_of_patterns: 2, sizes: [3,2], repetition: 2) {
+            
+            var xPosition = self.frame.minX
+            let yPosition = self.frame.midY
+            
+            for array in sequence {
+                for item in array {
+                    switch item {
+                    case 1:
+                        createSquare(color: .red, position: CGPoint(x: xPosition, y: yPosition))
+                        xPosition += 0.07
+                    case 2:
+                        createSquare(color: .blue, position: CGPoint(x: xPosition, y: yPosition))
+                        xPosition += 0.07
+                    default:
+                        createSquare(color: .green, position: CGPoint(x: xPosition, y: yPosition))
+                        xPosition += 0.07
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    func createSquare(color: UIColor, position: CGPoint) {
+        let box = SKSpriteNode(color: color, size: CGSize(width: 0.05, height: 0.1))
+        box.anchorPoint = CGPoint(x: 0, y: 0.5)
+        box.position = position
+        addChild(box)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
