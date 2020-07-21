@@ -7,11 +7,18 @@
 //
 
 import SwiftUI
+import SpriteKit
 
 struct SequenceGameView: View {
     
+    @State var scene: SKScene = {
+        let scene = SequenceGameScene(size: UIScreen.main.bounds.size)
+        scene.scaleMode = .aspectFit
+        return scene
+    }()
+    
     var body: some View {
-//        SceneView(scene: SequenceGameScene()).edgesIgnoringSafeArea(.all)
+//        SceneView(scene: scene).edgesIgnoringSafeArea(.all)
         SequenceView()
     }
 }

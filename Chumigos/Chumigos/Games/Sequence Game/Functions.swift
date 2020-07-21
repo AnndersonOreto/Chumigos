@@ -15,6 +15,8 @@ enum DIFFICULT {
 class Functions {
     
     var sizeOfSequence: Int = 0
+    var sequence: [Int] = []
+    var pattern: [Int] = []
     
     init() {
         
@@ -24,29 +26,44 @@ class Functions {
         switch diff {
         case .EASY:
             sizeOfSequence = 3
-            return generateRandomSequence(size: 3, repetition: 2)
+            sequence = generateRandomSequence(size: sizeOfSequence, repetition: 2)
+            return sequence
+        case .MEDIUM:
+            sizeOfSequence = 4
+            sequence = generateRandomSequence(size: sizeOfSequence, repetition: 3)
+            return sequence
         default:
             return generateRandomSequence(size: 3, repetition: 2)
         }
     }
     
+    func getSize() -> Int {
+        return sizeOfSequence
+    }
+    
+    func getSequence() -> [Int] {
+        return sequence
+    }
+    
+    func getPattern() -> [Int] {
+        return pattern
+    }
+    
     func generateRandomSequence(size: Int, repetition: Int) -> [Int] {
         sizeOfSequence = size
         var array = generatePattern(size: size)
-
+        pattern = array
+        
         //var matrix: [[Int]] = []
         let arrayAux = array
         for _ in 1..<repetition {
             array += arrayAux
         }
 
-        print(array)
         return array
     }
     
-    func getSize() -> Int {
-        return sizeOfSequence
-    }
+
     
     func generatePattern(size: Int) -> [Int] {
         

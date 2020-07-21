@@ -26,22 +26,21 @@ class SequenceGameScene: SKScene {
                     switch item {
                     case 1:
                         createSquare(color: .red, position: CGPoint(x: xPosition, y: yPosition))
-                        xPosition += 0.07
+                        xPosition += 120
                     case 2:
                         createSquare(color: .blue, position: CGPoint(x: xPosition, y: yPosition))
-                        xPosition += 0.07
+                        xPosition += 120
                     default:
                         createSquare(color: .green, position: CGPoint(x: xPosition, y: yPosition))
-                        xPosition += 0.07
+                        xPosition += 120
                     }
                 }
             }
-            
         }
     }
     
     func createSquare(color: UIColor, position: CGPoint) {
-        let box = SKSpriteNode(color: color, size: CGSize(width: 0.05, height: 0.1))
+        let box = SKSpriteNode(color: color, size: CGSize(width: 100, height: 100))
         box.anchorPoint = CGPoint(x: 0, y: 0.5)
         box.position = position
         addChild(box)
