@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620EA0924C759F0001F1EE0 /* FormTriangle.swift */; };
 		2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */; };
 		26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26940AE624C0E18F00F258B6 /* CKCloudDataProtocol.swift */; };
 		26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26940AEA24C0E62000F258B6 /* CKCloudParseProtocol.swift */; };
+		26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E8B24C75D07005A316E /* GenericPolygon.swift */; };
+		26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E8D24C75EA2005A316E /* FormHexagon.swift */; };
+		26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E8F24C7621C005A316E /* FormHeptagon.swift */; };
+		26946E9224C762A3005A316E /* FormDecagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9124C762A3005A316E /* FormDecagon.swift */; };
+		26946E9424C76398005A316E /* FormPentagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9324C76398005A316E /* FormPentagon.swift */; };
+		26946E9624C76424005A316E /* FormStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9524C76424005A316E /* FormStar.swift */; };
+		26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9724C76A6C005A316E /* RandomAngle.swift */; };
 		26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */; };
 		26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */; };
 		26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */; };
@@ -42,9 +50,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2620EA0924C759F0001F1EE0 /* FormTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTriangle.swift; sourceTree = "<group>"; };
 		2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKDataService.swift; sourceTree = "<group>"; };
 		26940AE624C0E18F00F258B6 /* CKCloudDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKCloudDataProtocol.swift; sourceTree = "<group>"; };
 		26940AEA24C0E62000F258B6 /* CKCloudParseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKCloudParseProtocol.swift; sourceTree = "<group>"; };
+		26946E8B24C75D07005A316E /* GenericPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPolygon.swift; sourceTree = "<group>"; };
+		26946E8D24C75EA2005A316E /* FormHexagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHexagon.swift; sourceTree = "<group>"; };
+		26946E8F24C7621C005A316E /* FormHeptagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHeptagon.swift; sourceTree = "<group>"; };
+		26946E9124C762A3005A316E /* FormDecagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDecagon.swift; sourceTree = "<group>"; };
+		26946E9324C76398005A316E /* FormPentagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPentagon.swift; sourceTree = "<group>"; };
+		26946E9524C76424005A316E /* FormStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStar.swift; sourceTree = "<group>"; };
+		26946E9724C76A6C005A316E /* RandomAngle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAngle.swift; sourceTree = "<group>"; };
 		26C186BC24BE4AA50094AEC1 /* Chumigos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chumigos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +110,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2620EA0B24C75A30001F1EE0 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				2620EA0924C759F0001F1EE0 /* FormTriangle.swift */,
+				26946E8B24C75D07005A316E /* GenericPolygon.swift */,
+				26946E8D24C75EA2005A316E /* FormHexagon.swift */,
+				26946E8F24C7621C005A316E /* FormHeptagon.swift */,
+				26946E9124C762A3005A316E /* FormDecagon.swift */,
+				26946E9324C76398005A316E /* FormPentagon.swift */,
+				26946E9524C76424005A316E /* FormStar.swift */,
+				26946E9724C76A6C005A316E /* RandomAngle.swift */,
+			);
+			path = Forms;
+			sourceTree = "<group>";
+		};
 		2693CB3524BF8BAA00D1DEC9 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +240,7 @@
 		E74D7F8824BF7318000BF076 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				2620EA0B24C75A30001F1EE0 /* Forms */,
 				26C186D024BE4AA70094AEC1 /* Info.plist */,
 				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
 				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
@@ -363,10 +395,18 @@
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
+				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
+				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
+				26946E9424C76398005A316E /* FormPentagon.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
+				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
+				26946E9224C762A3005A316E /* FormDecagon.swift in Sources */,
 				26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */,
 				2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */,
+				26946E9624C76424005A316E /* FormStar.swift in Sources */,
+				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
+				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
