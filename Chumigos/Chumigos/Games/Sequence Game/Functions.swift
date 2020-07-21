@@ -8,29 +8,45 @@
 
 import Foundation
 
+enum DIFFICULT {
+    case EASY, MEDIUM, HARD
+}
+
 class Functions {
     
-//    func generateSequence(size: Int, repetition: Int) -> [[Int]] {
-//
-//        var array: [Int] = []
-//
-//        for n in 1...size {
-//            array.append(n)
-//        }
-//
-//        array.shuffle()
-//
-//        var matrix: [[Int]] = []
-//
-//        for _ in 1...repetition {
-//            matrix.append(array)
-//        }
-//
-//        print(array)
-//        print(matrix)
-//
-//        return matrix
-//    }
+    var sizeOfSequence: Int = 0
+    
+    init() {
+        
+    }
+
+    func generateSequence(diff: DIFFICULT) -> [Int]{
+        switch diff {
+        case .EASY:
+            sizeOfSequence = 3
+            return generateRandomSequence(size: 3, repetition: 2)
+        default:
+            return generateRandomSequence(size: 3, repetition: 2)
+        }
+    }
+    
+    func generateRandomSequence(size: Int, repetition: Int) -> [Int] {
+        sizeOfSequence = size
+        var array = generatePattern(size: size)
+
+        //var matrix: [[Int]] = []
+        let arrayAux = array
+        for _ in 1..<repetition {
+            array += arrayAux
+        }
+
+        print(array)
+        return array
+    }
+    
+    func getSize() -> Int {
+        return sizeOfSequence
+    }
     
     func generatePattern(size: Int) -> [Int] {
         

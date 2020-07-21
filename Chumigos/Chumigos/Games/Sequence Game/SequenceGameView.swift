@@ -11,7 +11,8 @@ import SwiftUI
 struct SequenceGameView: View {
     
     var body: some View {
-        SceneView(scene: SequenceGameScene()).edgesIgnoringSafeArea(.all)
+//        SceneView(scene: SequenceGameScene()).edgesIgnoringSafeArea(.all)
+        SequenceView()
     }
 }
 
