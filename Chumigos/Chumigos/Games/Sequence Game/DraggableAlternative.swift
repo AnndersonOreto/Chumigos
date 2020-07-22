@@ -10,7 +10,6 @@ import SwiftUI
 
 struct DraggableAlternative: View {
     
-    
     // Variável que salva o tamanho e a posição do retângulo por trás do objeto
     @State private var rect: CGRect = .zero
     
@@ -19,27 +18,26 @@ struct DraggableAlternative: View {
     
     // Variável que salva a posição do objeto depois que é largao, ou seja, sua posição final
     @State private var newOffset: CGSize = .zero
-        
-    // Variável que salva a posição e o tamanho do lugar certo do objeto
-    var rightPlace: CGRect
     
     @ObservedObject var viewModel: SequenceViewModel
     
     var answer: Int
+    
+    @State var isAlternativeInTheRightPlace: Bool = false
     
     var body: some View {
         
         Rectangle()
             .fill(getRandomColor())
             .frame(width: 50, height: 50)
-            .background(GeometryGetter(rect: $rect))
+            .background(GeometryGetter(rect: $rect, viewModel: viewModel, isQuestion: false, number: 0))
             .offset(self.currentOffset)
             .gesture(
                 DragGesture()
                     .onChanged({ value in
                         
                         // If pra não deixar mover o objeto depois que estiver no lugar certo
-                        if !self.viewModel.isAlternativeInTheRightPlace {
+                        if !self.isAlternativeInTheRightPlace {
                             self.changeCurrentOffset(by: value)
                         }
                         
@@ -47,7 +45,7 @@ struct DraggableAlternative: View {
                     .onEnded({ value in
                         
                         // If pra não deixar mover o objeto depois que estiver no lugar certo
-                        if !self.viewModel.isAlternativeInTheRightPlace {
+                        if !self.isAlternativeInTheRightPlace {
                             
                             self.changeCurrentOffset(by: value)
                             
@@ -93,27 +91,29 @@ extension DraggableAlternative {
         // Salva o ponto médio do objeto quando o objeto é largado
         let midPoint = CGPoint(x: self.rect.midX, y: self.rect.midY)
         
-        // Verifica se o ponto médio pertence a área definida como "lugar certo" e se a resposta esta correta
-        if self.rightPlace.contains(midPoint) {
+        for element in self.viewModel.answersTupla {
             
-            if self.viewModel.correctAnswer[0] == answer  {
+            // Verifica se o ponto médio pertence a área definida como "lugar certo" e se a resposta esta correta
+            if element.rect.contains(midPoint) && element.answer == answer {
+                
                 // Define os novos valores para X e Y,
                 // calculando a distância do ponto médio do objeto para o ponto médio do lugar certo
-                let newX = self.rect.midX.distance(to: self.rightPlace.midX)
-                let newY = self.rect.midY.distance(to: self.rightPlace.midY)
+                let newX = self.rect.midX.distance(to: element.rect.midX)
+                let newY = self.rect.midY.distance(to: element.rect.midY)
                 
                 // Usa os X e Y calculados acima para definir a nova posição do objeto
                 self.currentOffset = CGSize(width: newX + self.newOffset.width, height: newY + self.newOffset.height)
                 self.newOffset = self.currentOffset
                 
                 // Muda o estado para mostrar que o objeto está no lugar certo
-                self.viewModel.isAlternativeInTheRightPlace = true
+                self.isAlternativeInTheRightPlace = true
+                
+                // Caso não seja o lugar certo do objeto, reseta sua posição
             }
-                        
-            // Caso não seja o lugar certo do objeto, reseta sua posição
-        } else {
-            self.currentOffset = .zero
-            self.newOffset = .zero
+//            else {
+//                self.currentOffset = .zero
+//                self.newOffset = .zero
+//            }
         }
         
     }

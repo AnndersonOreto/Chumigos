@@ -33,7 +33,9 @@ class Functions {
             sequence = generateRandomSequence(size: sizeOfSequence, repetition: 3)
             return sequence
         default:
-            return generateRandomSequence(size: 3, repetition: 2)
+            sizeOfSequence = 5
+            sequence = generateRandomSequence(size: sizeOfSequence, repetition: 4)
+            return sequence
         }
     }
     

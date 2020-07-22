@@ -14,6 +14,9 @@ import SwiftUI
 struct GeometryGetter: View {
     
     @Binding var rect: CGRect
+    @ObservedObject var viewModel: SequenceViewModel
+    var isQuestion: Bool
+    var number: Int
     
     var body: some View {
         
@@ -28,6 +31,10 @@ struct GeometryGetter: View {
         // pois estamos mudando em tempo real a posição do objeto, que faz parte da UI
         DispatchQueue.main.async {
             self.rect = geometry.frame(in: .global)
+            if self.isQuestion {
+                self.viewModel.answersRect.append(self.rect)
+                self.viewModel.answersTupla.append((answer: self.number, rect: self.rect))
+            }
         }
         
         return
