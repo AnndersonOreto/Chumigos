@@ -10,14 +10,14 @@ import SwiftUI
 
 struct SequenceView: View {
     
-    @ObservedObject var viewModel = SequenceViewModel()
+    @ObservedObject var viewModel = SequenceViewModel(difficulty: .MEDIUM)
     
     @State var questionRect: CGRect = .zero
     
     var body: some View {
         VStack(spacing: 80) {
             HStack {
-                ForEach(viewModel.sequence.indices) { index in
+                ForEach(viewModel.sequence.indices, id: \.self) { index in
                     SequenceRectangle(index: index, number: self.viewModel.sequence[index], questionRect: self.$questionRect, viewModel: self.viewModel)
                 }
             }

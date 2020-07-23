@@ -14,9 +14,10 @@ enum DIFFICULT {
 
 class Functions {
     
-    var sizeOfSequence: Int = 0
-    var sequence: [Int] = []
-    var pattern: [Int] = []
+    private var sizeOfSequence: Int = 0
+    private var sequence: [Int] = []
+    private var pattern: [Int] = []
+    private var difficulty: DIFFICULT = .EASY
     
     init() {
         
@@ -25,15 +26,18 @@ class Functions {
     func generateSequence(diff: DIFFICULT) -> [Int]{
         switch diff {
         case .EASY:
-            sizeOfSequence = 3
+            difficulty = .EASY
+            sizeOfSequence = generateSizeOfSequence()
             sequence = generateRandomSequence(size: sizeOfSequence, repetition: 2)
             return sequence
         case .MEDIUM:
-            sizeOfSequence = 4
+            difficulty = .MEDIUM
+            sizeOfSequence = generateSizeOfSequence()
             sequence = generateRandomSequence(size: sizeOfSequence, repetition: 3)
             return sequence
         default:
-            sizeOfSequence = 5
+            difficulty = .HARD
+            sizeOfSequence = generateSizeOfSequence()
             sequence = generateRandomSequence(size: sizeOfSequence, repetition: 4)
             return sequence
         }
@@ -51,6 +55,10 @@ class Functions {
         return pattern
     }
     
+    func getDifficulty() -> DIFFICULT {
+        return difficulty
+    }
+    
     func generateRandomSequence(size: Int, repetition: Int) -> [Int] {
         sizeOfSequence = size
         var array = generatePattern(size: size)
@@ -66,7 +74,6 @@ class Functions {
     }
     
 
-    
     func generatePattern(size: Int) -> [Int] {
         
         var array: [Int] = []
@@ -103,6 +110,16 @@ class Functions {
          
             return nil
             
+        }
+    }
+    
+    func generateSizeOfSequence() -> Int {
+        let random = Int.random(in: 0...1)
+        
+        if random == 0 {
+            return 3
+        } else {
+            return 4
         }
     }
 }

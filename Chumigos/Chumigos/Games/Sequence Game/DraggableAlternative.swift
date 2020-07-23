@@ -57,7 +57,6 @@ struct DraggableAlternative: View {
         )
     }
     
-    
     func getRandomColor() -> Color {
         switch answer {
         case 1:
@@ -91,29 +90,36 @@ extension DraggableAlternative {
         // Salva o ponto médio do objeto quando o objeto é largado
         let midPoint = CGPoint(x: self.rect.midX, y: self.rect.midY)
         
-        for element in self.viewModel.answersTupla {
-            
-            // Verifica se o ponto médio pertence a área definida como "lugar certo" e se a resposta esta correta
-            if element.rect.contains(midPoint) && element.answer == answer {
-                
-                // Define os novos valores para X e Y,
-                // calculando a distância do ponto médio do objeto para o ponto médio do lugar certo
-                let newX = self.rect.midX.distance(to: element.rect.midX)
-                let newY = self.rect.midY.distance(to: element.rect.midY)
-                
-                // Usa os X e Y calculados acima para definir a nova posição do objeto
-                self.currentOffset = CGSize(width: newX + self.newOffset.width, height: newY + self.newOffset.height)
-                self.newOffset = self.currentOffset
-                
-                // Muda o estado para mostrar que o objeto está no lugar certo
-                self.isAlternativeInTheRightPlace = true
-                
-                // Caso não seja o lugar certo do objeto, reseta sua posição
+        var rightIndex: Int = 0
+        
+        for (index, element) in self.viewModel.answersTupla.enumerated() {
+            if element.answer == answer {
+                rightIndex = index
+                break
             }
-//            else {
-//                self.currentOffset = .zero
-//                self.newOffset = .zero
-//            }
+        }
+        
+        // Verifica se o ponto médio pertence a área definida como "lugar certo" e se a resposta esta correta
+        if self.viewModel.answersTupla[rightIndex].rect.contains(midPoint) &&
+            self.viewModel.answersTupla[rightIndex].answer == answer {
+
+            // Define os novos valores para X e Y,
+            // calculando a distância do ponto médio do objeto para o ponto médio do lugar certo
+            let newX = self.rect.midX.distance(to: self.viewModel.answersTupla[rightIndex].rect.midX)
+            let newY = self.rect.midY.distance(to: self.viewModel.answersTupla[rightIndex].rect.midY)
+
+            // Usa os X e Y calculados acima para definir a nova posição do objeto
+            self.currentOffset = CGSize(width: newX + self.newOffset.width, height: newY + self.newOffset.height)
+            self.newOffset = self.currentOffset
+
+            // Muda o estado para mostrar que o objeto está no lugar certo
+            self.isAlternativeInTheRightPlace = true
+            self.viewModel.incrementCorrectAnswers()
+
+            // Caso não seja o lugar certo do objeto, reseta sua posição
+        } else {
+            self.currentOffset = .zero
+            self.newOffset = .zero
         }
         
     }

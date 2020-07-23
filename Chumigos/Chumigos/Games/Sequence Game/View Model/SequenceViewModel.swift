@@ -14,19 +14,22 @@ class SequenceViewModel: ObservableObject {
     let functions = Functions()
     
     var correctAnswers: [Int] = []
-    var answersRect: [CGRect] = []
     var answersTupla: [(answer: Int, rect: CGRect)] = []
-    var sequence: [Int] = []
-    var alternatives: [Int] = []
+    @Published var sequence: [Int] = []
+    @Published var alternatives: [Int] = []
+    var amountOfCorrectAnswers: Int = 0
+    var rounds: Int = 0
     
-    init() {
-        createFunc()
-        generateAlternatives()
+    
+    init(difficulty: DIFFICULT) {
+        createFunc(difficulty: difficulty)
     }
     
-    func createFunc() {
-        let seq = functions.generateSequence(diff: .HARD)
-        self.sequence = generateQuestion(sequence: seq, difficulty: .HARD)
+    func createFunc(difficulty: DIFFICULT) {
+        self.resetRound()
+        let seq = functions.generateSequence(diff: difficulty)
+        self.sequence = generateQuestion(sequence: seq, difficulty: difficulty)
+        self.generateAlternatives()
     }
     
     func generateQuestion(sequence: [Int], difficulty: DIFFICULT) -> [Int] {
@@ -79,5 +82,51 @@ class SequenceViewModel: ObservableObject {
         var pattern = functions.getPattern()
         pattern.shuffle()
         self.alternatives = pattern
+    }
+    
+    func incrementCorrectAnswers() {
+        self.amountOfCorrectAnswers += 1
+        self.checkRoundFinished()
+    }
+    
+    func checkRoundFinished() {
+        switch self.functions.getDifficulty() {
+        case .EASY:
+            if self.amountOfCorrectAnswers == 1 {
+                print("ROUND EASY FINISHED!")
+                self.incrementRounds()
+                self.createFunc(difficulty: .MEDIUM)
+            }
+        case .MEDIUM:
+            if self.amountOfCorrectAnswers == 2 {
+                print("ROUND MEDIUM FINISHED!")
+                self.incrementRounds()
+                self.createFunc(difficulty: .EASY)
+            }
+        case .HARD:
+            if self.amountOfCorrectAnswers == 3 {
+                print("ROUND HARD FINISHED!")
+                self.incrementRounds()
+            }
+        }
+    }
+    
+    func incrementRounds() {
+        self.rounds += 1
+        self.checkGameFinished()
+    }
+    
+    func checkGameFinished() {
+        if self.rounds == 5 {
+            print("GAME FINISHED!")
+        }
+    }
+    
+    func resetRound() {
+        self.sequence = []
+        self.alternatives = []
+        self.correctAnswers = []
+        self.answersTupla = []
+        self.amountOfCorrectAnswers = 0
     }
 }
