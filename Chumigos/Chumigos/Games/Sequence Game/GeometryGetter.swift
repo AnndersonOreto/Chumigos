@@ -29,7 +29,7 @@ struct GeometryGetter: View {
         
         // Tem que alterar o rect na main queue de maneira assíncrona,
         // pois estamos mudando em tempo real a posição do objeto, que faz parte da UI
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .userInteractive).async {
             self.rect = geometry.frame(in: .global)
             if self.isQuestion {
                 self.viewModel.answersTupla.append((answer: self.number, rect: self.rect))

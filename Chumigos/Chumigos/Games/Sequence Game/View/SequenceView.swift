@@ -26,7 +26,7 @@ struct SequenceView: View {
                     DraggableAlternative(viewModel: self.viewModel, answer: element)
                 }
             }
-        }
+        }.id(UUID())
     }
 }
 
@@ -43,7 +43,7 @@ struct SequenceRectangle: View {
                 Text("?")
                     .padding()
                     .border(Color.black)
-                    .background(GeometryGetter(rect: $questionRect, viewModel: viewModel, isQuestion: true, number: getCorrectAnswer()))
+                    .background(GeometryGetter(rect: self.$questionRect, viewModel: viewModel, isQuestion: true, number: getCorrectAnswer()))
             }
             else {
                 Rectangle()

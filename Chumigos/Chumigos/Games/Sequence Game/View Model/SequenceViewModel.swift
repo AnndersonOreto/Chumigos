@@ -13,10 +13,11 @@ class SequenceViewModel: ObservableObject {
     
     let functions = Functions()
     
-    var correctAnswers: [Int] = []
-    var answersTupla: [(answer: Int, rect: CGRect)] = []
     @Published var sequence: [Int] = []
     @Published var alternatives: [Int] = []
+    
+    var correctAnswers: [Int] = []
+    var answersTupla: [(answer: Int, rect: CGRect)] = []
     var amountOfCorrectAnswers: Int = 0
     var rounds: Int = 0
     
