@@ -14,14 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text(viewModel.getHelloWorld())
-            Button(action: {
-                self.viewModel.setHelloWorld(newName: "aaaa")
-            }) {
-                Text("Hello World!")
-            }
-        }.onAppear {
-            
+            ShapeGameView()
         }
     }
 }

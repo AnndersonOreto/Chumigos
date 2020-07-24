@@ -99,11 +99,14 @@ extension Color {
             for _ in 0..<amount {
                 
                 let randomElement = colorList.randomElement()
-                for j in 0..<colorList.count {
-                    if colorList[j] == randomElement {
-                        colorList.remove(at: j)
+                
+                for (index, element) in colorList.enumerated() {
+                    
+                    if element == randomElement {
+                        colorList.remove(at: index)
                     }
                 }
+                
                 resp.append(randomElement ?? regularGreen)
             }
             

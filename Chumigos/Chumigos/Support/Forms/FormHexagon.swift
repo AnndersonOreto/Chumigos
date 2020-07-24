@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 /// Create a Hexagon structure
-public struct Hexagon: InsettableShape {
+public struct Hexagon: Shape {
     
     let inset: CGFloat
     

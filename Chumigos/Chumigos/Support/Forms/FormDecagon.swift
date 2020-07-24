@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 /// Create a Decagon structure
-public struct Decagon: InsettableShape {
+public struct Decagon: Shape {
     
     let inset: CGFloat
     

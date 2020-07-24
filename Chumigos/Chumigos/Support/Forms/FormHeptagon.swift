@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 /// Create a Heptagon structure
-public struct Heptagon: InsettableShape {
+public struct Heptagon: Shape {
     
     let inset: CGFloat
     

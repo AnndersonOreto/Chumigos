@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public struct Pentagon: InsettableShape {
+public struct Pentagon: Shape {
     let inset: CGFloat
     
     public func inset(by amount: CGFloat) -> Pentagon {

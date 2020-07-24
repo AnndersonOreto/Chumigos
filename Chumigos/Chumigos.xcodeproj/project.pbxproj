@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620EA0924C759F0001F1EE0 /* FormTriangle.swift */; };
+		262DA9C424CB6140008B8846 /* ShapeGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DA9C324CB6140008B8846 /* ShapeGameViewModel.swift */; };
+		262DA9C624CB6BE5008B8846 /* ShapeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DA9C524CB6BE5008B8846 /* ShapeGameView.swift */; };
 		26660AC324C7834E000A9845 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26660AC224C7834E000A9845 /* RandomColor.swift */; };
 		26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26763D2B24C8C7690056F2BC /* RandomForm.swift */; };
 		2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */; };
@@ -53,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		2620EA0924C759F0001F1EE0 /* FormTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTriangle.swift; sourceTree = "<group>"; };
+		262DA9C324CB6140008B8846 /* ShapeGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameViewModel.swift; sourceTree = "<group>"; };
+		262DA9C524CB6BE5008B8846 /* ShapeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameView.swift; sourceTree = "<group>"; };
 		26660AC224C7834E000A9845 /* RandomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
 		26763D2B24C8C7690056F2BC /* RandomForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomForm.swift; sourceTree = "<group>"; };
 		2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKDataService.swift; sourceTree = "<group>"; };
@@ -131,6 +135,31 @@
 			path = Forms;
 			sourceTree = "<group>";
 		};
+		262DA9C024CB60F2008B8846 /* ShapeGame */ = {
+			isa = PBXGroup;
+			children = (
+				262DA9C224CB6124008B8846 /* View */,
+				262DA9C124CB6114008B8846 /* View Model */,
+			);
+			path = ShapeGame;
+			sourceTree = "<group>";
+		};
+		262DA9C124CB6114008B8846 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				262DA9C324CB6140008B8846 /* ShapeGameViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		262DA9C224CB6124008B8846 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				262DA9C524CB6BE5008B8846 /* ShapeGameView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2693CB3524BF8BAA00D1DEC9 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +199,7 @@
 				E74D7F8824BF7318000BF076 /* Support */,
 				2693CB3524BF8BAA00D1DEC9 /* Service */,
 				E74D7F8424BF70F1000BF076 /* Model */,
+				262DA9C024CB60F2008B8846 /* ShapeGame */,
 				E74D7F8724BF72BA000BF076 /* Home Screen */,
 				26C186C824BE4AA70094AEC1 /* Assets.xcassets */,
 				26C186CA24BE4AA70094AEC1 /* Preview Content */,
@@ -401,6 +431,7 @@
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
+				262DA9C624CB6BE5008B8846 /* ShapeGameView.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
 				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
@@ -409,6 +440,7 @@
 				26660AC324C7834E000A9845 /* RandomColor.swift in Sources */,
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
 				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
+				262DA9C424CB6140008B8846 /* ShapeGameViewModel.swift in Sources */,
 				26946E9224C762A3005A316E /* FormDecagon.swift in Sources */,
 				26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */,
 				2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */,
