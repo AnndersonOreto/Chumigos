@@ -81,9 +81,14 @@ extension Color {
     
     // MARK: - Random colors
     
-    // Get a single random color
-    static let randomColor = [regularGreen, regularGold, regularRed, regularPurple, regularBlue].randomElement()
+    static let RANDOMIZABLE_COLOR_LIST: [Color] = [regularGreen, regularGold, regularRed, regularPurple, regularBlue]
     
+    // Get single random color
+    static func getRandomColor() -> Color {
+        return RANDOMIZABLE_COLOR_LIST.randomElement() ?? Color.white
+    }
+    
+    // Get list of random colors
     static func getRandomColors(amount: Int) -> [Color] {
         
         // Valid color list
