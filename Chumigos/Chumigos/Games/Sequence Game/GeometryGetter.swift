@@ -32,7 +32,7 @@ struct GeometryGetter: View {
         DispatchQueue.global(qos: .userInteractive).async {
             self.rect = geometry.frame(in: .global)
             if self.isQuestion {
-                self.viewModel.answersTupla.append((answer: self.number, rect: self.rect))
+                self.viewModel.answers.append((answer: self.number, rect: self.rect, rectID: 0))
             }
         }
         

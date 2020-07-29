@@ -9,7 +9,11 @@
 import Foundation
 import CoreGraphics
 
-class SequenceViewModel: ObservableObject {
+class SequenceViewModel: ObservableObject, GameViewModelProtocol {
+
+    func verify() -> Bool {
+        return true
+    }
     
     let functions = Functions()
     
@@ -17,7 +21,7 @@ class SequenceViewModel: ObservableObject {
     @Published var alternatives: [Int] = []
     
     var correctAnswers: [Int] = []
-    var answersTupla: [(answer: Int, rect: CGRect)] = []
+    var answers: [(answer: Int, rect: CGRect, rectID: Int)] = []
     var amountOfCorrectAnswers: Int = 0
     var rounds: Int = 0
     
@@ -127,7 +131,7 @@ class SequenceViewModel: ObservableObject {
         self.sequence = []
         self.alternatives = []
         self.correctAnswers = []
-        self.answersTupla = []
+        self.answers = []
         self.amountOfCorrectAnswers = 0
     }
 }

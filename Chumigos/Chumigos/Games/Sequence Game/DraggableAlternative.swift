@@ -8,7 +8,15 @@
 
 import SwiftUI
 
-struct DraggableAlternative: View {
+struct DraggableAlternative<Content: View>: View {
+    
+    let content: Content
+    
+    init(@ViewBuilder content: () -> Content, viewModel: SequenceViewModel, answer: Int) {
+        self.content = content()
+        self.viewModel = viewModel
+        self.answer = answer
+    }
     
     // Variável que salva o tamanho e a posição do retângulo por trás do objeto
     @State private var rect: CGRect = .zero
@@ -23,36 +31,22 @@ struct DraggableAlternative: View {
     
     var answer: Int
     
-    @State var isAlternativeInTheRightPlace: Bool = false
-    
     var body: some View {
         
-        Rectangle()
-            .fill(getRandomColor())
+        self.content
+            .foregroundColor(getRandomColor())
             .frame(width: 50, height: 50)
             .background(GeometryGetter(rect: $rect, viewModel: viewModel, isQuestion: false, number: 0))
             .offset(self.currentOffset)
             .gesture(
                 DragGesture()
                     .onChanged({ value in
-                        
-                        // If pra não deixar mover o objeto depois que estiver no lugar certo
-                        if !self.isAlternativeInTheRightPlace {
-                            self.changeCurrentOffset(by: value)
-                        }
-                        
+                        self.changeCurrentOffset(by: value)
                     })
                     .onEnded({ value in
-                        
-                        // If pra não deixar mover o objeto depois que estiver no lugar certo
-                        if !self.isAlternativeInTheRightPlace {
-                            
-                            self.changeCurrentOffset(by: value)
-                            
-                            self.newOffset = self.currentOffset
-                            
-                            self.dragEnded()
-                        }
+                        self.changeCurrentOffset(by: value)
+                        self.newOffset = self.currentOffset
+                        self.dragEnded()
                     })
         )
     }
@@ -90,34 +84,47 @@ extension DraggableAlternative {
         // Salva o ponto médio do objeto quando o objeto é largado
         let midPoint = CGPoint(x: self.rect.midX, y: self.rect.midY)
         
-        var rightIndex: Int = 0
+        var rightRect: CGRect = .zero
         
-        for (index, element) in self.viewModel.answersTupla.enumerated() {
-            if element.answer == answer {
-                rightIndex = index
+        
+        for index in 0..<self.viewModel.answers.count {
+            if self.viewModel.answers[index].rect.contains(midPoint) && self.viewModel.answers[index].rectID == 0 {
+                rightRect = self.viewModel.answers[index].rect
+                
+                for index2 in 0..<self.viewModel.answers.count {
+                    if self.viewModel.answers[index2].rectID == self.answer {
+                       self.viewModel.answers[index2].rectID = 0
+                    }
+                }
+                
+                self.viewModel.answers[index].rectID = self.answer
                 break
             }
         }
         
         // Verifica se o ponto médio pertence a área definida como "lugar certo" e se a resposta esta correta
-        if self.viewModel.answersTupla[rightIndex].rect.contains(midPoint) &&
-            self.viewModel.answersTupla[rightIndex].answer == answer {
-
+        if rightRect != .zero {
+            
             // Define os novos valores para X e Y,
             // calculando a distância do ponto médio do objeto para o ponto médio do lugar certo
-            let newX = self.rect.midX.distance(to: self.viewModel.answersTupla[rightIndex].rect.midX)
-            let newY = self.rect.midY.distance(to: self.viewModel.answersTupla[rightIndex].rect.midY)
-
+            let newX = self.rect.midX.distance(to: rightRect.midX)
+            let newY = self.rect.midY.distance(to: rightRect.midY)
+            
             // Usa os X e Y calculados acima para definir a nova posição do objeto
             self.currentOffset = CGSize(width: newX + self.newOffset.width, height: newY + self.newOffset.height)
             self.newOffset = self.currentOffset
 
-            // Muda o estado para mostrar que o objeto está no lugar certo
-            self.isAlternativeInTheRightPlace = true
-            self.viewModel.incrementCorrectAnswers()
-
+            //self.viewModel.incrementCorrectAnswers()
+            
             // Caso não seja o lugar certo do objeto, reseta sua posição
         } else {
+            
+            for index in 0..<self.viewModel.answers.count {
+                if self.viewModel.answers[index].rectID == self.answer {
+                   self.viewModel.answers[index].rectID = 0
+                }
+            }
+            
             self.currentOffset = .zero
             self.newOffset = .zero
         }

@@ -23,7 +23,7 @@ struct SequenceView: View {
             }
             HStack {
                 ForEach(viewModel.alternatives, id: \.self) { element in
-                    DraggableAlternative(viewModel: self.viewModel, answer: element)
+                    DraggableAlternative(content: { Rectangle() }, viewModel: self.viewModel, answer: element)
                 }
             }
         }.id(UUID())
