@@ -11,14 +11,5 @@ import CoreGraphics
 
 class GameEnvironment: ObservableObject {
     
-    func verifyObject<T: GameViewModelProtocol>(viewModel: T) -> Bool {
-        return viewModel.verify()
-    }
 }
 
-protocol GameViewModelProtocol {
-    
-    var answers: [(answer: Int, rect: CGRect, rectID: Int)] { get set }
-    
-    func verify() -> Bool
-}

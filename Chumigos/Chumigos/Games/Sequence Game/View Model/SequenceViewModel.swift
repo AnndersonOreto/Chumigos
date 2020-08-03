@@ -9,11 +9,7 @@
 import Foundation
 import CoreGraphics
 
-class SequenceViewModel: ObservableObject, GameViewModelProtocol {
-
-    func verify() -> Bool {
-        return true
-    }
+class SequenceViewModel: ObservableObject {
     
     let functions = Functions()
     
