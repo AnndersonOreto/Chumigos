@@ -15,8 +15,9 @@ enum DragState{
     case bad
 }
 
-struct MarcusDraggableObj: View {
+struct DraggableObject<Content: View>: View {
     
+    let content: Content
     @State var dragState = DragState.unknown
     @State var rect: CGRect = .zero
 
@@ -27,18 +28,23 @@ struct MarcusDraggableObj: View {
     var onChanged: ((CGPoint) -> DragState)?
     var onEnded: ((CGPoint, CGRect) -> (x: CGFloat, y: CGFloat))?
     
-    var body: some View {
+    init(@ViewBuilder content: () -> Content, onChanged: @escaping (CGPoint) -> DragState, onEnded: @escaping (CGPoint, CGRect) -> (x: CGFloat, y: CGFloat)) {
+        self.content = content()
+        self.onChanged = onChanged
+        self.onEnded = onEnded
+    }
+    
+    
+    var body: some View { 
         
         //Generic View Here
-        Rectangle()
-            .frame(width: 70, height: 70)
+        self.content
             .overlay(GeometryReader { geo in
                 Color.darkPurple
                 .onAppear{
                     self.rect = geo.frame(in: .global)
                 }
-            }
-            )
+            })
             .offset(dragAmount)
             .zIndex(dragAmount == .zero ? 0 : 1)
             .shadow(color: dragColor, radius: dragAmount == .zero ? 0 : 10)
@@ -52,11 +58,10 @@ struct MarcusDraggableObj: View {
             .onEnded{
                 if self.dragState == .good {
                     
-                    self.newOffSet = .zero
                     let newCgPoint = self.onEnded?($0.location, self.rect) ?? (x: CGFloat.zero, y: CGFloat.zero)
 
-                    let x = newCgPoint.x + self.newOffSet.width
-                    let y = newCgPoint.y + self.newOffSet.height
+                    let x = newCgPoint.x
+                    let y = newCgPoint.y
 
                     let currentOffSet = CGSize(width: x, height: y)
                     
@@ -81,9 +86,3 @@ struct MarcusDraggableObj: View {
         }
     }
 }
-//
-//struct MarcusDraggableObn_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MarcusDraggableObj()
-//    }
-//}

@@ -35,13 +35,10 @@
 		26C186E524BE4AA70094AEC1 /* ChumigosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */; };
 		AA631AC624C0D6B100310AD4 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA631AC524C0D6B100310AD4 /* Functions.swift */; };
 		AA70EC8324D1EE0600C7E1D5 /* GameEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70EC8224D1EE0600C7E1D5 /* GameEnvironment.swift */; };
-		AB5E22D924D4A79E000414B6 /* MarcusSequenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E22D824D4A79E000414B6 /* MarcusSequenceView.swift */; };
-		AB5E22DB24D4A8AF000414B6 /* MarcusDraggableObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E22DA24D4A8AF000414B6 /* MarcusDraggableObj.swift */; };
+		AB5E22DB24D4A8AF000414B6 /* DraggableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E22DA24D4A8AF000414B6 /* DraggableObject.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
 		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
 		E757F11924C75C400077AB57 /* SequenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E757F11824C75C400077AB57 /* SequenceView.swift */; };
-		E757F11C24C777A70077AB57 /* GeometryGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E757F11B24C777A70077AB57 /* GeometryGetter.swift */; };
-		E757F11E24C778080077AB57 /* DraggableAlternative.swift in Sources */ = {isa = PBXBuildFile; fileRef = E757F11D24C778080077AB57 /* DraggableAlternative.swift */; };
 		E757F12124C779330077AB57 /* SequenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E757F12024C779330077AB57 /* SequenceViewModel.swift */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
 		E7FDEB8624C22FCD008DDAEB /* SequenceGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FDEB8524C22FCD008DDAEB /* SequenceGameScene.swift */; };
@@ -101,14 +98,11 @@
 		26C186E624BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA631AC524C0D6B100310AD4 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		AA70EC8224D1EE0600C7E1D5 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
-		AB5E22D824D4A79E000414B6 /* MarcusSequenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarcusSequenceView.swift; sourceTree = "<group>"; };
-		AB5E22DA24D4A8AF000414B6 /* MarcusDraggableObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarcusDraggableObj.swift; sourceTree = "<group>"; };
+		AB5E22DA24D4A8AF000414B6 /* DraggableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableObject.swift; sourceTree = "<group>"; };
 		ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
 		ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		E757F11824C75C400077AB57 /* SequenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceView.swift; sourceTree = "<group>"; };
-		E757F11B24C777A70077AB57 /* GeometryGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryGetter.swift; sourceTree = "<group>"; };
-		E757F11D24C778080077AB57 /* DraggableAlternative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableAlternative.swift; sourceTree = "<group>"; };
 		E757F12024C779330077AB57 /* SequenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceViewModel.swift; sourceTree = "<group>"; };
 		E78DA52E24BF7C17001A3079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E78DA53024BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -268,8 +262,6 @@
 				E757F11F24C779240077AB57 /* View Model */,
 				E757F11A24C7719A0077AB57 /* View */,
 				AA631AC524C0D6B100310AD4 /* Functions.swift */,
-				E757F11B24C777A70077AB57 /* GeometryGetter.swift */,
-				E757F11D24C778080077AB57 /* DraggableAlternative.swift */,
 			);
 			path = "Sequence Game";
 			sourceTree = "<group>";
@@ -340,8 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				E757F11824C75C400077AB57 /* SequenceView.swift */,
-				AB5E22D824D4A79E000414B6 /* MarcusSequenceView.swift */,
-				AB5E22DA24D4A8AF000414B6 /* MarcusDraggableObj.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -365,9 +355,10 @@
 		E7FDEB8724C2312A008DDAEB /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				AA70EC8224D1EE0600C7E1D5 /* GameEnvironment.swift */,
-				262DA9C024CB60F2008B8846 /* ShapeGame */,
 				E7FDEB9024C23D32008DDAEB /* SceneView.swift */,
+				AA70EC8224D1EE0600C7E1D5 /* GameEnvironment.swift */,
+				AB5E22DA24D4A8AF000414B6 /* DraggableObject.swift */,
+				262DA9C024CB60F2008B8846 /* ShapeGame */,
 				AA631AC424C0D68D00310AD4 /* Sequence Game */,
 			);
 			path = Games;
@@ -512,7 +503,6 @@
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
 				E7FDEB8624C22FCD008DDAEB /* SequenceGameScene.swift in Sources */,
 				AA70EC8324D1EE0600C7E1D5 /* GameEnvironment.swift in Sources */,
-				E757F11E24C778080077AB57 /* DraggableAlternative.swift in Sources */,
 				E7FDEB8B24C2323D008DDAEB /* SequenceGameView.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
@@ -521,15 +511,13 @@
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
 				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
 				26946E9424C76398005A316E /* FormPentagon.swift in Sources */,
-				E757F11C24C777A70077AB57 /* GeometryGetter.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
 				26BD3CD724CF662E0087018B /* GameDrag.swift in Sources */,
-				AB5E22D924D4A79E000414B6 /* MarcusSequenceView.swift in Sources */,
 				26660AC324C7834E000A9845 /* RandomColor.swift in Sources */,
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
 				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
 				262DA9C424CB6140008B8846 /* ShapeGameViewModel.swift in Sources */,
-				AB5E22DB24D4A8AF000414B6 /* MarcusDraggableObj.swift in Sources */,
+				AB5E22DB24D4A8AF000414B6 /* DraggableObject.swift in Sources */,
 				26946E9224C762A3005A316E /* FormDecagon.swift in Sources */,
 				26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */,
 				2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */,
