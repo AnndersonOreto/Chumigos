@@ -23,7 +23,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: SequenceGameView()) {
+                NavigationLink(destination: MarcusSequenceView()) {
                     Text("Jogo da Sequencia")
                 }
                 
