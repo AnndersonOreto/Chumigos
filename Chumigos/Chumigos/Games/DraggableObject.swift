@@ -18,6 +18,7 @@ public enum DragState{
 struct DraggableObject<Content: View>: View {
     
     let content: Content
+    let answer: Int
     @State var dragState = DragState.unknown
     @State var rect: CGRect = .zero
 
@@ -26,12 +27,13 @@ struct DraggableObject<Content: View>: View {
     @State var newOffSet = CGSize.zero
     
     var onChanged: ((CGPoint) -> DragState)?
-    var onEnded: ((CGPoint, CGRect) -> (x: CGFloat, y: CGFloat))?
+    var onEnded: ((CGPoint, CGRect, Int, DragState) -> (x: CGFloat, y: CGFloat))?
     
-    init(@ViewBuilder content: () -> Content, onChanged: @escaping (CGPoint) -> DragState, onEnded: @escaping (CGPoint, CGRect) -> (x: CGFloat, y: CGFloat)) {
+    init(@ViewBuilder content: () -> Content, onChanged: @escaping (CGPoint) -> DragState, onEnded: @escaping (CGPoint, CGRect, Int, DragState) -> (x: CGFloat, y: CGFloat), answer: Int) {
         self.content = content()
         self.onChanged = onChanged
         self.onEnded = onEnded
+        self.answer = answer
     }
     
     
@@ -56,10 +58,9 @@ struct DraggableObject<Content: View>: View {
                 self.dragState = self.onChanged?($0.location) ?? .unknown
             }
             .onEnded{
+            
+                let newCgPoint = self.onEnded?($0.location, self.rect, self.answer, self.dragState) ?? (x: CGFloat.zero, y: CGFloat.zero)
                 if self.dragState == .good {
-                    
-                    let newCgPoint = self.onEnded?($0.location, self.rect) ?? (x: CGFloat.zero, y: CGFloat.zero)
-
                     let x = newCgPoint.x
                     let y = newCgPoint.y
 

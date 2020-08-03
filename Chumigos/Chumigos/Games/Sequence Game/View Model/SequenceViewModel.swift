@@ -79,6 +79,16 @@ class SequenceViewModel: ObservableObject {
         }
     }
     
+    func checkAnswer(answerTuple: [(rect: CGRect, answer: Int, alternative: Int)]) {
+        for element in answerTuple {
+            print(element)
+            if element.alternative == element.answer {
+                incrementCorrectAnswers()
+            }
+        }
+        self.checkRoundFinished()
+    }
+    
     func generateAlternatives() {
         var pattern = functions.getPattern()
         pattern.shuffle()
@@ -87,7 +97,6 @@ class SequenceViewModel: ObservableObject {
     
     func incrementCorrectAnswers() {
         self.amountOfCorrectAnswers += 1
-        self.checkRoundFinished()
     }
     
     func checkRoundFinished() {

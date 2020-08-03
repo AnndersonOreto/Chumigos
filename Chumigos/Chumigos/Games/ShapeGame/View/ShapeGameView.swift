@@ -47,7 +47,7 @@ struct ShapeGameView: View {
                                 .fill(self.viewModel.alternativeList[index].color)
                                 .frame(width: 94, height: 94)
                             },
-                            onChanged: self.objectMoved, onEnded: self.objectDropped)
+                                        onChanged: self.objectMoved, onEnded: self.objectDropped, answer: 0)
                     }
                 }
             }
@@ -64,7 +64,7 @@ struct ShapeGameView: View {
         }
     }
     
-    func objectDropped(location: CGPoint, rect: CGRect) -> (x: CGFloat, y: CGFloat) {
+    func objectDropped(location: CGPoint, rect: CGRect, alternative: Int, dragState: DragState) -> (x: CGFloat, y: CGFloat) {
         
         if let match = answersFrames.firstIndex(where: {
             $0.contains(location) }) {
