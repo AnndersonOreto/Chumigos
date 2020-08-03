@@ -30,7 +30,8 @@ struct ShapeGameView: View {
                     ForEach(viewModel.roundList.indices, id: \.self) { (index) in
                         
                         // Cell that represents the pattern list as a form
-                        PatternForm(viewModel: self.viewModel, answersFrames: self.$answersFrames, index: index)
+//                        PatternForm(viewModel: self.viewModel, answersFrames: self.$answersFrames, index: index)
+                        PatternForm(answersFrames: self.$answersFrames, answer: self.viewModel.answer, roundList: self.viewModel.roundList[index])
                     }
                 }
                 
@@ -83,20 +84,20 @@ struct ShapeGameView: View {
 
 struct PatternForm: View {
     
-    @ObservedObject var viewModel: ShapeGameViewModel
     @Binding var answersFrames: [CGRect]
-    var index: Int
+    var answer: (formSizes: Int, color: Color)
+    var roundList: (formSizes: Int, color: Color)
     
     var body: some View {
         
         // Main pattern form stack
         ZStack {
             
-            if self.viewModel.roundList[index] != self.viewModel.answer {
+            if self.roundList != self.answer {
                 
                 // Generic form to build sided forms
-                GenericForm(form: .POLYGON, sides: self.viewModel.roundList[index].formSizes)
-                    .fill(self.viewModel.roundList[index].color)
+                GenericForm(form: .POLYGON, sides: self.roundList.formSizes)
+                    .fill(self.roundList.color)
                     .frame(width: 94, height: 94)
             } else {
                 
