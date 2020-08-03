@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-enum DragState{
+public enum DragState{
     case unknown
     case good
     case bad
@@ -40,15 +40,15 @@ struct DraggableObject<Content: View>: View {
         //Generic View Here
         self.content
             .overlay(GeometryReader { geo in
-                Color.darkPurple
+                Color.clear
                 .onAppear{
                     self.rect = geo.frame(in: .global)
                 }
             })
             .offset(dragAmount)
             .zIndex(dragAmount == .zero ? 0 : 1)
-            .shadow(color: dragColor, radius: dragAmount == .zero ? 0 : 10)
-            .shadow(color: dragColor, radius: dragAmount == .zero ? 0 : 10)
+//            .shadow(color: dragColor, radius: dragAmount == .zero ? 0 : 10)
+//            .shadow(color: dragColor, radius: dragAmount == .zero ? 0 : 10)
         .gesture(
             DragGesture(coordinateSpace: .global)
             .onChanged{
