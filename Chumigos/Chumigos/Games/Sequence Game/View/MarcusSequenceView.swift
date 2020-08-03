@@ -40,21 +40,20 @@ struct MarcusSequenceView: View {
         }
     }
     
-    func objectDropped(location: CGPoint) -> CGPoint {
-        //OnEnded
+    func objectDropped(location: CGPoint, rect: CGRect) -> (x: CGFloat, y: CGFloat) {
         
         if let match = answersFrames.firstIndex(where: {
             $0.contains(location) }) {
             
-            let newX = location.x.distance(to: answersFrames[match].midX)
-            let newY = location.y.distance(to: answersFrames[match].midY)
+            let newX = rect.midX.distance(to: answersFrames[match].midX)
+            let newY = rect.midY.distance(to: answersFrames[match].midY)
             
-            let newCGpoint = CGPoint(x: newX, y: newY)
+            let newCGpoint = (x: newX, y: newY)
             
             return newCGpoint
             
         } else {
-            return CGPoint.zero
+            return (x: CGFloat.zero, y: CGFloat.zero)
         }
     }
 }
