@@ -79,14 +79,14 @@ class SequenceViewModel: ObservableObject {
         }
     }
     
-    func checkAnswer(answerTuple: [(rect: CGRect, answer: Int, alternative: Int)]) {
+    func checkAnswer(answerTuple: [(rect: CGRect, answer: Int, alternative: Int)]) -> Bool{
         for element in answerTuple {
             print(element)
             if element.alternative == element.answer {
                 incrementCorrectAnswers()
             }
         }
-        self.checkRoundFinished()
+        return self.checkRoundFinished()
     }
     
     func generateAlternatives() {
@@ -99,26 +99,30 @@ class SequenceViewModel: ObservableObject {
         self.amountOfCorrectAnswers += 1
     }
     
-    func checkRoundFinished() {
+    func checkRoundFinished() -> Bool{
         switch self.functions.getDifficulty() {
         case .EASY:
             if self.amountOfCorrectAnswers == 1 {
                 print("ROUND EASY FINISHED!")
                 self.incrementRounds()
                 self.createFunc(difficulty: .MEDIUM)
+                return true
             }
         case .MEDIUM:
             if self.amountOfCorrectAnswers == 2 {
                 print("ROUND MEDIUM FINISHED!")
                 self.incrementRounds()
                 self.createFunc(difficulty: .EASY)
+                return true
             }
         case .HARD:
             if self.amountOfCorrectAnswers == 3 {
                 print("ROUND HARD FINISHED!")
                 self.incrementRounds()
+                return true
             }
         }
+        return false
     }
     
     func incrementRounds() {

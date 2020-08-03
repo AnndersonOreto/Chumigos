@@ -32,7 +32,9 @@ struct SequenceView: View {
                 }
             }
             Button(action: {
-                self.viewModel.checkAnswer(answerTuple: self.answersFrames)
+                if self.viewModel.checkAnswer(answerTuple: self.answersFrames) {
+                    self.answersFrames = []
+                }
             }) {
                 Text("confirm")
             }
