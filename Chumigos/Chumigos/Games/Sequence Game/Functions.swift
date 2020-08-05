@@ -38,7 +38,7 @@ class Functions {
         default:
             difficulty = .HARD
             sizeOfSequence = generateSizeOfSequence()
-            sequence = generateRandomSequence(size: sizeOfSequence, repetition: 4)
+            sequence = generateRandomSequence(size: sizeOfSequence, repetition: 3)
             return sequence
         }
     }
@@ -115,7 +115,7 @@ class Functions {
     
     func generateSizeOfSequence() -> Int {
         let random = Int.random(in: 0...1)
-        
+
         if random == 0 {
             return 3
         } else {

@@ -18,7 +18,7 @@ struct SequenceView: View {
     var body: some View {
         VStack(spacing: 80) {
             
-            HStack {
+            HStack(spacing: 4) {
                 ForEach(viewModel.sequence.indices, id: \.self) { index in
                     SequenceRectangle(index: index, number: self.viewModel.sequence[index], viewModel: self.viewModel, answersFrames: self.$answersFrames)
                 }
@@ -27,7 +27,7 @@ struct SequenceView: View {
                 ForEach(viewModel.alternatives.indices, id: \.self) { index in
 //                    DraggableObject(onChanged: self.objectMoved, onEnded: self.objectDropped)
                     DraggableObject(content: {
-                        Rectangle().fill(self.getRandomColor(number: self.viewModel.alternatives[index])).frame(width: 70, height: 70)
+                        Tile(image: "")
                     }, onChanged: self.objectMoved, onEnded: self.objectDropped, answer: self.viewModel.alternatives[index])
                 }
             }
@@ -111,20 +111,16 @@ struct SequenceRectangle: View {
     var body: some View {
         ZStack {
             if number == -1 {
-                Rectangle()
-                    .fill(Color.black)
-                    .frame(width: 70, height: 70)
+                QuestionTile()
                     .overlay(GeometryReader { geo in
-                        Color.darkPurple
+                        Color.clear
                             .onAppear {
                                 self.answersFrames.append((rect: geo.frame(in: .global), answer: self.getCorrectAnswer(), alternative: 0))
                         }
                     })
             }
             else {
-                Rectangle()
-                    .fill(getRandomColor())
-                    .frame(width: 70, height: 70)
+                Tile(image: "1")
             }
         }
         
@@ -169,8 +165,8 @@ struct SequenceRectangle: View {
 }
 
 
-//struct MarcusSequenceView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MarcusSequenceView()
-//    }
-//}
+struct MarcusSequenceView_Previews: PreviewProvider {
+    static var previews: some View {
+        SequenceView()
+    }
+}
