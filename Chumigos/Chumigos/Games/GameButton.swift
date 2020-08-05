@@ -66,7 +66,7 @@ struct GameButton: View {
                 // Button label
                 Text(buttonLabel)
                     .foregroundColor(Color.ghostColor)
-                    .font(.custom("Rubik-Bold", size: 20.0))
+                    .font(.custom("\(FontType.BOLD)", size: 20.0))
             }
             .frame(width: buttonSize.width, height: buttonSize.height)
             .background(buttonColor)
