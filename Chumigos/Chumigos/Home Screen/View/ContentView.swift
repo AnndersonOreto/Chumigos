@@ -30,6 +30,7 @@ struct ContentView: View {
                 NavigationLink(destination: ShapeGameView()) {
                     Text("Jogo da Forma")
                 }
+                GameButton(buttonLabel: "Confirmar")
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }

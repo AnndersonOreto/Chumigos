@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260A412F24D9F327003553E7 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A412E24D9F327003553E7 /* GameButton.swift */; };
+		260A413124DB1946003553E7 /* GameTouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A413024DB1946003553E7 /* GameTouchHandler.swift */; };
+		260A413324DB1AC5003553E7 /* GameTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A413224DB1AC5003553E7 /* GameTapGesture.swift */; };
 		2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620EA0924C759F0001F1EE0 /* FormTriangle.swift */; };
 		262DA9C424CB6140008B8846 /* ShapeGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DA9C324CB6140008B8846 /* ShapeGameViewModel.swift */; };
 		262DA9C624CB6BE5008B8846 /* ShapeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262DA9C524CB6BE5008B8846 /* ShapeGameView.swift */; };
@@ -62,6 +65,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		260A412E24D9F327003553E7 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
+		260A413024DB1946003553E7 /* GameTouchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTouchHandler.swift; sourceTree = "<group>"; };
+		260A413224DB1AC5003553E7 /* GameTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTapGesture.swift; sourceTree = "<group>"; };
 		2620EA0924C759F0001F1EE0 /* FormTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTriangle.swift; sourceTree = "<group>"; };
 		262DA9C324CB6140008B8846 /* ShapeGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameViewModel.swift; sourceTree = "<group>"; };
 		262DA9C524CB6BE5008B8846 /* ShapeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameView.swift; sourceTree = "<group>"; };
@@ -354,6 +360,9 @@
 				AB5E22DA24D4A8AF000414B6 /* DraggableObject.swift */,
 				262DA9C024CB60F2008B8846 /* ShapeGame */,
 				AA631AC424C0D68D00310AD4 /* Sequence Game */,
+				260A412E24D9F327003553E7 /* GameButton.swift */,
+				260A413024DB1946003553E7 /* GameTouchHandler.swift */,
+				260A413224DB1AC5003553E7 /* GameTapGesture.swift */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -499,6 +508,7 @@
 				AA70EC8324D1EE0600C7E1D5 /* GameEnvironment.swift in Sources */,
 				E7FDEB8B24C2323D008DDAEB /* SequenceGameView.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
+				260A413124DB1946003553E7 /* GameTouchHandler.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
 				262DA9C624CB6BE5008B8846 /* ShapeGameView.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
@@ -517,8 +527,10 @@
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
+				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
 				AA631AC624C0D6B100310AD4 /* Functions.swift in Sources */,
 				E757F12124C779330077AB57 /* SequenceViewModel.swift in Sources */,
+				260A413324DB1AC5003553E7 /* GameTapGesture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

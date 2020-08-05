@@ -15,19 +15,19 @@ extension Color {
     // MARK: - Default colors
     
     // Dark mode headline color
-    static let whiteGhost = Color(UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1))
+    static let ghostColor = Color(UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1))
     
     // Dark mode body color
-    static let lightGray = Color(UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1))
+    static let swanColor = Color(UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1))
     
     // Regular gray color
-    static let regularGray = Color(UIColor(red: 0.686, green: 0.686, blue: 0.686, alpha: 1))
+    static let hareColor = Color(UIColor(red: 0.686, green: 0.686, blue: 0.686, alpha: 1))
     
     // Light mode headline color
-    static let darkGray = Color(UIColor(red: 0.467, green: 0.467, blue: 0.467, alpha: 1))
+    static let wolfColor = Color(UIColor(red: 0.467, green: 0.467, blue: 0.467, alpha: 1))
     
     // Light mode body color
-    static let regularBlack = Color(UIColor(red: 0.294, green: 0.294, blue: 0.294, alpha: 1))
+    static let eelColor = Color(UIColor(red: 0.294, green: 0.294, blue: 0.294, alpha: 1))
     
     // MARK: - Primary colors
     
