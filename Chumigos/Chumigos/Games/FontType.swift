@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-enum FontType: String {
+enum FontType: Substring {
     case BLACK = "Rubik-Black"
     case BLACK_ITALIC = "Rubik-BlackItalic"
     case BOLD = "Rubik-Bold"

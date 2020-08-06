@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		260751EF24DB432C005816DB /* FontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260751EE24DB432C005816DB /* FontType.swift */; };
+		260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260751F024DB4E1C005816DB /* ProgressBarView.swift */; };
+		260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */; };
 		260A412F24D9F327003553E7 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A412E24D9F327003553E7 /* GameButton.swift */; };
 		260A413124DB1946003553E7 /* GameTouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A413024DB1946003553E7 /* GameTouchHandler.swift */; };
 		260A413324DB1AC5003553E7 /* GameTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A413224DB1AC5003553E7 /* GameTapGesture.swift */; };
@@ -77,6 +79,8 @@
 
 /* Begin PBXFileReference section */
 		260751EE24DB432C005816DB /* FontType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontType.swift; sourceTree = "<group>"; };
+		260751F024DB4E1C005816DB /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarViewModel.swift; sourceTree = "<group>"; };
 		260A412E24D9F327003553E7 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 		260A413024DB1946003553E7 /* GameTouchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTouchHandler.swift; sourceTree = "<group>"; };
 		260A413224DB1AC5003553E7 /* GameTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTapGesture.swift; sourceTree = "<group>"; };
@@ -404,6 +408,8 @@
 				260A413024DB1946003553E7 /* GameTouchHandler.swift */,
 				260A413224DB1AC5003553E7 /* GameTapGesture.swift */,
 				260751EE24DB432C005816DB /* FontType.swift */,
+				260751F024DB4E1C005816DB /* ProgressBarView.swift */,
+				260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -552,6 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */,
+				260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */,
 				E757F11924C75C400077AB57 /* SequenceView.swift in Sources */,
 				260751EF24DB432C005816DB /* FontType.swift in Sources */,
 				E7FDEB9124C23D33008DDAEB /* SceneView.swift in Sources */,
@@ -567,6 +574,7 @@
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
 				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
 				26946E9424C76398005A316E /* FormPentagon.swift in Sources */,
+				260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
 				26660AC324C7834E000A9845 /* RandomColor.swift in Sources */,
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,

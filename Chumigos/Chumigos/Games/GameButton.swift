@@ -66,7 +66,7 @@ struct GameButton: View {
                 // Button label
                 Text(buttonLabel)
                     .foregroundColor(Color.ghostColor)
-                    .font(.custom("\(FontType.BOLD)", size: 20.0))
+                    .font(.custom("Rubik-Bold", size: 20.0))
             }
             .frame(width: buttonSize.width, height: buttonSize.height)
             .background(buttonColor)
@@ -77,6 +77,34 @@ struct GameButton: View {
                 self.isPressed.toggle()
             }))
                 .offset(y: self.isPressed ? 8 : 0)
+        }
+    }
+}
+
+struct GameButtonStyle: ButtonStyle {
+    
+    var buttonColor: Color
+    var buttonBackgroundColor: Color
+    
+    func makeBody(configuration: Self.Configuration) -> some View {
+        
+        ZStack {
+            
+            // Background rectangle used to give a 3D style
+            Rectangle()
+                .frame(width: 191, height: 45+16)
+                .offset(x: 0, y: 32)
+                .background(Color.clear)
+                .foregroundColor(buttonBackgroundColor)
+                .cornerRadius(12)
+                
+            configuration.label
+            .frame(width: 191, height: 45)
+            .background(buttonColor)
+            .cornerRadius(12)
+                .offset(y: configuration.isPressed ? 8 : 0)
+                .font(.custom("Rubik-Bold", size: 20.0))
+                .foregroundColor(Color.ghostColor)
         }
     }
 }
