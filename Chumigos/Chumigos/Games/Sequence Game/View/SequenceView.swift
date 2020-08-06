@@ -25,9 +25,8 @@ struct SequenceView: View {
             }
             HStack {
                 ForEach(viewModel.alternatives.indices, id: \.self) { index in
-//                    DraggableObject(onChanged: self.objectMoved, onEnded: self.objectDropped)
                     DraggableObject(content: {
-                        Tile(image: "")
+                        Tile(image: self.getRandomAsset(number: self.viewModel.alternatives[index]))
                     }, onChanged: self.objectMoved, onEnded: self.objectDropped, answer: self.viewModel.alternatives[index])
                 }
             }
@@ -83,20 +82,14 @@ struct SequenceView: View {
         return (x: CGFloat.zero, y: CGFloat.zero)
     }
     
-    func getRandomColor(number: Int) -> Color {
-        switch number {
-        case 1:
-            return Color.blue
-        case 2:
-            return Color.orange
-        case 3:
-            return Color.red
-        case 4:
-            return Color.yellow
-        case 5:
-            return Color.green
-        default:
-            return Color.black
+    func getRandomAsset(number: Int) -> String {
+        
+        let random = Int.random(in: 0...1)
+            
+        if random == 0 {
+            return "fruit-\(number)"
+        } else {
+            return "shape-\(number)"
         }
     }
 }
@@ -120,26 +113,20 @@ struct SequenceRectangle: View {
                     })
             }
             else {
-                Tile(image: "1")
+                Tile(image: getRandomAsset(number: number))
             }
         }
         
     }
     
-    func getRandomColor() -> Color {
-        switch number {
-        case 1:
-            return Color.blue
-        case 2:
-            return Color.orange
-        case 3:
-            return Color.red
-        case 4:
-            return Color.yellow
-        case 5:
-            return Color.green
-        default:
-            return Color.black
+    func getRandomAsset(number: Int) -> String {
+        
+        let random = Int.random(in: 0...1)
+            
+        if random == 0 {
+            return "fruit-\(number)"
+        } else {
+            return "shape-\(number)"
         }
     }
     
