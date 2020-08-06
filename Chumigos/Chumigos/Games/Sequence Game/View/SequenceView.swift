@@ -20,14 +20,14 @@ struct SequenceView: View {
             
             HStack(spacing: 4) {
                 ForEach(viewModel.sequence.indices, id: \.self) { index in
-                    SequenceRectangle(index: index, number: self.viewModel.sequence[index], viewModel: self.viewModel, answersFrames: self.$answersFrames)
+                    SequenceRectangle(index: index, number: self.viewModel.sequence[index].value, viewModel: self.viewModel, answersFrames: self.$answersFrames)
                 }
             }
             HStack {
                 ForEach(viewModel.alternatives.indices, id: \.self) { index in
                     DraggableObject(content: {
-                        Tile(image: self.getRandomAsset(number: self.viewModel.alternatives[index]))
-                    }, onChanged: self.objectMoved, onEnded: self.objectDropped, answer: self.viewModel.alternatives[index])
+                        Tile(image: self.viewModel.alternatives[index].asset)
+                    }, onChanged: self.objectMoved, onEnded: self.objectDropped, answer: self.viewModel.alternatives[index].value)
                 }
             }
             Button(action: {
@@ -81,17 +81,6 @@ struct SequenceView: View {
         
         return (x: CGFloat.zero, y: CGFloat.zero)
     }
-    
-    func getRandomAsset(number: Int) -> String {
-        
-        let random = Int.random(in: 0...1)
-            
-        if random == 0 {
-            return "fruit-\(number)"
-        } else {
-            return "shape-\(number)"
-        }
-    }
 }
 
 struct SequenceRectangle: View {
@@ -113,21 +102,10 @@ struct SequenceRectangle: View {
                     })
             }
             else {
-                Tile(image: getRandomAsset(number: number))
+                Tile(image: self.viewModel.sequence[index].asset)
             }
         }
         
-    }
-    
-    func getRandomAsset(number: Int) -> String {
-        
-        let random = Int.random(in: 0...1)
-            
-        if random == 0 {
-            return "fruit-\(number)"
-        } else {
-            return "shape-\(number)"
-        }
     }
     
     func getCorrectAnswer() -> Int {
@@ -146,7 +124,7 @@ struct SequenceRectangle: View {
         }
 
         aux = index - (size * multiplier)
-        return self.viewModel.sequence[aux]
+        return self.viewModel.sequence[aux].value
     }
         
 }

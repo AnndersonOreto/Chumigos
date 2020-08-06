@@ -13,8 +13,8 @@ class SequenceViewModel: ObservableObject {
     
     let functions = Functions()
     
-    @Published var sequence: [Int] = []
-    @Published var alternatives: [Int] = []
+    @Published var sequence: [SequenceTile] = []
+    @Published var alternatives: [SequenceTile] = []
     
     var correctAnswers: [Int] = []
     var answers: [(answer: Int, rect: CGRect, rectID: Int)] = []
@@ -33,13 +33,24 @@ class SequenceViewModel: ObservableObject {
         self.generateAlternatives()
     }
     
-    func generateQuestion(sequence: [Int], difficulty: DIFFICULT) -> [Int] {
-        var questionSequence = sequence
+    func generateQuestion(sequence: [Int], difficulty: DIFFICULT) -> [SequenceTile] {
+        
+        var questionSequence:[SequenceTile] = []
+        let random = Bool.random()
+        
+        for item in sequence {
+            if random {
+                questionSequence.append(SequenceTile(value: item, asset: "fruit-\(item)"))
+            } else {
+                questionSequence.append(SequenceTile(value: item, asset: "shape-\(item)"))
+            }
+        }
+        
         switch difficulty {
         case .EASY:
             let random = Int.random(in: functions.getSize()..<sequence.count)
             correctAnswers.append(sequence[random])
-            questionSequence[random] = -1
+            questionSequence[random] = SequenceTile(value: -1, asset: "")
             return questionSequence
         case .MEDIUM:
             let random1 = Int.random(in: functions.getSize()..<sequence.count)
@@ -51,8 +62,8 @@ class SequenceViewModel: ObservableObject {
             correctAnswers.append(sequence[random1])
             correctAnswers.append(sequence[random2])
             
-            questionSequence[random1] = -1
-            questionSequence[random2] = -1
+            questionSequence[random1] = SequenceTile(value: -1, asset: "")
+            questionSequence[random2] = SequenceTile(value: -1, asset: "")
             
             return questionSequence
         default:
@@ -71,9 +82,9 @@ class SequenceViewModel: ObservableObject {
             correctAnswers.append(sequence[random2])
             correctAnswers.append(sequence[random3])
             
-            questionSequence[random1] = -1
-            questionSequence[random2] = -1
-            questionSequence[random3] = -1
+            questionSequence[random1] = SequenceTile(value: -1, asset: "")
+            questionSequence[random2] = SequenceTile(value: -1, asset: "")
+            questionSequence[random3] = SequenceTile(value: -1, asset: "")
             
             return questionSequence
         }
@@ -92,7 +103,12 @@ class SequenceViewModel: ObservableObject {
     func generateAlternatives() {
         var pattern = functions.getPattern()
         pattern.shuffle()
-        self.alternatives = pattern
+        for item in pattern {
+            if let match = sequence.firstIndex(where: {
+                $0.value == item }) {
+                self.alternatives.append(SequenceTile(value: sequence[match].value, asset: sequence[match].asset))
+            }
+        }
     }
     
     func incrementCorrectAnswers() {
@@ -143,4 +159,9 @@ class SequenceViewModel: ObservableObject {
         self.answers = []
         self.amountOfCorrectAnswers = 0
     }
+}
+
+struct SequenceTile {
+    let value: Int
+    let asset: String
 }

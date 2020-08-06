@@ -18,6 +18,7 @@ class Functions {
     private var sequence: [Int] = []
     private var pattern: [Int] = []
     private var difficulty: DIFFICULT = .EASY
+    private var repetition: Int = 0
     
     init() {
         
@@ -28,17 +29,20 @@ class Functions {
         case .EASY:
             difficulty = .EASY
             sizeOfSequence = generateSizeOfSequence()
-            sequence = generateRandomSequence(size: sizeOfSequence, repetition: 2)
+            repetition = 2
+            sequence = generateRandomSequence(size: sizeOfSequence, repetition: repetition)
             return sequence
         case .MEDIUM:
             difficulty = .MEDIUM
             sizeOfSequence = generateSizeOfSequence()
-            sequence = generateRandomSequence(size: sizeOfSequence, repetition: 3)
+            repetition = 3
+            sequence = generateRandomSequence(size: sizeOfSequence, repetition: repetition)
             return sequence
         default:
             difficulty = .HARD
             sizeOfSequence = generateSizeOfSequence()
-            sequence = generateRandomSequence(size: sizeOfSequence, repetition: 3)
+            repetition = 3
+            sequence = generateRandomSequence(size: sizeOfSequence, repetition: repetition)
             return sequence
         }
     }
@@ -57,6 +61,10 @@ class Functions {
     
     func getDifficulty() -> DIFFICULT {
         return difficulty
+    }
+    
+    func getRepetition() -> Int {
+        return repetition
     }
     
     func generateRandomSequence(size: Int, repetition: Int) -> [Int] {
