@@ -12,6 +12,7 @@ import SpriteKit
 struct ContentView: View {
     
     @ObservedObject var viewModel = HomeScreenViewModel()
+    @ObservedObject var progressBarViewModel = ProgressBarViewModel()
     
     var scene: SKScene {
         let scene = SequenceGameScene()
@@ -23,6 +24,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
+                ProgressBarView(viewModel: progressBarViewModel)
                 NavigationLink(destination: SequenceView()) {
                     Text("Jogo da Sequencia")
                 }
@@ -30,6 +32,11 @@ struct ContentView: View {
                 NavigationLink(destination: ShapeGameView()) {
                     Text("Jogo da Forma")
                 }
+                Button(action: {
+                    
+                }) {
+                    Text("Confirmar")
+                }.buttonStyle(GameButtonStyle(buttonColor: Color.regularBlue, buttonBackgroundColor: Color.darkBlue))
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }

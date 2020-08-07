@@ -45,7 +45,7 @@ struct ShapeGameView: View {
                         DraggableObject(content: {
                             GenericForm(form: .POLYGON, sides: self.viewModel.alternativeList[index].formSizes)
                                 .fill(self.viewModel.alternativeList[index].color)
-                                .frame(width: 94, height: 94)
+                                .frame(width: UIScreen.main.bounds.width*0.1, height: UIScreen.main.bounds.height*0.1)
                             },
                                         onChanged: self.objectMoved, onEnded: self.objectDropped, answer: 0)
                     }
