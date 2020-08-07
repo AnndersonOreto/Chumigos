@@ -50,6 +50,7 @@
 		AA631AC624C0D6B100310AD4 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA631AC524C0D6B100310AD4 /* Functions.swift */; };
 		AA70EC8324D1EE0600C7E1D5 /* GameEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70EC8224D1EE0600C7E1D5 /* GameEnvironment.swift */; };
 		AB5E22DB24D4A8AF000414B6 /* DraggableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E22DA24D4A8AF000414B6 /* DraggableObject.swift */; };
+		AB8AA14924DDD12700EFF0D1 /* BackgroundAlternative.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AA14824DDD12700EFF0D1 /* BackgroundAlternative.swift */; };
 		ABC7426024DB249600CC3B7E /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7425F24DB249600CC3B7E /* Tile.swift */; };
 		ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
@@ -129,6 +130,7 @@
 		AA631AC524C0D6B100310AD4 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		AA70EC8224D1EE0600C7E1D5 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
 		AB5E22DA24D4A8AF000414B6 /* DraggableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableObject.swift; sourceTree = "<group>"; };
+		AB8AA14824DDD12700EFF0D1 /* BackgroundAlternative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundAlternative.swift; sourceTree = "<group>"; };
 		ABC7425F24DB249600CC3B7E /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTile.swift; sourceTree = "<group>"; };
 		ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				E7FDEB9024C23D32008DDAEB /* SceneView.swift */,
 				AA70EC8224D1EE0600C7E1D5 /* GameEnvironment.swift */,
 				AB5E22DA24D4A8AF000414B6 /* DraggableObject.swift */,
+				AB8AA14824DDD12700EFF0D1 /* BackgroundAlternative.swift */,
 				262DA9C024CB60F2008B8846 /* ShapeGame */,
 				AA631AC424C0D68D00310AD4 /* Sequence Game */,
 				260A412E24D9F327003553E7 /* GameButton.swift */,
@@ -595,6 +598,7 @@
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
+				AB8AA14924DDD12700EFF0D1 /* BackgroundAlternative.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
 				AA631AC624C0D6B100310AD4 /* Functions.swift in Sources */,
 				E757F12124C779330077AB57 /* SequenceViewModel.swift in Sources */,

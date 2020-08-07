@@ -122,6 +122,7 @@ class Functions {
     }
     
     func generateSizeOfSequence() -> Int {
+        
         let random = Int.random(in: 0...1)
 
         if random == 0 {

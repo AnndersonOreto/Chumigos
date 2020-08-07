@@ -19,11 +19,24 @@ struct ProgressBarView: View {
             
             HStack {
                 
+//                ForEach(self.viewModel.progressStatusList.indices, id: \.self) { index in
+//                    Capsule()
+//                        .frame(width: index == self.viewModel.currentQuestion ? UIScreen.main.bounds.width*0.115 : UIScreen.main.bounds.width*0.086,
+//                               height: index == self.viewModel.currentQuestion ? UIScreen.main.bounds.width*0.022 : UIScreen.main.bounds.width*0.017)
+//                        .foregroundColor(index == self.viewModel.currentQuestion ? Color.secondaryBlue : self.viewModel.progressStatusList[index] )
+//                }
+                
                 ForEach(self.viewModel.progressStatusList.indices, id: \.self) { index in
                     Capsule()
-                        .frame(width: index == self.viewModel.currentQuestion ? UIScreen.main.bounds.width*0.115 : UIScreen.main.bounds.width*0.1,
-                               height: index == self.viewModel.currentQuestion ? UIScreen.main.bounds.width*0.022 : UIScreen.main.bounds.width*0.02)
-                        .foregroundColor(self.viewModel.progressStatusList[index])
+                        .frame(width: UIScreen.main.bounds.width*0.115,
+                               height: UIScreen.main.bounds.width*0.022)
+                        .foregroundColor(Color.clear)
+                        .overlay(
+                            Capsule()
+                                .frame(width: index == self.viewModel.currentQuestion ? UIScreen.main.bounds.width*0.115 : UIScreen.main.bounds.width*0.086,
+                                       height: index == self.viewModel.currentQuestion ? UIScreen.main.bounds.width*0.022 : UIScreen.main.bounds.width*0.017)
+                            .foregroundColor(index == self.viewModel.currentQuestion ? Color.secondaryBlue : self.viewModel.progressStatusList[index] )
+                    )
                 }
             }
         }

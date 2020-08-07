@@ -10,37 +10,38 @@ import SwiftUI
 
 struct QuestionTile: View {
     
+    var size: CGSize
+    
     var body: some View {
         ZStack{
 
             Rectangle()
                 .fill(Color.clear)
-                .frame(width: 104, height: 112)
+                .frame(width: self.size.width * 1.2, height: self.size.width * 1.3)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 22)
+                    RoundedRectangle(cornerRadius: 18)
                         .offset(y: 4.5)
                         .stroke(Color.init(red: 43/255, green: 112/255, blue: 201/255), style: StrokeStyle(lineWidth: 3, dash: [12,5]))
                 )
             
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.init(red: 20/255, green: 83/255, blue: 163/255))
-                .frame(width:81, height: 81.22)
+                .frame(width:size.width, height: size.height)
                 .offset(y: 9)
                 
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.init(red: 43/255, green: 112/255, blue: 201/255))
-                .frame(width:81, height: 81.22)
+                .frame(width:size.width, height: size.height)
             
             Text("?")
                 .foregroundColor(.white)
-                .font(.system(size: 70)).bold()
-                .kerning(5)
+                .font(.custom("Rubik", size: self.size.width * 0.74)).bold()
         }
     }
 }
 
 struct QuestionTile_Preview: PreviewProvider {
     static var previews: some View {
-        QuestionTile()
+        QuestionTile(size: CGSize.zero)
     }
 }

@@ -11,32 +11,62 @@ import SwiftUI
 struct SequenceView: View {
     
     @ObservedObject var viewModel = SequenceViewModel(difficulty: .MEDIUM)
-    
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     @State var answersFrames: [(rect: CGRect, answer: Int, alternative: Int)] = []
+    
+    var tileSize: CGSize {
+        return self.viewModel.sequence.count > 9 ?
+            CGSize(width: UIScreen.main.bounds.width * 0.067, height: UIScreen.main.bounds.width * 0.067) :
+            CGSize(width: UIScreen.main.bounds.width * 0.078, height: UIScreen.main.bounds.width * 0.078)
+    }
     
     
     var body: some View {
-        VStack(spacing: 80) {
+        VStack(spacing: 0) {
             
-            HStack(spacing: 4) {
+            ProgressBarView(viewModel: progressViewModel)
+            
+            Spacer()
+            
+            HStack(spacing: 0) {
                 ForEach(viewModel.sequence.indices, id: \.self) { index in
-                    SequenceRectangle(index: index, number: self.viewModel.sequence[index].value, viewModel: self.viewModel, answersFrames: self.$answersFrames)
+                    SequenceRectangle(size: self.tileSize, index: index, number: self.viewModel.sequence[index].value, viewModel: self.viewModel, answersFrames: self.$answersFrames)
                 }
             }
-            HStack {
+            
+            Text("Complete a sequência arrastando as peças abaixo:")
+                .foregroundColor(Color.eelColor)
+                .font(.custom("Rubik", size: UIScreen.main.bounds.width * 0.016)).fontWeight(.medium)
+                .padding(.top, UIScreen.main.bounds.width * 0.07)
+            
+            HStack(spacing: UIScreen.main.bounds.width * 0.036) {
                 ForEach(viewModel.alternatives.indices, id: \.self) { index in
-                    DraggableObject(content: {
-                        Tile(image: self.viewModel.alternatives[index].asset)
-                    }, onChanged: self.objectMoved, onEnded: self.objectDropped, answer: self.viewModel.alternatives[index].value)
+                    
+                    ZStack{
+                        //Underlay tile with opacity
+                        BackgroundAlternative(content: {
+                            Tile(image: self.viewModel.alternatives[index].asset, size: self.tileSize)
+                        }, size: self.tileSize)
+                        
+                        DraggableObject(content: {
+                            Tile(image: self.viewModel.alternatives[index].asset, size: self.tileSize)
+                        }, onChanged: self.objectMoved, onEnded: self.objectDropped, answer: self.viewModel.alternatives[index].value)
+                    }
                 }
-            }
+            }.padding(.top, UIScreen.main.bounds.width * 0.03)
+            
+            Spacer()
+            
             Button(action: {
                 if self.viewModel.checkAnswer(answerTuple: self.answersFrames) {
                     self.answersFrames = []
+                    self.progressViewModel.checkAnswer(isCorrect: true)
                 }
             }) {
-                Text("confirm")
-            }
+                Text("Confirmar")
+                    .font(.custom("Rubik", size: 20)).bold()
+            }.buttonStyle(GameButtonStyle(buttonColor: Color.regularBlue, pressedButtonColor: Color.lightBlue, buttonBackgroundColor: Color.darkBlue))
+                .padding(.bottom, 23)
         }.id(UUID())
     }
     
@@ -85,6 +115,7 @@ struct SequenceView: View {
 
 struct SequenceRectangle: View {
     
+    let size: CGSize
     var index: Int
     var number: Int
     @ObservedObject var viewModel: SequenceViewModel
@@ -93,7 +124,7 @@ struct SequenceRectangle: View {
     var body: some View {
         ZStack {
             if number == -1 {
-                QuestionTile()
+                QuestionTile(size: self.size)
                     .overlay(GeometryReader { geo in
                         Color.clear
                             .onAppear {
@@ -102,7 +133,7 @@ struct SequenceRectangle: View {
                     })
             }
             else {
-                Tile(image: self.viewModel.sequence[index].asset)
+                Tile(image: self.viewModel.sequence[index].asset, size: self.size)
             }
         }
         

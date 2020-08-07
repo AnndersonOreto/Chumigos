@@ -84,6 +84,7 @@ struct GameButton: View {
 struct GameButtonStyle: ButtonStyle {
     
     var buttonColor: Color
+    var pressedButtonColor: Color
     var buttonBackgroundColor: Color
     
     func makeBody(configuration: Self.Configuration) -> some View {
@@ -100,7 +101,7 @@ struct GameButtonStyle: ButtonStyle {
                 
             configuration.label
             .frame(width: 191, height: 45)
-            .background(buttonColor)
+                .background(configuration.isPressed ? pressedButtonColor : buttonColor)
             .cornerRadius(12)
                 .offset(y: configuration.isPressed ? 8 : 0)
                 .font(.custom("Rubik-Bold", size: 20.0))

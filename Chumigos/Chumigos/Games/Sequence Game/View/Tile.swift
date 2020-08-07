@@ -11,32 +11,33 @@ import SwiftUI
 struct Tile: View {
     
     var image: String
+    var size: CGSize
     
     var body: some View {
         ZStack{
             
             Rectangle()
                 .fill(Color.clear)
-                .frame(width: 104, height: 112)
+                .frame(width: self.size.width * 1.2, height: self.size.width * 1.3)
             
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.init(red: 165/255, green: 102/255, blue: 68/255))
-                .frame(width:81, height: 81.22)
+                .frame(width:size.width, height: size.height)
                 .offset(y: 9)
                 
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.init(red: 255/255, green: 206/255, blue: 142/255))
-                .frame(width:81, height: 81.22)
+                .frame(width:size.width, height: size.height)
             
             Image(image)
             .resizable()
-                .frame(width: 43, height: 43)
+                .frame(width: self.size.width * 0.53, height: self.size.width * 0.53)
         }
     }
 }
 
 struct Tile_Previews: PreviewProvider {
     static var previews: some View {
-        Tile(image: "")
+        Tile(image: "", size: CGSize.zero)
     }
 }

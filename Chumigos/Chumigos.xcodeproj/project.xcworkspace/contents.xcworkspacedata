@@ -2,36 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Rubik-Black.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:Rubik-BlackItalic.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:Rubik-Bold.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:Rubik-BoldItalic.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:Rubik-Italic.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:Rubik-Light.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:Rubik-LightItalic.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:Rubik-Medium.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:Rubik-MediumItalic.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:Rubik-Regular.ttf">
-   </FileRef>
-   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>

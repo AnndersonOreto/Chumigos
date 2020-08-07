@@ -18,8 +18,9 @@ class ProgressBarViewModel: ObservableObject {
     @Published var progressStatusList: [Color] = []
     @Published var currentQuestion: Int = 0
     
-    init() {
-        progressStatusList = [Color.regularGreen, Color.swanColor, Color.swanColor, Color.swanColor, Color.swanColor]
+    init(questionAmount: Int) {
+        
+        progressStatusList = [Color](repeating: Color.swanColor, count: questionAmount)
     }
     
     func incrementQuestion() {
@@ -30,12 +31,19 @@ class ProgressBarViewModel: ObservableObject {
         return currentQuestion >= progressStatusList.count
     }
     
-    func checkAndswer(isCorrect: Bool) {
+    func checkAnswer(isCorrect: Bool) {
         
+        // Increment current question index
+        incrementQuestion()
+        
+        // Prevent array out bounds access
+        if isLastQuestion() { return }
+        
+        // Mark current question as green if it is right
         if isCorrect {
-            self.progressStatusList[currentQuestion] = Color.regularGreen
+            self.progressStatusList[currentQuestion-1] = Color.darkGreen
             return
         }
-        self.progressStatusList[currentQuestion] = Color.regularRed
+        self.progressStatusList[currentQuestion-1] = Color.darkRed
     }
 }
