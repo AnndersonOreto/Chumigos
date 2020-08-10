@@ -25,8 +25,8 @@ struct GameButton: View {
     /// - Parameter buttonLabel: label used as button text
     public init(buttonLabel: String) {
         self.buttonSize = CGSize(width: 191, height: 45)
-        self.buttonColor = Color.regularBlue
-        self.buttonBackgroundColor = Color.darkBlue
+        self.buttonColor = Color.Whale
+        self.buttonBackgroundColor = Color.Narwhal
         self.buttonLabel = buttonLabel
     }
     
@@ -65,7 +65,7 @@ struct GameButton: View {
                 
                 // Button label
                 Text(buttonLabel)
-                    .foregroundColor(Color.ghostColor)
+                    .foregroundColor(Color.Ghost)
                     .font(.custom("Rubik-Bold", size: 20.0))
             }
             .frame(width: buttonSize.width, height: buttonSize.height)
@@ -105,7 +105,7 @@ struct GameButtonStyle: ButtonStyle {
             .cornerRadius(12)
                 .offset(y: configuration.isPressed ? 8 : 0)
                 .font(.custom("Rubik-Bold", size: 20.0))
-                .foregroundColor(Color.ghostColor)
+                .foregroundColor(Color.Ghost)
         }
     }
 }

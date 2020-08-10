@@ -35,7 +35,7 @@ struct SequenceView: View {
             }
             
             Text("Complete a sequência arrastando as peças abaixo:")
-                .foregroundColor(Color.eelColor)
+                .foregroundColor(Color.Eel)
                 .font(.custom("Rubik", size: UIScreen.main.bounds.width * 0.016)).fontWeight(.medium)
                 .padding(.top, UIScreen.main.bounds.width * 0.07)
             
@@ -65,7 +65,7 @@ struct SequenceView: View {
             }) {
                 Text("Confirmar")
                     .font(.custom("Rubik", size: 20)).bold()
-            }.buttonStyle(GameButtonStyle(buttonColor: Color.regularBlue, pressedButtonColor: Color.lightBlue, buttonBackgroundColor: Color.darkBlue))
+            }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal))
                 .padding(.bottom, 23)
         }.id(UUID())
     }

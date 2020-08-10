@@ -30,7 +30,7 @@ struct BackgroundAlternative<Content: View>: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 18)
                     .offset(y: 4.5)
-                    .stroke(Color.hareColor, lineWidth: 2)
+                    .stroke(Color.Hare, lineWidth: 2)
                     
             )
         }
