@@ -20,7 +20,7 @@ class ProgressBarViewModel: ObservableObject {
     
     init(questionAmount: Int) {
         
-        progressStatusList = [Color](repeating: Color.swanColor, count: questionAmount)
+        progressStatusList = [Color](repeating: Color.Swan, count: questionAmount)
     }
     
     func incrementQuestion() {
@@ -41,9 +41,9 @@ class ProgressBarViewModel: ObservableObject {
         
         // Mark current question as green if it is right
         if isCorrect {
-            self.progressStatusList[currentQuestion-1] = Color.darkGreen
+            self.progressStatusList[currentQuestion-1] = Color.TreeFrog
             return
         }
-        self.progressStatusList[currentQuestion-1] = Color.darkRed
+        self.progressStatusList[currentQuestion-1] = Color.FireAnt
     }
 }
