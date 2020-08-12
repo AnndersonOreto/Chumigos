@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// Do the same thing that DraggableObject does, but as a ViewModifier
 struct Draggable: ViewModifier {
     //Object answer
     let answer: Int
@@ -78,6 +79,7 @@ struct Draggable: ViewModifier {
 }
 
 extension View {
+    // Function to call more easily the modifier
     func draggable(onChanged: @escaping (CGPoint, Int) -> DragState, onEnded: @escaping (CGPoint, CGRect, Int, DragState) -> (x: CGFloat, y: CGFloat), answer: Int) -> some View {
         return self.modifier(Draggable(onChanged: onChanged, onEnded: onEnded, answer: answer))
     }
