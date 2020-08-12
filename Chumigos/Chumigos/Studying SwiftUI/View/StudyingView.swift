@@ -16,11 +16,9 @@ struct StudyingView: View {
     @State var alternativeSelected: Int?
     
     var tileSize: CGSize {
-        let screenWidth = UIScreen.main.bounds.width
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
         return CGSize(width: screenWidth * scaleFactor, height: screenWidth * scaleFactor)
     }
-    
     
     var body: some View {
         VStack(spacing: 0) {
@@ -37,10 +35,10 @@ struct StudyingView: View {
             
             Text("Complete a sequência arrastando as peças abaixo:")
                 .foregroundColor(Color.Eel)
-                .font(.custom("Rubik", size: UIScreen.main.bounds.width * 0.016)).fontWeight(.medium)
-                .padding(.top, UIScreen.main.bounds.width * 0.07)
+                .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
+                .padding(.top, screenWidth * 0.07)
             
-            HStack(spacing: UIScreen.main.bounds.width * 0.036) {
+            HStack(spacing: screenWidth * 0.036) {
                 ForEach(viewModel.alternatives) { (alternative) in
                     ZStack{
                         //Underlay tile with opacity
@@ -48,28 +46,37 @@ struct StudyingView: View {
                             Tile(image: alternative.content, size: self.tileSize)
                         }, size: self.tileSize)
                         
-                        DraggableObject(content: {
-                            Tile(image: alternative.content, size: self.tileSize)
-                        }, onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
-                    }.zIndex(self.alternativeSelected == alternative.value ? 1: 0)
+                        Tile(image: alternative.content, size: self.tileSize)
+                            .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
+                        
+                    }
+                    // Make tile that is being drag appears on top
+                    .zIndex(self.alternativeSelected == alternative.value ? 1: 0)
                 }
-            }.padding(.top, UIScreen.main.bounds.width * 0.03)
+            }.padding(.top, screenWidth * 0.03)
             
             Spacer()
             
             Button(action: {
-                if self.viewModel.allQuestionsAreCorrect() {
-                    self.questionsFrames = []
-                    self.viewModel.resetGame()
-                    self.progressViewModel.checkAnswer(isCorrect: true)
+                self.questionsFrames = []
+                self.viewModel.resetGame()
+                withAnimation(.linear) {
+                    self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
                 }
             }) {
                 Text("Confirmar")
-                    .font(.custom("Rubik", size: 20)).bold()
+                    .font(.custom(fontName, size: 20)).bold()
             }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal))
                 .padding(.bottom, 23)
         }
     }
+    
+    // MARK: - Drawing Contants
+    
+    let screenWidth = UIScreen.main.bounds.width
+    let fontName = "Rubik"
+    
+    // MARK: - Drag & Drops Functions
     
     func objectMoved(location: CGPoint, alternative: Int) -> DragState {
         self.alternativeSelected = alternative
@@ -110,7 +117,11 @@ struct StudyingView: View {
     }
 }
 
+// MARK: - View Extension
+
 extension StudyingView {
+    
+    // MARK: - View for the Tile/Piece
     private func pieceView(for piece: SequenceGameModel<String>.SequencePiece) -> some View {
         ZStack {
             if piece.isAQuestion {

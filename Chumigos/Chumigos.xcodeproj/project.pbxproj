@@ -52,6 +52,7 @@
 		AAA0613324E305BE008CD91B /* SequenceGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613224E305BE008CD91B /* SequenceGameModel.swift */; };
 		AAA0613924E30819008CD91B /* StudyingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613824E30819008CD91B /* StudyingView.swift */; };
 		AAA0613B24E31685008CD91B /* SequenceGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613A24E31685008CD91B /* SequenceGameViewModel.swift */; };
+		AAA0613D24E49683008CD91B /* Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613C24E49683008CD91B /* Draggable.swift */; };
 		AB5E22DB24D4A8AF000414B6 /* DraggableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E22DA24D4A8AF000414B6 /* DraggableObject.swift */; };
 		AB8AA14924DDD12700EFF0D1 /* BackgroundAlternative.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AA14824DDD12700EFF0D1 /* BackgroundAlternative.swift */; };
 		ABC7426024DB249600CC3B7E /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7425F24DB249600CC3B7E /* Tile.swift */; };
@@ -135,6 +136,7 @@
 		AAA0613224E305BE008CD91B /* SequenceGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SequenceGameModel.swift; path = "Chumigos/Studying SwiftUI/Model/SequenceGameModel.swift"; sourceTree = SOURCE_ROOT; };
 		AAA0613824E30819008CD91B /* StudyingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingView.swift; sourceTree = "<group>"; };
 		AAA0613A24E31685008CD91B /* SequenceGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceGameViewModel.swift; sourceTree = "<group>"; };
+		AAA0613C24E49683008CD91B /* Draggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draggable.swift; sourceTree = "<group>"; };
 		AB5E22DA24D4A8AF000414B6 /* DraggableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableObject.swift; sourceTree = "<group>"; };
 		AB8AA14824DDD12700EFF0D1 /* BackgroundAlternative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundAlternative.swift; sourceTree = "<group>"; };
 		ABC7425F24DB249600CC3B7E /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 		AAA0613424E307A3008CD91B /* Studying SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				AAA0613C24E49683008CD91B /* Draggable.swift */,
 				AAA0613524E307C2008CD91B /* Model */,
 				AAA0613724E307E6008CD91B /* View */,
 				AAA0613624E307D9008CD91B /* ViewModel */,
@@ -644,6 +647,7 @@
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
 				AB8AA14924DDD12700EFF0D1 /* BackgroundAlternative.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
+				AAA0613D24E49683008CD91B /* Draggable.swift in Sources */,
 				AA631AC624C0D6B100310AD4 /* Functions.swift in Sources */,
 				E757F12124C779330077AB57 /* SequenceViewModel.swift in Sources */,
 				260A413324DB1AC5003553E7 /* GameTapGesture.swift in Sources */,
