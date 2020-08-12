@@ -70,7 +70,7 @@ struct SequenceView: View {
         }.id(UUID())
     }
     
-    func objectMoved(location: CGPoint) -> DragState {
+    func objectMoved(location: CGPoint, alternative: Int) -> DragState {
         
         if answersFrames.firstIndex(where: {
             $0.rect.contains(location) && $0.alternative == 0}) != nil {

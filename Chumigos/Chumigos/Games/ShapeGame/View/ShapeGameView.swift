@@ -54,7 +54,7 @@ struct ShapeGameView: View {
         }
     }
     
-    func objectMoved(location: CGPoint) -> DragState {
+    func objectMoved(location: CGPoint, alternative: Int) -> DragState {
         
         if answersFrames.firstIndex(where: {
             $0.contains(location) }) != nil {
