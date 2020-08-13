@@ -10,9 +10,6 @@ import SwiftUI
 
 // Do the same thing that DraggableObject does, but as a ViewModifier
 struct Draggable: ViewModifier {
-    //Object answer
-    let answer: Int
-    
     //State to see if can or cannot drop the object
     @State private var dragState = DragState.unknown
     //Variable to save the rect of the object
@@ -26,11 +23,8 @@ struct Draggable: ViewModifier {
     var onChanged: ((CGPoint, Int) -> DragState)?
     var onEnded: ((CGPoint, CGRect, Int, DragState) -> (x: CGFloat, y: CGFloat))?
     
-    init(onChanged: @escaping (CGPoint, Int) -> DragState, onEnded: @escaping (CGPoint, CGRect, Int, DragState) -> (x: CGFloat, y: CGFloat), answer: Int) {
-        self.onChanged = onChanged
-        self.onEnded = onEnded
-        self.answer = answer
-    }
+    //Object answer
+    let answer: Int
     
     func body(content: Content) -> some View {
         
@@ -79,7 +73,7 @@ struct Draggable: ViewModifier {
 }
 
 extension View {
-    // Function to call more easily the modifier
+    // Function to call the modifier more easily
     func draggable(onChanged: @escaping (CGPoint, Int) -> DragState, onEnded: @escaping (CGPoint, CGRect, Int, DragState) -> (x: CGFloat, y: CGFloat), answer: Int) -> some View {
         return self.modifier(Draggable(onChanged: onChanged, onEnded: onEnded, answer: answer))
     }

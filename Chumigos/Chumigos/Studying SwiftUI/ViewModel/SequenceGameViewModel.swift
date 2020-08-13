@@ -36,6 +36,10 @@ class SequenceGameViewModel: ObservableObject {
         return model.allQuestionsAreCorrect()
     }
     
+    func allQuestionsAreOccupied() -> Bool {
+        return model.allQuestionsAreOccupied()
+    }
+    
     // MARK: - Intent(s): Modifies the Model
     
     func occupyQuestion(with index: Int, alternative: Int) {

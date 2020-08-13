@@ -49,6 +49,7 @@
 		26C186E524BE4AA70094AEC1 /* ChumigosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */; };
 		AA631AC624C0D6B100310AD4 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA631AC524C0D6B100310AD4 /* Functions.swift */; };
 		AA70EC8324D1EE0600C7E1D5 /* GameEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70EC8224D1EE0600C7E1D5 /* GameEnvironment.swift */; };
+		AA865AF024E57D960066BF2A /* AlternativeBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */; };
 		AAA0613324E305BE008CD91B /* SequenceGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613224E305BE008CD91B /* SequenceGameModel.swift */; };
 		AAA0613924E30819008CD91B /* StudyingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613824E30819008CD91B /* StudyingView.swift */; };
 		AAA0613B24E31685008CD91B /* SequenceGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613A24E31685008CD91B /* SequenceGameViewModel.swift */; };
@@ -133,6 +134,7 @@
 		26C186E624BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA631AC524C0D6B100310AD4 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		AA70EC8224D1EE0600C7E1D5 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
+		AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeBackground.swift; sourceTree = "<group>"; };
 		AAA0613224E305BE008CD91B /* SequenceGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SequenceGameModel.swift; path = "Chumigos/Studying SwiftUI/Model/SequenceGameModel.swift"; sourceTree = SOURCE_ROOT; };
 		AAA0613824E30819008CD91B /* StudyingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingView.swift; sourceTree = "<group>"; };
 		AAA0613A24E31685008CD91B /* SequenceGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceGameViewModel.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA0613C24E49683008CD91B /* Draggable.swift */,
+				AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */,
 				AAA0613524E307C2008CD91B /* Model */,
 				AAA0613724E307E6008CD91B /* View */,
 				AAA0613624E307D9008CD91B /* ViewModel */,
@@ -613,6 +616,7 @@
 				26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */,
 				260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */,
 				E757F11924C75C400077AB57 /* SequenceView.swift in Sources */,
+				AA865AF024E57D960066BF2A /* AlternativeBackground.swift in Sources */,
 				260751EF24DB432C005816DB /* FontType.swift in Sources */,
 				AAA0613324E305BE008CD91B /* SequenceGameModel.swift in Sources */,
 				E7FDEB9124C23D33008DDAEB /* SceneView.swift in Sources */,

@@ -12,8 +12,11 @@ struct StudyingView: View {
     
     @ObservedObject var viewModel = SequenceGameViewModel()
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
+    
+    // Save the rects of all the questions
     @State private var questionsFrames: [(id: Int, rect: CGRect)] = []
-    @State private var alternativeSelected: Int?
+    // Variable to know which alternative is being dragged
+    @State private var alternativeBeingDragged: Int?
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
@@ -42,26 +45,27 @@ struct StudyingView: View {
                 ForEach(viewModel.alternatives) { (alternative) in
                     ZStack{
                         //Underlay tile with opacity
-                        BackgroundAlternative(content: {
-                            Tile(image: alternative.content, size: self.tileSize)
-                        }, size: self.tileSize)
+                        Tile(image: alternative.content, size: self.tileSize)
+                            .alternativeBackground(size: self.tileSize)
                         
                         Tile(image: alternative.content, size: self.tileSize)
                             .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
                         
                     }
                     // Make tile that is being drag appears on top
-                    .zIndex(self.alternativeSelected == alternative.value ? 1: 0)
+                    .zIndex(self.alternativeBeingDragged == alternative.value ? 1: 0)
                 }
             }.padding(.top, screenWidth * 0.03)
             
             Spacer()
             
             Button(action: {
-                self.questionsFrames = []
-                self.viewModel.resetGame()
-                withAnimation(.linear) {
-                    self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
+                if self.viewModel.allQuestionsAreOccupied() {
+                    self.questionsFrames = []
+                    self.viewModel.resetGame()
+                    withAnimation(.linear) {
+                        self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
+                    }
                 }
             }) {
                 Text("Confirmar")
@@ -79,9 +83,9 @@ struct StudyingView: View {
     // MARK: - Drag & Drops Functions
     
     func objectMoved(location: CGPoint, alternative: Int) -> DragState {
-        self.alternativeSelected = alternative
+        self.alternativeBeingDragged = alternative
         if let matchedFrame = questionsFrames.first(where: { $0.rect.contains(location) }) {
-            if let _ = viewModel.questions.first(where: { $0.value == matchedFrame.id && !$0.isOcupied }) {
+            if let _ = viewModel.questions.first(where: { $0.correctOccupant == matchedFrame.id && !$0.isOcupied }) {
                 return .good
             }
         }
@@ -89,7 +93,7 @@ struct StudyingView: View {
     }
     
     func objectDropped(location: CGPoint, rect: CGRect, alternative: Int, dragState: DragState) -> (x: CGFloat, y: CGFloat) {
-        self.alternativeSelected = nil
+        self.alternativeBeingDragged = nil
         
         if dragState == .good {
             if let match = questionsFrames.firstIndex(where: {
@@ -100,7 +104,7 @@ struct StudyingView: View {
                 
                 let newCGpoint = (x: newX, y: newY)
                 
-                if let matchedIndex = viewModel.questions.firstIndex(where: { $0.value == questionsFrames[match].id }) {
+                if let matchedIndex = viewModel.questions.firstIndex(where: { $0.correctOccupant == questionsFrames[match].id }) {
                     viewModel.occupyQuestion(with: matchedIndex, alternative: alternative)
                 }
                 
@@ -108,7 +112,7 @@ struct StudyingView: View {
             }
         } else {
             for index in 0..<viewModel.questions.count {
-                if viewModel.questions[index].occupant == alternative {
+                if viewModel.questions[index].currentOccupant == alternative {
                     viewModel.vacateQuestion(with: index)
                 }
             }
