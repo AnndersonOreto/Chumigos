@@ -13,17 +13,20 @@ enum Difficulty {
 }
 
 struct SequenceGameModel<GameContent> {
+    private(set) var alternatives: [SequenceGameModel.Alternative] = []
+    private(set) var questions: [Question] = []
+    private(set) var sequence: [SequenceGameModel.SequencePiece] = []
+    
+    private var pattern: [Int] = []
+    private var sizeOfPattern: Int = 0
+    
     private var repetitions: Int {
         difficulty == .easy ? 2 : 3
     }
-    private var difficulty: Difficulty = .easy
-    private var pattern: [Int] = []
-    private var sizeOfPattern: Int = 0
-    private(set) var alternatives: [SequenceGameModel.Alternative] = []
-    private(set) var questions: [SequenceGameModel.Question] = []
-    private(set) var sequence: [SequenceGameModel.SequencePiece] = []
     
-    init(difficulty: Difficulty, contentFactory: (Int) -> GameContent) {
+    private let difficulty: Difficulty
+    
+    init(difficulty: Difficulty = .easy, contentFactory: (Int) -> GameContent) {
         self.difficulty = difficulty
         generateSizeOfPattern()
         generatePattern()
@@ -65,7 +68,7 @@ struct SequenceGameModel<GameContent> {
         switch difficulty {
         case .easy:
             let random = Int.random(in: sizeOfPattern..<sequence.count)
-            questions.append(Question(correctOccupant: sequence[random].value))
+            questions.append(Question(correctAnswer: sequence[random].value))
             sequence[random].isAQuestion = true
             
         case .medium:
@@ -74,8 +77,8 @@ struct SequenceGameModel<GameContent> {
             repeat {
                 random2 = Int.random(in: sizeOfPattern..<sequence.count)
             } while sequence[random1].value == sequence[random2].value
-            questions.append(Question(correctOccupant: sequence[random1].value))
-            questions.append(Question(correctOccupant: sequence[random2].value))
+            questions.append(Question(correctAnswer: sequence[random1].value))
+            questions.append(Question(correctAnswer: sequence[random2].value))
             sequence[random1].isAQuestion = true
             sequence[random2].isAQuestion = true
             
@@ -89,9 +92,9 @@ struct SequenceGameModel<GameContent> {
             } while (sequence[random1].value == sequence[random2].value &&
                 sequence[random1].value == sequence[random3].value &&
                 sequence[random2].value == sequence[random3].value)
-            questions.append(Question(correctOccupant: sequence[random1].value))
-            questions.append(Question(correctOccupant: sequence[random2].value))
-            questions.append(Question(correctOccupant: sequence[random3].value))
+            questions.append(Question(correctAnswer: sequence[random1].value))
+            questions.append(Question(correctAnswer: sequence[random2].value))
+            questions.append(Question(correctAnswer: sequence[random3].value))
             sequence[random1].isAQuestion = true
             sequence[random2].isAQuestion = true
             sequence[random3].isAQuestion = true
@@ -111,7 +114,7 @@ struct SequenceGameModel<GameContent> {
     
     mutating func occupyQuestion(with index: Int, alternative: Int) {
         for (index, question) in questions.enumerated() {
-            if question.currentOccupant == alternative {
+            if question.currentAnswer == alternative {
                 self.vacateQuestion(with: index)
             }
         }
@@ -144,33 +147,12 @@ struct SequenceGameModel<GameContent> {
         return numberOfQuestions == numbersOfOccupiedQuestions
     }
     
-    // MARK: - Structs
+    // MARK: - Struct(s)
     
     struct Alternative: Identifiable {
         let value: Int
         let content: GameContent
         var id = UUID()
-    }
-
-    struct Question {
-        let correctOccupant: Int
-        var currentOccupant: Int?
-        
-        var isOcupied: Bool {
-            currentOccupant == nil ? false : true
-        }
-        
-        var isCorrect: Bool {
-            currentOccupant == correctOccupant
-        }
-        
-        mutating func occupy(with occupant: Int) {
-            self.currentOccupant = occupant
-        }
-        
-        mutating func vacate() {
-            self.currentOccupant = nil
-        }
     }
     
     struct SequencePiece: Identifiable {

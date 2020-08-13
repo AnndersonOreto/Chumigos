@@ -28,7 +28,7 @@ class SequenceGameViewModel: ObservableObject {
         model.alternatives
     }
     
-    var questions: [SequenceGameModel<String>.Question] {
+    var questions: [Question] {
         return model.questions
     }
     

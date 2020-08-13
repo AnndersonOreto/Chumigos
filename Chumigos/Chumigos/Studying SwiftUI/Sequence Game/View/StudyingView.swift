@@ -85,7 +85,7 @@ struct StudyingView: View {
     func objectMoved(location: CGPoint, alternative: Int) -> DragState {
         self.alternativeBeingDragged = alternative
         if let matchedFrame = questionsFrames.first(where: { $0.rect.contains(location) }) {
-            if let _ = viewModel.questions.first(where: { $0.correctOccupant == matchedFrame.id && !$0.isOcupied }) {
+            if let _ = viewModel.questions.first(where: { $0.correctAnswer == matchedFrame.id && !$0.isOcupied }) {
                 return .good
             }
         }
@@ -104,7 +104,7 @@ struct StudyingView: View {
                 
                 let newCGpoint = (x: newX, y: newY)
                 
-                if let matchedIndex = viewModel.questions.firstIndex(where: { $0.correctOccupant == questionsFrames[match].id }) {
+                if let matchedIndex = viewModel.questions.firstIndex(where: { $0.correctAnswer == questionsFrames[match].id }) {
                     viewModel.occupyQuestion(with: matchedIndex, alternative: alternative)
                 }
                 
@@ -112,7 +112,7 @@ struct StudyingView: View {
             }
         } else {
             for index in 0..<viewModel.questions.count {
-                if viewModel.questions[index].currentOccupant == alternative {
+                if viewModel.questions[index].currentAnswer == alternative {
                     viewModel.vacateQuestion(with: index)
                 }
             }
