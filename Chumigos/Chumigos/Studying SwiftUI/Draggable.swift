@@ -14,13 +14,13 @@ struct Draggable: ViewModifier {
     let answer: Int
     
     //State to see if can or cannot drop the object
-    @State var dragState = DragState.unknown
+    @State private var dragState = DragState.unknown
     //Variable to save the rect of the object
-    @State var rect: CGRect = .zero
+    @State private var rect: CGRect = .zero
     
     //OffSet Variables
-    @State var dragAmount = CGSize.zero
-    @State var newOffSet = CGSize.zero
+    @State private var dragAmount = CGSize.zero
+    @State private var newOffSet = CGSize.zero
     
     //Closures that was written on the view
     var onChanged: ((CGPoint, Int) -> DragState)?

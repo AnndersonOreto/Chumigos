@@ -12,10 +12,10 @@ struct StudyingView: View {
     
     @ObservedObject var viewModel = SequenceGameViewModel()
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
-    @State var questionsFrames: [(id: Int, rect: CGRect)] = []
-    @State var alternativeSelected: Int?
+    @State private var questionsFrames: [(id: Int, rect: CGRect)] = []
+    @State private var alternativeSelected: Int?
     
-    var tileSize: CGSize {
+    private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
         return CGSize(width: screenWidth * scaleFactor, height: screenWidth * scaleFactor)
     }
@@ -73,8 +73,8 @@ struct StudyingView: View {
     
     // MARK: - Drawing Contants
     
-    let screenWidth = UIScreen.main.bounds.width
-    let fontName = "Rubik"
+    private let screenWidth = UIScreen.main.bounds.width
+    private let fontName = "Rubik"
     
     // MARK: - Drag & Drops Functions
     
