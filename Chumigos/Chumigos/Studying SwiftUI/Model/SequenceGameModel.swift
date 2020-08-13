@@ -25,23 +25,21 @@ struct SequenceGameModel<GameContent> {
     
     init(difficulty: Difficulty, contentFactory: (Int) -> GameContent) {
         self.difficulty = difficulty
-        self.sizeOfPattern = self.generateSizeOfPattern()
-        self.pattern = self.generatePattern()
+        generateSizeOfPattern()
+        generatePattern()
         
-        for element in self.generateGenericSequence() {
+        // filling the sequence array
+        for element in self.generateSequenceWithNumbers() {
             let content = contentFactory(element)
             self.sequence.append(SequencePiece(value: element, content: content))
         }
         
-        self.generateQuestions()
-        self.generateAlternatives()
+        generateQuestions()
+        generateAlternatives()
     }
     
-    private func generateSizeOfPattern() -> Int {
-        return Int.random(in: 0...1) == 0 ? 3 : 4
-    }
-    
-    private func generateGenericSequence() -> [Int] {
+    // auxiliary function for the sequence
+    private func generateSequenceWithNumbers() -> [Int] {
         var array = pattern
         for _ in 1..<repetitions {
             array += pattern
@@ -49,20 +47,25 @@ struct SequenceGameModel<GameContent> {
         return array
     }
     
-    private func generatePattern() -> [Int] {
+    // MARK: - Functions to Generate the Variables
+    
+    private mutating func generateSizeOfPattern() {
+        self.sizeOfPattern = Int.random(in: 0...1) == 0 ? 3 : 4
+    }
+    
+    private mutating func generatePattern() {
         var array: [Int] = []
         for n in 1...sizeOfPattern {
             array.append(n)
         }
-        array.shuffle()
-        return array
+        self.pattern = array.shuffled()
     }
     
     private mutating func generateQuestions() {
         switch difficulty {
         case .easy:
             let random = Int.random(in: sizeOfPattern..<sequence.count)
-            questions.append(Question(value: sequence[random].value, correctContent: sequence[random].content))
+            questions.append(Question(value: sequence[random].value))
             sequence[random].isAQuestion = true
             
         case .medium:
@@ -71,8 +74,8 @@ struct SequenceGameModel<GameContent> {
             repeat {
                 random2 = Int.random(in: sizeOfPattern..<sequence.count)
             } while sequence[random1].value == sequence[random2].value
-            questions.append(Question(value: sequence[random1].value, correctContent: sequence[random1].content))
-            questions.append(Question(value: sequence[random2].value, correctContent: sequence[random2].content))
+            questions.append(Question(value: sequence[random1].value))
+            questions.append(Question(value: sequence[random2].value))
             sequence[random1].isAQuestion = true
             sequence[random2].isAQuestion = true
             
@@ -86,15 +89,15 @@ struct SequenceGameModel<GameContent> {
             } while (sequence[random1].value == sequence[random2].value &&
                 sequence[random1].value == sequence[random3].value &&
                 sequence[random2].value == sequence[random3].value)
-            questions.append(Question(value: sequence[random1].value, correctContent: sequence[random1].content))
-            questions.append(Question(value: sequence[random2].value, correctContent: sequence[random2].content))
-            questions.append(Question(value: sequence[random3].value, correctContent: sequence[random3].content))
+            questions.append(Question(value: sequence[random1].value))
+            questions.append(Question(value: sequence[random2].value))
+            questions.append(Question(value: sequence[random3].value))
             sequence[random1].isAQuestion = true
             sequence[random2].isAQuestion = true
             sequence[random3].isAQuestion = true
         }
     }
-
+    
     mutating func generateAlternatives() {
         let shuffledPattern = pattern.shuffled()
         for item in shuffledPattern {
@@ -103,6 +106,8 @@ struct SequenceGameModel<GameContent> {
             }
         }
     }
+    
+    // MARK: - Functions for the Questions
     
     mutating func occupyQuestion(with index: Int, alternative: Int) {
         for (index, question) in questions.enumerated() {
@@ -128,6 +133,8 @@ struct SequenceGameModel<GameContent> {
         return numberOfQuestions == numberOfCorrectQuestions
     }
     
+    // MARK: - Structs
+    
     struct Alternative: Identifiable {
         let value: Int
         let content: GameContent
@@ -136,11 +143,10 @@ struct SequenceGameModel<GameContent> {
 
     struct Question {
         let value: Int
-        let correctContent: GameContent
-        var occupant: Int = 0
+        var occupant: Int?
         
         var isOcupied: Bool {
-            occupant == 0 ? false : true
+            occupant == nil ? false : true
         }
         
         var isCorrect: Bool {
@@ -152,7 +158,7 @@ struct SequenceGameModel<GameContent> {
         }
         
         mutating func vacate() {
-            self.occupant = 0
+            self.occupant = nil
         }
     }
     
