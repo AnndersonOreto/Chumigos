@@ -16,20 +16,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: SequenceView()) {
+                NavigationLink(destination: SequenceGameView()) {
                     Text("Jogo da Sequencia")
                 }
                 
                 NavigationLink(destination: ShapeGameView()) {
                     Text("Jogo da Forma")
-                }
-                
-                NavigationLink(destination: StudyingView()) {
-                    Text("Studying SwiftUI 1")
-                }
-                
-                NavigationLink(destination: ShapeGameNewView()) {
-                    Text("Studying SwiftUI 2")
                 }
             }
         }.navigationViewStyle(StackNavigationViewStyle())

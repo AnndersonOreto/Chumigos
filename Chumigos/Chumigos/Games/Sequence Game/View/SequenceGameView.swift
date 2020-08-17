@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct StudyingView: View {
+struct SequenceGameView: View {
     
-    @ObservedObject var viewModel = SequenceGameViewModel()
+    var viewModel = SequenceGameViewModel()
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     // Save the rects of all the questions
@@ -45,10 +45,10 @@ struct StudyingView: View {
                 ForEach(viewModel.alternatives) { (alternative) in
                     ZStack{
                         //Underlay tile with opacity
-                        Tile(image: alternative.content, size: self.tileSize)
+                        Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
                             .alternativeBackground(size: self.tileSize)
                         
-                        Tile(image: alternative.content, size: self.tileSize)
+                        Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
                             .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
                         
                     }
@@ -63,7 +63,7 @@ struct StudyingView: View {
                 if self.viewModel.allQuestionsAreOccupied() {
                     self.questionsFrames = []
                     self.viewModel.resetGame()
-                    withAnimation(.linear) {
+                    withAnimation(.linear(duration: 0.3)) {
                         self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
                     }
                 }
@@ -123,7 +123,7 @@ struct StudyingView: View {
 
 // MARK: - View Extension
 
-extension StudyingView {
+extension SequenceGameView {
     
     // MARK: - View for the Tile/Piece
     private func pieceView(for piece: SequenceGameModel<String>.SequencePiece) -> some View {
@@ -139,7 +139,7 @@ extension StudyingView {
                     })
             }
             else {
-                Tile(image: piece.content, size: self.tileSize)
+                Tile(content: Image(piece.content).resizable(), size: self.tileSize)
             }
         }
     }
@@ -148,6 +148,6 @@ extension StudyingView {
 
 struct StudyingView_Previews: PreviewProvider {
     static var previews: some View {
-        StudyingView()
+        SequenceGameView()
     }
 }

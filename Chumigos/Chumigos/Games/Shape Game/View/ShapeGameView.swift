@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct ShapeGameNewView: View {
-    @ObservedObject var viewModel = ShapeGameVM()
+struct ShapeGameView: View {
+    @ObservedObject var viewModel = ShapeGameViewModel()
     @State private var questionsFrames: [CGRect] = []
     
     var body: some View {
@@ -69,7 +69,7 @@ struct ShapeGameNewView: View {
     }
 }
 
-extension ShapeGameNewView {
+extension ShapeGameView {
     func patternView(for piece: ShapeGameModel.Shape) -> some View {
         ZStack {
             if !piece.isAQuestion {
@@ -97,6 +97,6 @@ extension ShapeGameNewView {
 
 struct ShapeGameNewView_Previews: PreviewProvider {
     static var previews: some View {
-        ShapeGameNewView()
+        ShapeGameView()
     }
 }

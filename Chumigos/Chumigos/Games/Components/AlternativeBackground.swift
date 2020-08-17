@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// Do the same thing that BackgroundAlternative does, but as a ViewModifier
+// Does the same thing that BackgroundAlternative does, but as a ViewModifier
 struct AlternativeBackground: ViewModifier {
     let size: CGSize
     

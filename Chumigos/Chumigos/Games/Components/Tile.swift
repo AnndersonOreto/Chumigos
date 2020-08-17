@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct Tile: View {
+struct Tile<Content>: View where Content: View {
     
-    var image: String
+    var content: Content
     var size: CGSize
     
     var body: some View {
@@ -29,8 +29,7 @@ struct Tile: View {
                 .fill(Color.init(red: 255/255, green: 206/255, blue: 142/255))
                 .frame(width:size.width, height: size.height)
             
-            Image(image)
-            .resizable()
+            content
                 .frame(width: self.size.width * 0.53, height: self.size.width * 0.53)
         }
     }
@@ -38,6 +37,6 @@ struct Tile: View {
 
 struct Tile_Previews: PreviewProvider {
     static var previews: some View {
-        Tile(image: "", size: CGSize.zero)
+        Tile<Image>(content: Image(""), size: CGSize.zero)
     }
 }

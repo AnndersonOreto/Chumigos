@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-class ShapeGameVM: ObservableObject {
+class ShapeGameViewModel: ObservableObject {
     @Published var model = ShapeGameModel()
-    let randomColors = Color.getRandomColors(amount: 8)
+    let randomColors = Color.getRandomColors(amount: 4)
     
     // MARK: - Access to the Model
     

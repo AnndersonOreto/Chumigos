@@ -1,51 +1,39 @@
-
 //
-//  MarcusDraggableObn.swift
+//  Draggable.swift
 //  Chumigos
 //
-//  Created by Marcus Vinicius Vieira Badiale on 31/07/20.
+//  Created by Arthur Bastos Fanck on 12/08/20.
 //  Copyright © 2020 Annderson Packeiser Oreto. All rights reserved.
 //
 
 import SwiftUI
 
-public enum DragState{
-    case unknown
-    case good
-    case bad
+enum DragState {
+    case unknown, good
 }
 
-struct DraggableObject<Content: View>: View {
-    
-    //Content recieve any view
-    let content: Content
-    //Object answer
-    let answer: Int
-    
+// Does the same thing that DraggableObject does, but as a ViewModifier
+struct Draggable: ViewModifier {
     //State to see if can or cannot drop the object
-    @State var dragState = DragState.unknown
+    @State private var dragState = DragState.unknown
     //Variable to save the rect of the object
-    @State var rect: CGRect = .zero
+    @State private var rect: CGRect = .zero
     
     //OffSet Variables
-    @State var dragAmount = CGSize.zero
-    @State var newOffSet = CGSize.zero
+    @State private var dragAmount = CGSize.zero
+    @State private var newOffSet = CGSize.zero
     
     //Closures that was written on the view
     var onChanged: ((CGPoint, Int) -> DragState)?
     var onEnded: ((CGPoint, CGRect, Int, DragState) -> (x: CGFloat, y: CGFloat))?
     
-    init(@ViewBuilder content: () -> Content, onChanged: @escaping (CGPoint, Int) -> DragState, onEnded: @escaping (CGPoint, CGRect, Int, DragState) -> (x: CGFloat, y: CGFloat), answer: Int) {
-        self.content = content()
-        self.onChanged = onChanged
-        self.onEnded = onEnded
-        self.answer = answer
-    }
+    //Object answer
+    let answer: Int
     
-    var body: some View { 
+    func body(content: Content) -> some View {
         
         //Generic View Here
-        self.content
+        content
             .overlay(GeometryReader { geo in
                 Color.clear
                     .onAppear{
@@ -85,5 +73,12 @@ struct DraggableObject<Content: View>: View {
                     }
                 }
         )
+    }
+}
+
+extension View {
+    // Function to call the modifier more easily
+    func draggable(onChanged: @escaping (CGPoint, Int) -> DragState, onEnded: @escaping (CGPoint, CGRect, Int, DragState) -> (x: CGFloat, y: CGFloat), answer: Int) -> some View {
+        return self.modifier(Draggable(onChanged: onChanged, onEnded: onEnded, answer: answer))
     }
 }

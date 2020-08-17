@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-class SequenceGameViewModel: ObservableObject {
-    @Published private var model = createSequenceGame()
+class SequenceGameViewModel {
+    private var model = createSequenceGame()
     
     private static func createSequenceGame() -> SequenceGameModel<String> {
         let isFruit = Bool.random()
@@ -29,7 +29,7 @@ class SequenceGameViewModel: ObservableObject {
     }
     
     var questions: [Question] {
-        return model.questions
+        model.questions
     }
     
     func allQuestionsAreCorrect() -> Bool {
