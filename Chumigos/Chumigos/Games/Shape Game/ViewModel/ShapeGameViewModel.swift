@@ -25,4 +25,32 @@ class ShapeGameViewModel: ObservableObject {
     var questions: [Question] {
         model.questions
     }
+    
+    var difficultyForm: Form {
+        model.getDifficulty() == .easy ? .STAR : .POLYGON
+    }
+    
+    // MARK: - Access to the Model
+    
+    func allQuestionsAreCorrect() -> Bool {
+        return model.allQuestionsAreCorrect()
+    }
+    
+    func allQuestionsAreOccupied() -> Bool {
+        return model.allQuestionsAreOccupied()
+    }
+    
+    // MARK: - Intent(s): Modifies the Model
+    
+    func occupyQuestion(with index: Int, alternative: Int) {
+        model.occupyQuestion(with: index, alternative: alternative)
+    }
+    
+    func vacateQuestion(with index: Int) {
+        model.vacateQuestion(with: index)
+    }
+    
+    func resetGame() {
+        model.createGame()
+    }
 }

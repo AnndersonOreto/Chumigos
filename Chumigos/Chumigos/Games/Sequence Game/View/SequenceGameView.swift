@@ -70,7 +70,8 @@ struct SequenceGameView: View {
             }) {
                 Text("Confirmar")
                     .font(.custom(fontName, size: 20)).bold()
-            }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal))
+            }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonDisabled: self.viewModel.allQuestionsAreOccupied()))
+                .disabled(!self.viewModel.allQuestionsAreOccupied())
                 .padding(.bottom, 23)
         }
     }
