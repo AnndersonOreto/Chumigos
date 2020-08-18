@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct ShapeGameModel {
     
@@ -21,11 +22,13 @@ struct ShapeGameModel {
     private(set) var questions: [Question] = []
     private(set) var round: [Shape] = []
     private var difficulty: Difficulty
+    private var randomColors: [Color]
     
     // MARK: - Init
     
     init(difficulty: Difficulty = .easy) {
         self.difficulty = difficulty
+        randomColors = Color.getRandomColors(amount: amount)
         generateRound()
         generateQuestions()
         generateAlternatives()
@@ -37,13 +40,20 @@ struct ShapeGameModel {
         return difficulty
     }
     
+    func getRandomColor() -> [Color] {
+        return randomColors
+    }
+    
     mutating func createGame() {
+        self.randomColors = []
         self.alternatives = []
         self.questions = []
         self.round = []
+        self.changeDifficulty()
         generateRound()
         generateQuestions()
         generateAlternatives()
+        randomColors = Color.getRandomColors(amount: amount)
     }
     
     private mutating func generateRound() {
@@ -66,14 +76,24 @@ struct ShapeGameModel {
         case .hard:
             amount = 6
             let range = 3..<6
-            let initialNumberOfSides = Int.random(in: range)
+            var initialNumberOfSides = Int.random(in: range)
             for index in 0..<amount {
                 if (index % 2) == 0 {
-                    round.append(Shape(sides: initialNumberOfSides+2, colorIndex: index))
+                    initialNumberOfSides += 2
+                    round.append(Shape(sides: initialNumberOfSides, colorIndex: index))
                 } else {
-                    round.append(Shape(sides: initialNumberOfSides-1, colorIndex: index))
+                    initialNumberOfSides -= 1
+                    round.append(Shape(sides: initialNumberOfSides, colorIndex: index))
                 }
             }
+        }
+    }
+    
+    mutating func changeDifficulty() {
+        if self.difficulty == .easy {
+            difficulty = .medium
+        } else if self.difficulty == .medium {
+            difficulty = .hard
         }
     }
     
