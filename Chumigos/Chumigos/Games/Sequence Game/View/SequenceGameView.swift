@@ -65,8 +65,8 @@ struct SequenceGameView: View {
                 
                 Button(action: {
                     if self.viewModel.allQuestionsAreOccupied() {
-                        //                    self.questionsFrames = []
-                        //                    self.viewModel.resetGame()
+                        self.questionsFrames = []
+                        self.viewModel.resetGame()
                         withAnimation(.linear(duration: 0.3)) {
                             self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
                         }
@@ -82,11 +82,12 @@ struct SequenceGameView: View {
             // Correct/Wrong Icons of which Question
             ForEach(viewModel.questions) { (question) in
                 Image(question.isCorrect ? "correct-icon" : "wrong-icon")
+                    .resizable()
+                    .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
                     .position(self.findPosition(for: question))
                     .opacity(self.buttonIsPressed ? 1 : 0)
             }
         }
-        
     }
     
     // MARK: - Drawing Contants
@@ -96,10 +97,13 @@ struct SequenceGameView: View {
     
     // MARK: - Finding question's position
     
+    // TODO: - Ajeitar para todos os iPads
+    // Valores funcionam para iPad 12.9
     func findPosition(for question: Question) -> CGPoint {
         if let matched = self.questionsFrames.first(where: { $0.question.id == question.id }) {
-            let x = matched.rect.maxX - 15
-            let y = matched.rect.origin.y - matched.rect.origin.y.distance(to: matched.rect.maxY)
+            let scale: CGFloat = viewModel.sequence.count > 9 ? 1.2 : 1.03
+            let x = matched.rect.maxX - tileSize.width/5
+            let y = matched.rect.origin.y - tileSize.height*scale
             return CGPoint(x: x, y: y)
         }
         return CGPoint.zero

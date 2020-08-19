@@ -188,8 +188,8 @@
 				26946E8F24C7621C005A316E /* FormHeptagon.swift */,
 				26946E9124C762A3005A316E /* FormDecagon.swift */,
 				26946E9324C76398005A316E /* FormPentagon.swift */,
-				26946E9524C76424005A316E /* FormStar.swift */,
 				26946E9724C76A6C005A316E /* RandomAngle.swift */,
+				26946E9524C76424005A316E /* FormStar.swift */,
 				26660AC224C7834E000A9845 /* RandomColor.swift */,
 				26763D2B24C8C7690056F2BC /* RandomForm.swift */,
 			);
