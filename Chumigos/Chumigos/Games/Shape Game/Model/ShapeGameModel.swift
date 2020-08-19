@@ -79,11 +79,11 @@ struct ShapeGameModel {
             var initialNumberOfSides = Int.random(in: range)
             for index in 0..<amount {
                 if (index % 2) == 0 {
+                    round.append(Shape(sides: initialNumberOfSides, colorIndex: index))
                     initialNumberOfSides += 2
-                    round.append(Shape(sides: initialNumberOfSides, colorIndex: index))
                 } else {
-                    initialNumberOfSides -= 1
                     round.append(Shape(sides: initialNumberOfSides, colorIndex: index))
+                    initialNumberOfSides -= 1
                 }
             }
         }
@@ -99,21 +99,21 @@ struct ShapeGameModel {
     
     private mutating func generateQuestions() {
         
-        let questionIndex = Int.random(in: 0..<round.count)
+        let questionIndex = round.count-1
         questions.append(Question(correctAnswer: round[questionIndex].sides))
         round[questionIndex].isAQuestion = true
     }
     
     private mutating func generateAlternatives() {
         
-        var range = Array(3...12)
+        var range = Array(3...11)
         let question = questions.first!
         
         for index in 0..<amount-1 {
             var randomSides: Int?
             repeat {
                 randomSides = range.randomElement()
-            } while(randomSides == question.correctAnswer)
+            } while(randomSides == question.correctAnswer || alternatives.compactMap( { $0.sides } ).contains(randomSides))
             range.remove(at: index)
             alternatives.append(Shape(sides: randomSides!, colorIndex: index))
         }
