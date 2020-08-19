@@ -81,7 +81,7 @@ extension Color {
     
     // MARK: - Random colors
     
-    static let RANDOMIZABLE_COLOR_LIST: [Color] = [Turtle, Bee, Crab, Beetle, Whale, Wolf]
+    static let RANDOMIZABLE_COLOR_LIST: [Color] = [TreeFrog, Fox, Crab, Beetle, Whale, Butterfly]
     
     // Get single random color
     static func getRandomColor() -> Color {
@@ -92,7 +92,7 @@ extension Color {
     static func getRandomColors(amount: Int) -> [Color] {
         
         // Valid color list
-        var colorList = [Turtle, Bee, Crab, Beetle, Whale, Wolf]
+        var colorList = [TreeFrog, Fox, Crab, Beetle, Whale, Butterfly]
         
         if amount >= colorList.count {
             
