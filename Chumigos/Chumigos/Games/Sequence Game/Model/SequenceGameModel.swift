@@ -113,15 +113,26 @@ struct SequenceGameModel<GameContent> {
     // MARK: - Functions for the Questions
     
     mutating func occupyQuestion(with index: Int, alternative: Int) {
-        for (index, question) in questions.enumerated() {
+        for (i, question) in questions.enumerated() {
             if question.currentAnswer == alternative {
-                self.vacateQuestion(with: index)
+                self.vacateQuestion(with: i)
             }
         }
         self.questions[index].occupy(with: alternative)
+        
+        for (i, element) in alternatives.enumerated() {
+            if element.value == alternative {
+                self.alternatives[i].questionValue = self.questions[index].correctAnswer
+            }
+        }
     }
     
     mutating func vacateQuestion(with index: Int) {
+        for (i, element) in alternatives.enumerated() {
+            if questions[index].currentAnswer == element.value {
+                self.alternatives[i].questionValue = nil
+            }
+        }
         self.questions[index].vacate()
     }
     
@@ -147,11 +158,19 @@ struct SequenceGameModel<GameContent> {
         return numberOfQuestions == numbersOfOccupiedQuestions
     }
     
+    func findQuestion(with value: Int?) -> Question? {
+        let match = questions.first { question in
+            question.correctAnswer == value
+        }
+        return match
+    }
+    
     // MARK: - Struct(s)
     
     struct Alternative: Identifiable {
         let value: Int
         let content: GameContent
+        var questionValue: Int?
         var id = UUID()
     }
     

@@ -8,9 +8,10 @@
 
 import Foundation
 
-struct Question {
+struct Question: Identifiable {
     let correctAnswer: Int
     var currentAnswer: Int?
+    var id = UUID()
     
     var isOcupied: Bool {
         currentAnswer == nil ? false : true

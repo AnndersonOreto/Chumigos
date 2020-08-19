@@ -40,6 +40,10 @@ class SequenceGameViewModel {
         return model.allQuestionsAreOccupied()
     }
     
+    func findQuestion(with value: Int) -> Question? {
+        return model.findQuestion(with: value)
+    }
+    
     // MARK: - Intent(s): Modifies the Model
     
     func occupyQuestion(with index: Int, alternative: Int) {

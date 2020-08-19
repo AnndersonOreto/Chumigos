@@ -14,11 +14,11 @@ struct Tile<Content>: View where Content: View {
     var size: CGSize
     
     var body: some View {
-        ZStack{
+        ZStack {
             
             Rectangle()
                 .fill(Color.clear)
-                .frame(width: self.size.width * 1.2, height: self.size.width * 1.3)
+                .frame(width: self.size.width * 1.15, height: self.size.width * 1.25)
             
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.init(red: 165/255, green: 102/255, blue: 68/255))

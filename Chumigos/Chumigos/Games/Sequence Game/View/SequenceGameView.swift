@@ -14,9 +14,11 @@ struct SequenceGameView: View {
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     // Save the rects of all the questions
-    @State private var questionsFrames: [(id: Int, rect: CGRect)] = []
+    @State private var questionsFrames: [(question: Question, rect: CGRect)] = []
     // Variable to know which alternative is being dragged
     @State private var alternativeBeingDragged: Int?
+    // Variable to know if the button is pressed or not
+    @State var buttonIsPressed: Bool = false
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
@@ -24,55 +26,67 @@ struct SequenceGameView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            
-            ProgressBarView(viewModel: progressViewModel)
-            
-            Spacer()
-            
-            HStack(spacing: 0) {
-                ForEach(viewModel.sequence) { element in
-                    self.pieceView(for: element)
+        ZStack {
+            VStack(spacing: 0) {
+                
+                ProgressBarView(viewModel: progressViewModel)
+                
+                Spacer()
+                
+                
+                HStack(spacing: 0) {
+                    ForEach(viewModel.sequence) { element in
+                        self.pieceView(for: element)
+                    }
                 }
+                
+                Text("Complete a sequência arrastando as peças abaixo:")
+                    .foregroundColor(Color.Eel)
+                    .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
+                    .padding(.top, screenWidth * 0.07)
+                
+                HStack(spacing: screenWidth * 0.036) {
+                    ForEach(viewModel.alternatives) { (alternative) in
+                        ZStack{
+                            //Underlay tile with opacity
+                            Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
+                                .alternativeBackground(size: self.tileSize)
+                            
+                            Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
+                                .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
+                            
+                        }
+                            // Make tile that is being drag appears on top
+                            .zIndex(self.alternativeBeingDragged == alternative.value ? 1 : 0)
+                    }
+                }.padding(.top, screenWidth * 0.03)
+                
+                Spacer()
+                
+                Button(action: {
+                    if self.viewModel.allQuestionsAreOccupied() {
+                        //                    self.questionsFrames = []
+                        //                    self.viewModel.resetGame()
+                        withAnimation(.linear(duration: 0.3)) {
+                            self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
+                        }
+                        self.buttonIsPressed = true
+                    }
+                }) {
+                    Text("Confirmar")
+                        .font(.custom(fontName, size: 20)).bold()
+                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal))
+                    .padding(.bottom, 23)
             }
             
-            Text("Complete a sequência arrastando as peças abaixo:")
-                .foregroundColor(Color.Eel)
-                .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
-                .padding(.top, screenWidth * 0.07)
-            
-            HStack(spacing: screenWidth * 0.036) {
-                ForEach(viewModel.alternatives) { (alternative) in
-                    ZStack{
-                        //Underlay tile with opacity
-                        Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
-                            .alternativeBackground(size: self.tileSize)
-                        
-                        Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
-                            .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
-                        
-                    }
-                    // Make tile that is being drag appears on top
-                    .zIndex(self.alternativeBeingDragged == alternative.value ? 1: 0)
-                }
-            }.padding(.top, screenWidth * 0.03)
-            
-            Spacer()
-            
-            Button(action: {
-                if self.viewModel.allQuestionsAreOccupied() {
-                    self.questionsFrames = []
-                    self.viewModel.resetGame()
-                    withAnimation(.linear(duration: 0.3)) {
-                        self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
-                    }
-                }
-            }) {
-                Text("Confirmar")
-                    .font(.custom(fontName, size: 20)).bold()
-            }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal))
-                .padding(.bottom, 23)
+            // Correct/Wrong Icons of which Question
+            ForEach(viewModel.questions) { (question) in
+                Image(question.isCorrect ? "correct-icon" : "wrong-icon")
+                    .position(self.findPosition(for: question))
+                    .opacity(self.buttonIsPressed ? 1 : 0)
+            }
         }
+        
     }
     
     // MARK: - Drawing Contants
@@ -80,12 +94,23 @@ struct SequenceGameView: View {
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
     
+    // MARK: - Finding question's position
+    
+    func findPosition(for question: Question) -> CGPoint {
+        if let matched = self.questionsFrames.first(where: { $0.question.id == question.id }) {
+            let x = matched.rect.maxX - 15
+            let y = matched.rect.origin.y - matched.rect.origin.y.distance(to: matched.rect.maxY)
+            return CGPoint(x: x, y: y)
+        }
+        return CGPoint.zero
+    }
+    
     // MARK: - Drag & Drops Functions
     
     func objectMoved(location: CGPoint, alternative: Int) -> DragState {
         self.alternativeBeingDragged = alternative
         if let matchedFrame = questionsFrames.first(where: { $0.rect.contains(location) }) {
-            if let _ = viewModel.questions.first(where: { $0.correctAnswer == matchedFrame.id && !$0.isOcupied }) {
+            if let _ = viewModel.questions.first(where: { $0.correctAnswer == matchedFrame.question.correctAnswer && !$0.isOcupied }) {
                 return .good
             }
         }
@@ -104,10 +129,9 @@ struct SequenceGameView: View {
                 
                 let newCGpoint = (x: newX, y: newY)
                 
-                if let matchedIndex = viewModel.questions.firstIndex(where: { $0.correctAnswer == questionsFrames[match].id }) {
+                if let matchedIndex = viewModel.questions.firstIndex(where: { $0.correctAnswer == questionsFrames[match].question.correctAnswer }) {
                     viewModel.occupyQuestion(with: matchedIndex, alternative: alternative)
                 }
-                
                 return newCGpoint
             }
         } else {
@@ -129,11 +153,11 @@ extension SequenceGameView {
     private func pieceView(for piece: SequenceGameModel<String>.SequencePiece) -> some View {
         ZStack {
             if piece.isAQuestion {
-                QuestionTile(size: self.tileSize)
+                QuestionTile(size: self.tileSize, isOccupied: self.viewModel.findQuestion(with: piece.value)!.isOcupied, isCorrect: self.viewModel.findQuestion(with: piece.value)!.isCorrect, buttonPressed: self.buttonIsPressed)
                     .overlay(GeometryReader { geo in
                         Color.clear
                             .onAppear {
-                                let questionFrame = (id: piece.value, rect: geo.frame(in: .global))
+                                let questionFrame = (question: self.viewModel.findQuestion(with: piece.value)!, rect: geo.frame(in: .global))
                                 self.questionsFrames.append(questionFrame)
                         }
                     })
