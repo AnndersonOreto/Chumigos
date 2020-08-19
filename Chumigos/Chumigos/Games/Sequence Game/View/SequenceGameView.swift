@@ -81,11 +81,13 @@ struct SequenceGameView: View {
             
             // Correct/Wrong Icons of which Question
             ForEach(viewModel.questions) { (question) in
-                Image(question.isCorrect ? "correct-icon" : "wrong-icon")
+                GeometryReader { geometry in
+                    Image(question.isCorrect ? "correct-icon" : "wrong-icon")
                     .resizable()
                     .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
-                    .position(self.findPosition(for: question))
+                    .offset(self.findOffset(for: question, geometry: geometry))
                     .opacity(self.buttonIsPressed ? 1 : 0)
+                }
             }
         }
     }
@@ -97,16 +99,13 @@ struct SequenceGameView: View {
     
     // MARK: - Finding question's position
     
-    // TODO: - Ajeitar para todos os iPads
-    // Valores funcionam para iPad 12.9
-    func findPosition(for question: Question) -> CGPoint {
+    func findOffset(for question: Question, geometry: GeometryProxy) -> CGSize {
         if let matched = self.questionsFrames.first(where: { $0.question.id == question.id }) {
-            let scale: CGFloat = viewModel.sequence.count > 9 ? 1.2 : 1.03
-            let x = matched.rect.maxX - tileSize.width/5
-            let y = matched.rect.origin.y - tileSize.height*scale
-            return CGPoint(x: x, y: y)
+            let x = geometry.frame(in: .global).midX.distance(to: matched.rect.midX) + tileSize.width/2.15
+            let y = geometry.frame(in: .global).midY.distance(to: matched.rect.midY) - tileSize.height/2
+            return CGSize(width: x, height: y)
         }
-        return CGPoint.zero
+        return CGSize.zero
     }
     
     // MARK: - Drag & Drops Functions
