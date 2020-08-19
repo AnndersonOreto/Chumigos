@@ -10,7 +10,6 @@ import SwiftUI
 
 class ShapeGameViewModel: ObservableObject {
     @Published var model = ShapeGameModel()
-    let randomColors = Color.getRandomColors(amount: 4)
     
     // MARK: - Access to the Model
     
@@ -24,5 +23,41 @@ class ShapeGameViewModel: ObservableObject {
     
     var questions: [Question] {
         model.questions
+    }
+    
+    var difficultyForm: Form {
+        model.getDifficulty() == .hard ? .STAR : .POLYGON
+    }
+    
+    var getRandomColors: [Color] {
+        model.getRandomColor()
+    }
+    
+    // MARK: - Access to the Model
+    
+    func allQuestionsAreCorrect() -> Bool {
+        return model.allQuestionsAreCorrect()
+    }
+    
+    func allQuestionsAreOccupied() -> Bool {
+        return model.allQuestionsAreOccupied()
+    }
+    
+    func findQuestion(with value: Int) -> Question? {
+        return model.findQuestion(with: value)
+    }
+    
+    // MARK: - Intent(s): Modifies the Model
+    
+    func occupyQuestion(with index: Int, alternative: Int) {
+        model.occupyQuestion(with: index, alternative: alternative)
+    }
+    
+    func vacateQuestion(with index: Int) {
+        model.vacateQuestion(with: index)
+    }
+    
+    func resetGame() {
+        model.createGame()
     }
 }
