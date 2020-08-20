@@ -28,22 +28,23 @@ class ProgressBarViewModel: ObservableObject {
     }
     
     func isLastQuestion() -> Bool {
-        return currentQuestion >= progressStatusList.count
+        return currentQuestion >= progressStatusList.count-1
     }
     
-    func checkAnswer(isCorrect: Bool) {
-        
-        // Increment current question index
-        incrementQuestion()
-        
-        // Prevent array out bounds access
-        if isLastQuestion() { return }
+    func checkAnswer(isCorrect: Bool, nextIndex: Int) {
         
         // Mark current question as green if it is right
         if isCorrect {
-            self.progressStatusList[currentQuestion-1] = Color.TreeFrog
-            return
+            self.progressStatusList[currentQuestion] = Color.TreeFrog
+        } else {
+            self.progressStatusList[currentQuestion] = Color.FireAnt
         }
-        self.progressStatusList[currentQuestion-1] = Color.FireAnt
+        
+        if nextIndex == -1 {
+            // Increment current question index
+            incrementQuestion()
+        } else {
+            currentQuestion = nextIndex
+        }
     }
 }

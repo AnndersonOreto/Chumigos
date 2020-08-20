@@ -13,11 +13,11 @@ class ShapeGameViewModel: ObservableObject {
     
     // MARK: - Access to the Model
     
-    var round: [ShapeGameModel.Shape] {
+    var round: [ShapeForm] {
         model.round
     }
     
-    var alternatives: [ShapeGameModel.Shape] {
+    var alternatives: [ShapeForm] {
         model.alternatives
     }
     

@@ -78,7 +78,7 @@ struct ShapeGameView: View {
                 
                 Button(action: {
                     withAnimation(.linear(duration: 0.3)) {
-                        self.progressBarViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
+                        self.progressBarViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: 0)
                     }
                     self.questionsFrames = []
                     self.viewModel.resetGame()
@@ -157,7 +157,7 @@ struct ShapeGameView: View {
 }
 
 extension ShapeGameView {
-    func patternView(for piece: ShapeGameModel.Shape) -> some View {
+    func patternView(for piece: ShapeForm) -> some View {
         ZStack {
             if !piece.isAQuestion {
                 

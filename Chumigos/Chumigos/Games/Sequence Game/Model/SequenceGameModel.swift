@@ -12,7 +12,7 @@ enum Difficulty {
     case easy, medium, hard
 }
 
-struct SequenceGameModel<GameContent> {
+struct SequenceGameModel {
     private(set) var alternatives: [SequenceGameModel.Alternative] = []
     private(set) var questions: [Question] = []
     private(set) var sequence: [SequenceGameModel.SequencePiece] = []
@@ -26,7 +26,7 @@ struct SequenceGameModel<GameContent> {
     
     private let difficulty: Difficulty
     
-    init(difficulty: Difficulty = .easy, contentFactory: (Int) -> GameContent) {
+    init(difficulty: Difficulty = .easy, contentFactory: (Int) -> String) {
         self.difficulty = difficulty
         generateSizeOfPattern()
         generatePattern()
@@ -169,14 +169,14 @@ struct SequenceGameModel<GameContent> {
     
     struct Alternative: Identifiable {
         let value: Int
-        let content: GameContent
+        let content: String
         var questionValue: Int?
         var id = UUID()
     }
     
     struct SequencePiece: Identifiable {
         let value: Int
-        let content: GameContent
+        let content: String
         var isAQuestion: Bool = false
         var id = UUID()
     }

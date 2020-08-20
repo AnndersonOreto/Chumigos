@@ -19,6 +19,7 @@ struct SequenceGameView: View {
     @State private var alternativeBeingDragged: Int?
     // Variable to know if the button is pressed or not
     @State var buttonIsPressed: Bool = false
+    @State var isFinished: Bool = false
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
@@ -27,6 +28,7 @@ struct SequenceGameView: View {
     
     var body: some View {
         ZStack {
+            
             VStack(spacing: 0) {
                 
                 ProgressBarView(viewModel: progressViewModel)
@@ -63,13 +65,30 @@ struct SequenceGameView: View {
                 
                 Spacer()
                 
+//                NavigationLink("", destination: ShapeGameView(), isActive: self.$isFinished)
+                NavigationLink(destination: ShapeGameView(), isActive: self.$isFinished, label: {
+                    EmptyView()
+                })
+
                 Button(action: {
+                    
+                    let index = self.progressViewModel.currentQuestion
+                    
+                    if self.progressViewModel.isLastQuestion() {
+                        self.viewModel.gameState = .RECAP
+                    }
+                    
                     withAnimation(.linear(duration: 0.3)) {
-                        self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
+                        self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
                     }
                     self.questionsFrames = []
-                    self.viewModel.resetGame()
+                    self.viewModel.resetGame(index: index)
                     self.buttonIsPressed = true
+                    
+                    if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
+                        self.isFinished = true
+                        print("teste1 \(self.isFinished)d")
+                    }
                 }) {
                     Text("Confirmar")
                         .font(.custom(fontName, size: 20)).bold()
@@ -152,7 +171,7 @@ struct SequenceGameView: View {
 extension SequenceGameView {
     
     // MARK: - View for the Tile/Piece
-    private func pieceView(for piece: SequenceGameModel<String>.SequencePiece) -> some View {
+    private func pieceView(for piece: SequenceGameModel.SequencePiece) -> some View {
         ZStack {
             if piece.isAQuestion {
                 QuestionTile(size: self.tileSize, isOccupied: self.viewModel.findQuestion(with: piece.value)!.isOcupied, isCorrect: self.viewModel.findQuestion(with: piece.value)!.isCorrect, buttonPressed: self.buttonIsPressed)
