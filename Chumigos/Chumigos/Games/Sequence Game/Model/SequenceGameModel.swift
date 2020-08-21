@@ -50,6 +50,20 @@ struct SequenceGameModel {
         return array
     }
     
+    mutating func resetUUID() {
+        for i in 0..<questions.count {
+            questions[i].id = UUID()
+        }
+        
+        for i in 0..<alternatives.count {
+            alternatives[i].id = UUID()
+        }
+        
+        for i in 0..<sequence.count {
+            sequence[i].id = UUID()
+        }
+    }
+    
     // MARK: - Functions to Generate the Variables
     
     private mutating func generateSizeOfPattern() {

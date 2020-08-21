@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-class SequenceGameViewModel {
-    private var model = createSequenceGame()
+class SequenceGameViewModel: ObservableObject {
+    @Published var model = createSequenceGame()
     var wrongAnswersArray: [(SequenceGameModel, Int)] = []
     var gameState: GameState = GameState.NORMAL
     
@@ -77,11 +77,19 @@ class SequenceGameViewModel {
             verifyWrongQuestion(index: index)
             if wrongAnswersArray.isEmpty { return }
             print(wrongAnswersArray.count)
-            let questionModel = wrongAnswersArray.removeFirst()
+            let questionModel = wrongAnswersArray.first!
             print(wrongAnswersArray.count)
             print(questions)
             model = questionModel.0
+            model.resetUUID()
             print(questions)
+        }
+    }
+    
+    func removeRecapGame() {
+        
+        if gameState == .RECAP && !wrongAnswersArray.isEmpty {
+            wrongAnswersArray.removeFirst()
         }
     }
     

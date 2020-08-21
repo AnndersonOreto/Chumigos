@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SequenceGameView: View {
     
-    var viewModel = SequenceGameViewModel()
+    @ObservedObject var viewModel = SequenceGameViewModel()
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     // Save the rects of all the questions
@@ -74,7 +74,7 @@ struct SequenceGameView: View {
                     
                     let index = self.progressViewModel.currentQuestion
                     
-                    if self.progressViewModel.isLastQuestion() {
+                    if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
                         self.viewModel.gameState = .RECAP
                     }
                     
@@ -89,6 +89,7 @@ struct SequenceGameView: View {
                         self.isFinished = true
                         print("teste1 \(self.isFinished)d")
                     }
+                    self.viewModel.removeRecapGame()
                 }) {
                     Text("Confirmar")
                         .font(.custom(fontName, size: 20)).bold()
