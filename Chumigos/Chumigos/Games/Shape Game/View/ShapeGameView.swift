@@ -11,7 +11,7 @@ import SwiftUI
 struct ShapeGameView: View {
     
     @ObservedObject var viewModel = ShapeGameViewModel()
-    @ObservedObject var progressBarViewModel = ProgressBarViewModel(questionAmount: 5)
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     // Save the rects of all the questions
     @State private var questionsFrames: [(id: Int, rect: CGRect)] = []
@@ -19,6 +19,7 @@ struct ShapeGameView: View {
     @State private var alternativeBeingDragged: Int?
     
     @State var buttonIsPressed: Bool = false
+    @State var isFinished: Bool = false
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
@@ -35,7 +36,7 @@ struct ShapeGameView: View {
             // Stack to separate forms and alternatives list
             VStack {
                 
-                ProgressBarView(viewModel: self.progressBarViewModel)
+                ProgressBarView(viewModel: self.progressViewModel)
                 
                 Spacer()
                 
@@ -76,13 +77,30 @@ struct ShapeGameView: View {
                 
                 Spacer()
                 
+                NavigationLink(destination: SequenceGameView(), isActive: self.$isFinished, label: {
+                    EmptyView()
+                })
+                
                 Button(action: {
+                    
+                    let index = self.progressViewModel.currentQuestion
+                    
+                    if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+                        self.viewModel.gameState = .RECAP
+                    }
+                    
                     withAnimation(.linear(duration: 0.3)) {
-                        self.progressBarViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: 0)
+                        self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
                     }
                     self.questionsFrames = []
-                    self.viewModel.resetGame()
+                    self.viewModel.resetGame(index: index)
                     self.buttonIsPressed = true
+                    
+                    if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
+                        self.isFinished = true
+                        print("teste1 \(self.isFinished)d")
+                    }
+                    self.viewModel.removeRecapGame()
                 }) {
                     Text("Confirmar")
                         .font(.custom(fontName, size: 20)).bold()
