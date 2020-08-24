@@ -28,6 +28,13 @@ struct SequenceGameView: View {
     
     var body: some View {
         ZStack {
+            VStack {
+                Spacer()
+                if buttonIsPressed {
+                    GameFeedbackMessage(feedbackType: viewModel.allQuestionsAreCorrect() ? .CORRECT : .WRONG)
+                    .padding(.bottom, -40)
+                }
+            }
             
             VStack(spacing: 0) {
                 
@@ -70,35 +77,55 @@ struct SequenceGameView: View {
                     EmptyView()
                 })
                 
-
-                Button(action: {
-
-                    let index = self.progressViewModel.currentQuestion
-
-                    if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
-                        self.viewModel.gameState = .RECAP
+                ZStack {
+                    //Continue Button
+                    if buttonIsPressed {
+                        Button(action: {
+                            self.buttonIsPressed = false
+                            let index = self.progressViewModel.currentQuestion
+                            
+                            if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+                                self.viewModel.gameState = .RECAP
+                            }
+                            
+                            withAnimation(.linear(duration: 0.3)) {
+                                self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
+                            }
+                            self.questionsFrames = []
+                            self.viewModel.resetGame(index: index)
+                            
+                            if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
+                                self.isFinished = true
+                                print("teste1 \(self.isFinished)d")
+                            }
+                            self.viewModel.removeRecapGame()
+                        }) {
+                            Text("Continuar")
+                                .font(.custom(fontName, size: 20)).bold()
+                            //buttonColor: Branco Puro, background: SWAN, texto: HUMPBACK, pressed: SWAN
+                        }.buttonStyle(
+                            viewModel.allQuestionsAreCorrect() ?
+                                //correct answer
+                            GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
+                                //wrong answer
+                                GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
+                            .padding(.bottom, 10)
                     }
-
-                    withAnimation(.linear(duration: 0.3)) {
-                        self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
+                    else {
+                        //Confirm Button
+                        Button(action: {
+                            self.buttonIsPressed = true
+                        }) {
+                            Text("Confirmar")
+                                .font(.custom(fontName, size: 20)).bold()
+                        }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
+                            .disabled(!self.viewModel.allQuestionsAreOccupied())
+                            .padding(.bottom, 10)
                     }
-                    self.questionsFrames = []
-                    self.viewModel.resetGame(index: index)
-                    self.buttonIsPressed = true
-
-                    if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
-                        self.isFinished = true
-                        print("teste1 \(self.isFinished)d")
-                    }
-                    self.viewModel.removeRecapGame()
-                }) {
-                    Text("Confirmar")
-                        .font(.custom(fontName, size: 20)).bold()
-                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
-                .disabled(!self.viewModel.allQuestionsAreOccupied())
-                .padding(.bottom, 23)
+                }
             }
             
+
             // Correct/Wrong Icons of which Question
             ForEach(viewModel.questions) { (question) in
                 GeometryReader { geometry in
@@ -106,7 +133,7 @@ struct SequenceGameView: View {
                     .resizable()
                     .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
                     .offset(self.findOffset(for: question, geometry: geometry))
-                    .opacity(self.buttonIsPressed ? 1 : 0)
+                    .opacity(self.buttonIsPressed ? 1 : 1)
                 }
             }
         }
