@@ -57,6 +57,7 @@
 		ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
 		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
+		E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,7 @@
 		ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
 		ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFeedbackMessage.swift; sourceTree = "<group>"; };
 		E78DA52E24BF7C17001A3079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E78DA53024BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E78DA53124BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -292,14 +294,14 @@
 		AA48142724EB1D1F00134024 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E7712CA324F42F0B00B4191C /* Models */,
 				AA48142824EB1D3400134024 /* Progress Bar */,
 				AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */,
 				AAA0613C24E49683008CD91B /* Draggable.swift */,
 				260A412E24D9F327003553E7 /* GameButton.swift */,
-				AA24C13224E5C06A006F8C5A /* Question.swift */,
 				ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */,
 				ABC7425F24DB249600CC3B7E /* Tile.swift */,
-				263D144E24EEF0A800111A76 /* GameState.swift */,
+				E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -410,6 +412,15 @@
 				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		E7712CA324F42F0B00B4191C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				263D144E24EEF0A800111A76 /* GameState.swift */,
+				AA24C13224E5C06A006F8C5A /* Question.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E78DA52A24BF7B42001A3079 /* Localized Strings */ = {
@@ -601,6 +612,7 @@
 				263D144F24EEF0A800111A76 /* GameState.swift in Sources */,
 				26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */,
 				2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */,
+				E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */,
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,

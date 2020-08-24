@@ -14,7 +14,7 @@ struct GameButtonStyle: ButtonStyle {
     var buttonColor: Color
     var pressedButtonColor: Color
     var buttonBackgroundColor: Color
-    var isButtonDisabled: Bool
+    var isButtonEnable: Bool
     
     func makeBody(configuration: Self.Configuration) -> some View {
         
@@ -25,10 +25,10 @@ struct GameButtonStyle: ButtonStyle {
                 .frame(width: 191, height: 45+16)
                 .offset(x: 0, y: 32)
                 .background(Color.clear)
-                .foregroundColor(!isButtonDisabled ? Color.Hare : buttonBackgroundColor)
+                .foregroundColor(!isButtonEnable ? Color.Hare : buttonBackgroundColor)
                 .cornerRadius(12)
             
-            if !isButtonDisabled {
+            if !isButtonEnable {
                 configuration.label
                     .frame(width: 191, height: 45)
                     .background(Color.Swan)

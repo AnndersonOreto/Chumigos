@@ -69,22 +69,23 @@ struct SequenceGameView: View {
                 NavigationLink(destination: ShapeGameView(), isActive: self.$isFinished, label: {
                     EmptyView()
                 })
+                
 
                 Button(action: {
-                    
+
                     let index = self.progressViewModel.currentQuestion
-                    
+
                     if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
                         self.viewModel.gameState = .RECAP
                     }
-                    
+
                     withAnimation(.linear(duration: 0.3)) {
                         self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
                     }
                     self.questionsFrames = []
                     self.viewModel.resetGame(index: index)
                     self.buttonIsPressed = true
-                    
+
                     if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
                         self.isFinished = true
                         print("teste1 \(self.isFinished)d")
@@ -93,7 +94,7 @@ struct SequenceGameView: View {
                 }) {
                     Text("Confirmar")
                         .font(.custom(fontName, size: 20)).bold()
-                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonDisabled: self.viewModel.allQuestionsAreOccupied()))
+                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
                 .disabled(!self.viewModel.allQuestionsAreOccupied())
                 .padding(.bottom, 23)
             }
