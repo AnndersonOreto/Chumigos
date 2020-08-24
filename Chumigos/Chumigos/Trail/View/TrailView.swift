@@ -17,7 +17,7 @@ struct TrailView: View {
         
         let linha3 = [GameObject(gameType: .algorithm, gameName: "Algorithm"), GameObject(gameType: .decomposition, gameName: "Decomposition"), GameObject(gameType: .abstraction, gameName: "Abstraction")]
         
-        let matrix = [linha1, linha2, linha3]
+        let matrix = [linha1, linha2, linha3, linha2]
         
         return [TrailSection(available: true, trail: matrix)]
     }
