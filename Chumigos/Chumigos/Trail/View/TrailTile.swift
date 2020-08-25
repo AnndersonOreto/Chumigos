@@ -37,33 +37,32 @@ extension TrailTile {
         
         var bottomColor: Color = Color.Bee
         var topColor: Color = Color.Bee
-        var image: String = ""
+        var image: String = "icon-"
         
         if game.isAvailable {
             switch game.gameType {
             case .abstraction:
                 bottomColor = .Butterfly
                 topColor = .Betta
-                image = ""
+                image += "abstraction"
             case .algorithm:
                 bottomColor = .Narwhal
                 topColor = .Humpback
-                image = ""
+                image += "algorithm"
             case .decomposition:
                 bottomColor = .TreeFrog
                 topColor = .Owl
-                image = ""
+                image += "decomposition"
             case .pattern:
                 bottomColor = .Cardinal
                 topColor = .Crab
-                image = ""
+                image += "patterns"
             }
         } else {
             bottomColor = .Hare
             topColor = .Swan
-            image = ""
+            image += "unavailable"
         }
-        
         
         return ZStack {
             RoundedRectangle(cornerRadius: 10)
