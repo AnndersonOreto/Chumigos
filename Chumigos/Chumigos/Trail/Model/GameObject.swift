@@ -14,6 +14,8 @@ import Foundation
 
 struct GameObject: Hashable {
     
+    // MARK: - Variables & Constants
+    
     //Game Info
     let gameType: GameType
     let gameName: String
@@ -28,6 +30,8 @@ struct GameObject: Hashable {
     var alreadyPlayed: Bool {
         currentProgress > 0 ? true : false
     }
+    
+    // MARK: - Setter(s)
     
     mutating func setAvailable(_ value: Bool) {
         self.isAvailable = value

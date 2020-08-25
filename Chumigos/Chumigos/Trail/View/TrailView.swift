@@ -12,6 +12,7 @@ struct TrailView: View {
     
     @State private var sections: [TrailSection] = TrailView.mockSections()
     
+    // Just for test
     static func mockSections() -> [TrailSection] {
         let linha1 = [GameObject(gameType: .pattern, gameName: GameNames.sequenceGameName)]
 
@@ -28,12 +29,14 @@ struct TrailView: View {
         
         VStack {
             
+            // Button just for test
             Button(action: {
                 self.sections[0].currentLine += 1
             }) {
                 Text("Next Line")
             }
             
+            // TODO: adjust spacing according to screen size
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach(self.sections) { (section) in
                     VStack(spacing: 55) {

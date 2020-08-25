@@ -64,6 +64,7 @@ extension TrailTile {
             image += "unavailable"
         }
         
+        // TODO: adjust size according to screen size
         return ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(bottomColor)

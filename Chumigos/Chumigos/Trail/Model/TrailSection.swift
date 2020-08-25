@@ -10,6 +10,8 @@ import Foundation
 
 struct TrailSection: Identifiable {
     
+    // MARK: - Variables
+    
     var id = UUID()
     private(set) var available: Bool
     private(set) var trail: [[GameObject]]
@@ -19,11 +21,14 @@ struct TrailSection: Identifiable {
         }
     }
     
+    // MARK: - Init
     init(available: Bool, trail: [[GameObject]]) {
         self.available = available
         self.trail = trail
         self.changeGamesInLineAvailability()
     }
+    
+    // MARK: - Setter(s)
     
     mutating func setAvailable(_ newValue: Bool) {
         self.available = newValue
@@ -32,6 +37,8 @@ struct TrailSection: Identifiable {
     mutating func setTrail(_ newTrail: [[GameObject]]) {
         self.trail = newTrail
     }
+    
+    // MARK: - Function(s)
     
     mutating func changeGamesInLineAvailability() {
         if self.available && currentLine < trail.count {
