@@ -19,15 +19,15 @@ class User {
     }
     
     //Available next section
-    func makeNextSectionAvailable() {
-        
-        //Get first section where isnt available
-        let nextSectionIndex = self.trail.firstIndex(where: {
-            $0.available == false
-        })
-        
-        //set section for available
-        self.trail[nextSectionIndex ?? 0].available = true
-    }
+//    func makeNextSectionAvailable() {
+//        
+//        //Get first section where isnt available
+//        let nextSectionIndex = self.trail.firstIndex(where: {
+//            $0.available == false
+//        })
+//        
+//        //set section for available
+//        self.trail[nextSectionIndex ?? 0].available = true
+//    }
     
 }

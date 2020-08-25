@@ -18,7 +18,7 @@ struct TrailTile: View {
             //96x101
             makeTile()
             
-            //TODO PROGRESS BAR
+            //TODO: PROGRESS BAR
             RoundedRectangle(cornerRadius: 15)
                 .fill(Color.Swan)
                 .frame(width: 96, height: 10)
@@ -39,24 +39,31 @@ extension TrailTile {
         var topColor: Color = Color.Bee
         var image: String = ""
         
-        switch game.gameType {
-        case .abstraction:
-            bottomColor = .Butterfly
-            topColor = .Betta
-            image = ""
-        case .algorithm:
-            bottomColor = .Narwhal
-            topColor = .Humpback
-            image = ""
-        case .decomposition:
-            bottomColor = .TreeFrog
-            topColor = .Owl
-            image = ""
-        case .pattern:
-            bottomColor = .Cardinal
-            topColor = .Crab
+        if game.isAvailable {
+            switch game.gameType {
+            case .abstraction:
+                bottomColor = .Butterfly
+                topColor = .Betta
+                image = ""
+            case .algorithm:
+                bottomColor = .Narwhal
+                topColor = .Humpback
+                image = ""
+            case .decomposition:
+                bottomColor = .TreeFrog
+                topColor = .Owl
+                image = ""
+            case .pattern:
+                bottomColor = .Cardinal
+                topColor = .Crab
+                image = ""
+            }
+        } else {
+            bottomColor = .Hare
+            topColor = .Swan
             image = ""
         }
+        
         
         return ZStack {
             RoundedRectangle(cornerRadius: 10)

@@ -11,7 +11,50 @@ import Foundation
 struct TrailSection: Identifiable {
     
     var id = UUID()
-    var available = false
-    var trail: [[GameObject]]
+    private(set) var available: Bool
+    private(set) var trail: [[GameObject]]
+    var currentLine: Int = 0 {
+        didSet {
+            self.changeGamesInLineAvailability()
+        }
+    }
     
+    init(available: Bool, trail: [[GameObject]]) {
+        self.available = available
+        self.trail = trail
+        self.changeGamesInLineAvailability()
+    }
+    
+    mutating func setAvailable(_ newValue: Bool) {
+        self.available = newValue
+    }
+    
+    mutating func setTrail(_ newTrail: [[GameObject]]) {
+        self.trail = newTrail
+    }
+    
+    mutating func changeGamesInLineAvailability() {
+        if self.available && currentLine < trail.count {
+            for gameIndex in 0..<trail[currentLine].count {
+                trail[currentLine][gameIndex].isAvailable = true
+            }
+        }
+    }
+    
+    mutating func changeCurrentLine() {
+        let gamesAmount = trail[currentLine].count
+        var gamesPlayed = 0
+        
+        for game in trail[currentLine] {
+            if game.alreadyPlayed {
+                gamesPlayed += 1
+            }
+        }
+        
+        if gamesAmount == 3 && gamesPlayed >= 2 {
+            self.currentLine += 1
+        } else if gamesAmount <= 2 && gamesPlayed >= 1 {
+            self.currentLine += 1
+        }
+    }
 }

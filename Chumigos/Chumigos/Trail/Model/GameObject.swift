@@ -25,7 +25,11 @@ struct GameObject: Hashable {
     var currentProgress: Int = 0
     
     //Game Status
-    var alreadyPlayed:Bool {
+    var alreadyPlayed: Bool {
         currentProgress > 0 ? true : false
+    }
+    
+    mutating func setAvailable(_ value: Bool) {
+        self.isAvailable = value
     }
 }
