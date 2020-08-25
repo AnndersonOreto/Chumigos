@@ -9,8 +9,69 @@
 import SwiftUI
 
 struct EndGameView: View {
+    
+    // MARK: - View Model
+    
+    @ObservedObject var progressViewModel: ProgressBarViewModel = ProgressBarViewModel(questionAmount: 5)
+    
+    // MARK: - Drawing Contants
+    
+    private let screenWidth = UIScreen.main.bounds.width
+    private let fontName = "Rubik"
+    
+    // MARK: - View
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        ZStack {
+            
+            VStack {
+                
+                // Progress Bar
+                ProgressBarView(viewModel: progressViewModel)
+                    .padding(.top, screenWidth * 0.03)
+                
+                Spacer()
+                
+                // Arte
+                Image("fruit-1")
+                    .resizable().frame(width: screenWidth * 0.24, height: screenWidth * 0.24, alignment: .center)
+                
+                // Label
+                Text("Parabéns! Você terminou a tarefa!")
+                    .foregroundColor(Color.Eel)
+                    .font(.custom(fontName, size: screenWidth * 0.023)).fontWeight(.bold)
+                    .padding(.top, screenWidth * 0.03)
+                
+                // Simbolo da trilha
+                
+                Spacer()
+                
+                Image("fruit-1")
+                    .resizable().frame(width: screenWidth * 0.07, height: screenWidth * 0.07, alignment: .center)
+                
+                Spacer()
+                
+                // Inicio
+                Button(action: {
+                    
+                }) {
+                    Text("Início")
+                        .font(.custom(fontName, size: screenWidth * 0.016)).bold()
+                }.buttonStyle(GameButtonStyle(buttonColor: Color.Humpback, pressedButtonColor: Color.Whale, buttonBackgroundColor: Color.Narwhal, isButtonEnable: true))
+                
+                // Recomecar
+                Button(action: {
+                    
+                }) {
+                    Text("Recomeçar")
+                        .font(.custom(fontName, size: screenWidth * 0.016)).bold()
+                }.buttonStyle(GameButtonStyle(buttonColor: Color.Bee, pressedButtonColor: Color.Duck, buttonBackgroundColor: Color.Fox, isButtonEnable: true))
+                    .padding(.bottom, 30)
+            }
+        }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }
 
