@@ -87,6 +87,8 @@ struct SequenceGameView: View {
                                 self.viewModel.gameState = .RECAP
                             }
                             
+                            self.viewModel.verifyWrongQuestion(index: index)
+                            
                             withAnimation(.linear(duration: 0.3)) {
                                 self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
                             }
@@ -131,7 +133,7 @@ struct SequenceGameView: View {
                     .resizable()
                     .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
                     .offset(self.findOffset(for: question, geometry: geometry))
-                    .opacity(self.buttonIsPressed ? 1 : 1)
+                    .opacity(self.buttonIsPressed ? 1 : 0)
                 }
             }
         }

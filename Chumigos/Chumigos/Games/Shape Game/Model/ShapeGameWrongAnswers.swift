@@ -11,11 +11,11 @@ import SwiftUI
 
 struct ShapeGameWrongAnswer {
     
-    private(set) var wrongAlternatives: [ShapeForm] = []
-    private(set) var wrongPattern: [ShapeForm] = []
+    private(set) var wrongAlternatives: [ShapeGameModel.Alternative] = []
+    private(set) var wrongPattern: [ShapeGameModel.ShapeForm] = []
     private(set) var progressBarIndex: Int = 0
     
-    init(_ wrongAlternatives: [ShapeForm], _ wrongPattern: [ShapeForm], _ progressBarIndex: Int) {
+    init(_ wrongAlternatives: [ShapeGameModel.Alternative], _ wrongPattern: [ShapeGameModel.ShapeForm], _ progressBarIndex: Int) {
         self.wrongAlternatives = wrongAlternatives
         self.wrongPattern = wrongPattern
         self.progressBarIndex = progressBarIndex

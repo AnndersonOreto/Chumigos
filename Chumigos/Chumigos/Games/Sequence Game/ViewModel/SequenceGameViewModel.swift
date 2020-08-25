@@ -67,14 +67,10 @@ class SequenceGameViewModel: ObservableObject {
         
         if gameState == .NORMAL {
             
-            // Verify if current question is wrong
-            verifyWrongQuestion(index: index)
-            
             // Restart game by creating another instance of SequenceGameModel
             model = SequenceGameViewModel.createSequenceGame()
         } else {
             
-            verifyWrongQuestion(index: index)
             if wrongAnswersArray.isEmpty { return }
             print(wrongAnswersArray.count)
             let questionModel = wrongAnswersArray.first!
@@ -87,6 +83,9 @@ class SequenceGameViewModel: ObservableObject {
     }
     
     func removeRecapGame() {
+        
+        print("teste2")
+        print(wrongAnswersArray.count)
         
         if gameState == .RECAP && !wrongAnswersArray.isEmpty {
             wrongAnswersArray.removeFirst()

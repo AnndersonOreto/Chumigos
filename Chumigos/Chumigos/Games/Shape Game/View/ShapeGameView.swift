@@ -68,17 +68,17 @@ struct ShapeGameView: View {
                         // Cell that represents the pattern list as a form
                         ZStack{
                             //Underlay tile with opacity
-                            Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.sides)
+                            Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
                             .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
                                 .alternativeBackground(size: self.tileSize)
                                 
-                            Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.sides)
+                            Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
                                 .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
-                                .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.sides)
+                                .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
                             
                         }
                         // Make tile that is being drag appears on top
-                        .zIndex(self.alternativeBeingDragged == alternative.sides ? 1: 0)
+                            .zIndex(self.alternativeBeingDragged == alternative.value ? 1: 0)
                     }
                 }.padding(.top, screenWidth * 0.03)
                 
@@ -98,6 +98,8 @@ struct ShapeGameView: View {
                             if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
                                 self.viewModel.gameState = .RECAP
                             }
+                            
+                            self.viewModel.verifyWrongQuestion(index: index)
                             
                             withAnimation(.linear(duration: 0.3)) {
                                 self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
@@ -201,7 +203,7 @@ struct ShapeGameView: View {
 }
 
 extension ShapeGameView {
-    func patternView(for piece: ShapeForm) -> some View {
+    func patternView(for piece: ShapeGameModel.ShapeForm) -> some View {
         ZStack {
             if !piece.isAQuestion {
                 

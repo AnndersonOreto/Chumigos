@@ -18,9 +18,9 @@ struct ShapeGameModel {
     private let isAscending: Bool = Bool.random()
     
     // Variables
-    private(set) var alternatives: [ShapeForm] = []
+    private(set) var alternatives: [ShapeGameModel.Alternative] = []
     private(set) var questions: [Question] = []
-    private(set) var round: [ShapeForm] = []
+    private(set) var round: [ShapeGameModel.ShapeForm] = []
     private var difficulty: Difficulty
     private var randomColors: [Color]
     
@@ -97,6 +97,20 @@ struct ShapeGameModel {
         }
     }
     
+    mutating func resetUUID() {
+        for i in 0..<questions.count {
+            questions[i].id = UUID()
+        }
+        
+        for i in 0..<alternatives.count {
+            alternatives[i].id = UUID()
+        }
+        
+        for i in 0..<round.count {
+            round[i].id = UUID()
+        }
+    }
+    
     private mutating func generateQuestions() {
         
         let questionIndex = round.count-1
@@ -113,11 +127,11 @@ struct ShapeGameModel {
             var randomSides: Int?
             repeat {
                 randomSides = range.randomElement()
-            } while(randomSides == question.correctAnswer || alternatives.compactMap( { $0.sides } ).contains(randomSides))
+            } while(randomSides == question.correctAnswer || alternatives.compactMap( { $0.value } ).contains(randomSides))
             range.remove(at: index)
-            alternatives.append(ShapeForm(sides: randomSides!, colorIndex: index))
+            alternatives.append(Alternative(value: randomSides!, colorIndex: index))
         }
-        alternatives.append(ShapeForm(sides: question.correctAnswer, colorIndex: amount-1))
+        alternatives.append(Alternative(value: question.correctAnswer, colorIndex: amount-1))
         alternatives.shuffle()
     }
     
@@ -162,12 +176,19 @@ struct ShapeGameModel {
         }
         return match
     }
-}
-
-struct ShapeForm: Identifiable {
     
-    let sides: Int
-    let colorIndex: Int
-    var isAQuestion: Bool = false
-    var id = UUID()
+    struct Alternative: Identifiable {
+        let value: Int
+        let colorIndex: Int
+        var questionValue: Int?
+        var id = UUID()
+    }
+    
+    struct ShapeForm: Identifiable {
+        
+        let sides: Int
+        let colorIndex: Int
+        var isAQuestion: Bool = false
+        var id = UUID()
+    }
 }

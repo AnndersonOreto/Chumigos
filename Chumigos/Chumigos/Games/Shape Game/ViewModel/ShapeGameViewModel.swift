@@ -20,11 +20,11 @@ class ShapeGameViewModel: ObservableObject {
     
     // MARK: - Access to the Model
     
-    var round: [ShapeForm] {
+    var round: [ShapeGameModel.ShapeForm] {
         model.round
     }
     
-    var alternatives: [ShapeForm] {
+    var alternatives: [ShapeGameModel.Alternative] {
         model.alternatives
     }
     
@@ -75,21 +75,17 @@ class ShapeGameViewModel: ObservableObject {
         
         if gameState == .NORMAL {
             
-            // Verify if current question is wrong
-            verifyWrongQuestion(index: index)
-            
             // Restart game by creating another instance of SequenceGameModel
             model = ShapeGameViewModel.createSequenceGame()
         } else {
             
-            verifyWrongQuestion(index: index)
             if wrongAnswersArray.isEmpty { return }
             print(wrongAnswersArray.count)
             let questionModel = wrongAnswersArray.first!
             print(wrongAnswersArray.count)
             print(questions)
             model = questionModel.0
-            //model.resetUUID()
+            model.resetUUID()
             print(questions)
         }
     }
