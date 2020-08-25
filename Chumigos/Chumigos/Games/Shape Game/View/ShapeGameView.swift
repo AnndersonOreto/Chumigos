@@ -11,7 +11,7 @@ import SwiftUI
 struct ShapeGameView: View {
     
     @ObservedObject var viewModel = ShapeGameViewModel()
-    @ObservedObject var progressBarViewModel = ProgressBarViewModel(questionAmount: 5)
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     // Save the rects of all the questions
     @State private var questionsFrames: [(id: Int, rect: CGRect)] = []
@@ -19,6 +19,7 @@ struct ShapeGameView: View {
     @State private var alternativeBeingDragged: Int?
     
     @State var buttonIsPressed: Bool = false
+    @State var isFinished: Bool = false
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
@@ -32,10 +33,17 @@ struct ShapeGameView: View {
         
         // Main stack
         ZStack {
+            VStack {
+                Spacer()
+                if buttonIsPressed {
+                    GameFeedbackMessage(feedbackType: viewModel.allQuestionsAreCorrect() ? .CORRECT : .WRONG)
+                        .padding(.bottom, -40)
+                }
+            }
             // Stack to separate forms and alternatives list
             VStack {
                 
-                ProgressBarView(viewModel: self.progressBarViewModel)
+                ProgressBarView(viewModel: self.progressViewModel)
                 
                 Spacer()
                 
@@ -76,19 +84,55 @@ struct ShapeGameView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    withAnimation(.linear(duration: 0.3)) {
-                        self.progressBarViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: 0)
+                NavigationLink(destination: SequenceGameView(), isActive: self.$isFinished, label: {
+                    EmptyView()
+                })
+                
+                ZStack {
+                    //Continue Button
+                    if buttonIsPressed {
+                        Button(action: {
+                            self.buttonIsPressed = false
+                            let index = self.progressViewModel.currentQuestion
+                            
+                            if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+                                self.viewModel.gameState = .RECAP
+                            }
+                            
+                            withAnimation(.linear(duration: 0.3)) {
+                                self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
+                            }
+                            self.questionsFrames = []
+                            self.viewModel.resetGame(index: index)
+                            
+                            if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
+                                self.isFinished = true
+                                print("teste1 \(self.isFinished)d")
+                            }
+                            self.viewModel.removeRecapGame()
+                        }) {
+                            Text("Continuar")
+                                .font(.custom(fontName, size: 20)).bold()
+                        }.buttonStyle(
+                            viewModel.allQuestionsAreCorrect() ?
+                                //correct answer
+                                GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
+                                //wrong answer
+                                GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
+                            .padding(.bottom, 10)
                     }
-                    self.questionsFrames = []
-                    self.viewModel.resetGame()
-                    self.buttonIsPressed = true
-                }) {
-                    Text("Confirmar")
-                        .font(.custom(fontName, size: 20)).bold()
-                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
-                    .disabled(!self.viewModel.allQuestionsAreOccupied())
-                    .padding(.bottom, 23)
+                    else {
+                        //Confirm Button
+                        Button(action: {
+                            self.buttonIsPressed = true
+                        }) {
+                            Text("Confirmar")
+                                .font(.custom(fontName, size: 20)).bold()
+                        }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
+                            .disabled(!self.viewModel.allQuestionsAreOccupied())
+                            .padding(.bottom, 10)
+                    }
+                }
             }
             
             // Correct/Wrong Icons of which Question

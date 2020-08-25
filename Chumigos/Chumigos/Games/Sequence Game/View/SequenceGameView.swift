@@ -72,7 +72,6 @@ struct SequenceGameView: View {
                 
                 Spacer()
                 
-//                NavigationLink("", destination: ShapeGameView(), isActive: self.$isFinished)
                 NavigationLink(destination: ShapeGameView(), isActive: self.$isFinished, label: {
                     EmptyView()
                 })
@@ -102,7 +101,6 @@ struct SequenceGameView: View {
                         }) {
                             Text("Continuar")
                                 .font(.custom(fontName, size: 20)).bold()
-                            //buttonColor: Branco Puro, background: SWAN, texto: HUMPBACK, pressed: SWAN
                         }.buttonStyle(
                             viewModel.allQuestionsAreCorrect() ?
                                 //correct answer
