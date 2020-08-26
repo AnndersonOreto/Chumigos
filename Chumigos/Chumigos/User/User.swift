@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Not using this class yet!
 class User {
     
     var name: String
