@@ -29,13 +29,13 @@ struct EndGameView: View {
                 
                 // Progress Bar
                 ProgressBarView(viewModel: progressViewModel)
-                    .padding(.top, screenWidth * 0.03)
+                    .padding(.top, screenWidth * 0.015)
                 
                 Spacer()
                 
                 // Arte
                 Image("fruit-1")
-                    .resizable().frame(width: screenWidth * 0.24, height: screenWidth * 0.24, alignment: .center)
+                    .resizable().frame(width: screenWidth * 0.245, height: screenWidth * 0.245, alignment: .center)
                 
                 // Label
                 Text("Parabéns! Você terminou a tarefa!")
@@ -44,14 +44,10 @@ struct EndGameView: View {
                     .padding(.top, screenWidth * 0.03)
                 
                 // Simbolo da trilha
-                
-                Spacer()
-                
-                Image("fruit-1")
-                    .resizable().frame(width: screenWidth * 0.07, height: screenWidth * 0.07, alignment: .center)
-                
-                Spacer()
-                
+                                
+                TrailTile(game: GameObject(gameType: .pattern, gameName: "")).frame(width: screenWidth * 0.05, height: screenWidth * 0.05, alignment: .center)
+                    .padding(.vertical, screenWidth * 0.03)
+
                 // Inicio
                 Button(action: {
                     

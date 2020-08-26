@@ -68,12 +68,12 @@ extension TrailTile {
         return ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(bottomColor)
-                .frame(width: 96, height: 96)
+                //.frame(width: 96, height: 96)
                 .offset(y: 9)
             
             RoundedRectangle(cornerRadius: 10)
                 .fill(topColor)
-                .frame(width: 96, height: 96)
+                //.frame(width: 96, height: 96)
             
             Image(image)
         }

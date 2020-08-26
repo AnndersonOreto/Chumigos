@@ -84,7 +84,7 @@ struct ShapeGameView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: SequenceGameView(), isActive: self.$isFinished, label: {
+                NavigationLink(destination: EndGameView(progressViewModel: progressViewModel), isActive: self.$isFinished, label: {
                     EmptyView()
                 })
                 
@@ -109,7 +109,7 @@ struct ShapeGameView: View {
                             
                             if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
                                 self.isFinished = true
-                                print("teste1 \(self.isFinished)d")
+                                self.progressViewModel.currentQuestion = -1
                             }
                             self.viewModel.removeRecapGame()
                         }) {
