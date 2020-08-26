@@ -53,6 +53,12 @@
 		AAA0613924E30819008CD91B /* SequenceGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613824E30819008CD91B /* SequenceGameView.swift */; };
 		AAA0613B24E31685008CD91B /* SequenceGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613A24E31685008CD91B /* SequenceGameViewModel.swift */; };
 		AAA0613D24E49683008CD91B /* Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA0613C24E49683008CD91B /* Draggable.swift */; };
+		AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F0F24F42FD000C5A739 /* GameObject.swift */; };
+		AB855F1224F430EE00C5A739 /* GameNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1124F430EE00C5A739 /* GameNames.swift */; };
+		AB855F1524F4341400C5A739 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1424F4341400C5A739 /* User.swift */; };
+		AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1624F4354800C5A739 /* TrailSection.swift */; };
+		AB855F1924F439B200C5A739 /* TrailTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1824F439B200C5A739 /* TrailTile.swift */; };
+		AB855F1B24F450A000C5A739 /* TrailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1A24F450A000C5A739 /* TrailView.swift */; };
 		ABC7426024DB249600CC3B7E /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7425F24DB249600CC3B7E /* Tile.swift */; };
 		ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
@@ -131,6 +137,12 @@
 		AAA0613824E30819008CD91B /* SequenceGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceGameView.swift; sourceTree = "<group>"; };
 		AAA0613A24E31685008CD91B /* SequenceGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceGameViewModel.swift; sourceTree = "<group>"; };
 		AAA0613C24E49683008CD91B /* Draggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draggable.swift; sourceTree = "<group>"; };
+		AB855F0F24F42FD000C5A739 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
+		AB855F1124F430EE00C5A739 /* GameNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNames.swift; sourceTree = "<group>"; };
+		AB855F1424F4341400C5A739 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AB855F1624F4354800C5A739 /* TrailSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSection.swift; sourceTree = "<group>"; };
+		AB855F1824F439B200C5A739 /* TrailTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailTile.swift; sourceTree = "<group>"; };
+		AB855F1A24F450A000C5A739 /* TrailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailView.swift; sourceTree = "<group>"; };
 		ABC7425F24DB249600CC3B7E /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTile.swift; sourceTree = "<group>"; };
 		ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
@@ -236,6 +248,8 @@
 		26C186BE24BE4AA50094AEC1 /* Chumigos */ = {
 			isa = PBXGroup;
 			children = (
+				AB855F1324F4340700C5A739 /* User */,
+				AB855F0B24F42BDF00C5A739 /* Trail */,
 				E7FDEB8724C2312A008DDAEB /* Games */,
 				260A414B24DB297C003553E7 /* Fonts */,
 				E78DA52A24BF7B42001A3079 /* Localized Strings */,
@@ -368,6 +382,49 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AB855F0B24F42BDF00C5A739 /* Trail */ = {
+			isa = PBXGroup;
+			children = (
+				AB855F0E24F42BFB00C5A739 /* View */,
+				AB855F0D24F42BEF00C5A739 /* ViewModel */,
+				AB855F0C24F42BE900C5A739 /* Model */,
+			);
+			path = Trail;
+			sourceTree = "<group>";
+		};
+		AB855F0C24F42BE900C5A739 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB855F0F24F42FD000C5A739 /* GameObject.swift */,
+				AB855F1624F4354800C5A739 /* TrailSection.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AB855F0D24F42BEF00C5A739 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AB855F0E24F42BFB00C5A739 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB855F1824F439B200C5A739 /* TrailTile.swift */,
+				AB855F1A24F450A000C5A739 /* TrailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AB855F1324F4340700C5A739 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				AB855F1424F4341400C5A739 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		ABCDB24124BF88EE00F9A9B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +467,7 @@
 				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
 				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
 				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
+				AB855F1124F430EE00C5A739 /* GameNames.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -590,17 +648,21 @@
 				AA865AF324E5AC010066BF2A /* ShapeGameModel.swift in Sources */,
 				AA865AF024E57D960066BF2A /* AlternativeBackground.swift in Sources */,
 				ABC7426024DB249600CC3B7E /* Tile.swift in Sources */,
+				AB855F1224F430EE00C5A739 /* GameNames.swift in Sources */,
 				AA24C13324E5C06A006F8C5A /* Question.swift in Sources */,
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
+				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,
+				AB855F1524F4341400C5A739 /* User.swift in Sources */,
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
 				AAA0613924E30819008CD91B /* SequenceGameView.swift in Sources */,
 				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
 				26946E9424C76398005A316E /* FormPentagon.swift in Sources */,
 				263D144D24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift in Sources */,
 				260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */,
+				AB855F1B24F450A000C5A739 /* TrailView.swift in Sources */,
 				AAA0613B24E31685008CD91B /* SequenceGameViewModel.swift in Sources */,
 				AA24C13924E5CB22006F8C5A /* ShapeGameView.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
@@ -608,6 +670,7 @@
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
 				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
 				ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */,
+				AB855F1924F439B200C5A739 /* TrailTile.swift in Sources */,
 				26946E9224C762A3005A316E /* FormDecagon.swift in Sources */,
 				263D144F24EEF0A800111A76 /* GameState.swift in Sources */,
 				26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */,
@@ -618,6 +681,7 @@
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
+				AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */,
 				AAA0613D24E49683008CD91B /* Draggable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
