@@ -23,26 +23,24 @@ struct GameButtonStyle: ButtonStyle {
             
             // Background rectangle used to give a 3D style
             Rectangle()
-                .frame(width: 191, height: 45+16)
-                .offset(x: 0, y: 32)
+                .frame(width: UIScreen.main.bounds.width * 0.15, height: (UIScreen.main.bounds.width * 0.035) + (UIScreen.main.bounds.width * 0.013))
+                .offset(x: 0, y: UIScreen.main.bounds.width * 0.026)
                 .background(Color.clear)
                 .foregroundColor(!isButtonEnable ? Color.Hare : buttonBackgroundColor)
                 .cornerRadius(12)
             
             if !isButtonEnable {
                 configuration.label
-                    .frame(width: 191, height: 45)
+                    .frame(width: UIScreen.main.bounds.width * 0.15, height: (UIScreen.main.bounds.width * 0.035))
                     .background(Color.Swan)
                     .cornerRadius(12)
-                    .font(.custom("Rubik-Bold", size: 20.0))
                     .foregroundColor(Color.Hare)
             } else {
                 configuration.label
-                    .frame(width: 191, height: 45)
+                    .frame(width: UIScreen.main.bounds.width * 0.15, height: (UIScreen.main.bounds.width * 0.035))
                     .background(configuration.isPressed ? pressedButtonColor : buttonColor)
                     .cornerRadius(12)
-                    .offset(y: configuration.isPressed ? 8 : 0)
-                    .font(.custom("Rubik-Bold", size: 20.0))
+                    .offset(y: configuration.isPressed ? (UIScreen.main.bounds.width * 0.013)/2 : 0)
                     .foregroundColor(textColor == nil ? Color.Ghost : textColor)
             }
         }

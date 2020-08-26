@@ -11,7 +11,7 @@ import SwiftUI
 struct SequenceGameView: View {
     
     @ObservedObject var viewModel = SequenceGameViewModel()
-    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 2)
     
     // Save the rects of all the questions
     @State private var questionsFrames: [(question: Question, rect: CGRect)] = []
@@ -32,13 +32,14 @@ struct SequenceGameView: View {
                 Spacer()
                 if buttonIsPressed {
                     GameFeedbackMessage(feedbackType: viewModel.allQuestionsAreCorrect() ? .CORRECT : .WRONG)
-                    .padding(.bottom, -40)
+                        .padding(.bottom, -(screenWidth * 0.035))
                 }
             }
             
             VStack(spacing: 0) {
                 
                 ProgressBarView(viewModel: progressViewModel)
+                    .padding(.top, screenWidth * 0.015)
                 
                 Spacer()
                 
@@ -72,7 +73,7 @@ struct SequenceGameView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: ShapeGameView(), isActive: self.$isFinished, label: {
+                NavigationLink(destination: EndGameView(progressViewModel: progressViewModel), isActive: self.$isFinished, label: {
                     EmptyView()
                 })
                 
@@ -97,7 +98,7 @@ struct SequenceGameView: View {
                             
                             if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
                                 self.isFinished = true
-                                print("teste1 \(self.isFinished)d")
+                                self.progressViewModel.currentQuestion = -1
                             }
                             self.viewModel.removeRecapGame()
                         }) {
@@ -136,7 +137,8 @@ struct SequenceGameView: View {
                     .opacity(self.buttonIsPressed ? 1 : 0)
                 }
             }
-        }
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
     }
     
     // MARK: - Drawing Contants

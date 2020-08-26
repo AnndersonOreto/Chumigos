@@ -15,10 +15,12 @@ enum FeedBackType {
 struct GameFeedbackMessage: View {
     var feedbackType: FeedBackType
     
+    let screenWidth = UIScreen.main.bounds.width
+    
     private let fontName = "Rubik"
     var body: some View {
         ZStack(alignment: .top) {
-            RoundedRectangle(cornerRadius: 42).fill(Color.Humpback).frame(width: UIScreen.main.bounds.width, height: 165)
+            RoundedRectangle(cornerRadius: 42).fill(Color.Humpback).frame(width: screenWidth + 10, height: screenWidth * 0.14)
                 
                 if feedbackType == .CORRECT {
                     Text("Muito bem!")
