@@ -19,7 +19,12 @@ struct EndGameView: View {
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
     
+    @State private var restart: Bool = false
+    @State private var homeScreen: Bool = false
     // MARK: - View
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     var body: some View {
         
@@ -33,24 +38,38 @@ struct EndGameView: View {
                 
                 Spacer()
                 
+                Group {
+                    Image("fruit-1")
+                        .resizable().frame(width: screenWidth * 0.245, height: screenWidth * 0.245, alignment: .center)
+                                        
+                    // Label
+                    Text("Parabéns! Você terminou a tarefa!")
+                        .foregroundColor(Color.Eel)
+                        .font(.custom(fontName, size: screenWidth * 0.023)).fontWeight(.bold)
+                                        .padding(.top, screenWidth * 0.03)
+                    
+                }
                 // Arte
-                Image("fruit-1")
-                    .resizable().frame(width: screenWidth * 0.245, height: screenWidth * 0.245, alignment: .center)
-                
-                // Label
-                Text("Parabéns! Você terminou a tarefa!")
-                    .foregroundColor(Color.Eel)
-                    .font(.custom(fontName, size: screenWidth * 0.023)).fontWeight(.bold)
-                    .padding(.top, screenWidth * 0.03)
-                
+                    
+                Spacer()
                 // Simbolo da trilha
                                 
                 TrailTile(game: GameObject(gameType: .pattern, gameName: "")).frame(width: screenWidth * 0.05, height: screenWidth * 0.05, alignment: .center)
-                    .padding(.vertical, screenWidth * 0.03)
+//                    .padding(.vertical, screenWidth * 0.03)
 
+                Spacer()
+                
+                NavigationLink(destination: SequenceGameView(), isActive: self.$restart, label: {
+                    EmptyView()
+                })
+                
+                NavigationLink(destination: ContentView(), isActive: self.$homeScreen, label: {
+                    EmptyView()
+                })
+                
                 // Inicio
                 Button(action: {
-                    
+                    self.homeScreen = true
                 }) {
                     Text("Início")
                         .font(.custom(fontName, size: screenWidth * 0.016)).bold()
@@ -58,7 +77,7 @@ struct EndGameView: View {
                 
                 // Recomecar
                 Button(action: {
-                    
+                    self.restart = true
                 }) {
                     Text("Recomeçar")
                         .font(.custom(fontName, size: screenWidth * 0.016)).bold()
