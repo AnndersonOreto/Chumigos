@@ -10,8 +10,8 @@ import SwiftUI
 
 struct SequenceGameView: View {
     
-    var viewModel = SequenceGameViewModel()
-    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
+    @ObservedObject var viewModel = SequenceGameViewModel()
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 2)
     
     // Save the rects of all the questions
     @State private var questionsFrames: [(question: Question, rect: CGRect)] = []
@@ -19,6 +19,7 @@ struct SequenceGameView: View {
     @State private var alternativeBeingDragged: Int?
     // Variable to know if the button is pressed or not
     @State var buttonIsPressed: Bool = false
+    @State var isFinished: Bool = false
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
@@ -27,9 +28,18 @@ struct SequenceGameView: View {
     
     var body: some View {
         ZStack {
+            VStack {
+                Spacer()
+                if buttonIsPressed {
+                    GameFeedbackMessage(feedbackType: viewModel.allQuestionsAreCorrect() ? .CORRECT : .WRONG)
+                        .padding(.bottom, -(screenWidth * 0.035))
+                }
+            }
+            
             VStack(spacing: 0) {
                 
                 ProgressBarView(viewModel: progressViewModel)
+                    .padding(.top, screenWidth * 0.015)
                 
                 Spacer()
                 
@@ -63,21 +73,60 @@ struct SequenceGameView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    withAnimation(.linear(duration: 0.3)) {
-                        self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
+                NavigationLink(destination: EndGameView(progressViewModel: progressViewModel), isActive: self.$isFinished, label: {
+                    EmptyView()
+                })
+                
+                ZStack {
+                    //Continue Button
+                    if buttonIsPressed {
+                        Button(action: {
+                            self.buttonIsPressed = false
+                            let index = self.progressViewModel.currentQuestion
+                            
+                            if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+                                self.viewModel.gameState = .RECAP
+                            }
+                            
+                            self.viewModel.verifyWrongQuestion(index: index)
+                            
+                            withAnimation(.linear(duration: 0.3)) {
+                                self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
+                            }
+                            self.questionsFrames = []
+                            self.viewModel.resetGame(index: index)
+                            
+                            if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
+                                self.isFinished = true
+                                self.progressViewModel.currentQuestion = -1
+                            }
+                            self.viewModel.removeRecapGame()
+                        }) {
+                            Text("Continuar")
+                                .font(.custom(fontName, size: 20)).bold()
+                        }.buttonStyle(
+                            viewModel.allQuestionsAreCorrect() ?
+                                //correct answer
+                            GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
+                                //wrong answer
+                                GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
+                            .padding(.bottom, 10)
                     }
-                    self.questionsFrames = []
-                    self.viewModel.resetGame()
-                    self.buttonIsPressed = true
-                }) {
-                    Text("Confirmar")
-                        .font(.custom(fontName, size: 20)).bold()
-                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonDisabled: self.viewModel.allQuestionsAreOccupied()))
-                .disabled(!self.viewModel.allQuestionsAreOccupied())
-                .padding(.bottom, 23)
+                    else {
+                        //Confirm Button
+                        Button(action: {
+                            self.buttonIsPressed = true
+                        }) {
+                            Text("Confirmar")
+                                .font(.custom(fontName, size: 20)).bold()
+                        }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
+                            .disabled(!self.viewModel.allQuestionsAreOccupied())
+                            .padding(.bottom, 10)
+                    }
+                }
             }
             
+
             // Correct/Wrong Icons of which Question
             ForEach(viewModel.questions) { (question) in
                 GeometryReader { geometry in
@@ -88,7 +137,8 @@ struct SequenceGameView: View {
                     .opacity(self.buttonIsPressed ? 1 : 0)
                 }
             }
-        }
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
     }
     
     // MARK: - Drawing Contants
@@ -152,7 +202,7 @@ struct SequenceGameView: View {
 extension SequenceGameView {
     
     // MARK: - View for the Tile/Piece
-    private func pieceView(for piece: SequenceGameModel<String>.SequencePiece) -> some View {
+    private func pieceView(for piece: SequenceGameModel.SequencePiece) -> some View {
         ZStack {
             if piece.isAQuestion {
                 QuestionTile(size: self.tileSize, isOccupied: self.viewModel.findQuestion(with: piece.value)!.isOcupied, isCorrect: self.viewModel.findQuestion(with: piece.value)!.isCorrect, buttonPressed: self.buttonIsPressed)

@@ -9,15 +9,22 @@
 import SwiftUI
 
 class ShapeGameViewModel: ObservableObject {
-    @Published var model = ShapeGameModel()
+    
+    @Published var model = createSequenceGame()
+    var wrongAnswersArray: [(ShapeGameModel, Int)] = []
+    var gameState: GameState = GameState.NORMAL
+    
+    private static func createSequenceGame() -> ShapeGameModel {
+        return ShapeGameModel(difficulty: .medium)
+    }
     
     // MARK: - Access to the Model
     
-    var round: [ShapeGameModel.Shape] {
+    var round: [ShapeGameModel.ShapeForm] {
         model.round
     }
     
-    var alternatives: [ShapeGameModel.Shape] {
+    var alternatives: [ShapeGameModel.Alternative] {
         model.alternatives
     }
     
@@ -57,7 +64,49 @@ class ShapeGameViewModel: ObservableObject {
         model.vacateQuestion(with: index)
     }
     
-    func resetGame() {
-        model.createGame()
+    func getRecapIndex() -> Int {
+        if !wrongAnswersArray.isEmpty && gameState == .RECAP {
+            return wrongAnswersArray.first!.1
+        }
+        return -1
+    }
+    
+    func resetGame(index: Int) {
+        
+        if gameState == .NORMAL {
+            
+            // Restart game by creating another instance of SequenceGameModel
+            model = ShapeGameViewModel.createSequenceGame()
+        } else {
+            
+            if wrongAnswersArray.isEmpty { return }
+            print(wrongAnswersArray.count)
+            let questionModel = wrongAnswersArray.first!
+            print(wrongAnswersArray.count)
+            print(questions)
+            model = questionModel.0
+            model.resetUUID()
+            print(questions)
+        }
+    }
+    
+    func removeRecapGame() {
+        
+        if gameState == .RECAP && !wrongAnswersArray.isEmpty {
+            wrongAnswersArray.removeFirst()
+        }
+    }
+    
+    func verifyWrongQuestion(index: Int) {
+        
+        // If some question ain't correct, add it to wrongAnswers list
+        if !allQuestionsAreCorrect() {
+            
+            for i in 0..<questions.count {
+                model.vacateQuestion(with: i)
+            }
+            
+            wrongAnswersArray.append((model, index))
+        }
     }
 }

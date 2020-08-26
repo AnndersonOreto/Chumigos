@@ -8,23 +8,25 @@
 
 import SwiftUI
 
-class SequenceGameViewModel {
-    private var model = createSequenceGame()
+class SequenceGameViewModel: ObservableObject {
+    @Published var model = createSequenceGame()
+    var wrongAnswersArray: [(SequenceGameModel, Int)] = []
+    var gameState: GameState = GameState.NORMAL
     
-    private static func createSequenceGame() -> SequenceGameModel<String> {
+    private static func createSequenceGame() -> SequenceGameModel {
         let isFruit = Bool.random()
-        return SequenceGameModel<String>(difficulty: .medium) { (assetIndex) in
+        return SequenceGameModel(difficulty: .medium) { (assetIndex) in
             return isFruit ? "fruit-\(assetIndex)" : "shape-\(assetIndex)"
         }
     }
     
     // MARK: - Access to the Model
     
-    var sequence: [SequenceGameModel<String>.SequencePiece] {
+    var sequence: [SequenceGameModel.SequencePiece] {
         model.sequence
     }
     
-    var alternatives: [SequenceGameModel<String>.Alternative] {
+    var alternatives: [SequenceGameModel.Alternative] {
         model.alternatives
     }
     
@@ -54,7 +56,52 @@ class SequenceGameViewModel {
         model.vacateQuestion(with: index)
     }
     
-    func resetGame() {
-        model = SequenceGameViewModel.createSequenceGame()
+    func getRecapIndex() -> Int {
+        if !wrongAnswersArray.isEmpty && gameState == .RECAP {
+            return wrongAnswersArray.first!.1
+        }
+        return -1
+    }
+    
+    func resetGame(index: Int) {
+        
+        if gameState == .NORMAL {
+            
+            // Restart game by creating another instance of SequenceGameModel
+            model = SequenceGameViewModel.createSequenceGame()
+        } else {
+            
+            if wrongAnswersArray.isEmpty { return }
+            print(wrongAnswersArray.count)
+            let questionModel = wrongAnswersArray.first!
+            print(wrongAnswersArray.count)
+            print(questions)
+            model = questionModel.0
+            model.resetUUID()
+            print(questions)
+        }
+    }
+    
+    func removeRecapGame() {
+        
+        print("teste2")
+        print(wrongAnswersArray.count)
+        
+        if gameState == .RECAP && !wrongAnswersArray.isEmpty {
+            wrongAnswersArray.removeFirst()
+        }
+    }
+    
+    func verifyWrongQuestion(index: Int) {
+        
+        // If some question ain't correct, add it to wrongAnswers list
+        if !allQuestionsAreCorrect() {
+            
+            for i in 0..<questions.count {
+                model.vacateQuestion(with: i)
+            }
+            
+            wrongAnswersArray.append((model, index))
+        }
     }
 }

@@ -95,6 +95,8 @@ extension TrailTile {
             RoundedRectangle(cornerRadius: 10)
                 .fill(topColor)
                 .frame(width: screenWidth * widthScale, height: screenWidth * widthScale)
+                .offset(y: 9)
+
             
             Image(image)
                 .resizable()

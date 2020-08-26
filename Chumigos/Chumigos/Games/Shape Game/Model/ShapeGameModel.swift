@@ -18,9 +18,9 @@ struct ShapeGameModel {
     private let isAscending: Bool = Bool.random()
     
     // Variables
-    private(set) var alternatives: [Shape] = []
+    private(set) var alternatives: [ShapeGameModel.Alternative] = []
     private(set) var questions: [Question] = []
-    private(set) var round: [Shape] = []
+    private(set) var round: [ShapeGameModel.ShapeForm] = []
     private var difficulty: Difficulty
     private var randomColors: [Color]
     
@@ -64,14 +64,14 @@ struct ShapeGameModel {
             let initialNumberOfSides = Int.random(in: range)
             for index in 0..<amount {
                 let value = isAscending ? index : -index
-                round.append(Shape(sides: initialNumberOfSides+value, colorIndex: index))
+                round.append(ShapeForm(sides: initialNumberOfSides+value, colorIndex: index))
             }
         case .medium:
             let range = isAscending ? 3..<5 : 9..<11
             let initialNumberOfSides = Int.random(in: range)
             for index in 0..<amount {
                 let value = isAscending ? index : -index
-                round.append(Shape(sides: initialNumberOfSides+(value*2), colorIndex: index))
+                round.append(ShapeForm(sides: initialNumberOfSides+(value*2), colorIndex: index))
             }
         case .hard:
             amount = 6
@@ -79,10 +79,10 @@ struct ShapeGameModel {
             var initialNumberOfSides = Int.random(in: range)
             for index in 0..<amount {
                 if (index % 2) == 0 {
-                    round.append(Shape(sides: initialNumberOfSides, colorIndex: index))
+                    round.append(ShapeForm(sides: initialNumberOfSides, colorIndex: index))
                     initialNumberOfSides += 2
                 } else {
-                    round.append(Shape(sides: initialNumberOfSides, colorIndex: index))
+                    round.append(ShapeForm(sides: initialNumberOfSides, colorIndex: index))
                     initialNumberOfSides -= 1
                 }
             }
@@ -94,6 +94,20 @@ struct ShapeGameModel {
             difficulty = .medium
         } else if self.difficulty == .medium {
             difficulty = .hard
+        }
+    }
+    
+    mutating func resetUUID() {
+        for i in 0..<questions.count {
+            questions[i].id = UUID()
+        }
+        
+        for i in 0..<alternatives.count {
+            alternatives[i].id = UUID()
+        }
+        
+        for i in 0..<round.count {
+            round[i].id = UUID()
         }
     }
     
@@ -113,11 +127,11 @@ struct ShapeGameModel {
             var randomSides: Int?
             repeat {
                 randomSides = range.randomElement()
-            } while(randomSides == question.correctAnswer || alternatives.compactMap( { $0.sides } ).contains(randomSides))
+            } while(randomSides == question.correctAnswer || alternatives.compactMap( { $0.value } ).contains(randomSides))
             range.remove(at: index)
-            alternatives.append(Shape(sides: randomSides!, colorIndex: index))
+            alternatives.append(Alternative(value: randomSides!, colorIndex: index))
         }
-        alternatives.append(Shape(sides: question.correctAnswer, colorIndex: amount-1))
+        alternatives.append(Alternative(value: question.correctAnswer, colorIndex: amount-1))
         alternatives.shuffle()
     }
     
@@ -163,9 +177,14 @@ struct ShapeGameModel {
         return match
     }
     
-    // MARK: - Struct(s)
+    struct Alternative: Identifiable {
+        let value: Int
+        let colorIndex: Int
+        var questionValue: Int?
+        var id = UUID()
+    }
     
-    struct Shape: Identifiable {
+    struct ShapeForm: Identifiable {
         
         let sides: Int
         let colorIndex: Int

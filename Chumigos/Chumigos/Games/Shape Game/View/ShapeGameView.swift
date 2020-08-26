@@ -11,7 +11,7 @@ import SwiftUI
 struct ShapeGameView: View {
     
     @ObservedObject var viewModel = ShapeGameViewModel()
-    @ObservedObject var progressBarViewModel = ProgressBarViewModel(questionAmount: 5)
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     // Save the rects of all the questions
     @State private var questionsFrames: [(id: Int, rect: CGRect)] = []
@@ -19,6 +19,7 @@ struct ShapeGameView: View {
     @State private var alternativeBeingDragged: Int?
     
     @State var buttonIsPressed: Bool = false
+    @State var isFinished: Bool = false
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
@@ -32,10 +33,17 @@ struct ShapeGameView: View {
         
         // Main stack
         ZStack {
+            VStack {
+                Spacer()
+                if buttonIsPressed {
+                    GameFeedbackMessage(feedbackType: viewModel.allQuestionsAreCorrect() ? .CORRECT : .WRONG)
+                        .padding(.bottom, -40)
+                }
+            }
             // Stack to separate forms and alternatives list
             VStack {
                 
-                ProgressBarView(viewModel: self.progressBarViewModel)
+                ProgressBarView(viewModel: self.progressViewModel)
                 
                 Spacer()
                 
@@ -60,35 +68,73 @@ struct ShapeGameView: View {
                         // Cell that represents the pattern list as a form
                         ZStack{
                             //Underlay tile with opacity
-                            Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.sides)
+                            Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
                             .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
                                 .alternativeBackground(size: self.tileSize)
                                 
-                            Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.sides)
+                            Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
                                 .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
-                                .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.sides)
+                                .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
                             
                         }
                         // Make tile that is being drag appears on top
-                        .zIndex(self.alternativeBeingDragged == alternative.sides ? 1: 0)
+                            .zIndex(self.alternativeBeingDragged == alternative.value ? 1: 0)
                     }
                 }.padding(.top, screenWidth * 0.03)
                 
                 Spacer()
                 
-                Button(action: {
-                    withAnimation(.linear(duration: 0.3)) {
-                        self.progressBarViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect())
+                NavigationLink(destination: EndGameView(progressViewModel: progressViewModel), isActive: self.$isFinished, label: {
+                    EmptyView()
+                })
+                
+                ZStack {
+                    //Continue Button
+                    if buttonIsPressed {
+                        Button(action: {
+                            self.buttonIsPressed = false
+                            let index = self.progressViewModel.currentQuestion
+                            
+                            if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+                                self.viewModel.gameState = .RECAP
+                            }
+                            
+                            self.viewModel.verifyWrongQuestion(index: index)
+                            
+                            withAnimation(.linear(duration: 0.3)) {
+                                self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
+                            }
+                            self.questionsFrames = []
+                            self.viewModel.resetGame(index: index)
+                            
+                            if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
+                                self.isFinished = true
+                                self.progressViewModel.currentQuestion = -1
+                            }
+                            self.viewModel.removeRecapGame()
+                        }) {
+                            Text("Continuar")
+                                .font(.custom(fontName, size: 20)).bold()
+                        }.buttonStyle(
+                            viewModel.allQuestionsAreCorrect() ?
+                                //correct answer
+                                GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
+                                //wrong answer
+                                GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
+                            .padding(.bottom, 10)
                     }
-                    self.questionsFrames = []
-                    self.viewModel.resetGame()
-                    self.buttonIsPressed = true
-                }) {
-                    Text("Confirmar")
-                        .font(.custom(fontName, size: 20)).bold()
-                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonDisabled: self.viewModel.allQuestionsAreOccupied()))
-                    .disabled(!self.viewModel.allQuestionsAreOccupied())
-                    .padding(.bottom, 23)
+                    else {
+                        //Confirm Button
+                        Button(action: {
+                            self.buttonIsPressed = true
+                        }) {
+                            Text("Confirmar")
+                                .font(.custom(fontName, size: 20)).bold()
+                        }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
+                            .disabled(!self.viewModel.allQuestionsAreOccupied())
+                            .padding(.bottom, 10)
+                    }
+                }
             }
             
             // Correct/Wrong Icons of which Question
@@ -157,7 +203,7 @@ struct ShapeGameView: View {
 }
 
 extension ShapeGameView {
-    func patternView(for piece: ShapeGameModel.Shape) -> some View {
+    func patternView(for piece: ShapeGameModel.ShapeForm) -> some View {
         ZStack {
             if !piece.isAQuestion {
                 
