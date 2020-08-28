@@ -23,8 +23,11 @@ struct GameObject: Hashable {
     var isCompleted = false
     
     //Game Progress
-    let maxProgress: Int = 50
-    var currentProgress: Int = 0
+    let maxProgress: Float = 50
+    var currentProgress: Float = 0
+    var percetageCompleted: Float {
+        currentProgress / maxProgress
+    }
     
     //Game Status
     var alreadyPlayed: Bool {
