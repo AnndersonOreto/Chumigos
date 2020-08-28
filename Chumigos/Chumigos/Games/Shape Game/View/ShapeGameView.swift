@@ -84,10 +84,6 @@ struct ShapeGameView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: EndGameView(progressViewModel: progressViewModel), isActive: self.$isFinished, label: {
-                    EmptyView()
-                })
-                
                 ZStack {
                     //Continue Button
                     if buttonIsPressed {
