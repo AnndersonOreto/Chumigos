@@ -88,26 +88,7 @@ struct ShapeGameView: View {
                     //Continue Button
                     if buttonIsPressed {
                         Button(action: {
-                            self.buttonIsPressed = false
-                            let index = self.progressViewModel.currentQuestion
-                            
-                            if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
-                                self.viewModel.gameState = .RECAP
-                            }
-                            
-                            self.viewModel.verifyWrongQuestion(index: index)
-                            
-                            withAnimation(.linear(duration: 0.3)) {
-                                self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
-                            }
-                            self.questionsFrames = []
-                            self.viewModel.resetGame(index: index)
-                            
-                            if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
-                                self.isFinished = true
-                                self.progressViewModel.currentQuestion = -1
-                            }
-                            self.viewModel.removeRecapGame()
+                            self.checkQuestion()
                         }) {
                             Text("Continuar")
                                 .font(.custom(fontName, size: 20)).bold()
@@ -155,6 +136,29 @@ struct ShapeGameView: View {
             return CGSize(width: x, height: y)
         }
         return CGSize.zero
+    }
+    
+    func checkQuestion() {
+        self.buttonIsPressed = false
+        let index = self.progressViewModel.currentQuestion
+        
+        if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+            self.viewModel.gameState = .RECAP
+        }
+        
+        self.viewModel.verifyWrongQuestion(index: index)
+        
+        withAnimation(.linear(duration: 0.3)) {
+            self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
+        }
+        self.questionsFrames = []
+        self.viewModel.resetGame(index: index)
+        
+        if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
+            self.isFinished = true
+            self.progressViewModel.currentQuestion = -1
+        }
+        self.viewModel.removeRecapGame()
     }
     
     // MARK: - Drag & Drops Functions
