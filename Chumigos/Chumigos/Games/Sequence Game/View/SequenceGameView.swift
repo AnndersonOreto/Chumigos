@@ -40,8 +40,19 @@ struct SequenceGameView: View {
             if !self.isFinished {
             VStack(spacing: 0) {
                 
-                ProgressBarView(viewModel: progressViewModel)
-                    .padding(.top, screenWidth * 0.015)
+                HStack {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                            .font(Font.custom("Rubik", size: 34).bold())
+                            .foregroundColor(.Humpback)
+                    }.buttonStyle(PlainButtonStyle())
+                    
+                    ProgressBarView(viewModel: progressViewModel)
+                        .padding(.top, screenWidth * 0.015)
+                    
+                }
                 
                 Spacer()
                 
