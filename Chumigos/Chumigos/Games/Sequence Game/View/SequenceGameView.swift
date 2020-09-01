@@ -20,6 +20,7 @@ struct SequenceGameView: View {
     // Variable to know if the button is pressed or not
     @State var buttonIsPressed: Bool = false
     @State var isFinished: Bool = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
@@ -36,6 +37,7 @@ struct SequenceGameView: View {
                 }
             }
             
+            if !self.isFinished {
             VStack(spacing: 0) {
                 
                 ProgressBarView(viewModel: progressViewModel)
@@ -73,34 +75,15 @@ struct SequenceGameView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: EndGameView(progressViewModel: progressViewModel), isActive: self.$isFinished, label: {
-                    EmptyView()
-                })
+//                NavigationLink(destination: EndGameView(progressViewModel: progressViewModel), isActive: self.$isFinished, label: {
+//                    EmptyView()
+//                })
                 
                 ZStack {
                     //Continue Button
                     if buttonIsPressed {
                         Button(action: {
-                            self.buttonIsPressed = false
-                            let index = self.progressViewModel.currentQuestion
-                            
-                            if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
-                                self.viewModel.gameState = .RECAP
-                            }
-                            
-                            self.viewModel.verifyWrongQuestion(index: index)
-                            
-                            withAnimation(.linear(duration: 0.3)) {
-                                self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
-                            }
-                            self.questionsFrames = []
-                            self.viewModel.resetGame(index: index)
-                            
-                            if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
-                                self.isFinished = true
-                                self.progressViewModel.currentQuestion = -1
-                            }
-                            self.viewModel.removeRecapGame()
+                            self.confirmQuestion()
                         }) {
                             Text("Continuar")
                                 .font(.custom(fontName, size: 20)).bold()
@@ -125,17 +108,18 @@ struct SequenceGameView: View {
                     }
                 }
             }
-            
-
-            // Correct/Wrong Icons of which Question
-            ForEach(viewModel.questions) { (question) in
-                GeometryReader { geometry in
-                    Image(question.isCorrect ? "correct-icon" : "wrong-icon")
-                    .resizable()
-                    .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
-                    .offset(self.findOffset(for: question, geometry: geometry))
-                    .opacity(self.buttonIsPressed ? 1 : 0)
+                // Correct/Wrong Icons of which Question
+                ForEach(viewModel.questions) { (question) in
+                    GeometryReader { geometry in
+                        Image(question.isCorrect ? "correct-icon" : "wrong-icon")
+                        .resizable()
+                        .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
+                        .offset(self.findOffset(for: question, geometry: geometry))
+                        .opacity(self.buttonIsPressed ? 1 : 0)
+                    }
                 }
+            } else {
+                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
             }
         }.navigationBarTitle("")
         .navigationBarHidden(true)
@@ -155,6 +139,42 @@ struct SequenceGameView: View {
             return CGSize(width: x, height: y)
         }
         return CGSize.zero
+    }
+    
+    func dismissGame() {
+        
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
+    func restartGame() {
+        self.viewModel.restartGame()
+        self.questionsFrames = []
+        self.isFinished = false
+        self.progressViewModel.restartProgressBar()
+    }
+    
+    func confirmQuestion() {
+        
+        self.buttonIsPressed = false
+        let index = self.progressViewModel.currentQuestion
+        
+        if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+            self.viewModel.gameState = .RECAP
+        }
+        
+        self.viewModel.verifyWrongQuestion(index: index)
+        
+        withAnimation(.linear(duration: 0.3)) {
+            self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
+        }
+        self.questionsFrames = []
+        self.viewModel.resetGame(index: index)
+        
+        if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
+            self.isFinished = true
+            self.progressViewModel.currentQuestion = -1
+        }
+        self.viewModel.removeRecapGame()
     }
     
     // MARK: - Drag & Drops Functions

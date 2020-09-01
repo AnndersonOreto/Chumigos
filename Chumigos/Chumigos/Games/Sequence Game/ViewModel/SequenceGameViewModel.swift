@@ -104,4 +104,10 @@ class SequenceGameViewModel: ObservableObject {
             wrongAnswersArray.append((model, index))
         }
     }
+    
+    func restartGame() {
+        self.model = SequenceGameViewModel.createSequenceGame()
+        self.wrongAnswersArray = []
+        self.gameState = .NORMAL
+    }
 }

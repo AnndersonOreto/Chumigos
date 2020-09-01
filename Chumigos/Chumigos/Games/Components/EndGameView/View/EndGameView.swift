@@ -13,17 +13,15 @@ struct EndGameView: View {
     // MARK: - View Model
     
     @ObservedObject var progressViewModel: ProgressBarViewModel = ProgressBarViewModel(questionAmount: 5)
+    var dismissGame: (() -> Void)
+    var restartGame: (() -> Void)
     
     // MARK: - Drawing Contants
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
     
-    @State private var restart: Bool = false
-    @State private var homeScreen: Bool = false
     // MARK: - View
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     
     var body: some View {
@@ -54,22 +52,14 @@ struct EndGameView: View {
                 Spacer()
                 // Simbolo da trilha
                                 
-                TrailTile(game: GameObject(gameType: .pattern, gameName: "")).frame(width: screenWidth * 0.05, height: screenWidth * 0.05, alignment: .center)
-//                    .padding(.vertical, screenWidth * 0.03)
+                TrailTile(game: GameObject(gameType: .pattern, gameName: ""))
 
                 Spacer()
                 
-                NavigationLink(destination: SequenceGameView(), isActive: self.$restart, label: {
-                    EmptyView()
-                })
-                
-                NavigationLink(destination: ContentView(), isActive: self.$homeScreen, label: {
-                    EmptyView()
-                })
-                
                 // Inicio
                 Button(action: {
-                    self.homeScreen = true
+                    self.dismissGame()
+                    self.restartGame()
                 }) {
                     Text("Início")
                         .font(.custom(fontName, size: screenWidth * 0.016)).bold()
@@ -77,7 +67,7 @@ struct EndGameView: View {
                 
                 // Recomecar
                 Button(action: {
-                    self.restart = true
+                    self.restartGame()
                 }) {
                     Text("Recomeçar")
                         .font(.custom(fontName, size: screenWidth * 0.016)).bold()
@@ -87,11 +77,5 @@ struct EndGameView: View {
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
-    }
-}
-
-struct EndGameView_Previews: PreviewProvider {
-    static var previews: some View {
-        EndGameView()
     }
 }
