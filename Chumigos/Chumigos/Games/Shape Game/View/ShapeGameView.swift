@@ -147,7 +147,8 @@ struct ShapeGameView: View {
                     .opacity(self.buttonIsPressed ? 1 : 0)
                 }
             }
-        }
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
     }
     
     // MARK: - Finding question's position
