@@ -48,14 +48,17 @@ struct TrailView: View {
                         VStack(spacing: self.screenWidth * 0.04) {
                             ForEach(section.trail, id: \.self) { line in
                                 HStack(spacing: self.screenWidth * 0.06) {
+                                    Spacer()
                                     ForEach(line, id: \.self) { game in
                                         NavigationLink(destination: GamesView(gameName: game.gameName)) {
                                             TrailTile(game: game)
                                         }.buttonStyle(PlainButtonStyle())
                                     }
+                                    Spacer()
                                 }
                             }
                         }.padding(.bottom, self.screenWidth * 0.04)
+                        .background(section.available ? Color.white : Color.init(red: 248/255, green: 248/255, blue: 248/255))
                     }
                 }
             }.padding(.vertical)
