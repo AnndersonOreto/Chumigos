@@ -23,6 +23,10 @@ struct ContentView: View {
                 NavigationLink(destination: ShapeGameView()) {
                     Text("Jogo da Forma")
                 }
+                
+                NavigationLink(destination: AvatarSelectionView()) {
+                    Text("Avatares")
+                }
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
