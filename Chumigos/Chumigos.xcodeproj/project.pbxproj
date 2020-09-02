@@ -23,6 +23,7 @@
 		2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620EA0924C759F0001F1EE0 /* FormTriangle.swift */; };
 		263D144D24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D144C24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift */; };
 		263D144F24EEF0A800111A76 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D144E24EEF0A800111A76 /* GameState.swift */; };
+		2656BF292500086100231678 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656BF282500086100231678 /* NotificationManager.swift */; };
 		26660AC324C7834E000A9845 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26660AC224C7834E000A9845 /* RandomColor.swift */; };
 		26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26763D2B24C8C7690056F2BC /* RandomForm.swift */; };
 		2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */; };
@@ -104,6 +105,7 @@
 		2620EA0924C759F0001F1EE0 /* FormTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTriangle.swift; sourceTree = "<group>"; };
 		263D144C24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameWrongAnswers.swift; sourceTree = "<group>"; };
 		263D144E24EEF0A800111A76 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		2656BF282500086100231678 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		26660AC224C7834E000A9845 /* RandomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
 		26763D2B24C8C7690056F2BC /* RandomForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomForm.swift; sourceTree = "<group>"; };
 		2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKDataService.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
 				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
 				AB855F1124F430EE00C5A739 /* GameNames.swift */,
+				2656BF282500086100231678 /* NotificationManager.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
+				2656BF292500086100231678 /* NotificationManager.swift in Sources */,
 				26F434CD24FEDBCB00CE81F1 /* CoreDataPersistence.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
 				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,
