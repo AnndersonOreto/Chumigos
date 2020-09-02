@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2600932025001E8F00077BCE /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600931F25001E8F00077BCE /* HapticManager.swift */; };
 		260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260751F024DB4E1C005816DB /* ProgressBarView.swift */; };
 		260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */; };
 		260A412F24D9F327003553E7 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A412E24D9F327003553E7 /* GameButton.swift */; };
@@ -89,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2600931F25001E8F00077BCE /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		260751F024DB4E1C005816DB /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarViewModel.swift; sourceTree = "<group>"; };
 		260A412E24D9F327003553E7 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
@@ -188,6 +190,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26009321250021C000077BCE /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				2656BF282500086100231678 /* NotificationManager.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		26009322250021EB00077BCE /* Haptic */ = {
+			isa = PBXGroup;
+			children = (
+				2600931F25001E8F00077BCE /* HapticManager.swift */,
+			);
+			path = Haptic;
+			sourceTree = "<group>";
+		};
 		260A414B24DB297C003553E7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +522,8 @@
 		E74D7F8824BF7318000BF076 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				26009322250021EB00077BCE /* Haptic */,
+				26009321250021C000077BCE /* Notifications */,
 				2620EA0B24C75A30001F1EE0 /* Forms */,
 				26C186D024BE4AA70094AEC1 /* Info.plist */,
 				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
@@ -511,7 +531,6 @@
 				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
 				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
 				AB855F1124F430EE00C5A739 /* GameNames.swift */,
-				2656BF282500086100231678 /* NotificationManager.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -726,6 +745,7 @@
 				E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */,
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
+				2600932025001E8F00077BCE /* HapticManager.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
