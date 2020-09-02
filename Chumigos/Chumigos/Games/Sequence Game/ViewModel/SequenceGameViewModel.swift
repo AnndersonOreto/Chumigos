@@ -101,7 +101,10 @@ class SequenceGameViewModel: ObservableObject {
                 model.vacateQuestion(with: i)
             }
             
-            wrongAnswersArray.append((model, index))
+            //To limit recap try to only one time
+            if gameState == .NORMAL {
+                wrongAnswersArray.append((model, index))
+            }
         }
     }
     

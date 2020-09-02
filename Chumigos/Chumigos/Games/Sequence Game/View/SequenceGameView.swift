@@ -173,11 +173,11 @@ struct SequenceGameView: View {
         self.buttonIsPressed = false
         let index = self.progressViewModel.currentQuestion
         
+        self.viewModel.verifyWrongQuestion(index: index)
+        
         if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
             self.viewModel.gameState = .RECAP
         }
-        
-        self.viewModel.verifyWrongQuestion(index: index)
         
         withAnimation(.linear(duration: 0.3)) {
             self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
