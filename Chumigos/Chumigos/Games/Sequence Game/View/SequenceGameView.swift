@@ -55,9 +55,8 @@ struct SequenceGameView: View {
                     
                     HStack {
                         ProgressBarView(viewModel: progressViewModel)
-                        .padding(.top, screenWidth * 0.015)
                     }
-                }
+                }.padding(.top, screenWidth * 0.015)
                 
                 Spacer()
                 

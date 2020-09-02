@@ -12,6 +12,7 @@ struct ShapeGameView: View {
     
     @ObservedObject var viewModel = ShapeGameViewModel()
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // Save the rects of all the questions
     @State private var questionsFrames: [(id: Int, rect: CGRect)] = []
@@ -43,7 +44,23 @@ struct ShapeGameView: View {
             // Stack to separate forms and alternatives list
             VStack {
                 
-                ProgressBarView(viewModel: self.progressViewModel)
+                ZStack {
+                    HStack {
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(Font.custom("Rubik", size: 34).bold())
+                                .foregroundColor(.Humpback)
+                        }.buttonStyle(PlainButtonStyle())
+                        
+                        Spacer()
+                    }.padding(.leading, screenWidth*0.0385)
+                    
+                    HStack {
+                        ProgressBarView(viewModel: progressViewModel)
+                    }
+                }.padding(.top, screenWidth * 0.015)
                 
                 Spacer()
                 
