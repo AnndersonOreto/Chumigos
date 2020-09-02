@@ -16,12 +16,19 @@ struct MainView: View {
     
     private var screenWidth = UIScreen.main.bounds.width
     @State private var currentTab: TabItem = .trail
+    @State private var showPopUp = false
     
     var body: some View {
         ZStack {
+            Group {
+                showView()
+                tabBar()
+            }.blur(radius: self.showPopUp ? 16 : 0)
             
-            showView()
-            tabBar()
+            
+            if self.showPopUp {
+                ExitGamePopUp()
+            }
         }
     }
 }
@@ -42,8 +49,8 @@ extension MainView {
                     
                     //Profile
                     Button(action: {
-                        
-                        self.currentTab = .profile
+                        self.showPopUp.toggle()
+                        //self.currentTab = .profile
                     }) {
                         Circle()
                         .fill(Color.blue)
