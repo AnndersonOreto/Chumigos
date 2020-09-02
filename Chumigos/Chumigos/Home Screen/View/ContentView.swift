@@ -13,6 +13,8 @@ struct ContentView: View {
     
     @ObservedObject var viewModel = HomeScreenViewModel()
     
+    @State private var showAvatarSelection = false
+
     var body: some View {
         NavigationView {
             VStack {
@@ -24,11 +26,23 @@ struct ContentView: View {
                     Text("Jogo da Forma")
                 }
                 
-                NavigationLink(destination: AvatarSelectionView()) {
-                    Text("Avatares")
+                Button(action: {
+                    self.showAvatarSelection.toggle()
+                }) {
+                    Text("Show Detail")
+                }.sheet(isPresented: $showAvatarSelection) {
+                    withAnimation {
+                        AvatarSelectionView(closeModalAction: {
+                            self.showAvatarSelection = false
+                        })
+                    }
                 }
+                
+                
+                
             }
         }.navigationViewStyle(StackNavigationViewStyle())
+         
     }
 }
 
