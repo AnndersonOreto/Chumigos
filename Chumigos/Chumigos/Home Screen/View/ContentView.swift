@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SpriteKit
+import CoreData
 
 struct ContentView: View {
     
