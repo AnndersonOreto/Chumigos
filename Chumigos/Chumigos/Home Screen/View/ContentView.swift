@@ -15,10 +15,19 @@ struct ContentView: View {
     @ObservedObject var viewModel = HomeScreenViewModel()
     
     @State private var showAvatarSelection = false
+    
+    @State var avatarName: String = "Avatar 1"
+    
+    @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var result: FetchedResults<UserData>
+    @Environment(\.managedObjectContext) var moc
 
     var body: some View {
         NavigationView {
             VStack {
+                
+                Image(avatarName)
+                     
+                
                 NavigationLink(destination: SequenceGameView()) {
                     Text("Jogo da Sequencia")
                 }
@@ -35,16 +44,28 @@ struct ContentView: View {
                     withAnimation {
                         AvatarSelectionView(closeModalAction: {
                             self.showAvatarSelection = false
-                        })
+                            self.saveAvatar()
+                        }, avatarSelected: self.$avatarName)
                     }
                 }
-                
-                
-                
-            }
+            }.onAppear(perform: {
+                self.avatarName = self.result[0].imageName ?? ""
+            })
         }.navigationViewStyle(StackNavigationViewStyle())
          
     }
+    
+    func saveAvatar() {
+        let user = UserData(context: self.moc)
+        user.imageName = avatarName
+        
+        do {
+            try self.moc.save()
+        } catch {
+            fatalError("fudeu")
+        }
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -88,7 +88,8 @@ struct AvatarSelectionView: View {
     }
 
     let avatarGrid = ["Avatar 1", "Avatar 2", "Avatar 3", "Avatar 4", "Avatar 5", "Avatar 6", "Avatar 7", "Avatar 8", "Avatar 9", "Avatar 10", "Avatar 11", "Avatar 12"]
-    @State var avatarSelected: String = ""
+    
+    @Binding var avatarSelected: String
     
     var body: some View {
         GeometryReader { geometry in
