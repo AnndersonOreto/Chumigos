@@ -10,8 +10,12 @@ import SwiftUI
 
 struct ExitGamePopUp: View {
     
+    @Binding var showPopUp: Bool
+    var dismissGame: (() -> Void)
+    let screenWidth = UIScreen.main.bounds.width
+    
     var body: some View {
-        PopUpView()
+        popUpView()
         .background(
             RoundedRectangle(cornerRadius: 15)
                 .fill(Color.Ghost)
@@ -19,16 +23,15 @@ struct ExitGamePopUp: View {
     }
 }
 
-struct ExitGamePopUp_Previews: PreviewProvider {
-    static var previews: some View {
-        ExitGamePopUp()
-    }
-}
+//struct ExitGamePopUp_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ExitGamePopUp()
+//    }
+//}
 
-struct PopUpView: View {
-    let screenWidth = UIScreen.main.bounds.width
+extension ExitGamePopUp {
     
-    var body: some View {
+    private func popUpView() -> some View {
         VStack {
             // TODO: Trocar pela imagem do polvo
             Image("icon-abstraction")
@@ -44,14 +47,14 @@ struct PopUpView: View {
             
             HStack(spacing: screenWidth * 0.036) {
                 Button(action: {
-                    //
+                    self.dismissGame()
                 }) {
                     Text("Sair")
                         .font(.custom("Rubik", size: 20)).bold()
                 }.buttonStyle(GameButtonStyle(buttonColor: .Cardinal, pressedButtonColor: .Cardinal, buttonBackgroundColor: .FireAnt, isButtonEnable: true, textColor: .Ghost))
                 
                 Button(action: {
-                    //
+                    self.showPopUp = false
                 }) {
                     Text("Continuar")
                         .font(.custom("Rubik", size: 20)).bold()

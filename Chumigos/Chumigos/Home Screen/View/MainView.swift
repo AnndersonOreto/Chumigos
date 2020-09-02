@@ -23,11 +23,6 @@ struct MainView: View {
             Group {
                 showView()
                 tabBar()
-            }.blur(radius: self.showPopUp ? 16 : 0)
-            
-            
-            if self.showPopUp {
-                ExitGamePopUp()
             }
         }
     }

@@ -21,6 +21,7 @@ struct ShapeGameView: View {
     
     @State var buttonIsPressed: Bool = false
     @State var isFinished: Bool = false
+    @State var showPopUp: Bool = false
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
@@ -44,110 +45,119 @@ struct ShapeGameView: View {
             
             
             if !isFinished {
-                // Stack to separate forms and alternatives list
-                VStack {
-                    
-                    ZStack {
-                        HStack {
-                            Button(action: {
-                                self.presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image(systemName: "xmark")
-                                    .font(Font.custom("Rubik", size: 34).bold())
-                                    .foregroundColor(.Humpback)
-                            }.buttonStyle(PlainButtonStyle())
-                            
-                            Spacer()
-                        }.padding(.leading, screenWidth*0.0385)
-                        
-                        HStack {
-                            ProgressBarView(viewModel: progressViewModel)
-                        }
-                    }.padding(.top, screenWidth * 0.015)
-                    
-                    Spacer()
-                    
-                    // Horizontal stack to show form pattern
-                    HStack {
-                        // Build every form in the horizontal based on parameters of pattern
-                        ForEach(viewModel.round) { (element) in
-                            // Cell that represents the pattern list as a form
-                            self.patternView(for: element)
-                        }
-                    }
-                    
-                    Text("Complete a sequência arrastando as peças abaixo:")
-                    .foregroundColor(Color.Eel)
-                    .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
-                    .padding(.top, screenWidth * 0.07)
-                    
-                    // Alternatives
-                    HStack(spacing: screenWidth * 0.036) {
-                        // Build every form in the horizontal based on parameters of pattern
-                        ForEach(viewModel.alternatives) { (alternative) in
-                            // Cell that represents the pattern list as a form
-                            ZStack{
-                                //Underlay tile with opacity
-                                Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
-                                    .alternativeBackground(size: self.tileSize)
-                                    
-                                Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                    .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
-                                    .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
-                                
-                            }
-                            // Make tile that is being drag appears on top
-                                .zIndex(self.alternativeBeingDragged == alternative.value ? 1: 0)
-                        }
-                    }.padding(.top, screenWidth * 0.03)
-                    
-                    Spacer()
-                    
-                    ZStack {
-                        //Continue Button
-                        if buttonIsPressed {
-                            Button(action: {
-                                self.checkQuestion()
-                            }) {
-                                Text("Continuar")
-                                    .font(.custom(fontName, size: 20)).bold()
-                            }.buttonStyle(
-                                viewModel.allQuestionsAreCorrect() ?
-                                    //correct answer
-                                    GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
-                                    //wrong answer
-                                    GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
-                                .padding(.bottom, 10)
-                        }
-                        else {
-                            //Confirm Button
-                            Button(action: {
-                                self.buttonIsPressed = true
-                            }) {
-                                Text("Confirmar")
-                                    .font(.custom(fontName, size: 20)).bold()
-                            }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
-                                .disabled(!self.viewModel.allQuestionsAreOccupied())
-                                .padding(.bottom, 10)
-                        }
-                    }
-                }
                 
-                // Correct/Wrong Icons of which Question
-                ForEach(viewModel.questions) { (question) in
-                    GeometryReader { geometry in
-                        Image(question.isCorrect ? "correct-icon" : "wrong-icon")
-                        .resizable()
-                        .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
-                        .offset(self.findOffset(for: question, geometry: geometry))
-                        .opacity(self.buttonIsPressed ? 1 : 0)
+                Group {
+                    // Stack to separate forms and alternatives list
+                    VStack {
+                        
+                        ZStack {
+                            if !isFinished {
+                                HStack {
+                                    Button(action: {
+                                        self.showPopUp = true
+                                    }) {
+                                        Image(systemName: "xmark")
+                                            .font(Font.custom("Rubik", size: 34).bold())
+                                            .foregroundColor(.Humpback)
+                                    }.buttonStyle(PlainButtonStyle())
+                                    
+                                    Spacer()
+                                }.padding(.leading, screenWidth*0.0385)
+                            }
+                            
+                            HStack {
+                                ProgressBarView(viewModel: progressViewModel)
+                            }
+                        }.padding(.top, screenWidth * 0.015)
+                        
+                        Spacer()
+                        
+                        // Horizontal stack to show form pattern
+                        HStack {
+                            // Build every form in the horizontal based on parameters of pattern
+                            ForEach(viewModel.round) { (element) in
+                                // Cell that represents the pattern list as a form
+                                self.patternView(for: element)
+                            }
+                        }
+                        
+                        Text("Complete a sequência arrastando as peças abaixo:")
+                        .foregroundColor(Color.Eel)
+                        .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
+                        .padding(.top, screenWidth * 0.07)
+                        
+                        // Alternatives
+                        HStack(spacing: screenWidth * 0.036) {
+                            // Build every form in the horizontal based on parameters of pattern
+                            ForEach(viewModel.alternatives) { (alternative) in
+                                // Cell that represents the pattern list as a form
+                                ZStack{
+                                    //Underlay tile with opacity
+                                    Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
+                                    .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
+                                        .alternativeBackground(size: self.tileSize)
+                                        
+                                    Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
+                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
+                                        .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
+                                    
+                                }
+                                // Make tile that is being drag appears on top
+                                    .zIndex(self.alternativeBeingDragged == alternative.value ? 1: 0)
+                            }
+                        }.padding(.top, screenWidth * 0.03)
+                        
+                        Spacer()
+                        
+                        ZStack {
+                            //Continue Button
+                            if buttonIsPressed {
+                                Button(action: {
+                                    self.checkQuestion()
+                                }) {
+                                    Text("Continuar")
+                                        .font(.custom(fontName, size: 20)).bold()
+                                }.buttonStyle(
+                                    viewModel.allQuestionsAreCorrect() ?
+                                        //correct answer
+                                        GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
+                                        //wrong answer
+                                        GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
+                                    .padding(.bottom, 10)
+                            }
+                            else {
+                                //Confirm Button
+                                Button(action: {
+                                    self.buttonIsPressed = true
+                                }) {
+                                    Text("Confirmar")
+                                        .font(.custom(fontName, size: 20)).bold()
+                                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
+                                    .disabled(!self.viewModel.allQuestionsAreOccupied())
+                                    .padding(.bottom, 10)
+                            }
+                        }
                     }
-                }
+                    
+                    // Correct/Wrong Icons of which Question
+                    ForEach(viewModel.questions) { (question) in
+                        GeometryReader { geometry in
+                            Image(question.isCorrect ? "correct-icon" : "wrong-icon")
+                            .resizable()
+                            .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
+                            .offset(self.findOffset(for: question, geometry: geometry))
+                            .opacity(self.buttonIsPressed ? 1 : 0)
+                        }
+                    }
+                }.blur(radius: self.showPopUp ? 16 : 0)
+                
             } else {
                 EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
             }
             
+            if self.showPopUp {
+                ExitGamePopUp(showPopUp: self.$showPopUp, dismissGame: self.dismissGame)
+            }
             
         }.navigationBarTitle("")
         .navigationBarHidden(true)
