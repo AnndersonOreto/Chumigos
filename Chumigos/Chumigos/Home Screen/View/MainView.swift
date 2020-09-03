@@ -23,7 +23,7 @@ struct MainView: View {
             Color.background.edgesIgnoringSafeArea(.all)
             Group {
                 showView()
-//                tabBar()
+                //tabBar()
             }
         }
     }

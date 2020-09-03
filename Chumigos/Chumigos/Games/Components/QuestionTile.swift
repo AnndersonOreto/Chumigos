@@ -50,7 +50,7 @@ struct QuestionTile: View {
             
             Text("?")
                 .foregroundColor(.white)
-                .font(.custom("Rubik", size: self.size.width * 0.74)).bold()
+                .dynamicFont(name: "Rubik", size: 70, weight: .bold)
             
         }.padding(.horizontal, 5)
         

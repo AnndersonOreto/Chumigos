@@ -60,7 +60,7 @@ struct ShapeGameView: View {
                                         self.showPopUp = true
                                     }) {
                                         Image(systemName: "xmark")
-                                            .font(Font.custom("Rubik", size: 34).bold())
+                                            .dynamicFont(name: fontName, size: 34, weight: .bold)
                                             .foregroundColor(.xMark)
                                     }.buttonStyle(PlainButtonStyle())
                                     
@@ -86,7 +86,7 @@ struct ShapeGameView: View {
                         
                         Text("Complete a sequência arrastando as peças abaixo:")
                         .foregroundColor(Color.textColor)
-                        .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
+                        .dynamicFont(name: fontName, size: 20, weight: .medium)
                         .padding(.top, screenWidth * 0.07)
                         
                         // Alternatives
@@ -119,7 +119,7 @@ struct ShapeGameView: View {
                                     self.checkQuestion()
                                 }) {
                                     Text("Continuar")
-                                        .font(.custom(fontName, size: 20)).bold()
+                                        .dynamicFont(name: fontName, size: 20, weight: .bold)
                                 }.buttonStyle(
                                     viewModel.allQuestionsAreCorrect() ?
                                         //correct answer
@@ -134,7 +134,7 @@ struct ShapeGameView: View {
                                     self.buttonIsPressed = true
                                 }) {
                                     Text("Confirmar")
-                                        .font(.custom(fontName, size: 20)).bold()
+                                        .dynamicFont(name: fontName, size: 20, weight: .bold)
                                 }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
                                     .disabled(!self.viewModel.allQuestionsAreOccupied())
                                     .padding(.bottom, 10)

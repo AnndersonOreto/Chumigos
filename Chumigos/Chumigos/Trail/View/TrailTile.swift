@@ -28,7 +28,7 @@ struct TrailTile: View {
             
             Text(game.gameName)
                 .foregroundColor(.textColor)
-                .font(.custom("Rubik", size: 16)).fontWeight(.medium)
+                .dynamicFont(name: "Rubik", size: 16, weight: .medium)
         }
     }
 }
