@@ -8,31 +8,6 @@
 
 import SwiftUI
 
-//struct AvatarSelectionView: View {
-//    let screenWidth = UIScreen.main.bounds.width
-//
-//    let avatarArray = ["fruit-1", "fruit-2", "fruit-3"]
-//
-//    var body: some View {
-//        VStack {
-//
-//            HStack(spacing: screenWidth * 0.057) {
-//                ForEach(avatarArray, id: \.self, content: { avatar in
-//                    Image(avatar)
-//                        .resizable().frame(width: self.screenWidth * 0.163, height: self.screenWidth * 0.163, alignment: .center)
-//                })
-//            }
-//        }
-//    }
-//}
-//
-//struct AvatarSelectionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AvatarSelectionView()
-//    }
-//}
-
-
 struct Grid<Content: View>: View {
     
     let rows: Int
