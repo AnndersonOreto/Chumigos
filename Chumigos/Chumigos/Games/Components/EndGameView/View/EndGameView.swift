@@ -43,8 +43,8 @@ struct EndGameView: View {
                     // Label
                     Text("Parabéns! Você terminou a tarefa!")
                         .foregroundColor(Color.Eel)
-                        .font(.custom(fontName, size: screenWidth * 0.023)).fontWeight(.bold)
-                                        .padding(.top, screenWidth * 0.03)
+                        .dynamicFont(name: fontName, size: 28, weight: .bold)
+                        .padding(.top, screenWidth * 0.03)
                     
                 }
                 // Arte
@@ -62,7 +62,7 @@ struct EndGameView: View {
                     self.restartGame()
                 }) {
                     Text("Início")
-                        .font(.custom(fontName, size: screenWidth * 0.016)).bold()
+                        .dynamicFont(name: fontName, size: 20, weight: .bold)
                 }.buttonStyle(GameButtonStyle(buttonColor: Color.Humpback, pressedButtonColor: Color.Whale, buttonBackgroundColor: Color.Narwhal, isButtonEnable: true))
                 
                 // Recomecar
@@ -70,7 +70,7 @@ struct EndGameView: View {
                     self.restartGame()
                 }) {
                     Text("Recomeçar")
-                        .font(.custom(fontName, size: screenWidth * 0.016)).bold()
+                        .dynamicFont(name: fontName, size: 20, weight: .bold)
                 }.buttonStyle(GameButtonStyle(buttonColor: Color.Bee, pressedButtonColor: Color.Duck, buttonBackgroundColor: Color.Fox, isButtonEnable: true))
                     .padding(.bottom, 30)
             }

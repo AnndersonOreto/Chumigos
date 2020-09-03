@@ -41,7 +41,7 @@ extension ExitGamePopUp {
                 .padding(.bottom, screenWidth * 0.01)
             
             Text("Tem certeza que deseja sair?")
-                .font(.custom("Rubik", size: 20))
+                .dynamicFont(name: "Rubik", size: 20, weight: .regular)
                 .foregroundColor(.Eel)
                 .padding(.bottom, screenWidth * 0.013)
             
@@ -50,14 +50,14 @@ extension ExitGamePopUp {
                     self.dismissGame()
                 }) {
                     Text("Sair")
-                        .font(.custom("Rubik", size: 20)).bold()
+                        .dynamicFont(name: "Rubik", size: 20, weight: .bold)
                 }.buttonStyle(GameButtonStyle(buttonColor: .Cardinal, pressedButtonColor: .Cardinal, buttonBackgroundColor: .FireAnt, isButtonEnable: true, textColor: .Ghost))
                 
                 Button(action: {
                     self.showPopUp = false
                 }) {
                     Text("Continuar")
-                        .font(.custom("Rubik", size: 20)).bold()
+                        .dynamicFont(name: "Rubik", size: 20, weight: .bold)
                 }.buttonStyle(GameButtonStyle(buttonColor: .Humpback, pressedButtonColor: .Humpback, buttonBackgroundColor: .Narwhal, isButtonEnable: true, textColor: .Ghost))
             }.padding(.bottom, screenWidth * 0.032)
                 .padding(.horizontal, screenWidth * 0.044)

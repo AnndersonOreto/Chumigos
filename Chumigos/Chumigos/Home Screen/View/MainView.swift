@@ -22,7 +22,7 @@ struct MainView: View {
         ZStack {
             Group {
                 showView()
-                tabBar()
+                //tabBar()
             }
         }
     }

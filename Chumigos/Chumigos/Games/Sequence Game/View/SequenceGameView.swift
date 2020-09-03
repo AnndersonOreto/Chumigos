@@ -49,7 +49,7 @@ struct SequenceGameView: View {
                                         self.showPopUp = true
                                     }) {
                                         Image(systemName: "xmark")
-                                            .font(Font.custom("Rubik", size: 34).bold())
+                                            .dynamicFont(name: fontName, size: 34, weight: .bold)
                                             .foregroundColor(.Humpback)
                                     }.buttonStyle(PlainButtonStyle())
                                     
@@ -73,7 +73,7 @@ struct SequenceGameView: View {
                         
                         Text("Complete a sequência arrastando as peças abaixo:")
                             .foregroundColor(Color.Eel)
-                            .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
+                            .dynamicFont(name: fontName, size: 20, weight: .medium)
                             .padding(.top, screenWidth * 0.07)
                         
                         HStack(spacing: screenWidth * 0.036) {
@@ -94,10 +94,6 @@ struct SequenceGameView: View {
                         
                         Spacer()
                         
-                        //                NavigationLink(destination: EndGameView(progressViewModel: progressViewModel), isActive: self.$isFinished, label: {
-                        //                    EmptyView()
-                        //                })
-                        
                         ZStack {
                             //Continue Button
                             if buttonIsPressed {
@@ -105,7 +101,7 @@ struct SequenceGameView: View {
                                     self.confirmQuestion()
                                 }) {
                                     Text("Continuar")
-                                        .font(.custom(fontName, size: 20)).bold()
+                                        .dynamicFont(name: fontName, size: 20, weight: .bold)
                                 }.buttonStyle(
                                     viewModel.allQuestionsAreCorrect() ?
                                         //correct answer
@@ -120,7 +116,7 @@ struct SequenceGameView: View {
                                     self.buttonIsPressed = true
                                 }) {
                                     Text("Confirmar")
-                                        .font(.custom(fontName, size: 20)).bold()
+                                        .dynamicFont(name: fontName, size: 20, weight: .bold)
                                 }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
                                     .disabled(!self.viewModel.allQuestionsAreOccupied())
                                     .padding(.bottom, 10)

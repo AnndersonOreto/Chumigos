@@ -24,13 +24,13 @@ struct GameFeedbackMessage: View {
                 
                 if feedbackType == .CORRECT {
                     Text("Muito bem!")
-                        .font(.custom("Rubik Bold", size: 20))
+                        .dynamicFont(name: fontName, size: 20, weight: .bold)
                         .foregroundColor(Color.Ghost)
                         .padding(.top, 20)
                 }
                 else {
                     Text("ERRRRROOOOOOO!")
-                        .font(.custom("Rubik Bold", size: 20))
+                        .dynamicFont(name: fontName, size: 20, weight: .bold)
                         .foregroundColor(Color.Ghost)
                         .padding(.top, 20)
                 }
