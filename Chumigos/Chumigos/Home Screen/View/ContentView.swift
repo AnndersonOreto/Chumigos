@@ -20,13 +20,13 @@ struct ContentView: View {
     
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var result: FetchedResults<UserData>
     @Environment(\.managedObjectContext) var moc
-
+    
     var body: some View {
         NavigationView {
             VStack {
                 
                 Image(avatarName)
-                     
+                
                 
                 NavigationLink(destination: SequenceGameView()) {
                     Text("Jogo da Sequencia")
@@ -49,20 +49,37 @@ struct ContentView: View {
                     }
                 }
             }.onAppear(perform: {
-                self.avatarName = self.result[0].imageName ?? ""
+                self.setAvatarName()
             })
         }.navigationViewStyle(StackNavigationViewStyle())
-         
+        
+    }
+    
+    func setAvatarName() {
+        
+        if result.count <= 0 {
+            self.avatarName = ""
+        } else {
+            self.avatarName = self.result[0].imageName ?? ""
+        }
     }
     
     func saveAvatar() {
-        let user = UserData(context: self.moc)
+        
+        var user: UserData
+        
+        if result.count <= 0 {
+            user = UserData(context: self.moc)
+        } else {
+            user = result[0]
+        }
+        
         user.imageName = avatarName
         
         do {
             try self.moc.save()
         } catch {
-            fatalError("fudeu")
+            fatalError("fudeu2")
         }
     }
     
