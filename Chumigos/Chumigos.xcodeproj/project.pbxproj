@@ -23,6 +23,7 @@
 		2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620EA0924C759F0001F1EE0 /* FormTriangle.swift */; };
 		2623AC4225015EA9002A24A0 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623AC4125015EA9002A24A0 /* ConfigurationView.swift */; };
 		2623AC4425015ED9002A24A0 /* ConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623AC4325015ED9002A24A0 /* ConfigurationViewModel.swift */; };
+		2623AC4725016BCC002A24A0 /* AppButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623AC4625016BCC002A24A0 /* AppButtonStyle.swift */; };
 		263D144D24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D144C24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift */; };
 		263D144F24EEF0A800111A76 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D144E24EEF0A800111A76 /* GameState.swift */; };
 		26660AC324C7834E000A9845 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26660AC224C7834E000A9845 /* RandomColor.swift */; };
@@ -107,6 +108,7 @@
 		2620EA0924C759F0001F1EE0 /* FormTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTriangle.swift; sourceTree = "<group>"; };
 		2623AC4125015EA9002A24A0 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		2623AC4325015ED9002A24A0 /* ConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewModel.swift; sourceTree = "<group>"; };
+		2623AC4625016BCC002A24A0 /* AppButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButtonStyle.swift; sourceTree = "<group>"; };
 		263D144C24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameWrongAnswers.swift; sourceTree = "<group>"; };
 		263D144E24EEF0A800111A76 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		26660AC224C7834E000A9845 /* RandomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
@@ -249,6 +251,14 @@
 				2623AC4125015EA9002A24A0 /* ConfigurationView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2623AC4525016B7C002A24A0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2623AC4625016BCC002A24A0 /* AppButtonStyle.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		2693CB3524BF8BAA00D1DEC9 /* Service */ = {
@@ -535,6 +545,7 @@
 		E74D7F8824BF7318000BF076 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				2623AC4525016B7C002A24A0 /* Components */,
 				2620EA0B24C75A30001F1EE0 /* Forms */,
 				26C186D024BE4AA70094AEC1 /* Info.plist */,
 				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
@@ -767,6 +778,7 @@
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
+				2623AC4725016BCC002A24A0 /* AppButtonStyle.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
 				AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */,
