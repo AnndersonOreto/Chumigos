@@ -29,7 +29,8 @@ struct SequenceGameView: View {
     }
     
     var body: some View {
-        ZStack { 
+        ZStack {
+            Color.background.edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
                 if buttonIsPressed {
@@ -50,7 +51,7 @@ struct SequenceGameView: View {
                                     }) {
                                         Image(systemName: "xmark")
                                             .font(Font.custom("Rubik", size: 34).bold())
-                                            .foregroundColor(.Humpback)
+                                            .foregroundColor(.xMark)
                                     }.buttonStyle(PlainButtonStyle())
                                     
                                     Spacer()
@@ -72,7 +73,7 @@ struct SequenceGameView: View {
                         }
                         
                         Text("Complete a sequência arrastando as peças abaixo:")
-                            .foregroundColor(Color.Eel)
+                            .foregroundColor(.textColor)
                             .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
                             .padding(.top, screenWidth * 0.07)
                         

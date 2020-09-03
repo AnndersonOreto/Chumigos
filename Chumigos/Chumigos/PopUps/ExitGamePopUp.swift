@@ -15,11 +15,19 @@ struct ExitGamePopUp: View {
     let screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
-        popUpView()
-        .background(
-            RoundedRectangle(cornerRadius: 15)
-                .fill(Color.Ghost)
-        )
+        
+        ZStack{
+            Rectangle().fill(Color.background).opacity(0.1)
+                .onTapGesture {
+                    self.showPopUp = false
+                }
+            popUpView()
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.popUpBackground)
+                    .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:7, x:0, y:4)
+            )
+        }
     }
 }
 
@@ -42,7 +50,7 @@ extension ExitGamePopUp {
             
             Text("Tem certeza que deseja sair?")
                 .font(.custom("Rubik", size: 20))
-                .foregroundColor(.Eel)
+                .foregroundColor(.textColor)
                 .padding(.bottom, screenWidth * 0.013)
             
             HStack(spacing: screenWidth * 0.036) {

@@ -20,9 +20,10 @@ struct MainView: View {
     
     var body: some View {
         ZStack {
+            Color.background.edgesIgnoringSafeArea(.all)
             Group {
                 showView()
-                tabBar()
+//                tabBar()
             }
         }
     }

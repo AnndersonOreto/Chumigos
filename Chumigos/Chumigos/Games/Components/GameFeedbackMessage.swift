@@ -20,7 +20,9 @@ struct GameFeedbackMessage: View {
     private let fontName = "Rubik"
     var body: some View {
         ZStack(alignment: .top) {
-            RoundedRectangle(cornerRadius: 42).fill(Color.Humpback).frame(width: screenWidth + 10, height: screenWidth * 0.14)
+            RoundedRectangle(cornerRadius: 42)
+                .fill(Color.feedbackShape)
+                .frame(width: screenWidth + 10, height: screenWidth * 0.14)
                 
                 if feedbackType == .CORRECT {
                     Text("Muito bem!")

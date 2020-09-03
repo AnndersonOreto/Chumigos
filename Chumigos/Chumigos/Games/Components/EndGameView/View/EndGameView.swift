@@ -28,6 +28,8 @@ struct EndGameView: View {
         
         ZStack {
             
+            Color.background.edgesIgnoringSafeArea(.all)
+            
             VStack {
                 
                 // Progress Bar
@@ -42,7 +44,7 @@ struct EndGameView: View {
                                         
                     // Label
                     Text("Parabéns! Você terminou a tarefa!")
-                        .foregroundColor(Color.Eel)
+                        .foregroundColor(Color.textColor)
                         .font(.custom(fontName, size: screenWidth * 0.023)).fontWeight(.bold)
                                         .padding(.top, screenWidth * 0.03)
                     

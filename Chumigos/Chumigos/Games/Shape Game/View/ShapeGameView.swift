@@ -35,6 +35,9 @@ struct ShapeGameView: View {
         
         // Main stack
         ZStack {
+            
+            Color.background.edgesIgnoringSafeArea(.all)
+            
             VStack {
                 Spacer()
                 if buttonIsPressed {
@@ -58,7 +61,7 @@ struct ShapeGameView: View {
                                     }) {
                                         Image(systemName: "xmark")
                                             .font(Font.custom("Rubik", size: 34).bold())
-                                            .foregroundColor(.Humpback)
+                                            .foregroundColor(.xMark)
                                     }.buttonStyle(PlainButtonStyle())
                                     
                                     Spacer()
@@ -82,7 +85,7 @@ struct ShapeGameView: View {
                         }
                         
                         Text("Complete a sequência arrastando as peças abaixo:")
-                        .foregroundColor(Color.Eel)
+                        .foregroundColor(Color.textColor)
                         .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
                         .padding(.top, screenWidth * 0.07)
                         
