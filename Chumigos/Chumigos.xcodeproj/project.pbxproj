@@ -46,6 +46,7 @@
 		26C186E524BE4AA70094AEC1 /* ChumigosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */; };
 		26E0EA4C24F59FD50078566D /* EndGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0EA4B24F59FD50078566D /* EndGameViewModel.swift */; };
 		26E0EA4E24F59FF20078566D /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0EA4D24F59FF20078566D /* EndGameView.swift */; };
+		26F434CD24FEDBCB00CE81F1 /* CoreDataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F434CC24FEDBCB00CE81F1 /* CoreDataPersistence.swift */; };
 		AA24C13124E5B57A006F8C5A /* SequenceGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13024E5B57A006F8C5A /* SequenceGameModel.swift */; };
 		AA24C13324E5C06A006F8C5A /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13224E5C06A006F8C5A /* Question.swift */; };
 		AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13424E5C9E1006F8C5A /* ShapeGameViewModel.swift */; };
@@ -70,6 +71,7 @@
 		ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
 		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
+		E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */; };
 		E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -137,6 +139,7 @@
 		26C186E624BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26E0EA4B24F59FD50078566D /* EndGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewModel.swift; sourceTree = "<group>"; };
 		26E0EA4D24F59FF20078566D /* EndGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameView.swift; sourceTree = "<group>"; };
+		26F434CC24FEDBCB00CE81F1 /* CoreDataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistence.swift; sourceTree = "<group>"; };
 		AA24C13024E5B57A006F8C5A /* SequenceGameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceGameModel.swift; sourceTree = "<group>"; };
 		AA24C13224E5C06A006F8C5A /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		AA24C13424E5C9E1006F8C5A /* ShapeGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameViewModel.swift; sourceTree = "<group>"; };
@@ -162,6 +165,7 @@
 		ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
 		ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionView.swift; sourceTree = "<group>"; };
 		E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFeedbackMessage.swift; sourceTree = "<group>"; };
 		E78DA52E24BF7C17001A3079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E78DA53024BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 				2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */,
 				26940AE624C0E18F00F258B6 /* CKCloudDataProtocol.swift */,
 				26940AEA24C0E62000F258B6 /* CKCloudParseProtocol.swift */,
+				26F434CC24FEDBCB00CE81F1 /* CoreDataPersistence.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -266,11 +271,11 @@
 				AB855F1324F4340700C5A739 /* User */,
 				AB855F0B24F42BDF00C5A739 /* Trail */,
 				E7FDEB8724C2312A008DDAEB /* Games */,
+				E74D7F8724BF72BA000BF076 /* Home Screen */,
+				E74D7F8824BF7318000BF076 /* Support */,
 				260A414B24DB297C003553E7 /* Fonts */,
 				E78DA52A24BF7B42001A3079 /* Localized Strings */,
-				E74D7F8824BF7318000BF076 /* Support */,
 				2693CB3524BF8BAA00D1DEC9 /* Service */,
-				E74D7F8724BF72BA000BF076 /* Home Screen */,
 				26C186C824BE4AA70094AEC1 /* Assets.xcassets */,
 				ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */,
 				26C186CA24BE4AA70094AEC1 /* Preview Content */,
@@ -356,8 +361,8 @@
 		AA48142724EB1D1F00134024 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				26E0EA4724F59F4B0078566D /* EndGameView */,
 				E7712CA324F42F0B00B4191C /* Models */,
+				26E0EA4724F59F4B0078566D /* EndGameView */,
 				AA48142824EB1D3400134024 /* Progress Bar */,
 				AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */,
 				AAA0613C24E49683008CD91B /* Draggable.swift */,
@@ -478,6 +483,7 @@
 		AB855F1324F4340700C5A739 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				E751219D24FE08470042FC00 /* Profile */,
 				AB855F1424F4341400C5A739 /* User.swift */,
 			);
 			path = User;
@@ -531,6 +537,14 @@
 				AA9C8EC325015C9E0080B06E /* DynamicFont.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		E751219D24FE08470042FC00 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		E7712CA324F42F0B00B4191C /* Models */ = {
@@ -703,6 +717,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */,
 				26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */,
 				260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */,
 				26E0EA4C24F59FD50078566D /* EndGameViewModel.swift in Sources */,
@@ -715,6 +730,7 @@
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
+				26F434CD24FEDBCB00CE81F1 /* CoreDataPersistence.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
 				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,
 				AB855F1524F4341400C5A739 /* User.swift in Sources */,

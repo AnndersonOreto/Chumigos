@@ -8,12 +8,12 @@
 
 import SwiftUI
 
-enum FeedBackType {
-    case WRONG, CORRECT
+enum FeedBackText {
+    case WRONG, CORRECT, NONE
 }
 
 struct GameFeedbackMessage: View {
-    var feedbackType: FeedBackType
+    var feedbackType: FeedBackText
     
     let screenWidth = UIScreen.main.bounds.width
     
@@ -30,7 +30,7 @@ struct GameFeedbackMessage: View {
                         .foregroundColor(Color.Ghost)
                         .padding(.top, 20)
                 }
-                else {
+                else if feedbackType == .WRONG {
                     Text("ERRRRROOOOOOO!")
                         .dynamicFont(name: fontName, size: 20, weight: .bold)
                         .foregroundColor(Color.Ghost)
