@@ -60,6 +60,7 @@
 		AAB022B425002D5700DE2B34 /* ExitGamePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB022B325002D5700DE2B34 /* ExitGamePopUp.swift */; };
 		AADAB3C924FEBBF8005B04B3 /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAB3C824FEBBF8005B04B3 /* GamesView.swift */; };
 		AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB07C25000F62009E8A67 /* MainView.swift */; };
+		AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33B3502502B2840042F5BA /* AvatarGameView.swift */; };
 		AB6EFEF8250157F8009A1705 /* Light_Dark_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */; };
 		AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F0F24F42FD000C5A739 /* GameObject.swift */; };
 		AB855F1224F430EE00C5A739 /* GameNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1124F430EE00C5A739 /* GameNames.swift */; };
@@ -153,6 +154,7 @@
 		AAB022B325002D5700DE2B34 /* ExitGamePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitGamePopUp.swift; sourceTree = "<group>"; };
 		AADAB3C824FEBBF8005B04B3 /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
 		AB0EB07C25000F62009E8A67 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		AB33B3502502B2840042F5BA /* AvatarGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameView.swift; sourceTree = "<group>"; };
 		AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light_Dark_Colors.swift; sourceTree = "<group>"; };
 		AB855F0F24F42FD000C5A739 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		AB855F1124F430EE00C5A739 /* GameNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNames.swift; sourceTree = "<group>"; };
@@ -444,6 +446,38 @@
 			path = PopUps;
 			sourceTree = "<group>";
 		};
+		AB33B34C2502B2400042F5BA /* Avatar Game */ = {
+			isa = PBXGroup;
+			children = (
+				AB33B34D2502B24A0042F5BA /* Model */,
+				AB33B34E2502B2530042F5BA /* View */,
+				AB33B34F2502B25D0042F5BA /* ViewModel */,
+			);
+			path = "Avatar Game";
+			sourceTree = "<group>";
+		};
+		AB33B34D2502B24A0042F5BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AB33B34E2502B2530042F5BA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB33B3502502B2840042F5BA /* AvatarGameView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AB33B34F2502B25D0042F5BA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		AB855F0B24F42BDF00C5A739 /* Trail */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,6 +601,7 @@
 		E7FDEB8724C2312A008DDAEB /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				AB33B34C2502B2400042F5BA /* Avatar Game */,
 				AA48142724EB1D1F00134024 /* Components */,
 				AA865AF124E5ABE60066BF2A /* Sequence Game */,
 				AA865AF524E5AC110066BF2A /* Shape Game */,
@@ -722,6 +757,7 @@
 				260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */,
 				26E0EA4C24F59FD50078566D /* EndGameViewModel.swift in Sources */,
 				AA24C13124E5B57A006F8C5A /* SequenceGameModel.swift in Sources */,
+				AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */,
 				AA865AF324E5AC010066BF2A /* ShapeGameModel.swift in Sources */,
 				AA865AF024E57D960066BF2A /* AlternativeBackground.swift in Sources */,
 				ABC7426024DB249600CC3B7E /* Tile.swift in Sources */,
