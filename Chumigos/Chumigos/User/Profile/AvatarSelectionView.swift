@@ -70,11 +70,12 @@ struct AvatarSelectionView: View {
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    Text("Selecione o seu avatar!")
+                    Text("Selecione o seu avatar:")
                         .foregroundColor(Color.Humpback)
                         .font(.custom("Rubik", size: self.screenWidth * 0.018)).fontWeight(.medium)
-                        .padding(.vertical, self.screenWidth * 0.03)
-                    
+                        .padding(.top, self.screenWidth * 0.02)
+                        .padding(.bottom, self.screenWidth * 0.01)
+
                     
                     ScrollView(showsIndicators: false) {
                         Grid<AvatarView>(rows: self.numberOfRows, columns: self.numberOfColumns) { (row, column) in
