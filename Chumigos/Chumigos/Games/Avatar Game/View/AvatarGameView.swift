@@ -36,44 +36,19 @@ struct AvatarGameView: View {
                 Spacer()
             }
             
+            //Feedback massage and confirm buttons
             VStack {
                 Spacer()
-                
-                ZStack{
                     if buttonIsPressed {
                         GameFeedbackMessage(feedbackType: .CORRECT)
                             .padding(.bottom, -(screenWidth * 0.035))
                     }
-                    if buttonIsPressed {
-                        Button(action: {
-                            //TODO CONFIRM QUESTION
-                        }) {
-                            Text("Continuar")
-                                .dynamicFont(name: "Rubik", size: 20, weight: .bold)
-                        }.buttonStyle(
-                            true ?
-                                //correct answer
-                                GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
-                                //wrong answer
-                                GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
-                    }
-                    else {
-                        //Confirm Button
-                        Button(action: {
-                            self.buttonIsPressed = true
-                        }) {
-                            Text("Confirmar")
-                                .dynamicFont(name: "Rubik", size: 20, weight: .bold)
-                        }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: true))
-                            .disabled(true)
-                    }
-                }
-                
             }
             
             //VStack geral
             VStack {
                 
+                //Progress bar and leave button
                 ZStack {
                     if !isFinished {
                         HStack {
@@ -94,16 +69,18 @@ struct AvatarGameView: View {
                     }
                 }.padding(.top, screenWidth * 0.015)
                 
+                //Options
                 HStack{
                     Spacer()
                     
                     VStack(spacing: 22){
                         
-                        Text("Selecione os elementos que correspondem\na como o Logginho está se sentindo: ")
-                            .dynamicFont(name: "Rubik", size: 20, weight: .medium)
-                            .foregroundColor(.textColor)
-                            .multilineTextAlignment(.center)
+                        CustomText("Selecione os elementos que correspondem\na como o Logginho está se sentindo:")
+                            .dynamicFont(size: 20, weight: .medium)
+                        .foregroundColor(.textColor)
+                        .multilineTextAlignment(.center)
                         
+                        //spacing 0.2 for this game
                         Grid<AvatarGameTile>(rows: 4, columns: 3) { (row, column) in
                             AvatarGameTile()
                         }
@@ -113,10 +90,33 @@ struct AvatarGameView: View {
                     .padding(.trailing, screenWidth * 0.087)
                     .padding(.top, screenWidth * 0.051)
                 }
+                
+                if buttonIsPressed {
+                    Button(action: {
+                        //TODO CONFIRM QUESTION
+                    }) {
+                        Text("Continuar")
+                            .dynamicFont(name: "Rubik", size: 20, weight: .bold)
+                    }.buttonStyle(
+                        true ?
+                            //correct answer
+                            GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
+                            //wrong answer
+                            GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
+                        .padding(.bottom, screenWidth * 0.019)
+                }
+                else {
+                    //Confirm Button
+                    Button(action: {
+                        self.buttonIsPressed = true
+                    }) {
+                        Text("Confirmar")
+                            .dynamicFont(name: "Rubik", size: 20, weight: .bold)
+                    }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: true))
+                        .disabled(true)
+                        .padding(.bottom, screenWidth * 0.019)
+                }
             }
-            
-            
-            
         }
     }
 }
