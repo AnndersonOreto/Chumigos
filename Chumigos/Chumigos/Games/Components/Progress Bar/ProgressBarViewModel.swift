@@ -21,7 +21,7 @@ class ProgressBarViewModel: ObservableObject {
     
     init(questionAmount: Int) {
         
-        progressStatusList = [Color](repeating: Color.Swan, count: questionAmount)
+        progressStatusList = [Color](repeating: Color.progressBar, count: questionAmount)
         self.questionAmount = questionAmount
     }
     
