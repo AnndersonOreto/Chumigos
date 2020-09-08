@@ -23,7 +23,7 @@ struct MainView: View {
             Color.background.edgesIgnoringSafeArea(.all)
             Group {
                 showView()
-                //tabBar()
+                tabBar()
             }
         }
     }
@@ -45,8 +45,7 @@ extension MainView {
                     
                     //Profile
                     Button(action: {
-                        self.showPopUp.toggle()
-                        //self.currentTab = .profile
+                        self.currentTab = .profile
                     }) {
                         Circle()
                         .fill(Color.blue)
@@ -104,7 +103,7 @@ extension MainView {
         switch currentTab {
         case .profile:
             //Mostrar perfil
-            return AnyView(EmptyView())
+            return AnyView(ConfigurationView())
         case .trail:
             return AnyView(TrailView())
         case .achievements:
