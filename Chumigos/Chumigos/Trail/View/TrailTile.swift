@@ -27,8 +27,8 @@ struct TrailTile: View {
             progressBar()
             
             Text(game.gameName)
-                .foregroundColor(.Eel)
-                .font(.custom("Rubik", size: 16)).fontWeight(.medium)
+                .foregroundColor(.textColor)
+                .dynamicFont(name: "Rubik", size: 16, weight: .medium)
         }
     }
 }
@@ -41,7 +41,7 @@ extension TrailTile {
         
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color.Swan)
+                .fill(Color.progressBar)
                 .frame(width: screenWidth * widthScale, height: 10)
             
             RoundedRectangle(cornerRadius: 15)
