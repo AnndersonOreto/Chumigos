@@ -215,7 +215,7 @@ struct FaceImageView: View {
 }
 
 
-struct AvatarGameView_Previews: PreviewProvider {
+struct AvatarMechanicView_Previews: PreviewProvider {
     static var previews: some View {
         AvatarMechanic()
     }
