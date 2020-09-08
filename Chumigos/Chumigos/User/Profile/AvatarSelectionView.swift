@@ -12,14 +12,14 @@ struct Grid<Content: View>: View {
     
     let rows: Int
     let columns: Int
+    let spacing: CGFloat
     let content: (Int, Int) -> Content
     let screenWidth = UIScreen.main.bounds.width
-
     
     var body: some View {
-        VStack(alignment: .leading, spacing: self.screenWidth * 0.057) {
+        VStack(alignment: .leading, spacing: self.spacing) {
             ForEach(0..<rows) { row in
-                HStack(alignment: .center, spacing: self.screenWidth * 0.057) {
+                HStack(alignment: .center, spacing: self.spacing) {
                     ForEach(0..<self.columns) { (column) in
                         self.content(row, column)
                     }
@@ -70,14 +70,15 @@ struct AvatarSelectionView: View {
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    Text("Selecione o seu avatar!")
+                    Text("Selecione o seu avatar:")
                         .foregroundColor(Color.Humpback)
                         .font(.custom("Rubik", size: self.screenWidth * 0.018)).fontWeight(.medium)
-                        .padding(.vertical, self.screenWidth * 0.03)
-                    
+                        .padding(.top, self.screenWidth * 0.02)
+                        .padding(.bottom, self.screenWidth * 0.01)
+
                     
                     ScrollView(showsIndicators: false) {
-                        Grid<AvatarView>(rows: self.numberOfRows, columns: self.numberOfColumns) { (row, column) in
+                        Grid<AvatarView>(rows: self.numberOfRows, columns: self.numberOfColumns, spacing:  self.screenWidth * 0.057) { (row, column) in
                             if self.avatarSelected == self.getAvatarName(of: row, column: column) {
                                 return AvatarView(avatarName: self.getAvatarName(of: row, column: column), avatarSelected: self.$avatarSelected, isSelected: true)
                             }
@@ -86,7 +87,7 @@ struct AvatarSelectionView: View {
                             }
                         }
                         .padding()
-                    }
+                    }.padding(.bottom, geometry.size.width * 0.12)
                     
                 }
                 
