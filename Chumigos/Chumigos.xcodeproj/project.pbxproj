@@ -54,7 +54,6 @@
 		AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13424E5C9E1006F8C5A /* ShapeGameViewModel.swift */; };
 		AA24C13924E5CB22006F8C5A /* ShapeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13824E5CB22006F8C5A /* ShapeGameView.swift */; };
 		AA275AB82507FB980089F63D /* AvatarGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA275AB72507FB980089F63D /* AvatarGameModel.swift */; };
-		AA59F6AE2502B0E300B97BE4 /* AvatarMechanic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59F6AD2502B0E300B97BE4 /* AvatarMechanic.swift */; };
 		AA865AF024E57D960066BF2A /* AlternativeBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */; };
 		AA865AF324E5AC010066BF2A /* ShapeGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA865AF224E5AC010066BF2A /* ShapeGameModel.swift */; };
 		AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C8EC325015C9E0080B06E /* DynamicFont.swift */; };
@@ -153,7 +152,6 @@
 		AA24C13424E5C9E1006F8C5A /* ShapeGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameViewModel.swift; sourceTree = "<group>"; };
 		AA24C13824E5CB22006F8C5A /* ShapeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameView.swift; sourceTree = "<group>"; };
 		AA275AB72507FB980089F63D /* AvatarGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameModel.swift; sourceTree = "<group>"; };
-		AA59F6AD2502B0E300B97BE4 /* AvatarMechanic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarMechanic.swift; sourceTree = "<group>"; };
 		AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeBackground.swift; sourceTree = "<group>"; };
 		AA865AF224E5AC010066BF2A /* ShapeGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameModel.swift; sourceTree = "<group>"; };
 		AA9C8EC325015C9E0080B06E /* DynamicFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFont.swift; sourceTree = "<group>"; };
@@ -444,14 +442,6 @@
 			path = "Progress Bar";
 			sourceTree = "<group>";
 		};
-		AA59F6AC2502B0BD00B97BE4 /* Avatar Game Mechanic */ = {
-			isa = PBXGroup;
-			children = (
-				AA59F6AD2502B0E300B97BE4 /* AvatarMechanic.swift */,
-			);
-			path = "Avatar Game Mechanic";
-			sourceTree = "<group>";
-		};
 		AA865AF124E5ABE60066BF2A /* Sequence Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,7 +645,6 @@
 		E7FDEB8724C2312A008DDAEB /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				AA59F6AC2502B0BD00B97BE4 /* Avatar Game Mechanic */,
 				AB33B34C2502B2400042F5BA /* Avatar Game */,
 				AA48142724EB1D1F00134024 /* Components */,
 				AA865AF124E5ABE60066BF2A /* Sequence Game */,
@@ -812,7 +801,6 @@
 				260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */,
 				26E0EA4C24F59FD50078566D /* EndGameViewModel.swift in Sources */,
 				AA24C13124E5B57A006F8C5A /* SequenceGameModel.swift in Sources */,
-				AA59F6AE2502B0E300B97BE4 /* AvatarMechanic.swift in Sources */,
 				AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */,
 				AA865AF324E5AC010066BF2A /* ShapeGameModel.swift in Sources */,
 				AA865AF024E57D960066BF2A /* AlternativeBackground.swift in Sources */,
