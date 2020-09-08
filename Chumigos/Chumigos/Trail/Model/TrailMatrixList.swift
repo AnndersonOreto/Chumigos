@@ -10,9 +10,7 @@ import Foundation
 
 struct TrailMatrixList: Codable {
     
-    var matrixList: [[[String]]] = []
+    // MARK: - Variables
     
-    func convert() -> [TrailSection] {
-        return []
-    }
+    var matrixList: [TrailSection] = []
 }
