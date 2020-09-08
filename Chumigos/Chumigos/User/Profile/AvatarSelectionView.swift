@@ -123,6 +123,8 @@ struct AvatarSelectionView: View {
             return avatarGrid[(row * self.numberOfColumns) + column]
         }
         return "Avatar 1"
+        
+        // row = 1 numberscolumn = 2 column = 1
     }
 }
 

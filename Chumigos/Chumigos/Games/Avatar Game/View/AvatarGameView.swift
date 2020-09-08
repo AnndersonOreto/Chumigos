@@ -15,10 +15,37 @@ struct AvatarGameView: View {
     
     private var screenWidth = UIScreen.main.bounds.width
     
-    // MARK: - State variables
-    @State var buttonIsPressed: Bool = true
+    // MARK: - State Variables
+    @State var buttonIsPressed: Bool = false
     @State var isFinished: Bool = false
     @State var showPopUp: Bool = false
+    
+    // MARK: - Face's Variables
+    @State var eyeImage: String = ""
+    @State var mouthImage: String = ""
+    @State var eyebrowImage: String = ""
+    let avatarWidth = UIScreen.main.bounds.width * 0.63
+    let avatarHeight = UIScreen.main.bounds.width * 0.85
+    
+    var faceParts: [FacePart] {
+        let eye1 = FacePart(partOfFace: .eye, image: "01")
+        let eye2 = FacePart(partOfFace: .eye, image: "02")
+        let eye3 = FacePart(partOfFace: .eye, image: "03")
+        let eye4 = FacePart(partOfFace: .eye, image: "04")
+        let eyebrow1 = FacePart(partOfFace: .eyebrow, image: "01")
+        let eyebrow2 = FacePart(partOfFace: .eyebrow, image: "02")
+        let eyebrow3 = FacePart(partOfFace: .eyebrow, image: "03")
+        let eyebrow4 = FacePart(partOfFace: .eyebrow, image: "04")
+        let mouth1 = FacePart(partOfFace: .mouth, image: "01")
+        let mouth2 = FacePart(partOfFace: .mouth, image: "02")
+        let mouth3 = FacePart(partOfFace: .mouth, image: "03")
+        let mouth4 = FacePart(partOfFace: .mouth, image: "04")
+        return [eye1, mouth1, eyebrow1, eye2, mouth2, eyebrow2, eye3, mouth3, eyebrow3, eye4, mouth4, eyebrow4]
+    }
+    var numberOfColumns: Int = 3
+    var numberOfRows: Int {
+        Int(ceil(Double(faceParts.count)/Double(numberOfColumns)))
+    }
     
     var body: some View {
         
@@ -28,9 +55,20 @@ struct AvatarGameView: View {
             HStack{
                 VStack{
                     Spacer()
-                    Image("shape-1")
+                    Image("avatar-main-asset")
                     .resizable()
-                    .frame(width: screenWidth * 0.63, height: UIScreen.main.bounds.height * 0.85)
+                    .frame(width: avatarWidth, height: avatarHeight)
+                    .overlay(
+                        VStack(spacing: 0) {
+                            self.imageForEyebrow()
+                                .padding(.top, screenWidth * 0.18)
+                            self.imageForEye()
+                                .padding(.top, -(screenWidth * 0.008))
+                            self.imageForMouth()
+                                .padding(.top, screenWidth * 0.01)
+                            Spacer()
+                        }.padding(.trailing, screenWidth * 0.025)
+                    )
                     
                 }.edgesIgnoringSafeArea(.all)
                 Spacer()
@@ -81,8 +119,8 @@ struct AvatarGameView: View {
                         .multilineTextAlignment(.center)
                         
                         //spacing 0.2 for this game
-                        Grid<AvatarGameTile>(rows: 4, columns: 3, spacing: screenWidth * 0.025) { (row, column) in
-                            AvatarGameTile()
+                        Grid<AvatarGameTile>(rows: numberOfRows, columns: numberOfColumns, spacing: screenWidth * 0.008) { (row, column) in
+                            AvatarGameTile(facePart: self.faceParts[(row * self.numberOfColumns)+column], eyeImage: self.$eyeImage, mouthImage: self.$mouthImage, eyebrowImage: self.$eyebrowImage, confirmPressed: self.$buttonIsPressed)
                         }
                         
                         Spacer()
@@ -121,14 +159,68 @@ struct AvatarGameView: View {
     }
 }
 
+extension AvatarGameView {
+    
+    @ViewBuilder
+    func imageForEyebrow() -> some View {
+        Image(self.eyebrowImage)
+            .resizable()
+            .frame(width: avatarWidth * 0.37, height: avatarWidth * 0.067)
+    }
+    
+    @ViewBuilder
+    func imageForEye() -> some View {
+        Image(self.eyeImage)
+            .resizable()
+            .frame(width: avatarWidth * 0.37, height: avatarWidth * 0.13)
+    }
+    
+    @ViewBuilder
+    func imageForMouth() -> some View {
+        Image(self.mouthImage)
+            .resizable()
+            .frame(width: avatarWidth * 0.15, height: avatarWidth * 0.13)
+    }
+}
+
 struct AvatarGameTile: View {
     
-    private var screenWidth = UIScreen.main.bounds.width
-    private let tileWidth = UIScreen.main.bounds.width * 0.084
-    private let tileHeight = UIScreen.main.bounds.width * 0.077
+    var facePart: FacePart
+    
+    @Binding var eyeImage: String
+    @Binding var mouthImage: String
+    @Binding var eyebrowImage: String
+    @Binding var confirmPressed: Bool
+    
+    var isSelected: Bool {
+        switch facePart.partOfFace {
+        case .eye:
+            return self.eyeImage == "avatar-eyes/\(facePart.image)"
+        case .eyebrow:
+            return self.eyebrowImage == "avatar-eyebrow/\(facePart.image)"
+        case .mouth:
+            return self.mouthImage == "avatar-mouth/\(facePart.image)"
+        }
+    }
+    
+    var screenWidth = UIScreen.main.bounds.width
+    let tileWidth = UIScreen.main.bounds.width * 0.093
+    let tileHeight = UIScreen.main.bounds.width * 0.084
     
     var body: some View {
         ZStack {
+            
+            if isSelected && confirmPressed {
+                RoundedRectangle(cornerRadius: 15)
+                    //.fill(isCorrect ? Color.TreeFrog : Color.FireAnt)
+                    .frame(width: tileWidth * 1.17, height: tileWidth * 1.17)
+                    .offset(y: 4.5)
+            } else {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(isSelected ? Color.Bee : Color.clear)
+                    .frame(width: tileWidth * 1.17, height: tileWidth * 1.17)
+                    .offset(y: 4.5)
+            }
             
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.init(red: 165/255, green: 102/255, blue: 68/255))
@@ -139,10 +231,48 @@ struct AvatarGameTile: View {
                 .fill(Color.init(red: 255/255, green: 206/255, blue: 142/255))
                 .frame(width: tileWidth, height: tileHeight)
             
-            Image("")
+            Image(imageName())
                 .resizable()
                 .frame(width: tileWidth * 0.85, height: tileWidth * 0.76)
-//                .offset(y: 9)
+                
+        }.onTapGesture {
+            self.changeFaceAsset()
+        }
+    }
+    
+    func imageName() -> String {
+        switch facePart.partOfFace {
+        case .eye:
+            return "avatar-eyes-tile/\(facePart.image)"
+        case .eyebrow:
+            return "avatar-eyebrow-tile/\(facePart.image)"
+        case .mouth:
+            return "avatar-mouth-tile/\(facePart.image)"
+        }
+    }
+    
+    func changeFaceAsset() {
+        switch facePart.partOfFace {
+        case .eye:
+            if self.eyeImage != "avatar-eyes/\(facePart.image)" {
+                self.eyeImage = "avatar-eyes/\(facePart.image)"
+            } else {
+                self.eyeImage = ""
+            }
+            
+        case .eyebrow:
+            if self.eyebrowImage != "avatar-eyebrow/\(facePart.image)" {
+                self.eyebrowImage = "avatar-eyebrow/\(facePart.image)"
+            } else {
+                self.eyebrowImage = ""
+            }
+            
+        case .mouth:
+            if self.mouthImage != "avatar-mouth/\(facePart.image)" {
+                self.mouthImage = "avatar-mouth/\(facePart.image)"
+            } else {
+                self.mouthImage = ""
+            }
         }
     }
 }
