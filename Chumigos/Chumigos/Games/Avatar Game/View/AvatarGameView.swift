@@ -81,7 +81,7 @@ struct AvatarGameView: View {
                         .multilineTextAlignment(.center)
                         
                         //spacing 0.2 for this game
-                        Grid<AvatarGameTile>(rows: 4, columns: 3) { (row, column) in
+                        Grid<AvatarGameTile>(rows: 4, columns: 3, spacing: screenWidth * 0.025) { (row, column) in
                             AvatarGameTile()
                         }
                         
