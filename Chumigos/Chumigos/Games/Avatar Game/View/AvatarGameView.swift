@@ -74,7 +74,7 @@ struct AvatarGameView: View {
                 Spacer()
             }
             
-            //Feedback massage and confirm buttons
+            //Feedback massage
             VStack {
                 Spacer()
                     if buttonIsPressed {
@@ -155,27 +155,48 @@ struct AvatarGameView: View {
                         .padding(.bottom, screenWidth * 0.019)
                 }
             }
+            
+            ZStack{
+                Image("avatar-chat-balloon")
+                .resizable()
+                    .frame(width: screenWidth * 0.34, height: screenWidth * 0.25)
+                    .overlay(
+                        VStack{
+                            CustomText("ME SINTO")
+                                .dynamicFont(size: 18, weight: .medium)
+                                .foregroundColor(Color.textColor)
+                            .padding(.top, screenWidth * 0.04)
+                            //TODO: COLOCAR SENTIMENTO
+                            CustomText("ENVERGONHADO")
+                                .dynamicFont(size: 25, weight: .bold)
+                                .foregroundColor(.Humpback)
+                            .padding(.top, screenWidth * 0.03)
+                            Spacer()
+                        }
+                        
+                    )
+                 
+            }.padding(.trailing, screenWidth * 0.14)
+            .padding(.bottom, screenWidth * 0.33)
+
         }
     }
 }
 
 extension AvatarGameView {
     
-    @ViewBuilder
     func imageForEyebrow() -> some View {
         Image(self.eyebrowImage)
             .resizable()
             .frame(width: avatarWidth * 0.37, height: avatarWidth * 0.067)
     }
     
-    @ViewBuilder
     func imageForEye() -> some View {
         Image(self.eyeImage)
             .resizable()
             .frame(width: avatarWidth * 0.37, height: avatarWidth * 0.13)
     }
     
-    @ViewBuilder
     func imageForMouth() -> some View {
         Image(self.mouthImage)
             .resizable()
