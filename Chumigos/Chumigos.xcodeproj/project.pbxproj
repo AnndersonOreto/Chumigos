@@ -64,6 +64,8 @@
 		AADAB3C924FEBBF8005B04B3 /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAB3C824FEBBF8005B04B3 /* GamesView.swift */; };
 		AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB07C25000F62009E8A67 /* MainView.swift */; };
 		AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33B3502502B2840042F5BA /* AvatarGameView.swift */; };
+		AB6E8ABA25095B160048345D /* AvatarGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */; };
+		AB6E8ABC250969CE0048345D /* customRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */; };
 		AB6EFEF8250157F8009A1705 /* Light_Dark_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */; };
 		AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F0F24F42FD000C5A739 /* GameObject.swift */; };
 		AB855F1224F430EE00C5A739 /* GameNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1124F430EE00C5A739 /* GameNames.swift */; };
@@ -162,6 +164,8 @@
 		AADAB3C824FEBBF8005B04B3 /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
 		AB0EB07C25000F62009E8A67 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		AB33B3502502B2840042F5BA /* AvatarGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameView.swift; sourceTree = "<group>"; };
+		AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameViewModel.swift; sourceTree = "<group>"; };
+		AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customRoundedCorners.swift; sourceTree = "<group>"; };
 		AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light_Dark_Colors.swift; sourceTree = "<group>"; };
 		AB855F0F24F42FD000C5A739 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		AB855F1124F430EE00C5A739 /* GameNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNames.swift; sourceTree = "<group>"; };
@@ -413,6 +417,7 @@
 		AA275AB62507FB830089F63D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -613,6 +618,7 @@
 				AB855F1124F430EE00C5A739 /* GameNames.swift */,
 				AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */,
 				AA9C8EC325015C9E0080B06E /* DynamicFont.swift */,
+				AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -805,6 +811,7 @@
 				AA865AF324E5AC010066BF2A /* ShapeGameModel.swift in Sources */,
 				AA865AF024E57D960066BF2A /* AlternativeBackground.swift in Sources */,
 				ABC7426024DB249600CC3B7E /* Tile.swift in Sources */,
+				AB6E8ABA25095B160048345D /* AvatarGameViewModel.swift in Sources */,
 				AB855F1224F430EE00C5A739 /* GameNames.swift in Sources */,
 				AA24C13324E5C06A006F8C5A /* Question.swift in Sources */,
 				2623AC4425015ED9002A24A0 /* ConfigurationViewModel.swift in Sources */,
@@ -834,6 +841,7 @@
 				ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */,
 				E74A37752502BC47001ADBEB /* CustomDivider.swift in Sources */,
 				AB855F1924F439B200C5A739 /* TrailTile.swift in Sources */,
+				AB6E8ABC250969CE0048345D /* customRoundedCorners.swift in Sources */,
 				26946E9224C762A3005A316E /* FormDecagon.swift in Sources */,
 				263D144F24EEF0A800111A76 /* GameState.swift in Sources */,
 				26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */,
