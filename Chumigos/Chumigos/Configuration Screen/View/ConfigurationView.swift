@@ -7,27 +7,29 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ConfigurationView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     // MARK: - CoreData variables
-    
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var result: FetchedResults<UserData>
     @Environment(\.managedObjectContext) var moc
     
     @State var avatarImageName: String = "Avatar 1"
     @State private var showAvatarSelection = false
     
+    @ObservedObject var viewModel: ConfigurationViewModel = ConfigurationViewModel()
+    
     // MARK: - Drawing Contants
+    @State var toggleNotifications: Bool = false
+    @State var toggleVibration: Bool = false
+//    @State var toggleDarkMode: Bool = SceneDelegate.shared?.window!.overrideUserInterfaceStyle
+    @State var togglePreferences: Bool = false
+    @State var sliderDynamicType: Double = 50.0
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
-    
-    @State var toggleNotifications: Bool = false
-    @State var toggleVibration: Bool = false
-    @State var toggleDarkMode: Bool = false
-    @State var togglePreferences: Bool = false
-    @State var sliderDynamicType: Double = 50.0
     
     // MARK: - View
     
@@ -72,14 +74,14 @@ struct ConfigurationView: View {
                         // My profile
                         Text("Meu Perfil")
                             .font(.custom(fontName, size: screenWidth * 0.023))
-                            .foregroundColor(.Eel)
+                            .foregroundColor(.textColor)
                             .fontWeight(.medium)
                             .tracking(1)
                         
                         // My profile description
                         Text("Para ter acesso às configurações de perfil, é necessário realizar login ou cadastrar-se no aplicativo.")
                             .font(.custom(fontName, size: screenWidth * 0.015))
-                            .foregroundColor(.Wolf)
+                            .foregroundColor(.descriptionTextColor)
                             .fontWeight(.medium)
                             .tracking(1)
                             .padding(.top, screenWidth * 0.013)
@@ -103,47 +105,59 @@ struct ConfigurationView: View {
                         
                         Text("Configurações")
                             .font(.custom(fontName, size: screenWidth * 0.023))
-                            .foregroundColor(.Eel)
+                            .foregroundColor(.textColor)
                             .fontWeight(.medium)
                             .tracking(1)
                         
                         // Switch notification
                         Toggle(isOn: self.$toggleNotifications) {
-                            
                             Text("Notificações")
                                 .font(.custom(fontName, size: screenWidth * 0.015))
-                                .foregroundColor(.Eel)
+                                .foregroundColor(.textColor)
                                 .tracking(1)
                                 .fontWeight(.medium)
-                        }.padding(.horizontal, screenWidth * 0.02)
-                            .padding(.vertical, screenWidth * 0.008)
-                            .overlay(RoundedRectangle(cornerRadius: screenWidth * 0.008).stroke(Color.Humpback, lineWidth: 2))
-                            .onAppear {
-                                UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
+                        }
+                        .padding(.horizontal, screenWidth * 0.02)
+                        .padding(.vertical, screenWidth * 0.008)
+                        .background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
+                                    .stroke(Color.Humpback, lineWidth: 2)
+                                    .background(Color.popUpBackground))
+                        .onAppear {
+                            UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                         }.padding(.horizontal, 1)
+                        .onReceive(Just($toggleNotifications)) { (value) in
+                            let boolValue: Bool = value.wrappedValue
+                            self.viewModel.toggleNotificationValue(value: boolValue)
+                        }
                         
                         // Switch vibration
                         Toggle(isOn: self.$toggleVibration) {
                             
                             Text("Vibração")
                                 .font(.custom(fontName, size: screenWidth * 0.015))
-                                .foregroundColor(.Eel)
+                                .foregroundColor(.textColor)
                                 .tracking(1)
                                 .fontWeight(.medium)
                         }.padding(.horizontal, screenWidth * 0.02)
                             .padding(.vertical, screenWidth * 0.008)
-                            .overlay(RoundedRectangle(cornerRadius: screenWidth * 0.008).stroke(Color.Humpback, lineWidth: 2))
+                            .background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
+                                .stroke(Color.Humpback, lineWidth: 2)
+                                .background(Color.popUpBackground))
                             .onAppear {
                                 UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                         }.padding(.horizontal, 1)
                         .padding(.vertical, screenWidth * 0.0065)
+                        .onReceive(Just($toggleNotifications)) { (value) in
+                            let boolValue: Bool = value.wrappedValue
+                            self.viewModel.toggleVibrationValue(value: boolValue)
+                        }
                         
                         // Switch theme
                         VStack(alignment: .leading) {
                             
                             Text("Tema")
                                 .font(.custom(fontName, size: screenWidth * 0.015))
-                                .foregroundColor(.Eel)
+                                .foregroundColor(.textColor)
                                 .fontWeight(.medium)
                                 .kerning(1)
                                 .padding(.horizontal, screenWidth * 0.02)
@@ -151,32 +165,54 @@ struct ConfigurationView: View {
                             
                             CustomDivider(color: Color.Humpback, width: 2)
                             
-                            Toggle(isOn: self.$toggleVibration) {
+                            Toggle(isOn: Binding<Bool>(
+                                    get: {
+                                        self.colorScheme == .dark ? true : false
+                                    },
+                                    set: {
+                                        SceneDelegate.shared?.window!.overrideUserInterfaceStyle = $0 ? .dark : .light
+                                        //dark rawvalue = 2 ; light rawvalue = 1
+                                        UserDefaults.standard.setValue($0 ? UIUserInterfaceStyle.dark.rawValue : UIUserInterfaceStyle.light.rawValue, forKey: "loggio_viewStyle")
+                                    }
+                            )) {
                                 
                                 Text("Dark Mode")
                                     .font(.custom(fontName, size: screenWidth * 0.015))
-                                    .foregroundColor(.Eel)
+                                    .foregroundColor(.textColor)
                                     .fontWeight(.medium)
                                     .kerning(1)
-                            }.padding(.horizontal, screenWidth * 0.02)
-                                .padding(.vertical, screenWidth * 0.008)
-                                .onAppear {
-                                    UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
+                            }
+                            .padding(.horizontal, screenWidth * 0.02)
+                            .padding(.vertical, screenWidth * 0.008)
+                            .onAppear {
+                                UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                             }
                             
-                            Toggle(isOn: self.$toggleVibration) {
-                                
-                                Text("Preferências do Dispositivo")
-                                    .font(.custom(fontName, size: screenWidth * 0.015))
-                                    .foregroundColor(.Eel)
-                                    .kerning(1)
-                                    .fontWeight(.medium)
-                            }.padding(.horizontal, screenWidth * 0.02)
-                                .padding(.vertical, screenWidth * 0.008)
-                                .onAppear {
-                                    UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
-                            }
-                        }.overlay(RoundedRectangle(cornerRadius: screenWidth * 0.008).stroke(Color.Humpback, lineWidth: 2))
+//                            Toggle(isOn: Binding<Bool>(
+//                                get: {
+//                                    let value = UserDefaults.standard.integer(forKey: "loggio_viewStyle")
+//                                    return value == 0 ? true : false
+//                                },
+//                                set: {
+//                                    SceneDelegate.shared?.window!.overrideUserInterfaceStyle = .unspecified
+//                                    UserDefaults.standard.setValue($0 ? UIUserInterfaceStyle.dark.rawValue : UIUserInterfaceStyle.unspecified.rawValue, forKey: "loggio_viewStyle")
+//                                }
+//                            )) {
+//
+//                                Text("Preferências do Dispositivo")
+//                                    .font(.custom(fontName, size: screenWidth * 0.015))
+//                                    .foregroundColor(.textColor)
+//                                    .kerning(1)
+//                                    .fontWeight(.medium)
+//                            }.padding(.horizontal, screenWidth * 0.02)
+//                            .padding(.vertical, screenWidth * 0.008)
+//                            .onAppear {
+//                                UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
+//                            }
+
+                        }.background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
+                                    .stroke(Color.Humpback, lineWidth: 2)
+                                    .background(Color.popUpBackground))
                         .padding(.horizontal, 1)
                         .padding(.bottom, screenWidth * 0.0065)
 
@@ -186,7 +222,7 @@ struct ConfigurationView: View {
                             
                             Text("Dynamic Type")
                                 .font(.custom(fontName, size: screenWidth * 0.015))
-                                .foregroundColor(.Eel)
+                                .foregroundColor(.textColor)
                                 .fontWeight(.medium)
                                 .kerning(1)
                                 .padding(.horizontal, screenWidth * 0.02)
@@ -196,14 +232,14 @@ struct ConfigurationView: View {
                             
                             HStack {
                                 Text("A").font(.custom(fontName, size: 14))                                .fontWeight(.medium)
-                                    .foregroundColor(.Eel)
+                                    .foregroundColor(.textColor)
                                 Spacer()
                                 Text("A").font(.custom(fontName, size: 18))                                .fontWeight(.medium)
-                                    .foregroundColor(.Eel)
+                                    .foregroundColor(.textColor)
                                     .padding(.leading, screenWidth * 0.0075)
                                 Spacer()
                                 Text("A").font(.custom(fontName, size: 26))                                .fontWeight(.medium)
-                                    .foregroundColor(.Eel)
+                                    .foregroundColor(.textColor)
                             }.padding(.horizontal, screenWidth * 0.02)
                                 .padding(.top, screenWidth * 0.008)
                                 .padding(.bottom, -(screenWidth * 0.01))
@@ -212,7 +248,9 @@ struct ConfigurationView: View {
                                 .padding(.horizontal, screenWidth * 0.02)
                                 .padding(.bottom, screenWidth * 0.008)
                             
-                        }.overlay(RoundedRectangle(cornerRadius: screenWidth * 0.008).stroke(Color.Humpback, lineWidth: 2))
+                        }.background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
+                            .stroke(Color.Humpback, lineWidth: 2)
+                            .background(Color.popUpBackground))
                             .padding(.horizontal, 1)
                         
                     }.frame(width: screenWidth * 0.39)

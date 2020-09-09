@@ -32,6 +32,10 @@ extension Color {
         Color("feedbackShape")
     }
     
+    static var descriptionTextColor: Color {
+        Color("descriptionTextColor")
+    }
+    
     static var textColor: Color {
         Color("textColor")
     }
