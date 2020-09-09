@@ -70,7 +70,8 @@ struct SequenceGameView: View {
                             ForEach(viewModel.sequence) { element in
                                 self.pieceView(for: element)
                             }
-                        }
+                        }.allowsHitTesting(buttonIsPressed ? false : true)
+
                         
                         Text("Complete a sequência arrastando as peças abaixo:")
                             .foregroundColor(.textColor)
@@ -92,6 +93,7 @@ struct SequenceGameView: View {
                                     .zIndex(self.alternativeBeingDragged == alternative.value ? 1 : 0)
                             }
                         }.padding(.top, screenWidth * 0.03)
+                        .allowsHitTesting(buttonIsPressed ? false : true)
                         
                         Spacer()
                         
@@ -144,8 +146,9 @@ struct SequenceGameView: View {
                 ExitGamePopUp(showPopUp: self.$showPopUp, dismissGame: self.dismissGame)
             }
             
-        }.navigationBarTitle("")
-            .navigationBarHidden(true)
+            }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
     
     // MARK: - Drawing Contants
