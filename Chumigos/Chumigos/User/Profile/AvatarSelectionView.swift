@@ -71,6 +71,7 @@ struct AvatarSelectionView: View {
             ZStack {
                 VStack {
                     Text("Selecione o seu avatar:")
+                        .tracking(1)
                         .foregroundColor(Color.Humpback)
                         .font(.custom("Rubik", size: self.screenWidth * 0.018)).fontWeight(.medium)
                         .padding(.top, self.screenWidth * 0.02)
@@ -103,6 +104,7 @@ struct AvatarSelectionView: View {
                             }) {
                                 Text("Confirmar")
                                     .font(.custom("Rubik", size: 20)).bold()
+                                .tracking(1)
                             }.buttonStyle(
                                 GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true))
                                 .padding(.bottom, 10)
