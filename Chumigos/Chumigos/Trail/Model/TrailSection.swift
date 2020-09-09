@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TrailSection: Identifiable {
+struct TrailSection: Identifiable, Codable {
     
     // MARK: - Variable(s)
     

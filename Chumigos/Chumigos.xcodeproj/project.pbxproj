@@ -38,6 +38,8 @@
 		26946E9424C76398005A316E /* FormPentagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9324C76398005A316E /* FormPentagon.swift */; };
 		26946E9624C76424005A316E /* FormStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9524C76424005A316E /* FormStar.swift */; };
 		26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9724C76A6C005A316E /* RandomAngle.swift */; };
+		26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */; };
+		26BC05AD2507FD9B00A918F5 /* TrailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AC2507FD9B00A918F5 /* TrailViewModel.swift */; };
 		26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */; };
 		26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */; };
 		26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */; };
@@ -128,6 +130,8 @@
 		26946E9324C76398005A316E /* FormPentagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPentagon.swift; sourceTree = "<group>"; };
 		26946E9524C76424005A316E /* FormStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStar.swift; sourceTree = "<group>"; };
 		26946E9724C76A6C005A316E /* RandomAngle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAngle.swift; sourceTree = "<group>"; };
+		26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailMatrixList.swift; sourceTree = "<group>"; };
+		26BC05AC2507FD9B00A918F5 /* TrailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrailViewModel.swift; path = Chumigos/Trail/Model/TrailViewModel.swift; sourceTree = SOURCE_ROOT; };
 		26C186BC24BE4AA50094AEC1 /* Chumigos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chumigos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -500,6 +504,7 @@
 			children = (
 				AB855F0F24F42FD000C5A739 /* GameObject.swift */,
 				AB855F1624F4354800C5A739 /* TrailSection.swift */,
+				26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 		AB855F0D24F42BEF00C5A739 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				26BC05AC2507FD9B00A918F5 /* TrailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -794,6 +800,7 @@
 				AB6EFEF8250157F8009A1705 /* Light_Dark_Colors.swift in Sources */,
 				ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */,
 				E74A37752502BC47001ADBEB /* CustomDivider.swift in Sources */,
+				26BC05AD2507FD9B00A918F5 /* TrailViewModel.swift in Sources */,
 				AB855F1924F439B200C5A739 /* TrailTile.swift in Sources */,
 				26946E9224C762A3005A316E /* FormDecagon.swift in Sources */,
 				263D144F24EEF0A800111A76 /* GameState.swift in Sources */,
@@ -807,6 +814,7 @@
 				2623AC4725016BCC002A24A0 /* AppButtonStyle.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
+				26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */,
 				AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */,
 				AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */,
 				AADAB3C924FEBBF8005B04B3 /* GamesView.swift in Sources */,
