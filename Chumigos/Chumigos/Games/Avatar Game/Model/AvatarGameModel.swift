@@ -14,15 +14,12 @@ enum Feelings: String, CaseIterable {
     case angry = "Raivoso"
     case fearful = "Medroso"
     case uncertain = "Incerto"
-    case amazed = "Espantado"
     case calm = "Calmo"
     case sleepy = "Sonolento"
     case surprised = "Surpreso"
-    case light = "Leve"
     case embarrassed = "Envergonhado"
-    case insecure = "Inseguro"
-    case depressed = "Deprimido"
     case sick = "Enjoado"
+    case indifferent = "Indiferente"
 }
 
 class AvatarGameModel {
@@ -111,7 +108,7 @@ enum PartsOfFace {
     case eye, eyebrow, mouth
 }
 
-struct FacePart {
+struct FacePart: Hashable {
     var partOfFace: PartsOfFace
     var image: String
 }

@@ -125,7 +125,6 @@ struct AvatarGameView: View {
                                     .foregroundColor(.textColor)
                                     .multilineTextAlignment(.center)
                                 
-                                //spacing 0.2 for this game
                                 Grid<AvatarGameTile>(rows: numberOfRows, columns: numberOfColumns, spacing: screenWidth * 0.008) { (row, column) in
                                     AvatarGameTile(facePart: self.viewModel.roundFaceParts[(row * self.numberOfColumns)+column], eyeImage: self.$viewModel.eyeImage, mouthImage: self.$viewModel.mouthImage, eyebrowImage: self.$viewModel.eyebrowImage, confirmPressed: self.$buttonIsPressed)
                                 }

@@ -29,6 +29,18 @@ class AvatarGameViewModel: ObservableObject {
         model.roundFaceParts
     }
     
+    var allEyes: [FacePart] {
+        model.allEyes
+    }
+    
+    var allEyebrows: [FacePart] {
+        model.allEyebrows
+    }
+    
+    var allMouths: [FacePart] {
+        model.allMouths
+    }
+    
     //Functions
     func allOptionsSelected() -> Bool {
         let eyeSelected: Bool = eyeImage != ""
