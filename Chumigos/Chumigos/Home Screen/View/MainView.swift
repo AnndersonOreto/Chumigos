@@ -47,8 +47,8 @@ extension MainView {
                     Button(action: {
                         self.currentTab = .profile
                     }) {
-                        Circle()
-                        .fill(Color.blue)
+                        Image("Avatar 2")
+                        .resizable()
                         .frame(width: screenWidth * 0.047, height: screenWidth * 0.047)
                     }
                     
@@ -90,7 +90,7 @@ extension MainView {
                     }
                     
                 }.padding(.vertical)
-            }.edgesIgnoringSafeArea([.bottom, .horizontal])
+            }.edgesIgnoringSafeArea([.bottom, .horizontal]).buttonStyle(PlainButtonStyle())
             Spacer()
         }
     }

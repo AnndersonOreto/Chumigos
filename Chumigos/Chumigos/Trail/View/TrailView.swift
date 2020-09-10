@@ -47,7 +47,7 @@ struct TrailView: View {
 
                     ScrollView(.vertical, showsIndicators: false) {
                         ForEach(self.sections) { (section) in
-                            VStack(spacing: self.screenWidth * 0.04) {
+                            VStack(spacing: self.screenWidth * 0.035) {
                                 ForEach(section.trail, id: \.self) { line in
                                     HStack(spacing: self.screenWidth * 0.06) {
                                         Spacer()

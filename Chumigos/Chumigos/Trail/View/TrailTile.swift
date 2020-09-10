@@ -20,16 +20,26 @@ struct TrailTile: View {
     
     var body: some View {
         
-        VStack() {
-            
-            makeTile()
-            
-            progressBar()
-            
-            Text(game.gameName)
-                .foregroundColor(.textColor)
-                .dynamicFont(name: "Rubik", size: 16, weight: .medium)
+        HStack(alignment: .top) {
+            VStack() {
+                
+                makeTile()
+                    .padding(.bottom, 10)
+                
+                if !game.isCompleted {
+                    progressBar()
+                }
+//
+                Text(game.gameName)
+                    .foregroundColor(.textColor)
+                    .dynamicFont(name: "Rubik", size: 16, weight: .medium)
+                    .lineLimit(0)
+//                    .frame(maxWidth: screenWidth * widthScale, maxHeight: .infinity)
+                
+                Spacer()
+            }
         }
+        
     }
 }
 
@@ -48,7 +58,7 @@ extension TrailTile {
                 .fill(Color.Duck)
                 .frame(width: (screenWidth * widthScale) * CGFloat(game.percetageCompleted), height: 10)
             
-        }.padding(.top, 10)
+        }//.padding(.top, 10)
     }
 }
 
@@ -86,6 +96,12 @@ extension TrailTile {
             image += "unavailable"
         }
         
+        if game.isCompleted {
+            bottomColor = .Fox
+            topColor = .Duck
+            image += "-complete"
+        }
+        
         return ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(bottomColor)
@@ -95,7 +111,7 @@ extension TrailTile {
             RoundedRectangle(cornerRadius: 10)
                 .fill(topColor)
                 .frame(width: screenWidth * widthScale, height: screenWidth * widthScale)
-
+            
             
             Image(image)
                 .resizable()
