@@ -64,6 +64,7 @@
 		AADAB3C924FEBBF8005B04B3 /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAB3C824FEBBF8005B04B3 /* GamesView.swift */; };
 		AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB07C25000F62009E8A67 /* MainView.swift */; };
 		AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33B3502502B2840042F5BA /* AvatarGameView.swift */; };
+		AB4E9487250AC46C00B7B0E8 /* LogguinhoFeelingsClassifier.mlproj in Resources */ = {isa = PBXBuildFile; fileRef = AB4E9486250AC46C00B7B0E8 /* LogguinhoFeelingsClassifier.mlproj */; };
 		AB6E8ABA25095B160048345D /* AvatarGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */; };
 		AB6E8ABC250969CE0048345D /* customRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */; };
 		AB6EFEF8250157F8009A1705 /* Light_Dark_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */; };
@@ -164,6 +165,7 @@
 		AADAB3C824FEBBF8005B04B3 /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
 		AB0EB07C25000F62009E8A67 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		AB33B3502502B2840042F5BA /* AvatarGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameView.swift; sourceTree = "<group>"; };
+		AB4E9486250AC46C00B7B0E8 /* LogguinhoFeelingsClassifier.mlproj */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LogguinhoFeelingsClassifier.mlproj; sourceTree = "<group>"; };
 		AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameViewModel.swift; sourceTree = "<group>"; };
 		AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customRoundedCorners.swift; sourceTree = "<group>"; };
 		AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light_Dark_Colors.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 		AB33B34C2502B2400042F5BA /* Avatar Game */ = {
 			isa = PBXGroup;
 			children = (
+				AB4E9486250AC46C00B7B0E8 /* LogguinhoFeelingsClassifier.mlproj */,
 				AA275AB62507FB830089F63D /* ViewModel */,
 				AA275AB52507FB7B0089F63D /* Model */,
 				AB33B34E2502B2530042F5BA /* View */,
@@ -767,6 +770,7 @@
 				260A416624DB2CC9003553E7 /* Rubik-Bold.ttf in Resources */,
 				260A416724DB2CC9003553E7 /* Rubik-Light.ttf in Resources */,
 				260A416024DB2CC9003553E7 /* Rubik-BoldItalic.ttf in Resources */,
+				AB4E9487250AC46C00B7B0E8 /* LogguinhoFeelingsClassifier.mlproj in Resources */,
 				260A416324DB2CC9003553E7 /* Rubik-Regular.ttf in Resources */,
 				26C186CF24BE4AA70094AEC1 /* LaunchScreen.storyboard in Resources */,
 				260A416424DB2CC9003553E7 /* Rubik-LightItalic.ttf in Resources */,
