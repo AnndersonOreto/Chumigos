@@ -82,7 +82,8 @@ struct ShapeGameView: View {
                                 // Cell that represents the pattern list as a form
                                 self.patternView(for: element)
                             }
-                        }
+                        }.allowsHitTesting(buttonIsPressed ? false : true)
+
                         
                         Text("Complete a sequência arrastando as peças abaixo:")
                         .foregroundColor(Color.textColor)
@@ -108,7 +109,8 @@ struct ShapeGameView: View {
                                 // Make tile that is being drag appears on top
                                     .zIndex(self.alternativeBeingDragged == alternative.value ? 1: 0)
                             }
-                        }.padding(.top, screenWidth * 0.03)
+                        }.allowsHitTesting(buttonIsPressed ? false : true)
+                        .padding(.top, screenWidth * 0.03)
                         
                         Spacer()
                         

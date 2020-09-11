@@ -6,13 +6,13 @@
 //  Copyright © 2020 Annderson Packeiser Oreto. All rights reserved.
 //
 
-enum GameType {
+enum GameType: Int, Codable {
     case pattern, algorithm, decomposition, abstraction
 }
 
 import Foundation
 
-struct GameObject: Hashable {
+struct GameObject: Hashable, Codable {
     
     // MARK: - Variables & Constants
     

@@ -11,5 +11,26 @@ import SwiftUI
 
 class ConfigurationViewModel: ObservableObject {
     
+
+    
+    init() {
+        
+    }
+    
+    func toggleNotificationValue(value: Bool) {
+        UserDefaults.standard.set(value, forKey: "loggio_notification")
+        return
+    }
+    
+    func toggleVibrationValue(value: Bool) {
+        UserDefaults.standard.set(value, forKey: "loggio_vibration")
+    }
+    
+    func toggleDarkModeValue(value: Bool) {
+        SceneDelegate.shared?.window!.overrideUserInterfaceStyle = value ? .dark : .light
+    }
+    
+    func togglePreferencesModeValue() {
+    }
     
 }
