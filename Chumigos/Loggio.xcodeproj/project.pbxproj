@@ -141,7 +141,7 @@
 		26946E9724C76A6C005A316E /* RandomAngle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAngle.swift; sourceTree = "<group>"; };
 		26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailMatrixList.swift; sourceTree = "<group>"; };
 		26BC05AC2507FD9B00A918F5 /* TrailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrailViewModel.swift; path = Chumigos/Trail/Model/TrailViewModel.swift; sourceTree = SOURCE_ROOT; };
-		26C186BC24BE4AA50094AEC1 /* Chumigos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chumigos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		26C186BC24BE4AA50094AEC1 /* Loggio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loggio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		26C186C424BE4AA50094AEC1 /* Chumigos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chumigos.xcdatamodel; sourceTree = "<group>"; };
@@ -150,10 +150,10 @@
 		26C186CB24BE4AA70094AEC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		26C186CE24BE4AA70094AEC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26C186D024BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26C186D524BE4AA70094AEC1 /* ChumigosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChumigosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26C186D524BE4AA70094AEC1 /* LoggioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoggioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186D924BE4AA70094AEC1 /* ChumigosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChumigosTests.swift; sourceTree = "<group>"; };
 		26C186DB24BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26C186E024BE4AA70094AEC1 /* ChumigosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChumigosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26C186E024BE4AA70094AEC1 /* LoggioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoggioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChumigosUITests.swift; sourceTree = "<group>"; };
 		26C186E624BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26E0EA4B24F59FD50078566D /* EndGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewModel.swift; sourceTree = "<group>"; };
@@ -330,9 +330,9 @@
 		26C186BD24BE4AA50094AEC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				26C186BC24BE4AA50094AEC1 /* Chumigos.app */,
-				26C186D524BE4AA70094AEC1 /* ChumigosTests.xctest */,
-				26C186E024BE4AA70094AEC1 /* ChumigosUITests.xctest */,
+				26C186BC24BE4AA50094AEC1 /* Loggio.app */,
+				26C186D524BE4AA70094AEC1 /* LoggioTests.xctest */,
+				26C186E024BE4AA70094AEC1 /* LoggioUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -693,9 +693,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		26C186BB24BE4AA50094AEC1 /* Chumigos */ = {
+		26C186BB24BE4AA50094AEC1 /* Loggio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 26C186E924BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "Chumigos" */;
+			buildConfigurationList = 26C186E924BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "Loggio" */;
 			buildPhases = (
 				26C186B824BE4AA50094AEC1 /* Sources */,
 				26C186B924BE4AA50094AEC1 /* Frameworks */,
@@ -705,14 +705,14 @@
 			);
 			dependencies = (
 			);
-			name = Chumigos;
+			name = Loggio;
 			productName = Chumigos;
-			productReference = 26C186BC24BE4AA50094AEC1 /* Chumigos.app */;
+			productReference = 26C186BC24BE4AA50094AEC1 /* Loggio.app */;
 			productType = "com.apple.product-type.application";
 		};
-		26C186D424BE4AA70094AEC1 /* ChumigosTests */ = {
+		26C186D424BE4AA70094AEC1 /* LoggioTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 26C186EC24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "ChumigosTests" */;
+			buildConfigurationList = 26C186EC24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "LoggioTests" */;
 			buildPhases = (
 				26C186D124BE4AA70094AEC1 /* Sources */,
 				26C186D224BE4AA70094AEC1 /* Frameworks */,
@@ -723,14 +723,14 @@
 			dependencies = (
 				26C186D724BE4AA70094AEC1 /* PBXTargetDependency */,
 			);
-			name = ChumigosTests;
+			name = LoggioTests;
 			productName = ChumigosTests;
-			productReference = 26C186D524BE4AA70094AEC1 /* ChumigosTests.xctest */;
+			productReference = 26C186D524BE4AA70094AEC1 /* LoggioTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		26C186DF24BE4AA70094AEC1 /* ChumigosUITests */ = {
+		26C186DF24BE4AA70094AEC1 /* LoggioUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 26C186EF24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "ChumigosUITests" */;
+			buildConfigurationList = 26C186EF24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "LoggioUITests" */;
 			buildPhases = (
 				26C186DC24BE4AA70094AEC1 /* Sources */,
 				26C186DD24BE4AA70094AEC1 /* Frameworks */,
@@ -741,9 +741,9 @@
 			dependencies = (
 				26C186E224BE4AA70094AEC1 /* PBXTargetDependency */,
 			);
-			name = ChumigosUITests;
+			name = LoggioUITests;
 			productName = ChumigosUITests;
-			productReference = 26C186E024BE4AA70094AEC1 /* ChumigosUITests.xctest */;
+			productReference = 26C186E024BE4AA70094AEC1 /* LoggioUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -754,7 +754,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1130;
-				ORGANIZATIONNAME = "Annderson Packeiser Oreto";
+				ORGANIZATIONNAME = Chumigos;
 				TargetAttributes = {
 					26C186BB24BE4AA50094AEC1 = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -769,7 +769,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 26C186B724BE4AA50094AEC1 /* Build configuration list for PBXProject "Chumigos" */;
+			buildConfigurationList = 26C186B724BE4AA50094AEC1 /* Build configuration list for PBXProject "Loggio" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -783,9 +783,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				26C186BB24BE4AA50094AEC1 /* Chumigos */,
-				26C186D424BE4AA70094AEC1 /* ChumigosTests */,
-				26C186DF24BE4AA70094AEC1 /* ChumigosUITests */,
+				26C186BB24BE4AA50094AEC1 /* Loggio */,
+				26C186D424BE4AA70094AEC1 /* LoggioTests */,
+				26C186DF24BE4AA70094AEC1 /* LoggioUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -851,7 +851,6 @@
 				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
 				2656BF292500086100231678 /* NotificationManager.swift in Sources */,
-				26F434CD24FEDBCB00CE81F1 /* CoreDataPersistence.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
 				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,
 				AB855F1524F4341400C5A739 /* User.swift in Sources */,
@@ -920,12 +919,12 @@
 /* Begin PBXTargetDependency section */
 		26C186D724BE4AA70094AEC1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 26C186BB24BE4AA50094AEC1 /* Chumigos */;
+			target = 26C186BB24BE4AA50094AEC1 /* Loggio */;
 			targetProxy = 26C186D624BE4AA70094AEC1 /* PBXContainerItemProxy */;
 		};
 		26C186E224BE4AA70094AEC1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 26C186BB24BE4AA50094AEC1 /* Chumigos */;
+			target = 26C186BB24BE4AA50094AEC1 /* Loggio */;
 			targetProxy = 26C186E124BE4AA70094AEC1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1074,6 +1073,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
@@ -1083,9 +1083,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.Chumigos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Loggio;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -1095,6 +1095,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
@@ -1104,9 +1105,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.Chumigos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Loggio;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -1128,7 +1129,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chumigos.app/Chumigos";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Loggio.app/Loggio";
 			};
 			name = Debug;
 		};
@@ -1150,7 +1151,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chumigos.app/Chumigos";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Loggio.app/Loggio";
 			};
 			name = Release;
 		};
@@ -1197,7 +1198,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		26C186B724BE4AA50094AEC1 /* Build configuration list for PBXProject "Chumigos" */ = {
+		26C186B724BE4AA50094AEC1 /* Build configuration list for PBXProject "Loggio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				26C186E724BE4AA70094AEC1 /* Debug */,
@@ -1206,7 +1207,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		26C186E924BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "Chumigos" */ = {
+		26C186E924BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "Loggio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				26C186EA24BE4AA70094AEC1 /* Debug */,
@@ -1215,7 +1216,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		26C186EC24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "ChumigosTests" */ = {
+		26C186EC24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "LoggioTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				26C186ED24BE4AA70094AEC1 /* Debug */,
@@ -1224,7 +1225,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		26C186EF24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "ChumigosUITests" */ = {
+		26C186EF24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "LoggioUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				26C186F024BE4AA70094AEC1 /* Debug */,
