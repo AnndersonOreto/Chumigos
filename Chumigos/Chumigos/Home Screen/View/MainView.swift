@@ -14,6 +14,8 @@ enum TabItem {
 
 struct MainView: View {
     
+    @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var result: FetchedResults<UserData>
+    
     private var screenWidth = UIScreen.main.bounds.width
     @State private var currentTab: TabItem = .trail
     @State private var showPopUp = false
@@ -30,7 +32,7 @@ struct MainView: View {
 }
 
 extension MainView {
-    
+
     private func tabBar() -> some View {
         HStack{
             ZStack {
@@ -48,7 +50,7 @@ extension MainView {
                     Button(action: {
                         self.currentTab = .profile
                     }) {
-                        Image("Avatar 2")
+                        Image(setAvatarName())
                         .resizable()
                         .frame(width: screenWidth * 0.047, height: screenWidth * 0.047)
                         .background(
@@ -103,6 +105,15 @@ extension MainView {
             .edgesIgnoringSafeArea([.bottom, .horizontal])
             .buttonStyle(PlainButtonStyle())
             Spacer()
+        }
+    }
+    
+    func setAvatarName() -> String {
+        
+        if result.count <= 0 {
+            return "Avatar 12"
+        } else {
+            return self.result[0].imageName ?? "Avatar 12"
         }
     }
 }

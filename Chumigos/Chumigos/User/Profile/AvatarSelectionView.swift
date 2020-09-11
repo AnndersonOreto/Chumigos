@@ -69,6 +69,7 @@ struct AvatarSelectionView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
+                Color.popUpBackground
                 VStack {
                     Text("Selecione o seu avatar:")
                         .tracking(1)
