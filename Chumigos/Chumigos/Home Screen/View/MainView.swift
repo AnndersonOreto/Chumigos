@@ -35,10 +35,11 @@ extension MainView {
         HStack{
             ZStack {
                 Rectangle()
-                    .fill(Color.Hare)
-                    .frame(width: screenWidth * 0.079)
+                    .fill(Color.tabBarDivider)
+                    .frame(width: screenWidth * 0.075)
+                    .padding(.leading, 5)
                 Rectangle()
-                    .fill(Color.white)
+                    .fill(Color.background)
                     .frame(width: screenWidth * 0.077)
                 
                 VStack(spacing: screenWidth * 0.03){
@@ -47,9 +48,13 @@ extension MainView {
                     Button(action: {
                         self.currentTab = .profile
                     }) {
-                        Circle()
-                        .fill(Color.blue)
+                        Image("Avatar 2")
+                        .resizable()
                         .frame(width: screenWidth * 0.047, height: screenWidth * 0.047)
+                        .background(
+                            Circle()
+                                .stroke(Color.Humpback,lineWidth: self.currentTab == TabItem.profile ? 5 : 0)
+                        )
                     }
                     
                     //Trail
@@ -57,7 +62,8 @@ extension MainView {
                         
                         self.currentTab = .trail
                     }) {
-                        Rectangle()
+                        Image(self.currentTab == TabItem.trail ? "home-enabled" :  "home-disabled")
+                        .resizable()
                         .frame(width: screenWidth * 0.033, height: screenWidth * 0.033)
                     }
                     
@@ -66,7 +72,8 @@ extension MainView {
                         
                         self.currentTab = .achievements
                     }) {
-                        Rectangle()
+                        Image(self.currentTab == TabItem.achievements ? "achievements-enabled" :  "achievements-disabled")
+                        .resizable()
                         .frame(width: screenWidth * 0.033, height: screenWidth * 0.033)
                     }
                     
@@ -75,7 +82,8 @@ extension MainView {
                         
                         self.currentTab = .shop
                     }) {
-                        Rectangle()
+                        Image(self.currentTab == TabItem.shop ? "shop-enabled" :  "shop-disabled")
+                        .resizable()
                         .frame(width: screenWidth * 0.033, height: screenWidth * 0.033)
                     }
                     
@@ -85,12 +93,15 @@ extension MainView {
                     Button(action: {
                         //TODO: Logout action
                     }) {
-                        Rectangle()
+                        Image("logout")
+                        .resizable()
                         .frame(width: screenWidth * 0.033, height: screenWidth * 0.033)
                     }
                     
                 }.padding(.vertical)
-            }.edgesIgnoringSafeArea([.bottom, .horizontal])
+            }
+            .edgesIgnoringSafeArea([.bottom, .horizontal])
+            .buttonStyle(PlainButtonStyle())
             Spacer()
         }
     }

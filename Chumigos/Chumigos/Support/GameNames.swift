@@ -10,6 +10,7 @@ import Foundation
 
 class GameNames {
     
-    static let shapeGameName = "Jogo das formas"
-    static let sequenceGameName = "Jogo da Sequencia"
+    static let shapeGameName = "Formas"
+    static let sequenceGameName = "Sequencia"
+    static let avatarGameName = "Avatar"
 }

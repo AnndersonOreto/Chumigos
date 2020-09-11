@@ -42,7 +42,7 @@ extension ExitGamePopUp {
     private func popUpView() -> some View {
         VStack {
             // TODO: Trocar pela imagem do polvo
-            Image("icon-abstraction")
+            Image("exit-game-art")
                 .resizable()
                 .frame(width: screenWidth * 0.077, height: screenWidth * 0.12)
                 .padding(.top, screenWidth * 0.027)
