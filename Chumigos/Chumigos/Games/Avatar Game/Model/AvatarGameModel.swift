@@ -84,7 +84,7 @@ class AvatarGameModel {
         let eyebrows = self.generate(faceParts: self.allEyebrows)
         let mouths = self.generate(faceParts: self.allMouths)
         
-        for i in 0..<allEyes.count {
+        for i in 0..<eyes.count {
             facePartsArray.append(eyes[i])
             facePartsArray.append(eyebrows[i])
             facePartsArray.append(mouths[i])
