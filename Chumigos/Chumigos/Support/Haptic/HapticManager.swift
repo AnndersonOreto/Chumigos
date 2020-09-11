@@ -13,18 +13,14 @@ import SwiftUI
 class HapticManager: ObservableObject {
     
     // MARK: - Init
+    let generator = UINotificationFeedbackGenerator()
+
     
     init() {
         
     }
     
     // MARK: - Simple Haptic Functions
-    
-    private func prepareSimpleHaptic() -> UINotificationFeedbackGenerator {
-        
-        let generator = UINotificationFeedbackGenerator()
-        return generator
-    }
     
     public func hapticFeedback(type: FeedBackHaptic) {
         if UserDefaults.standard.bool(forKey: "loggio_vibration") {
@@ -43,21 +39,21 @@ class HapticManager: ObservableObject {
     private func simpleSuccess() {
         
         // Trigger feedback
-        prepareSimpleHaptic().notificationOccurred(.success)
+        generator.notificationOccurred(.success)
     }
     
     /// Vibration corresponding to warning
     private func simpleWarning() {
         
         // Trigger feedback
-        prepareSimpleHaptic().notificationOccurred(.warning)
+        generator.notificationOccurred(.warning)
     }
     
     /// Vibration corresponding to error
     private func simpleError() {
         
         // Trigger feedback
-        prepareSimpleHaptic().notificationOccurred(.error)
+        generator.notificationOccurred(.error)
     }
 }
 

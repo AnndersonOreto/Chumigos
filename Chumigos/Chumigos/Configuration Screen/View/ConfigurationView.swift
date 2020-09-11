@@ -19,6 +19,8 @@ struct ConfigurationView: View {
     @State var avatarImageName: String = "Avatar 1"
     @State private var showAvatarSelection = false
     
+    var notificationManager = NotificationManager()
+    
     @ObservedObject var viewModel: ConfigurationViewModel = ConfigurationViewModel()
     
     // MARK: - Drawing Contants
@@ -131,7 +133,7 @@ struct ConfigurationView: View {
                         }
                         
                         // Switch vibration
-                        Toggle(isOn: self.$toggleVibration) {
+                        Toggle(isOn: self.toggleVibrationValue()) {
                             
                             Text("Vibração")
                                 .font(.custom(fontName, size: screenWidth * 0.015))
@@ -147,10 +149,6 @@ struct ConfigurationView: View {
                                 UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                         }.padding(.horizontal, 1)
                         .padding(.vertical, screenWidth * 0.0065)
-                        .onReceive(Just($toggleNotifications)) { (value) in
-                            let boolValue: Bool = value.wrappedValue
-                            self.viewModel.toggleVibrationValue(value: boolValue)
-                        }
                         
                         // Switch theme
                         VStack(alignment: .leading) {
@@ -165,16 +163,7 @@ struct ConfigurationView: View {
                             
                             CustomDivider(color: Color.Humpback, width: 2)
                             
-                            Toggle(isOn: Binding<Bool>(
-                                    get: {
-                                        self.colorScheme == .dark ? true : false
-                                    },
-                                    set: {
-                                        SceneDelegate.shared?.window!.overrideUserInterfaceStyle = $0 ? .dark : .light
-                                        //dark rawvalue = 2 ; light rawvalue = 1
-                                        UserDefaults.standard.setValue($0 ? UIUserInterfaceStyle.dark.rawValue : UIUserInterfaceStyle.light.rawValue, forKey: "loggio_viewStyle")
-                                    }
-                            )) {
+                            Toggle(isOn: toggleDarkModeValue()) {
                                 
                                 Text("Dark Mode")
                                     .font(.custom(fontName, size: screenWidth * 0.015))
@@ -291,6 +280,51 @@ struct ConfigurationView: View {
     }
     
     // MARK: - View Functions
+    fileprivate func toggleDarkModeValue() -> Binding<Bool> {
+        return Binding<Bool>(
+            get: {
+                self.colorScheme == .dark ? true : false
+            },
+            set: {
+                SceneDelegate.shared?.window!.overrideUserInterfaceStyle = $0 ? .dark : .light
+                //dark rawvalue = 2 ; light rawvalue = 1
+                UserDefaults.standard.setValue($0 ? UIUserInterfaceStyle.dark.rawValue : UIUserInterfaceStyle.light.rawValue, forKey: "loggio_viewStyle")
+            }
+        )
+    }
+    
+    fileprivate func toggleVibrationValue() -> Binding<Bool> {
+        return Binding<Bool>(
+            get: {
+                UserDefaults.standard.bool(forKey: "loggio_vibration")
+        },
+            set: {
+                UserDefaults.standard.set($0, forKey: "loggio_vibration")
+
+        }
+        )
+    }
+    
+    fileprivate func toggleNotificationValue() -> Binding<Bool> {
+        return Binding<Bool>(
+            get: {
+                UserDefaults.standard.bool(forKey: "loggio_notification")
+        },
+            set: {
+                if !$0 {
+                    UIApplication.shared.unregisterForRemoteNotifications()
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+                }
+                else {
+                    self.notificationManager.registerForPushNotifications()
+                }
+                
+                UserDefaults.standard.set($0, forKey: "loggio_vibration")
+                
+        }
+        )
+    }
     
     func setAvatarName() {
         
