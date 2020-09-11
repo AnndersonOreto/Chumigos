@@ -35,10 +35,11 @@ extension MainView {
         HStack{
             ZStack {
                 Rectangle()
-                    .fill(Color.Hare)
-                    .frame(width: screenWidth * 0.079)
+                    .fill(Color.tabBarDivider)
+                    .frame(width: screenWidth * 0.075)
+                    .padding(.leading, 5)
                 Rectangle()
-                    .fill(Color.white)
+                    .fill(Color.background)
                     .frame(width: screenWidth * 0.077)
                 
                 VStack(spacing: screenWidth * 0.03){
@@ -90,7 +91,9 @@ extension MainView {
                     }
                     
                 }.padding(.vertical)
-            }.edgesIgnoringSafeArea([.bottom, .horizontal]).buttonStyle(PlainButtonStyle())
+            }
+            .edgesIgnoringSafeArea([.bottom, .horizontal])
+            .buttonStyle(PlainButtonStyle())
             Spacer()
         }
     }
