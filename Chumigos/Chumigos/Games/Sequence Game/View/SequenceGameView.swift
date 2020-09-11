@@ -13,6 +13,13 @@ struct SequenceGameView: View {
     @ObservedObject var viewModel = SequenceGameViewModel()
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 2)
     
+    
+    let hapticManager = HapticManager()
+    @State var generateHapticFeedback: Bool = false
+    
+    let generator = UINotificationFeedbackGenerator()
+    
+    
     // Save the rects of all the questions
     @State private var questionsFrames: [(question: Question, rect: CGRect)] = []
     // Variable to know which alternative is being dragged
@@ -120,9 +127,11 @@ struct SequenceGameView: View {
                                 }) {
                                     Text("Confirmar")
                                         .dynamicFont(name: fontName, size: 20, weight: .bold)
-                                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
-                                    .disabled(!self.viewModel.allQuestionsAreOccupied())
-                                    .padding(.bottom, 10)
+                                }
+                                .buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
+                                .disabled(!self.viewModel.allQuestionsAreOccupied())
+                                .padding(.bottom, 10)
+                                   
                             }
                         }
                     }
