@@ -29,6 +29,7 @@ struct ConfigurationView: View {
     //    @State var toggleDarkMode: Bool = SceneDelegate.shared?.window!.overrideUserInterfaceStyle
     @State var togglePreferences: Bool = false
     @State var sliderDynamicType: Double = 50.0
+    @State var isAlert: Bool = false
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
@@ -112,7 +113,7 @@ struct ConfigurationView: View {
                             .tracking(1)
                         
                         // Switch notification
-                        Toggle(isOn: self.$toggleNotifications) {
+                        Toggle(isOn: self.toggleNotificationValue()) {
                             Text("Notificações")
                                 .font(.custom(fontName, size: screenWidth * 0.015))
                                 .foregroundColor(.textColor)
@@ -127,9 +128,10 @@ struct ConfigurationView: View {
                         .onAppear {
                             UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                         }.padding(.horizontal, 1)
-                            .onReceive(Just($toggleNotifications)) { (value) in
-                                let boolValue: Bool = value.wrappedValue
-                                self.viewModel.toggleNotificationValue(value: boolValue)
+                        .alert(isPresented: $isAlert) { () -> Alert in
+                            Alert(title: Text("Notifications"), message: Text("Open settings to turn on notifications."), primaryButton: .default(Text("Open Settings"), action: {
+                                self.notificationManager.openNotificationSettings()
+                            }), secondaryButton: .default(Text("Dismiss")))
                         }
                         
                         // Switch theme
@@ -286,16 +288,19 @@ struct ConfigurationView: View {
                 UserDefaults.standard.bool(forKey: "loggio_notification")
         },
             set: {
+                //TODO
                 if !$0 {
+                    self.isAlert = false
                     UIApplication.shared.unregisterForRemoteNotifications()
                     UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                     UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+                    UserDefaults.standard.set(false, forKey: "loggio_notification")
                 }
                 else {
-                    self.notificationManager.registerForPushNotifications()
+                    self.isAlert = true
+                    //ler do sistema -> alterar o valor no user defaults
+                    UserDefaults.standard.set(true, forKey: "loggio_notification")
                 }
-                
-                UserDefaults.standard.set($0, forKey: "loggio_vibration")
                 
         })
     }

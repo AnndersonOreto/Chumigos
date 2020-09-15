@@ -77,7 +77,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let notification = NotificationManager()
         
-        notification.dailyNotification(title: nil, body: nil)
+        if UserDefaults.standard.bool(forKey: "loggio_notification") {
+        
+            notification.dailyNotification(title: nil, body: nil)
+        }
 
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
