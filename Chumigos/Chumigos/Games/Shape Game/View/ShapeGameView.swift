@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ShapeGameView: View {
     
-    @ObservedObject var viewModel = ShapeGameViewModel()
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -29,6 +28,14 @@ struct ShapeGameView: View {
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.round.count > 9 ? 0.067 : 0.078
         return CGSize(width: screenWidth * scaleFactor, height: screenWidth * scaleFactor)
+    }
+    
+    @ObservedObject var viewModel: ShapeGameViewModel
+    var gameDifficulty: Difficulty
+    
+    init(gameDifficulty: Difficulty) {
+        self.gameDifficulty = gameDifficulty
+        self.viewModel = ShapeGameViewModel(difficulty: gameDifficulty)
     }
     
     var body: some View {
@@ -256,13 +263,15 @@ struct ShapeGameView: View {
 }
 
 extension ShapeGameView {
+    
     func patternView(for piece: ShapeGameModel.ShapeForm) -> some View {
         ZStack {
             if !piece.isAQuestion {
                 
                 // Generic form to build sided forms
                 Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: piece.sides)
-                    .fill(self.viewModel.getRandomColors[piece.colorIndex]), size: self.tileSize)
+                .fill(self.viewModel.getRandomColors[piece.colorIndex]), size: self.tileSize)
+                
             } else {
                 
                 // Form to guess
@@ -283,6 +292,6 @@ extension ShapeGameView {
 
 struct ShapeGameNewView_Previews: PreviewProvider {
     static var previews: some View {
-        ShapeGameView()
+        ShapeGameView(gameDifficulty: Difficulty.medium)
     }
 }

@@ -682,8 +682,8 @@
 		E7FDEB8724C2312A008DDAEB /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				AB33B34C2502B2400042F5BA /* Avatar Game */,
 				AA48142724EB1D1F00134024 /* Components */,
+				AB33B34C2502B2400042F5BA /* Avatar Game */,
 				AA865AF124E5ABE60066BF2A /* Sequence Game */,
 				AA865AF524E5AC110066BF2A /* Shape Game */,
 			);
