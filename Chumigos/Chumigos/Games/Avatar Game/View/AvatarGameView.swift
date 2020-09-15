@@ -15,7 +15,7 @@ struct AvatarGameView: View {
     @ObservedObject var viewModel = AvatarGameViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    private var screenWidth = UIScreen.main.bounds.width
+    private var screenWidth = UIScreen.main.bounds.height
     
     // MARK: - State Variables
     @State var buttonIsPressed: Bool = false
@@ -24,13 +24,17 @@ struct AvatarGameView: View {
     @State var showChatBalloon = true
     
     // MARK: - Face's Variables
-    let avatarWidth = UIScreen.main.bounds.width * 0.63
-    let avatarHeight = UIScreen.main.bounds.width * 0.85
+    let avatarWidth = UIScreen.main.bounds.height * 0.63
+    let avatarHeight = UIScreen.main.bounds.height * 0.85
     
     var numberOfColumns: Int = 3
     var numberOfRows: Int {
         Int(ceil(Double(viewModel.roundFaceParts.count)/Double(numberOfColumns)))
     }
+    
+    var feelingColor: Color { self.viewModel.faceIsCorrect() ? .TreeFrog : .FireAnt }
+    var borderName: String { self.viewModel.faceIsCorrect() ? "correct-border" : "wrong-border" }
+    var iconName: String { self.viewModel.faceIsCorrect() ? "correct-icon" : "wrong-icon"}
     
     var body: some View {
         
@@ -137,13 +141,12 @@ struct AvatarGameView: View {
                         
                         if buttonIsPressed {
                             Button(action: {
-                                self.viewModel.nextRound()
-                                self.buttonIsPressed = false
+                                self.confirmQuestion()
                             }) {
                                 Text("Continuar")
                                     .dynamicFont(name: "Rubik", size: 20, weight: .bold)
                             }.buttonStyle(
-                                true ?
+                                self.viewModel.faceIsCorrect() ?
                                     //correct answer
                                     GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: viewModel.allOptionsSelected()) :
                                     //wrong answer
@@ -154,6 +157,7 @@ struct AvatarGameView: View {
                             //Confirm Button
                             Button(action: {
                                 self.buttonIsPressed = true
+                                self.showChatBalloon = true
                             }) {
                                 Text("Confirmar")
                                     .dynamicFont(name: "Rubik", size: 20, weight: .bold)
@@ -163,30 +167,42 @@ struct AvatarGameView: View {
                         }
                     }
                     
-                    ZStack{
+                    ZStack {
                         Image("avatar-chat-balloon")
                             .resizable()
                             .frame(width: screenWidth * 0.34, height: screenWidth * 0.25)
                             .overlay(
-                                VStack{
-                                    CustomText("ME SINTO")
-                                        .dynamicFont(size: 18, weight: .medium)
-                                        .foregroundColor(Color.textColor)
-                                        .padding(.top, screenWidth * 0.04)
-                                    //TODO: COLOCAR SENTIMENTO
-                                    CustomText("\(self.viewModel.feeling.rawValue)".uppercased())
-                                        .dynamicFont(size: 25, weight: .bold)
-                                        .foregroundColor(.Humpback)
-                                        .padding(.top, screenWidth * 0.03)
-                                    Spacer()
+                                ZStack {
+                                    if buttonIsPressed {
+                                        Image(borderName)
+                                            .resizable()
+                                    }
+                                    
+                                    VStack{
+                                        CustomText("ME SINTO")
+                                            .dynamicFont(size: 18, weight: .medium)
+                                            .foregroundColor(Color.textColor)
+                                            .padding(.top, screenWidth * 0.04)
+                                        
+                                        CustomText("\(self.viewModel.feeling.rawValue)".uppercased())
+                                            .dynamicFont(size: 25, weight: .bold)
+                                            .foregroundColor(buttonIsPressed ? self.feelingColor : .Humpback)
+                                            .padding(.top, screenWidth * 0.03)
+                                        Spacer()
+                                    }
                                 }
-                                
-                        )
-                            .opacity(showChatBalloon ? 1 : 0)
+                            )
                         
-                        
-                    }.padding(.trailing, screenWidth * 0.14)
-                        .padding(.bottom, screenWidth * 0.33)
+                        if buttonIsPressed {
+                            Image(iconName)
+                            .resizable()
+                            .frame(width: self.screenWidth*0.043, height: self.screenWidth*0.043)
+                            .padding(.leading, (screenWidth * 0.32))
+                            .padding(.bottom, (screenWidth * 0.23))
+                        }
+                    }.opacity(showChatBalloon ? 1 : 0)
+                    .padding(.trailing, screenWidth * 0.14)
+                    .padding(.bottom, screenWidth * 0.33)
                 }.blur(radius: self.showPopUp ? 16 : 0)
             } else {
                 EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
@@ -199,7 +215,6 @@ struct AvatarGameView: View {
     }
     
     func dismissGame() {
-        
         self.presentationMode.wrappedValue.dismiss()
     }
     
@@ -209,7 +224,31 @@ struct AvatarGameView: View {
         self.showChatBalloon = true
         self.isFinished = false
         self.progressViewModel.restartProgressBar()
-        self.viewModel.nextRound()
+        self.viewModel.resetGame()
+    }
+    
+    func confirmQuestion() {
+        if self.progressViewModel.isLastQuestion() {
+            self.isFinished = true
+        }
+        
+        withAnimation(.linear(duration: 0.3)) {
+            self.progressViewModel.checkAnswer(isCorrect: self.viewModel.faceIsCorrect(), nextIndex: self.viewModel.getRecapIndex())
+        }
+        
+        self.viewModel.resetGame()
+        
+        self.buttonIsPressed = false
+        
+        if self.isFinished {
+            self.progressViewModel.currentQuestion = -1
+        }
+        
+        if !self.showChatBalloon {
+            withAnimation(.easeInOut) {
+                self.showChatBalloon = true
+            }
+        }
     }
     
 }
@@ -262,17 +301,10 @@ struct AvatarGameTile: View {
     var body: some View {
         ZStack {
             
-            if isSelected && confirmPressed {
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.TreeFrog)
-                    .frame(width: tileWidth * 1.17, height: tileWidth * 1.17)
-                    .offset(y: 4.5)
-            } else {
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(isSelected ? Color.Bee : Color.clear)
-                    .frame(width: tileWidth * 1.17, height: tileWidth * 1.17)
-                    .offset(y: 4.5)
-            }
+            RoundedRectangle(cornerRadius: 15)
+            .fill(isSelected ? Color.Bee : Color.clear)
+            .frame(width: tileWidth * 1.17, height: tileWidth * 1.17)
+            .offset(y: 4.5)
             
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.init(red: 165/255, green: 102/255, blue: 68/255))

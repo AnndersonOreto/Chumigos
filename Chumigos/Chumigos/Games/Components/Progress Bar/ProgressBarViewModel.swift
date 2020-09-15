@@ -35,7 +35,6 @@ class ProgressBarViewModel: ObservableObject {
     
     func checkAnswer(isCorrect: Bool, nextIndex: Int) {
         
-        print("teste2 \(nextIndex) \(currentQuestion)")
         // Mark current question as green if it is right
         if isCorrect {
             self.progressStatusList[currentQuestion] = Color.TreeFrog
