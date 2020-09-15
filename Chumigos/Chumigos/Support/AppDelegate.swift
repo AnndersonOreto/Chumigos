@@ -18,6 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         notificationManager.registerForPushNotifications()
+        
+        let current = UNUserNotificationCenter.current()
+
+        current.getNotificationSettings(completionHandler: { (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                // Notification permission has not been asked yet, go for it!
+            } else if settings.authorizationStatus == .denied {
+                // Notification permission was previously denied, go to settings & privacy to re-enable
+                UserDefaults.standard.set(false, forKey: "loggio_vibration")
+            } else if settings.authorizationStatus == .authorized {
+                // Notification permission was already granted
+                UserDefaults.standard.set(true, forKey: "loggio_vibration")
+            }
+        })
+        
         return true
     }
     
