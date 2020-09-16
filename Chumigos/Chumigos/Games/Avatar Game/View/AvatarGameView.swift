@@ -232,6 +232,8 @@ struct AvatarGameView: View {
             self.isFinished = true
         }
         
+        self.viewModel.changeGameScore()
+        
         withAnimation(.linear(duration: 0.3)) {
             self.progressViewModel.checkAnswer(isCorrect: self.viewModel.faceIsCorrect(), nextIndex: self.viewModel.getRecapIndex())
         }

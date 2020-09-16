@@ -11,8 +11,7 @@ import SwiftUI
 struct SequenceGameView: View {
     
     @ObservedObject var viewModel = SequenceGameViewModel()
-    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 2)
-    
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     let hapticManager = HapticManager()
     @State var generateHapticFeedback: Bool = false
@@ -194,6 +193,8 @@ struct SequenceGameView: View {
         let index = self.progressViewModel.currentQuestion
         
         self.viewModel.verifyWrongQuestion(index: index)
+        
+        self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
             self.viewModel.gameState = .RECAP
