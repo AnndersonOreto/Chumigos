@@ -205,7 +205,7 @@ struct AvatarGameView: View {
                     .padding(.bottom, screenWidth * 0.33)
                 }.blur(radius: self.showPopUp ? 16 : 0)
             } else {
-                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
+                EndGameView(gameType: .decomposition, progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
             }
             
             if self.showPopUp {

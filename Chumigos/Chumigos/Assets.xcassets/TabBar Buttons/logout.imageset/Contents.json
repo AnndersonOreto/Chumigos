@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "buttonlight-logout.pdf",
+      "filename" : "logout.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "buttonlight-logout-1.pdf",
+      "filename" : "logout-1.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },

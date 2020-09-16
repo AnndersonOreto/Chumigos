@@ -162,7 +162,7 @@ struct ShapeGameView: View {
                 }.blur(radius: self.showPopUp ? 16 : 0)
                 
             } else {
-                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
+                EndGameView(gameType: .abstraction, progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
             }
             
             if self.showPopUp {
