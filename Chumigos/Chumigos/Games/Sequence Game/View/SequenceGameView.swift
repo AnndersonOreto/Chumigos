@@ -10,9 +10,6 @@ import SwiftUI
 
 struct SequenceGameView: View {
     
-    @ObservedObject var viewModel = SequenceGameViewModel()
-    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
-    
     let hapticManager = HapticManager()
     @State var generateHapticFeedback: Bool = false
     
@@ -33,6 +30,14 @@ struct SequenceGameView: View {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
         return CGSize(width: screenWidth * scaleFactor, height: screenWidth * scaleFactor)
     }
+    
+    @ObservedObject var viewModel: SequenceGameViewModel
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
+    
+    init(gameDifficulty: Difficulty) {
+        self.viewModel = SequenceGameViewModel(difficulty: gameDifficulty)
+    }
+    
     
     var body: some View {
         ZStack {
@@ -154,7 +159,7 @@ struct SequenceGameView: View {
                 ExitGamePopUp(showPopUp: self.$showPopUp, dismissGame: self.dismissGame)
             }
             
-            }
+        }
         .navigationBarTitle("")
         .navigationBarHidden(true)
     }
@@ -280,6 +285,6 @@ extension SequenceGameView {
 
 struct StudyingView_Previews: PreviewProvider {
     static var previews: some View {
-        SequenceGameView()
+        SequenceGameView(gameDifficulty: .medium)
     }
 }

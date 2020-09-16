@@ -9,14 +9,24 @@
 import SwiftUI
 
 class SequenceGameViewModel: ObservableObject {
-    @Published var model = createSequenceGame()
+    @Published var model: SequenceGameModel
+    let difficulty: Difficulty
     var wrongAnswersArray: [(SequenceGameModel, Int)] = []
     var gameState: GameState = GameState.NORMAL
     var gameScore: GameScore = GameScore()
     
-    private static func createSequenceGame() -> SequenceGameModel {
+    init(difficulty: Difficulty) {
+        self.difficulty = difficulty
+
         let isFruit = Bool.random()
-        return SequenceGameModel(difficulty: .medium) { (assetIndex) in
+        model = SequenceGameModel(difficulty: difficulty) { (assetIndex) in
+            return isFruit ? "fruit-\(assetIndex)" : "shape-\(assetIndex)"
+        }
+    }
+    
+    func createSequenceGame(difficulty: Difficulty) -> SequenceGameModel {
+        let isFruit = Bool.random()
+        return SequenceGameModel(difficulty: difficulty) { (assetIndex) in
             return isFruit ? "fruit-\(assetIndex)" : "shape-\(assetIndex)"
         }
     }
@@ -69,7 +79,7 @@ class SequenceGameViewModel: ObservableObject {
         if gameState == .NORMAL {
             
             // Restart game by creating another instance of SequenceGameModel
-            model = SequenceGameViewModel.createSequenceGame()
+            model = self.createSequenceGame(difficulty: difficulty)
         } else {
             
             if wrongAnswersArray.isEmpty { return }
@@ -107,7 +117,7 @@ class SequenceGameViewModel: ObservableObject {
     }
     
     func restartGame() {
-        self.model = SequenceGameViewModel.createSequenceGame()
+        self.model = self.createSequenceGame(difficulty: difficulty)
         self.wrongAnswersArray = []
         self.gameState = .NORMAL
         self.gameScore = GameScore()

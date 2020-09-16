@@ -10,13 +10,20 @@ import SwiftUI
 
 class ShapeGameViewModel: ObservableObject {
     
-    @Published var model = createShapeGame()
+    @Published var model: ShapeGameModel
     var wrongAnswersArray: [(ShapeGameModel, Int)] = []
     var gameState: GameState = GameState.NORMAL
     var gameScore: GameScore = GameScore()
     
-    private static func createShapeGame() -> ShapeGameModel {
-        return ShapeGameModel(difficulty: .medium)
+    var difficulty: Difficulty
+    
+    init(difficulty: Difficulty) {
+        self.difficulty = difficulty
+        model = ShapeGameModel(difficulty: difficulty)
+    }
+    
+    private static func createShapeGame(difficulty: Difficulty) -> ShapeGameModel {
+        return ShapeGameModel(difficulty: difficulty)
     }
     
     // MARK: - Access to the Model
@@ -34,7 +41,7 @@ class ShapeGameViewModel: ObservableObject {
     }
     
     var difficultyForm: Form {
-        model.getDifficulty() == .hard ? .STAR : .POLYGON
+        model.getDifficulty() == .medium ? .STAR : .POLYGON
     }
     
     var getRandomColors: [Color] {
@@ -77,7 +84,7 @@ class ShapeGameViewModel: ObservableObject {
         if gameState == .NORMAL {
             
             // Restart game by creating another instance of SequenceGameModel
-            model = ShapeGameViewModel.createShapeGame()
+            model = ShapeGameViewModel.createShapeGame(difficulty: difficulty)
         } else {
             
             if wrongAnswersArray.isEmpty { return }
@@ -115,7 +122,7 @@ class ShapeGameViewModel: ObservableObject {
     }
     
     func restartGame() {
-        self.model = ShapeGameViewModel.createShapeGame()
+        self.model = ShapeGameViewModel.createShapeGame(difficulty: difficulty)
         self.wrongAnswersArray = []
         self.gameState = .NORMAL
         self.gameScore = GameScore()
