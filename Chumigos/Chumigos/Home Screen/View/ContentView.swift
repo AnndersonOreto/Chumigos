@@ -22,13 +22,13 @@ struct ContentView: View {
                     Text("Trilha")
                 }
 
-                NavigationLink(destination: SequenceGameView(gameDifficulty: .medium)) {
-                    Text("Jogo da Sequencia")
-                }
-                
-                NavigationLink(destination: ShapeGameView(gameDifficulty: .medium)) {
-                    Text("Jogo da Forma")
-                }
+//                NavigationLink(destination: SequenceGameView(gameDifficulty: .medium)) {
+//                    Text("Jogo da Sequencia")
+//                }
+//                
+//                NavigationLink(destination: ShapeGameView(gameDifficulty: .medium)) {
+//                    Text("Jogo da Forma")
+//                }
                 NavigationLink(destination: ConfigurationView()) {
                     Text("Settings")
                 }

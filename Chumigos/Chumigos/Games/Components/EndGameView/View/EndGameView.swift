@@ -15,6 +15,8 @@ struct EndGameView: View {
     @ObservedObject var progressViewModel: ProgressBarViewModel = ProgressBarViewModel(questionAmount: 5)
     var dismissGame: (() -> Void)
     var restartGame: (() -> Void)
+    var game: GameObject
+    let gameScore: Int
     
     // MARK: - Drawing Contants
     
@@ -43,10 +45,15 @@ struct EndGameView: View {
                         .resizable().frame(width: screenWidth * 0.245, height: screenWidth * 0.245, alignment: .center)
                                         
                     // Label
-                    Text("Parabéns! Você terminou a tarefa!")
+                    HStack {
+                        Text("Parabéns! Você terminou a tarefa!")
                         .foregroundColor(Color.textColor)
                         .dynamicFont(name: fontName, size: 28, weight: .bold)
-                        .padding(.top, screenWidth * 0.03)
+                        Text("+\(self.gameScore)XP")
+                        .foregroundColor(Color.Lion)
+                        .dynamicFont(name: fontName, size: 24, weight: .medium)
+                    }
+                    .padding(.top, screenWidth * 0.03)
                     
                 }
                 // Arte
@@ -54,7 +61,7 @@ struct EndGameView: View {
                 Spacer()
                 // Simbolo da trilha
                                 
-                TrailTile(game: GameObject(gameType: .pattern, gameName: ""))
+                TrailTile(game: game)
 
                 Spacer()
                 

@@ -24,6 +24,7 @@ struct ShapeGameView: View {
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
+    var game: GameObject
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.round.count > 9 ? 0.067 : 0.078
@@ -32,8 +33,9 @@ struct ShapeGameView: View {
     
     @ObservedObject var viewModel: ShapeGameViewModel
     
-    init(gameDifficulty: Difficulty) {
+    init(gameDifficulty: Difficulty, game: GameObject) {
         self.viewModel = ShapeGameViewModel(difficulty: gameDifficulty)
+        self.game = game
     }
     
     var body: some View {
@@ -162,7 +164,7 @@ struct ShapeGameView: View {
                 }.blur(radius: self.showPopUp ? 16 : 0)
                 
             } else {
-                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
+                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame, game: self.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {
@@ -290,8 +292,8 @@ extension ShapeGameView {
 
 
 
-struct ShapeGameNewView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShapeGameView(gameDifficulty: Difficulty.medium)
-    }
-}
+//struct ShapeGameNewView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ShapeGameView(gameDifficulty: Difficulty.medium)
+//    }
+//}

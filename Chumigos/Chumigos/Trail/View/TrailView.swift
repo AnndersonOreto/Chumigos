@@ -42,7 +42,7 @@ struct TrailView: View {
                                     HStack(spacing: self.screenWidth * 0.06) {
                                         Spacer()
                                         ForEach(line, id: \.self) { game in
-                                            NavigationLink(destination: GamesView(gameName: game.gameName)) {
+                                            NavigationLink(destination: GamesView(game: game)) {
                                                 TrailTile(game: game)
                                             }.buttonStyle(PlainButtonStyle())
                                         }
