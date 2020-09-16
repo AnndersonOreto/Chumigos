@@ -16,6 +16,9 @@ class AvatarGameViewModel: ObservableObject {
     @Published var mouthImage: String = ""
     @Published var eyebrowImage: String = ""
     
+    var gameState: GameState = .NORMAL
+    var gameScore: GameScore = GameScore()
+    
     private static func createAvatarGame() -> AvatarGameModel {
         return AvatarGameModel()
     }
@@ -62,6 +65,19 @@ class AvatarGameViewModel: ObservableObject {
         eyeImage =  ""
         mouthImage = ""
         eyebrowImage = ""
+        self.gameScore = GameScore()
+    }
+    
+    func changeGameScore() {
+        if self.faceIsCorrect() {
+            if self.gameState == .NORMAL {
+                self.gameScore.incrementDefaultScore()
+            } else {
+                self.gameScore.incrementRecapScore()
+            }
+        } else {
+            self.gameScore.disableStreak()
+        }
     }
     
 }

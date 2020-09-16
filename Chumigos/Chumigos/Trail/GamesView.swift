@@ -21,10 +21,14 @@ extension GamesView {
     // Decides which game to show based on the game's name
     func showGame() -> AnyView {
         switch gameName {
-        case GameNames.sequenceGameName:
-            return AnyView(SequenceGameView())
-        case GameNames.shapeGameName:
-            return AnyView(ShapeGameView())
+        case GameNames.sequenceGameName1:
+            return AnyView(SequenceGameView(gameDifficulty: .easy))
+        case GameNames.shapeGameName1:
+            return AnyView(ShapeGameView(gameDifficulty: .easy))
+        case GameNames.sequenceGameName2:
+            return AnyView(SequenceGameView(gameDifficulty: .medium))
+        case GameNames.shapeGameName2:
+            return AnyView(ShapeGameView(gameDifficulty: .medium))
         default:
             return AnyView(EmptyView())
         }
@@ -33,6 +37,6 @@ extension GamesView {
 
 struct GamesView_Previews: PreviewProvider {
     static var previews: some View {
-        GamesView(gameName: GameNames.sequenceGameName)
+        GamesView(gameName: GameNames.sequenceGameName1)
     }
 }

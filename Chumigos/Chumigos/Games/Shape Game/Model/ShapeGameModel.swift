@@ -26,7 +26,7 @@ struct ShapeGameModel {
     
     // MARK: - Init
     
-    init(difficulty: Difficulty = .easy) {
+    init(difficulty: Difficulty) {
         self.difficulty = difficulty
         randomColors = Color.getRandomColors(amount: amount)
         generateRound()
@@ -49,7 +49,7 @@ struct ShapeGameModel {
         self.alternatives = []
         self.questions = []
         self.round = []
-        self.changeDifficulty()
+       // self.changeDifficulty()
         generateRound()
         generateQuestions()
         generateAlternatives()

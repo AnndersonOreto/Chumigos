@@ -20,10 +20,12 @@ struct GameObject: Hashable, Codable {
     let gameType: GameType
     let gameName: String
     var isAvailable = false
-    var isCompleted = false
+    var isCompleted: Bool {
+        percetageCompleted == 1
+    }
     
     //Game Progress
-    let maxProgress: Float = 50
+    let maxProgress: Float = 100
     var currentProgress: Float = 0
     var percetageCompleted: Float {
         currentProgress / maxProgress

@@ -69,6 +69,7 @@
 		AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB07C25000F62009E8A67 /* MainView.swift */; };
 		AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33B3502502B2840042F5BA /* AvatarGameView.swift */; };
 		AB4E9487250AC46C00B7B0E8 /* LogguinhoFeelingsClassifier.mlproj in Resources */ = {isa = PBXBuildFile; fileRef = AB4E9486250AC46C00B7B0E8 /* LogguinhoFeelingsClassifier.mlproj */; };
+		AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69C21125127FD800DF4E38 /* GameScore.swift */; };
 		AB6E8ABA25095B160048345D /* AvatarGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */; };
 		AB6E8ABC250969CE0048345D /* customRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */; };
 		AB6EFEF8250157F8009A1705 /* Light_Dark_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */; };
@@ -174,6 +175,7 @@
 		AB0EB07C25000F62009E8A67 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		AB33B3502502B2840042F5BA /* AvatarGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameView.swift; sourceTree = "<group>"; };
 		AB4E9486250AC46C00B7B0E8 /* LogguinhoFeelingsClassifier.mlproj */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LogguinhoFeelingsClassifier.mlproj; sourceTree = "<group>"; };
+		AB69C21125127FD800DF4E38 /* GameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScore.swift; sourceTree = "<group>"; };
 		AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameViewModel.swift; sourceTree = "<group>"; };
 		AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customRoundedCorners.swift; sourceTree = "<group>"; };
 		AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light_Dark_Colors.swift; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 				AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */,
 				AA9C8EC325015C9E0080B06E /* DynamicFont.swift */,
 				AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */,
+				AB69C21125127FD800DF4E38 /* GameScore.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -682,8 +685,8 @@
 		E7FDEB8724C2312A008DDAEB /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				AB33B34C2502B2400042F5BA /* Avatar Game */,
 				AA48142724EB1D1F00134024 /* Components */,
+				AB33B34C2502B2400042F5BA /* Avatar Game */,
 				AA865AF124E5ABE60066BF2A /* Sequence Game */,
 				AA865AF524E5AC110066BF2A /* Shape Game */,
 			);
@@ -869,6 +872,7 @@
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
 				2623AC4225015EA9002A24A0 /* ConfigurationView.swift in Sources */,
 				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
+				AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */,
 				AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */,
 				AB6EFEF8250157F8009A1705 /* Light_Dark_Colors.swift in Sources */,
 				ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */,
