@@ -18,10 +18,6 @@ struct ContentView: View {
         NavigationView {
             VStack {
 
-                NavigationLink(destination: TrailView()) {
-                    Text("Trilha")
-                }
-
                 NavigationLink(destination: SequenceGameView(gameDifficulty: .medium)) {
                     Text("Jogo da Sequencia")
                 }

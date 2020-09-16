@@ -19,13 +19,16 @@ struct MainView: View {
     private var screenWidth = UIScreen.main.bounds.width
     @State private var currentTab: TabItem = .trail
     @State private var showPopUp = false
+    @State var isTabBarActive: Bool = true
     
     var body: some View {
         ZStack {
             Color.background.edgesIgnoringSafeArea(.all)
             Group {
                 showView()
-                tabBar()
+                if isTabBarActive {
+                    tabBar()
+                }
             }
         }
     }
@@ -127,7 +130,7 @@ extension MainView {
             //Mostrar perfil
             return AnyView(ConfigurationView())
         case .trail:
-            return AnyView(TrailView())
+            return AnyView(TrailView(isTabBarActive: $isTabBarActive))
         case .achievements:
             //coroa
             return AnyView(EmptyView())
