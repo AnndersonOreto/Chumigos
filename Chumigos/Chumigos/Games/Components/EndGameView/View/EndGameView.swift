@@ -39,7 +39,6 @@ struct EndGameView: View {
                 
                 Spacer()
                 
-                
                     Image(Int.random(in: 0...1) == 0 ? "endgame1" : "endgame2")
                         .resizable().frame(width: screenWidth * 0.29, height: screenWidth * 0.30, alignment: .center)
                                         
