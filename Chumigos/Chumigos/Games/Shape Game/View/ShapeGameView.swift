@@ -31,10 +31,8 @@ struct ShapeGameView: View {
     }
     
     @ObservedObject var viewModel: ShapeGameViewModel
-    var gameDifficulty: Difficulty
     
     init(gameDifficulty: Difficulty) {
-        self.gameDifficulty = gameDifficulty
         self.viewModel = ShapeGameViewModel(difficulty: gameDifficulty)
     }
     
@@ -203,6 +201,8 @@ struct ShapeGameView: View {
         let index = self.progressViewModel.currentQuestion
         
         self.viewModel.verifyWrongQuestion(index: index)
+        
+        self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
             self.viewModel.gameState = .RECAP

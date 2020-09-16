@@ -13,6 +13,7 @@ class SequenceGameViewModel: ObservableObject {
     let difficulty: Difficulty
     var wrongAnswersArray: [(SequenceGameModel, Int)] = []
     var gameState: GameState = GameState.NORMAL
+    var gameScore: GameScore = GameScore()
     
     init(difficulty: Difficulty) {
         self.difficulty = difficulty
@@ -94,9 +95,6 @@ class SequenceGameViewModel: ObservableObject {
     
     func removeRecapGame() {
         
-        print("teste2")
-        print(wrongAnswersArray.count)
-        
         if gameState == .RECAP && !wrongAnswersArray.isEmpty {
             wrongAnswersArray.removeFirst()
         }
@@ -122,5 +120,19 @@ class SequenceGameViewModel: ObservableObject {
         self.model = self.createSequenceGame(difficulty: difficulty)
         self.wrongAnswersArray = []
         self.gameState = .NORMAL
+        self.gameScore = GameScore()
+    }
+    
+    
+    func changeGameScore() {
+        if self.allQuestionsAreCorrect() {
+            if self.gameState == .NORMAL {
+                self.gameScore.incrementDefaultScore()
+            } else {
+                self.gameScore.incrementRecapScore()
+            }
+        } else {
+            self.gameScore.disableStreak()
+        }
     }
 }

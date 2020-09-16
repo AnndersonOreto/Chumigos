@@ -33,10 +33,8 @@ struct SequenceGameView: View {
     
     @ObservedObject var viewModel: SequenceGameViewModel
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
-    var gameDifficulty: Difficulty
     
     init(gameDifficulty: Difficulty) {
-        self.gameDifficulty = gameDifficulty
         self.viewModel = SequenceGameViewModel(difficulty: gameDifficulty)
     }
     
@@ -200,6 +198,8 @@ struct SequenceGameView: View {
         let index = self.progressViewModel.currentQuestion
         
         self.viewModel.verifyWrongQuestion(index: index)
+        
+        self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
             self.viewModel.gameState = .RECAP
