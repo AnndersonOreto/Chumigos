@@ -197,6 +197,8 @@ struct ShapeGameView: View {
         
         self.viewModel.verifyWrongQuestion(index: index)
         
+        self.viewModel.changeGameScore()
+        
         if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
             self.viewModel.gameState = .RECAP
         }

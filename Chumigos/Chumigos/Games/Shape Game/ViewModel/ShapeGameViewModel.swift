@@ -13,6 +13,7 @@ class ShapeGameViewModel: ObservableObject {
     @Published var model = createShapeGame()
     var wrongAnswersArray: [(ShapeGameModel, Int)] = []
     var gameState: GameState = GameState.NORMAL
+    var gameScore: GameScore = GameScore()
     
     private static func createShapeGame() -> ShapeGameModel {
         return ShapeGameModel(difficulty: .medium)
@@ -117,5 +118,18 @@ class ShapeGameViewModel: ObservableObject {
         self.model = ShapeGameViewModel.createShapeGame()
         self.wrongAnswersArray = []
         self.gameState = .NORMAL
+        self.gameScore = GameScore()
+    }
+    
+    func changeGameScore() {
+        if self.allQuestionsAreCorrect() {
+            if self.gameState == .NORMAL {
+                self.gameScore.incrementDefaultScore()
+            } else {
+                self.gameScore.incrementRecapScore()
+            }
+        } else {
+            self.gameScore.disableStreak()
+        }
     }
 }
