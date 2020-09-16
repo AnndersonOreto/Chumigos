@@ -75,7 +75,7 @@ class TrailViewModel: ObservableObject {
     static func mockSections() -> [TrailSection] {
         let linha1 = [GameObject(gameType: .pattern, gameName: GameNames.sequenceGameName)]
 
-        let linha2 = [GameObject(gameType: .pattern, gameName: GameNames.shapeGameName), GameObject(gameType: .abstraction, gameName: "Abstraction")]
+        let linha2 = [GameObject(gameType: .pattern, gameName: GameNames.shapeGameName, isCompleted: true), GameObject(gameType: .abstraction, gameName: "Abstraction")]
 
         let linha3 = [GameObject(gameType: .algorithm, gameName: "Algorithm"), GameObject(gameType: .decomposition, gameName: "Decomposition"), GameObject(gameType: .abstraction, gameName: "Abstraction")]
 

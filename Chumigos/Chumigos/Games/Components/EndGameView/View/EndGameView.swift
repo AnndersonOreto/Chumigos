@@ -11,6 +11,7 @@ import SwiftUI
 struct EndGameView: View {
     
     // MARK: - View Model
+    var gameType: GameType
     
     @ObservedObject var progressViewModel: ProgressBarViewModel = ProgressBarViewModel(questionAmount: 5)
     var dismissGame: (() -> Void)
@@ -38,7 +39,7 @@ struct EndGameView: View {
                 
                 Spacer()
                 
-                Group {
+                
                     Image(Int.random(in: 0...1) == 0 ? "endgame1" : "endgame2")
                         .resizable().frame(width: screenWidth * 0.29, height: screenWidth * 0.30, alignment: .center)
                                         
@@ -47,12 +48,12 @@ struct EndGameView: View {
                         .foregroundColor(Color.textColor)
                         .dynamicFont(name: fontName, size: 28, weight: .bold)
                         .padding(.top, screenWidth * 0.03)
-                    
-                }                    
+                                  
                 // Simbolo da trilha
-                                
-                TrailTile(game: GameObject(gameType: .pattern, gameName: "")).padding(.top, 0.016)
-
+                Spacer()
+                
+                TrailTile(game: GameObject(gameType: gameType, gameName: "", isAvailable: true), isEndGame: true)
+                
                 Spacer()
                 
                 // Inicio
