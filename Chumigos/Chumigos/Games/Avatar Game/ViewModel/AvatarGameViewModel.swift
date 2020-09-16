@@ -49,7 +49,15 @@ class AvatarGameViewModel: ObservableObject {
         return eyeSelected && eyebrownSelected && mouthSelected
     }
     
-    func nextRound() {
+    func faceIsCorrect() -> Bool {
+        return model.verifyFace()
+    }
+    
+    func getRecapIndex() -> Int {
+        return -1
+    }
+    
+    func resetGame() {
         model = AvatarGameViewModel.createAvatarGame()
         eyeImage =  ""
         mouthImage = ""
