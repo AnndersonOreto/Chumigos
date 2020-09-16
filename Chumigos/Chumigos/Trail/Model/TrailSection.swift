@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct TrailSection: Identifiable {
+struct TrailSection: Identifiable, Codable {
     
-    // MARK: - Variables
+    // MARK: - Variable(s)
     
     var id = UUID()
     private(set) var available: Bool
@@ -22,6 +22,7 @@ struct TrailSection: Identifiable {
     }
     
     // MARK: - Init
+    
     init(available: Bool, trail: [[GameObject]]) {
         self.available = available
         self.trail = trail

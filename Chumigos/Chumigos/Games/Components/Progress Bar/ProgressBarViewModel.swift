@@ -17,10 +17,12 @@ class ProgressBarViewModel: ObservableObject {
     
     @Published var progressStatusList: [Color] = []
     @Published var currentQuestion: Int = 0
+    private let questionAmount: Int
     
     init(questionAmount: Int) {
         
-        progressStatusList = [Color](repeating: Color.Swan, count: questionAmount)
+        progressStatusList = [Color](repeating: Color.progressBar, count: questionAmount)
+        self.questionAmount = questionAmount
     }
     
     func incrementQuestion() {
@@ -33,7 +35,6 @@ class ProgressBarViewModel: ObservableObject {
     
     func checkAnswer(isCorrect: Bool, nextIndex: Int) {
         
-        print("teste2 \(nextIndex) \(currentQuestion)")
         // Mark current question as green if it is right
         if isCorrect {
             self.progressStatusList[currentQuestion] = Color.TreeFrog
@@ -49,5 +50,10 @@ class ProgressBarViewModel: ObservableObject {
         } else {
             currentQuestion = nextIndex
         }
+    }
+    
+    func restartProgressBar() {
+        self.progressStatusList = [Color](repeating: Color.Swan, count: questionAmount)
+        self.currentQuestion = 0
     }
 }

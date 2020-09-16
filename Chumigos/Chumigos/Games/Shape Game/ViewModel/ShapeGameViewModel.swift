@@ -10,11 +10,11 @@ import SwiftUI
 
 class ShapeGameViewModel: ObservableObject {
     
-    @Published var model = createSequenceGame()
+    @Published var model = createShapeGame()
     var wrongAnswersArray: [(ShapeGameModel, Int)] = []
     var gameState: GameState = GameState.NORMAL
     
-    private static func createSequenceGame() -> ShapeGameModel {
+    private static func createShapeGame() -> ShapeGameModel {
         return ShapeGameModel(difficulty: .medium)
     }
     
@@ -76,7 +76,7 @@ class ShapeGameViewModel: ObservableObject {
         if gameState == .NORMAL {
             
             // Restart game by creating another instance of SequenceGameModel
-            model = ShapeGameViewModel.createSequenceGame()
+            model = ShapeGameViewModel.createShapeGame()
         } else {
             
             if wrongAnswersArray.isEmpty { return }
@@ -106,7 +106,16 @@ class ShapeGameViewModel: ObservableObject {
                 model.vacateQuestion(with: i)
             }
             
-            wrongAnswersArray.append((model, index))
+            //To limit recap try to only one time
+            if gameState ==  .NORMAL {
+                wrongAnswersArray.append((model, index))
+            }
         }
+    }
+    
+    func restartGame() {
+        self.model = ShapeGameViewModel.createShapeGame()
+        self.wrongAnswersArray = []
+        self.gameState = .NORMAL
     }
 }

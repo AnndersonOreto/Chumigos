@@ -13,6 +13,13 @@ struct SequenceGameView: View {
     @ObservedObject var viewModel = SequenceGameViewModel()
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 2)
     
+    
+    let hapticManager = HapticManager()
+    @State var generateHapticFeedback: Bool = false
+    
+    let generator = UINotificationFeedbackGenerator()
+    
+    
     // Save the rects of all the questions
     @State private var questionsFrames: [(question: Question, rect: CGRect)] = []
     // Variable to know which alternative is being dragged
@@ -20,6 +27,8 @@ struct SequenceGameView: View {
     // Variable to know if the button is pressed or not
     @State var buttonIsPressed: Bool = false
     @State var isFinished: Bool = false
+    @State var showPopUp: Bool = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
@@ -28,6 +37,7 @@ struct SequenceGameView: View {
     
     var body: some View {
         ZStack {
+            Color.background.edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
                 if buttonIsPressed {
@@ -36,108 +46,117 @@ struct SequenceGameView: View {
                 }
             }
             
-            VStack(spacing: 0) {
-                
-                ProgressBarView(viewModel: progressViewModel)
-                    .padding(.top, screenWidth * 0.015)
-                
-                Spacer()
-                
-                
-                HStack(spacing: 0) {
-                    ForEach(viewModel.sequence) { element in
-                        self.pieceView(for: element)
-                    }
-                }
-                
-                Text("Complete a sequência arrastando as peças abaixo:")
-                    .foregroundColor(Color.Eel)
-                    .font(.custom(fontName, size: screenWidth * 0.016)).fontWeight(.medium)
-                    .padding(.top, screenWidth * 0.07)
-                
-                HStack(spacing: screenWidth * 0.036) {
-                    ForEach(viewModel.alternatives) { (alternative) in
-                        ZStack{
-                            //Underlay tile with opacity
-                            Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
-                                .alternativeBackground(size: self.tileSize)
+            if !self.isFinished {
+                Group{
+                    VStack(spacing: 0) {
+                        
+                        ZStack {
+                            if !isFinished {
+                                HStack {
+                                    Button(action: {
+                                        self.showPopUp = true
+                                    }) {
+                                        Image(systemName: "xmark")
+                                            .dynamicFont(name: fontName, size: 34, weight: .bold)
+                                            .foregroundColor(.xMark)
+                                    }.buttonStyle(PlainButtonStyle())
+                                    
+                                    Spacer()
+                                }.padding(.leading, screenWidth*0.0385)
+                            }
                             
-                            Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
-                                .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
-                            
+                            HStack {
+                                ProgressBarView(viewModel: progressViewModel)
+                            }
+                        }.padding(.top, screenWidth * 0.015)
+                        
+                        Spacer()
+                        
+                        
+                        HStack(spacing: 0) {
+                            ForEach(viewModel.sequence) { element in
+                                self.pieceView(for: element)
+                            }
+                        }.allowsHitTesting(buttonIsPressed ? false : true)
+
+                        
+                        Text("Complete a sequência arrastando as peças abaixo:")
+                            .foregroundColor(.textColor)
+                            .dynamicFont(name: fontName, size: 20, weight: .medium)
+                            .padding(.top, screenWidth * 0.07)
+                        
+                        HStack(spacing: screenWidth * 0.036) {
+                            ForEach(viewModel.alternatives) { (alternative) in
+                                ZStack{
+                                    //Underlay tile with opacity
+                                    Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
+                                        .alternativeBackground(size: self.tileSize)
+                                    
+                                    Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
+                                        .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
+                                    
+                                }
+                                    // Make tile that is being drag appears on top
+                                    .zIndex(self.alternativeBeingDragged == alternative.value ? 1 : 0)
+                            }
+                        }.padding(.top, screenWidth * 0.03)
+                        .allowsHitTesting(buttonIsPressed ? false : true)
+                        
+                        Spacer()
+                        
+                        ZStack {
+                            //Continue Button
+                            if buttonIsPressed {
+                                Button(action: {
+                                    self.confirmQuestion()
+                                }) {
+                                    Text("Continuar")
+                                        .dynamicFont(name: fontName, size: 20, weight: .bold)
+                                }.buttonStyle(
+                                    viewModel.allQuestionsAreCorrect() ?
+                                        //correct answer
+                                        GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
+                                        //wrong answer
+                                        GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
+                                    .padding(.bottom, 10)
+                            }
+                            else {
+                                //Confirm Button
+                                Button(action: {
+                                    self.buttonIsPressed = true
+                                }) {
+                                    Text("Confirmar")
+                                        .dynamicFont(name: fontName, size: 20, weight: .bold)
+                                }
+                                .buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
+                                .disabled(!self.viewModel.allQuestionsAreOccupied())
+                                .padding(.bottom, 10)
+                                   
+                            }
                         }
-                            // Make tile that is being drag appears on top
-                            .zIndex(self.alternativeBeingDragged == alternative.value ? 1 : 0)
                     }
-                }.padding(.top, screenWidth * 0.03)
-                
-                Spacer()
-                
-                NavigationLink(destination: EndGameView(progressViewModel: progressViewModel), isActive: self.$isFinished, label: {
-                    EmptyView()
-                })
-                
-                ZStack {
-                    //Continue Button
-                    if buttonIsPressed {
-                        Button(action: {
-                            self.buttonIsPressed = false
-                            let index = self.progressViewModel.currentQuestion
-                            
-                            if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
-                                self.viewModel.gameState = .RECAP
-                            }
-                            
-                            self.viewModel.verifyWrongQuestion(index: index)
-                            
-                            withAnimation(.linear(duration: 0.3)) {
-                                self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
-                            }
-                            self.questionsFrames = []
-                            self.viewModel.resetGame(index: index)
-                            
-                            if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
-                                self.isFinished = true
-                                self.progressViewModel.currentQuestion = -1
-                            }
-                            self.viewModel.removeRecapGame()
-                        }) {
-                            Text("Continuar")
-                                .font(.custom(fontName, size: 20)).bold()
-                        }.buttonStyle(
-                            viewModel.allQuestionsAreCorrect() ?
-                                //correct answer
-                            GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
-                                //wrong answer
-                                GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
-                            .padding(.bottom, 10)
+                    // Correct/Wrong Icons of which Question
+                    ForEach(viewModel.questions) { (question) in
+                        GeometryReader { geometry in
+                            Image(question.isCorrect ? "correct-icon" : "wrong-icon")
+                                .resizable()
+                                .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
+                                .offset(self.findOffset(for: question, geometry: geometry))
+                                .opacity(self.buttonIsPressed ? 1 : 0)
+                        }
                     }
-                    else {
-                        //Confirm Button
-                        Button(action: {
-                            self.buttonIsPressed = true
-                        }) {
-                            Text("Confirmar")
-                                .font(.custom(fontName, size: 20)).bold()
-                        }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
-                            .disabled(!self.viewModel.allQuestionsAreOccupied())
-                            .padding(.bottom, 10)
-                    }
-                }
+                }.blur(radius: self.showPopUp ? 16 : 0)
+                
+            } else {
+                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
             }
             
-
-            // Correct/Wrong Icons of which Question
-            ForEach(viewModel.questions) { (question) in
-                GeometryReader { geometry in
-                    Image(question.isCorrect ? "correct-icon" : "wrong-icon")
-                    .resizable()
-                    .frame(width: self.tileSize.width*0.46, height: self.tileSize.width*0.46)
-                    .offset(self.findOffset(for: question, geometry: geometry))
-                    .opacity(self.buttonIsPressed ? 1 : 0)
-                }
+            if self.showPopUp {
+                ExitGamePopUp(showPopUp: self.$showPopUp, dismissGame: self.dismissGame)
             }
-        }.navigationBarTitle("")
+            
+            }
+        .navigationBarTitle("")
         .navigationBarHidden(true)
     }
     
@@ -155,6 +174,42 @@ struct SequenceGameView: View {
             return CGSize(width: x, height: y)
         }
         return CGSize.zero
+    }
+    
+    func dismissGame() {
+        
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
+    func restartGame() {
+        self.viewModel.restartGame()
+        self.questionsFrames = []
+        self.isFinished = false
+        self.progressViewModel.restartProgressBar()
+    }
+    
+    func confirmQuestion() {
+        
+        self.buttonIsPressed = false
+        let index = self.progressViewModel.currentQuestion
+        
+        self.viewModel.verifyWrongQuestion(index: index)
+        
+        if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+            self.viewModel.gameState = .RECAP
+        }
+        
+        withAnimation(.linear(duration: 0.3)) {
+            self.progressViewModel.checkAnswer(isCorrect: self.viewModel.allQuestionsAreCorrect(), nextIndex: self.viewModel.getRecapIndex())
+        }
+        self.questionsFrames = []
+        self.viewModel.resetGame(index: index)
+        
+        if self.viewModel.wrongAnswersArray.isEmpty && self.viewModel.gameState == .RECAP {
+            self.isFinished = true
+            self.progressViewModel.currentQuestion = -1
+        }
+        self.viewModel.removeRecapGame()
     }
     
     // MARK: - Drag & Drops Functions

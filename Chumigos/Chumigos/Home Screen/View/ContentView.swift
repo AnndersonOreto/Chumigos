@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SpriteKit
+import CoreData
 
 struct ContentView: View {
     
@@ -16,6 +17,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
+
+                NavigationLink(destination: TrailView()) {
+                    Text("Trilha")
+                }
+
                 NavigationLink(destination: SequenceGameView()) {
                     Text("Jogo da Sequencia")
                 }
@@ -23,13 +29,14 @@ struct ContentView: View {
                 NavigationLink(destination: ShapeGameView()) {
                     Text("Jogo da Forma")
                 }
-                
-                NavigationLink(destination: EndGameView()) {
-                    Text("EndGame")
+                NavigationLink(destination: ConfigurationView()) {
+                    Text("Settings")
                 }
             }
         }.navigationViewStyle(StackNavigationViewStyle())
+        
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

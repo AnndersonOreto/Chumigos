@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "26C186BB24BE4AA50094AEC1"
-               BuildableName = "Chumigos.app"
-               BlueprintName = "Chumigos"
-               ReferencedContainer = "container:Chumigos.xcodeproj">
+               BuildableName = "Loggio.app"
+               BlueprintName = "Loggio"
+               ReferencedContainer = "container:Loggio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "26C186D424BE4AA70094AEC1"
-               BuildableName = "ChumigosTests.xctest"
-               BlueprintName = "ChumigosTests"
-               ReferencedContainer = "container:Chumigos.xcodeproj">
+               BuildableName = "LoggioTests.xctest"
+               BlueprintName = "LoggioTests"
+               ReferencedContainer = "container:Loggio.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "26C186DF24BE4AA70094AEC1"
-               BuildableName = "ChumigosUITests.xctest"
-               BlueprintName = "ChumigosUITests"
-               ReferencedContainer = "container:Chumigos.xcodeproj">
+               BuildableName = "LoggioUITests.xctest"
+               BlueprintName = "LoggioUITests"
+               ReferencedContainer = "container:Loggio.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "26C186BB24BE4AA50094AEC1"
-            BuildableName = "Chumigos.app"
-            BlueprintName = "Chumigos"
-            ReferencedContainer = "container:Chumigos.xcodeproj">
+            BuildableName = "Loggio.app"
+            BlueprintName = "Loggio"
+            ReferencedContainer = "container:Loggio.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "26C186BB24BE4AA50094AEC1"
-            BuildableName = "Chumigos.app"
-            BlueprintName = "Chumigos"
-            ReferencedContainer = "container:Chumigos.xcodeproj">
+            BuildableName = "Loggio.app"
+            BlueprintName = "Loggio"
+            ReferencedContainer = "container:Loggio.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

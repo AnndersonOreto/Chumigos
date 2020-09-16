@@ -17,13 +17,13 @@ struct AlternativeBackground: ViewModifier {
             content
             //BackgroundStroke
             Rectangle()
-                .fill(Color.white)
+                .fill(Color.background)
                 .opacity(0.75)
                 .frame(width: self.size.width * 1.42, height: self.size.width * 1.42)
                 .overlay(
                     RoundedRectangle(cornerRadius: 18)
                         .offset(y: 4.5)
-                        .stroke(Color.Hare, lineWidth: 2)
+                        .stroke(Color.optionBorder, lineWidth: 2)
             )
         }
     }

@@ -6,13 +6,13 @@
 //  Copyright © 2020 Annderson Packeiser Oreto. All rights reserved.
 //
 
-enum GameType {
+enum GameType: Int, Codable {
     case pattern, algorithm, decomposition, abstraction
 }
 
 import Foundation
 
-struct GameObject: Hashable {
+struct GameObject: Hashable, Codable {
     
     // MARK: - Variables & Constants
     
@@ -23,8 +23,11 @@ struct GameObject: Hashable {
     var isCompleted = false
     
     //Game Progress
-    let maxProgress: Int = 50
-    var currentProgress: Int = 0
+    let maxProgress: Float = 50
+    var currentProgress: Float = 0
+    var percetageCompleted: Float {
+        currentProgress / maxProgress
+    }
     
     //Game Status
     var alreadyPlayed: Bool {
