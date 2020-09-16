@@ -15,7 +15,7 @@ struct EndGameView: View {
     @ObservedObject var progressViewModel: ProgressBarViewModel = ProgressBarViewModel(questionAmount: 5)
     var dismissGame: (() -> Void)
     var restartGame: (() -> Void)
-    var game: GameObject
+    @State var game: GameObject
     let gameScore: Int
     
     // MARK: - Drawing Contants
@@ -62,7 +62,14 @@ struct EndGameView: View {
                 // Simbolo da trilha
                                 
                 TrailTile(game: game)
-
+                    .animation(Animation.easeInOut(duration: 2).delay(1))
+                    .onAppear{
+                        self.game.increaseCurrentProgress(Float(self.gameScore))
+                        #warning("o chumiga nao curtiu, mais alem a gente muda")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            self.game.changeIsCompleted()
+                        }
+                    }
                 Spacer()
                 
                 // Inicio

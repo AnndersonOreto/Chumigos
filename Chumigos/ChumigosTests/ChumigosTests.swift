@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Chumigos
+@testable import Loggio
 
 class ChumigosTests: XCTestCase {
 
