@@ -110,6 +110,11 @@ class AvatarGameModel {
         
         return parts
     }
+    
+    // TODO: - add machine learning to verify if face is correct
+    func verifyFace() -> Bool {
+        return true
+    }
 }
 
 

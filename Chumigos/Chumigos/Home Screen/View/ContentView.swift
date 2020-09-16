@@ -18,11 +18,11 @@ struct ContentView: View {
         NavigationView {
             VStack {
 
-                NavigationLink(destination: SequenceGameView()) {
+                NavigationLink(destination: SequenceGameView(gameDifficulty: .medium)) {
                     Text("Jogo da Sequencia")
                 }
                 
-                NavigationLink(destination: ShapeGameView()) {
+                NavigationLink(destination: ShapeGameView(gameDifficulty: .medium)) {
                     Text("Jogo da Forma")
                 }
                 NavigationLink(destination: ConfigurationView()) {
