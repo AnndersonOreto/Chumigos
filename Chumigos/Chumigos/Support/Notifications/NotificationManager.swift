@@ -130,7 +130,7 @@ class NotificationManager {
     }
     
     func registerForPushNotifications() {
-        UserDefaults.standard.set(true, forKey: "loggio_vibration")
+        UserDefaults.standard.set(true, forKey: "loggio_notification")
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {
                 [weak self] granted, error in
