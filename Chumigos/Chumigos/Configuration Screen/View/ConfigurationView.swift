@@ -26,7 +26,6 @@ struct ConfigurationView: View {
     // MARK: - Drawing Contants
     @State var toggleNotifications: Bool = false
     @State var toggleVibration: Bool = false
-    //    @State var toggleDarkMode: Bool = SceneDelegate.shared?.window!.overrideUserInterfaceStyle
     @State var togglePreferences: Bool = false
     @State var sliderDynamicType: Double = 50.0
     @State var isAlert: Bool = false
@@ -128,11 +127,6 @@ struct ConfigurationView: View {
                         .onAppear {
                             UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                         }.padding(.horizontal, 1)
-//                        .alert(isPresented: $isAlert) { () -> Alert in
-//                            Alert(title: Text("Notifications"), message: Text("Open settings to turn on notifications."), primaryButton: .default(Text("Open Settings"), action: {
-//                                self.notificationManager.openNotificationSettings()
-//                            }), secondaryButton: .default(Text("Dismiss")))
-//                        }
                         
                         // Switch theme
                         VStack(alignment: .leading) {
@@ -291,9 +285,6 @@ struct ConfigurationView: View {
                 //TODO
                 if !$0 {
                     self.isAlert = false
-//                    DispatchQueue.main.async {
-//                        UIApplication.shared.unregisterForRemoteNotifications()
-//                    }
                     UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                     UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                     UserDefaults.standard.set(false, forKey: "loggio_notification")
