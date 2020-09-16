@@ -49,9 +49,9 @@ struct EndGameView: View {
                         .dynamicFont(name: fontName, size: 28, weight: .bold)
                         .padding(.top, screenWidth * 0.03)
                                   
-                // Simbolo da trilha
                 Spacer()
-                
+
+                // Simbolo da trilha
                 TrailTile(game: GameObject(gameType: gameType, gameName: "", isAvailable: true), isEndGame: true)
                 
                 Spacer()
