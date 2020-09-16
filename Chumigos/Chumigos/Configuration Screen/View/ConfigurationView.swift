@@ -324,7 +324,20 @@ struct ConfigurationView: View {
                 }
                 else {
                     self.isAlert = true
-                    UserDefaults.standard.set(true, forKey: "loggio_notification")
+                    let current = UNUserNotificationCenter.current()
+
+                    current.getNotificationSettings(completionHandler: { (settings) in
+                        if settings.authorizationStatus == .notDetermined {
+                            // Notification permission has not been asked yet, go for it!
+                            UserDefaults.standard.set(false, forKey: "loggio_vibration")
+                        } else if settings.authorizationStatus == .denied {
+                            // Notification permission was previously denied, go to settings & privacy to re-enable
+                            UserDefaults.standard.set(false, forKey: "loggio_vibration")
+                        } else if settings.authorizationStatus == .authorized {
+                            // Notification permission was already granted
+                            UserDefaults.standard.set(true, forKey: "loggio_vibration")
+                        }
+                    })
                 }
                 
         }
