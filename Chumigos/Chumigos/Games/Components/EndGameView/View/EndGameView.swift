@@ -34,13 +34,13 @@ struct EndGameView: View {
                 
                 // Progress Bar
                 ProgressBarView(viewModel: progressViewModel)
-                    .padding(.top, screenWidth * 0.015)
+                    .padding(.vertical, screenWidth * 0.015)
                 
                 Spacer()
                 
                 Group {
-                    Image("fruit-1")
-                        .resizable().frame(width: screenWidth * 0.245, height: screenWidth * 0.245, alignment: .center)
+                    Image(Int.random(in: 0...1) == 0 ? "endgame1" : "endgame2")
+                        .resizable().frame(width: screenWidth * 0.29, height: screenWidth * 0.30, alignment: .center)
                                         
                     // Label
                     Text("Parabéns! Você terminou a tarefa!")
@@ -48,13 +48,10 @@ struct EndGameView: View {
                         .dynamicFont(name: fontName, size: 28, weight: .bold)
                         .padding(.top, screenWidth * 0.03)
                     
-                }
-                // Arte
-                    
-                Spacer()
+                }                    
                 // Simbolo da trilha
                                 
-                TrailTile(game: GameObject(gameType: .pattern, gameName: ""))
+                TrailTile(game: GameObject(gameType: .pattern, gameName: "")).padding(.top, 0.016)
 
                 Spacer()
                 
