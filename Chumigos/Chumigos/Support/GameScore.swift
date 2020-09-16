@@ -21,22 +21,29 @@ class GameScore {
     
     //MARK:- Functions
     
+    /// Increment score for the normal state
     func incrementDefaultScore() {
         
+        //Get the right value for increment
         let incrementValue = streak ? standartScore + streakScore : standartScore
+        
         self.currentScore += incrementValue
+        
         self.activateStreak()
     }
     
+    /// Increment score for the recap state
     func incrementRecapScore() {
         //Streak doesnt count in recap
         self.currentScore += recapScore
     }
     
+    /// Call this if you want start a streak
     func activateStreak() {
         self.streak = true
     }
     
+    /// Call this if you want to break the steak
     func disableStreak() {
         self.streak = false
     }
