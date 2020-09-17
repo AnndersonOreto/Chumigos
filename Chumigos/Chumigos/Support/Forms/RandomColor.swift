@@ -49,6 +49,8 @@ extension Color {
     
     static let SeaSponge = Color(UIColor(red: 0.722, green: 0.949, blue: 0.545, alpha: 1))
     
+    static let Grizzly = Color(UIColor(red: 0.647, green: 0.4, blue: 0.267, alpha: 1))
+    
     // MARK: - Progress/warning colors
     
     static let Fox = Color(UIColor(red: 1, green: 0.588, blue: 0, alpha: 1))
@@ -81,7 +83,7 @@ extension Color {
     
     // MARK: - Random colors
     
-    static let RANDOMIZABLE_COLOR_LIST: [Color] = [TreeFrog, Fox, Crab, Beetle, Whale, Butterfly]
+    static let RANDOMIZABLE_COLOR_LIST: [Color] = [Lion, Crab, Fox, Grizzly, Owl, Macaw, Humpback, Betta, Wolf, Starfish]
     
     // Get single random color
     static func getRandomColor() -> Color {
@@ -92,7 +94,7 @@ extension Color {
     static func getRandomColors(amount: Int) -> [Color] {
         
         // Valid color list
-        var colorList = [TreeFrog, Fox, Crab, Beetle, Whale, Butterfly]
+        var colorList = [Lion, Crab, Fox, Grizzly, Owl, Macaw, Humpback, Betta, Wolf, Starfish]
         
         if amount >= colorList.count {
             
