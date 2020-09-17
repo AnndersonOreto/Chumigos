@@ -74,7 +74,6 @@ struct ShapeGameModel {
                 round.append(ShapeForm(sides: initialNumberOfSides+(value*2), colorIndex: index))
             }
         case .hard:
-            amount = 6
             let range = 3..<6
             var initialNumberOfSides = Int.random(in: range)
             for index in 0..<amount {
