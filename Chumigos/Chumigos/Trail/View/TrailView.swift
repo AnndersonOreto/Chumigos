@@ -17,9 +17,6 @@ struct TrailView: View {
     
     @Binding var isTabBarActive: Bool
     
-    @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var result: FetchedResults<UserData>
-    @Environment(\.managedObjectContext) var moc
-    
     @State var matrixList: [TrailSection] = TrailViewModel.mockSections()
     
     //MARK: - View
@@ -64,6 +61,8 @@ struct TrailView: View {
             .navigationBarHidden(true)
             .onAppear {
                 self.isTabBarActive = true
+                print("ON APPEAR TRAIL VIEW!")
+                self.matrixList = CoreDataService.shared.retrieveMatrixTrail()
             }
             
         }.navigationViewStyle(StackNavigationViewStyle())
@@ -89,29 +88,29 @@ struct TrailView: View {
 //        }
     }
     
-    func saveMatrixTrail() {
-        
-        var user: UserData
-        
-        // Override save on first position to prevent creation of multiple instances
-        if result.count <= 0 {
-            user = UserData(context: self.moc)
-        } else {
-            user = result[0]
-        }
-        
-        let encoder = JSONEncoder()
-        
-        do {
-            user.trail = try encoder.encode(matrixList)
-        } catch {
-            fatalError("fudeu1")
-        }
-        
-        do {
-            try self.moc.save()
-        } catch {
-            fatalError("fudeu2")
-        }
-    }
+//    func saveMatrixTrail() {
+//        
+//        var user: UserData
+//        
+//        // Override save on first position to prevent creation of multiple instances
+//        if result.count <= 0 {
+//            user = UserData(context: self.moc)
+//        } else {
+//            user = result[0]
+//        }
+//        
+//        let encoder = JSONEncoder()
+//        
+//        do {
+//            user.trail = try encoder.encode(matrixList)
+//        } catch {
+//            fatalError("fudeu1")
+//        }
+//        
+//        do {
+//            try self.moc.save()
+//        } catch {
+//            fatalError("fudeu2")
+//        }
+//    }
 }

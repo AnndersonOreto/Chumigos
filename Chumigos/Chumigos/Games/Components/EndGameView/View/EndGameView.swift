@@ -63,10 +63,12 @@ struct EndGameView: View {
                     .animation(Animation.easeInOut(duration: 2).delay(1))
                     .onAppear{
                         self.game.increaseCurrentProgress(Float(self.gameScore))
-                        #warning("o chumiga nao curtiu, mais alem a gente muda")
+                        #warning("O Chumiga não curtiu, mais além a gente muda.")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                             self.game.changeIsCompleted()
                         }
+                        CoreDataService.shared.saveGameObject(self.game)
+                        print("TERMINOU! Salvou game!")
                 }
                 
                 Spacer()
