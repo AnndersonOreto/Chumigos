@@ -103,11 +103,11 @@ struct ShapeGameView: View {
                                 ZStack{
                                     //Underlay tile with opacity
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                    .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
+                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex]).frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
                                         .alternativeBackground(size: self.tileSize)
                                         
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex]), size: self.tileSize)
+                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex]).frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
                                         .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
                                     
                                 }
@@ -270,7 +270,7 @@ extension ShapeGameView {
                 
                 // Generic form to build sided forms
                 Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: piece.sides)
-                .fill(self.viewModel.getRandomColors[piece.colorIndex]), size: self.tileSize)
+                .fill(self.viewModel.getRandomColors[piece.colorIndex]).frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
                 
             } else {
                 
