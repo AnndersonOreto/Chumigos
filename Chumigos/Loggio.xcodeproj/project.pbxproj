@@ -40,12 +40,14 @@
 		26946E9424C76398005A316E /* FormPentagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9324C76398005A316E /* FormPentagon.swift */; };
 		26946E9624C76424005A316E /* FormStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9524C76424005A316E /* FormStar.swift */; };
 		26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26946E9724C76A6C005A316E /* RandomAngle.swift */; };
+		26AB83BC2513B824004BDF49 /* TotemGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BB2513B824004BDF49 /* TotemGameView.swift */; };
+		26AB83BE2513B852004BDF49 /* TotemGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BD2513B852004BDF49 /* TotemGameViewModel.swift */; };
+		26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BF2513B916004BDF49 /* TotemGameModel.swift */; };
 		26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */; };
 		26BC05AD2507FD9B00A918F5 /* TrailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AC2507FD9B00A918F5 /* TrailViewModel.swift */; };
 		26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */; };
 		26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */; };
 		26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */; };
-		26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186C624BE4AA50094AEC1 /* ContentView.swift */; };
 		26C186C924BE4AA70094AEC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C186C824BE4AA70094AEC1 /* Assets.xcassets */; };
 		26C186CC24BE4AA70094AEC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C186CB24BE4AA70094AEC1 /* Preview Assets.xcassets */; };
 		26C186CF24BE4AA70094AEC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */; };
@@ -140,13 +142,15 @@
 		26946E9324C76398005A316E /* FormPentagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPentagon.swift; sourceTree = "<group>"; };
 		26946E9524C76424005A316E /* FormStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStar.swift; sourceTree = "<group>"; };
 		26946E9724C76A6C005A316E /* RandomAngle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAngle.swift; sourceTree = "<group>"; };
+		26AB83BB2513B824004BDF49 /* TotemGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameView.swift; sourceTree = "<group>"; };
+		26AB83BD2513B852004BDF49 /* TotemGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameViewModel.swift; sourceTree = "<group>"; };
+		26AB83BF2513B916004BDF49 /* TotemGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameModel.swift; sourceTree = "<group>"; };
 		26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailMatrixList.swift; sourceTree = "<group>"; };
 		26BC05AC2507FD9B00A918F5 /* TrailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrailViewModel.swift; path = Chumigos/Trail/Model/TrailViewModel.swift; sourceTree = SOURCE_ROOT; };
 		26C186BC24BE4AA50094AEC1 /* Loggio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loggio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		26C186C424BE4AA50094AEC1 /* Chumigos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chumigos.xcdatamodel; sourceTree = "<group>"; };
-		26C186C624BE4AA50094AEC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		26C186C824BE4AA70094AEC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26C186CB24BE4AA70094AEC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		26C186CE24BE4AA70094AEC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -316,6 +320,40 @@
 				26940AEA24C0E62000F258B6 /* CKCloudParseProtocol.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		26AB83B72513B76F004BDF49 /* Totem Game */ = {
+			isa = PBXGroup;
+			children = (
+				26AB83BA2513B7C9004BDF49 /* Model */,
+				26AB83B92513B7B7004BDF49 /* ViewModel */,
+				26AB83B82513B7A0004BDF49 /* View */,
+			);
+			path = "Totem Game";
+			sourceTree = "<group>";
+		};
+		26AB83B82513B7A0004BDF49 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26AB83BB2513B824004BDF49 /* TotemGameView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		26AB83B92513B7B7004BDF49 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				26AB83BD2513B852004BDF49 /* TotemGameViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		26AB83BA2513B7C9004BDF49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				26AB83BF2513B916004BDF49 /* TotemGameModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		26C186B324BE4AA50094AEC1 = {
@@ -621,7 +659,6 @@
 		E74D7F8624BF7104000BF076 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				26C186C624BE4AA50094AEC1 /* ContentView.swift */,
 				AB0EB07C25000F62009E8A67 /* MainView.swift */,
 			);
 			path = View;
@@ -685,6 +722,7 @@
 		E7FDEB8724C2312A008DDAEB /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				26AB83B72513B76F004BDF49 /* Totem Game */,
 				AA48142724EB1D1F00134024 /* Components */,
 				AB33B34C2502B2400042F5BA /* Avatar Game */,
 				AA865AF124E5ABE60066BF2A /* Sequence Game */,
@@ -839,6 +877,7 @@
 			files = (
 				E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */,
 				26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */,
+				26AB83BE2513B852004BDF49 /* TotemGameViewModel.swift in Sources */,
 				260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */,
 				26E0EA4C24F59FD50078566D /* EndGameViewModel.swift in Sources */,
 				AA24C13124E5B57A006F8C5A /* SequenceGameModel.swift in Sources */,
@@ -851,11 +890,11 @@
 				AA24C13324E5C06A006F8C5A /* Question.swift in Sources */,
 				2623AC4425015ED9002A24A0 /* ConfigurationViewModel.swift in Sources */,
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
-				26C186C724BE4AA50094AEC1 /* ContentView.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
 				2656BF292500086100231678 /* NotificationManager.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
 				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,
+				26AB83BC2513B824004BDF49 /* TotemGameView.swift in Sources */,
 				AB855F1524F4341400C5A739 /* User.swift in Sources */,
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
 				AAA0613924E30819008CD91B /* SequenceGameView.swift in Sources */,
@@ -888,6 +927,7 @@
 				26E0EA4E24F59FF20078566D /* EndGameView.swift in Sources */,
 				E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */,
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
+				26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
 				2600932025001E8F00077BCE /* HapticManager.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
@@ -1077,7 +1117,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.1;
+				CURRENT_PROJECT_VERSION = 2.2;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
@@ -1099,7 +1139,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.1;
+				CURRENT_PROJECT_VERSION = 2.2;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;

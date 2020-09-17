@@ -16,6 +16,8 @@ struct TrailTile: View {
     let screenWidth = UIScreen.main.bounds.width
     let widthScale: CGFloat = 0.09
     
+    var isEndGame = false
+    
     // MARK: - View
     
     var body: some View {
@@ -36,7 +38,10 @@ struct TrailTile: View {
                     .lineLimit(0)
 //                    .frame(maxWidth: screenWidth * widthScale, maxHeight: .infinity)
                 
-                Spacer()
+
+                if !isEndGame {
+                    Spacer()
+                }
             }
         }
         

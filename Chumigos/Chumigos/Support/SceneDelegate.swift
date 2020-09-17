@@ -75,9 +75,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
         
+        let current = UNUserNotificationCenter.current()
+
+        current.getNotificationSettings(completionHandler: { (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                // Notification permission has not been asked yet, go for it!
+                UserDefaults.standard.set(false, forKey: "loggio_notification")
+            } else if settings.authorizationStatus == .denied {
+                // Notification permission was previously denied, go to settings & privacy to re-enable
+                UserDefaults.standard.set(false, forKey: "loggio_notification")
+            } else if settings.authorizationStatus == .authorized {
+                // Notification permission was already granted
+                UserDefaults.standard.set(true, forKey: "loggio_notification")
+            }
+        })
+        
         let notification = NotificationManager()
         
-        notification.dailyNotification(title: nil, body: nil)
+        if UserDefaults.standard.bool(forKey: "loggio_notification") {
+        
+            notification.dailyNotification(title: nil, body: nil)
+        }
 
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()

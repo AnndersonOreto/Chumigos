@@ -15,6 +15,8 @@ struct TrailView: View {
     @ObservedObject var viewModel: TrailViewModel = TrailViewModel()
     let screenWidth = UIScreen.main.bounds.width
     
+    @Binding var isTabBarActive: Bool
+    
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var result: FetchedResults<UserData>
     @Environment(\.managedObjectContext) var moc
     
@@ -45,6 +47,9 @@ struct TrailView: View {
                                             NavigationLink(destination: GamesView(game: game)) {
                                                 TrailTile(game: game)
                                             }.buttonStyle(PlainButtonStyle())
+                                                .simultaneousGesture(TapGesture().onEnded {
+                                                    self.isTabBarActive = false
+                                                })
                                         }
                                         Spacer()
                                     }
@@ -57,6 +62,9 @@ struct TrailView: View {
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
+            .onAppear {
+                self.isTabBarActive = true
+            }
             
         }.navigationViewStyle(StackNavigationViewStyle())
     }
@@ -105,13 +113,5 @@ struct TrailView: View {
         } catch {
             fatalError("fudeu2")
         }
-    }
-}
-
-// MARK: - Preview(s)
-
-struct TrailView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrailView()
     }
 }

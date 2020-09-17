@@ -11,7 +11,6 @@ import SwiftUI
 struct EndGameView: View {
     
     // MARK: - View Model
-    
     @ObservedObject var progressViewModel: ProgressBarViewModel = ProgressBarViewModel(questionAmount: 5)
     var dismissGame: (() -> Void)
     var restartGame: (() -> Void)
@@ -24,7 +23,7 @@ struct EndGameView: View {
     private let fontName = "Rubik"
     
     // MARK: - View
-
+    
     
     var body: some View {
         
@@ -36,31 +35,30 @@ struct EndGameView: View {
                 
                 // Progress Bar
                 ProgressBarView(viewModel: progressViewModel)
-                    .padding(.top, screenWidth * 0.015)
+                    .padding(.vertical, screenWidth * 0.015)
                 
                 Spacer()
                 
-                Group {
-                    Image("fruit-1")
-                        .resizable().frame(width: screenWidth * 0.245, height: screenWidth * 0.245, alignment: .center)
-                                        
-                    // Label
-                    HStack {
-                        Text("Parabéns! Você terminou a tarefa!")
+                // Arte
+                Image(Int.random(in: 0...1) == 0 ? "endgame1" : "endgame2")
+                    .resizable().frame(width: screenWidth * 0.29, height: screenWidth * 0.30, alignment: .center)
+                
+                // Label
+                HStack {
+                    Text("Parabéns! Você terminou a tarefa!")
                         .foregroundColor(Color.textColor)
                         .dynamicFont(name: fontName, size: 28, weight: .bold)
-                        Text("+\(self.gameScore)XP")
+                    
+                    Text("+\(self.gameScore)XP")
                         .foregroundColor(Color.Lion)
                         .dynamicFont(name: fontName, size: 24, weight: .medium)
-                    }
-                    .padding(.top, screenWidth * 0.03)
-                    
                 }
-                // Arte
-                    
+                .padding(.top, screenWidth * 0.03)
+                
                 Spacer()
+                
                 // Simbolo da trilha
-                                
+                
                 TrailTile(game: game)
                     .animation(Animation.easeInOut(duration: 2).delay(1))
                     .onAppear{
@@ -69,7 +67,8 @@ struct EndGameView: View {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                             self.game.changeIsCompleted()
                         }
-                    }
+                }
+                
                 Spacer()
                 
                 // Inicio

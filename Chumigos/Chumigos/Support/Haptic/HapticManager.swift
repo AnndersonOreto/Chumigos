@@ -21,7 +21,6 @@ class HapticManager: ObservableObject {
     }
     
     // MARK: - Simple Haptic Functions
-    
     public func hapticFeedback(type: FeedBackHaptic) {
         if UserDefaults.standard.bool(forKey: "loggio_vibration") {
             switch type {
