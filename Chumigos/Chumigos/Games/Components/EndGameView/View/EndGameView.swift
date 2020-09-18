@@ -68,7 +68,6 @@ struct EndGameView: View {
                             self.game.changeIsCompleted()
                         }
                         CoreDataService.shared.saveGameObject(self.game)
-                        print("TERMINOU! Salvou game!")
                 }
                 
                 Spacer()

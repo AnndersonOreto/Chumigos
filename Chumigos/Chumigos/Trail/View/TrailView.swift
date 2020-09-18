@@ -17,7 +17,7 @@ struct TrailView: View {
     
     @Binding var isTabBarActive: Bool
     
-    @State var matrixList: [TrailSection] = TrailViewModel.mockSections()
+    @State var matrixList: [TrailSection] = CoreDataService.shared.mockSections()
     
     //MARK: - View
     
@@ -61,56 +61,9 @@ struct TrailView: View {
             .navigationBarHidden(true)
             .onAppear {
                 self.isTabBarActive = true
-                print("ON APPEAR TRAIL VIEW!")
                 self.matrixList = CoreDataService.shared.retrieveMatrixTrail()
             }
             
         }.navigationViewStyle(StackNavigationViewStyle())
     }
-    
-    func retrieveMatrixTrail() {
-        
-//        let decoder = JSONDecoder()
-//
-//        if result.count > 0 && result[0].trail != nil {
-//
-//            guard let trailData = result[0].trail else { return }
-//
-//            do {
-//                let matrixObjectList = try decoder.decode([TrailSection].self, from: trailData)
-//                self.matrixList = matrixObjectList
-//            } catch {
-//                fatalError("fudeu0")
-//            }
-//
-//        } else {
-        self.matrixList = TrailViewModel.mockSections()
-//        }
-    }
-    
-//    func saveMatrixTrail() {
-//        
-//        var user: UserData
-//        
-//        // Override save on first position to prevent creation of multiple instances
-//        if result.count <= 0 {
-//            user = UserData(context: self.moc)
-//        } else {
-//            user = result[0]
-//        }
-//        
-//        let encoder = JSONEncoder()
-//        
-//        do {
-//            user.trail = try encoder.encode(matrixList)
-//        } catch {
-//            fatalError("fudeu1")
-//        }
-//        
-//        do {
-//            try self.moc.save()
-//        } catch {
-//            fatalError("fudeu2")
-//        }
-//    }
 }

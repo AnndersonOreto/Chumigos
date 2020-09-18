@@ -17,7 +17,7 @@ struct GameObject: Hashable, Codable {
     // MARK: - Variables & Constants
     
     //Game Info
-    let id = UUID()
+    let id: UUID
     let gameType: GameType
     let gameName: String
     var isAvailable = false

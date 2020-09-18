@@ -24,6 +24,7 @@ class CoreDataService {
          */
         let container = NSPersistentCloudKitContainer(name: "Chumigos")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -74,6 +75,7 @@ class CoreDataService {
     
     func saveMatrixTrail(_ trail: TrailMatrixList) {
         let user = UserData(context: self.persistentContainer.viewContext)
+        user.id = 0
         user.trail = encode(matrix: trail)
         self.saveContext()
     }
@@ -102,7 +104,10 @@ class CoreDataService {
                 fatalError("Não conseguiu decodar data!")
             }
         } else {
-            return TrailViewModel.mockSections()
+            let mockSections = self.mockSections()
+            let matrixList = TrailMatrixList(matrixList: mockSections)
+            self.saveMatrixTrail(matrixList)
+            return mockSections
         }
     }
     
@@ -116,12 +121,29 @@ class CoreDataService {
                     let game = sectionsTrail[section].trail[line][column]
                     if game.id == gameObject.id {
                         sectionsTrail[section].trail[line][column] = gameObject
-                        print("Game: \(game)")
                     }
                 }
             }
         }
         let matrix = TrailMatrixList(matrixList: sectionsTrail)
         self.saveMatrixTrail(matrix)
+    }
+    
+    // MARK: - MOCK
+    
+    // Just for test
+    func mockSections() -> [TrailSection] {
+        let linha1 = [GameObject(id: UUID(), gameType: .pattern, gameName: GameNames.sequenceGameName1)]
+
+        let linha2 = [GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.shapeGameName1)]
+
+        let linha3 = [GameObject(id: UUID(), gameType: .pattern, gameName: GameNames.sequenceGameName2),
+                      GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.shapeGameName2)]
+        
+        let linha4 = [GameObject(id: UUID(), gameType: .decomposition, gameName: GameNames.avatarGameName)]
+
+        let matrix = [linha1, linha2, linha3, linha4]
+
+        return [TrailSection(available: true, trail: matrix), TrailSection(available: false, trail: matrix)]
     }
 }

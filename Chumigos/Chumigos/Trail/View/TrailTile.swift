@@ -134,6 +134,6 @@ extension TrailTile {
 
 struct TrailTile_Previews: PreviewProvider {
     static var previews: some View {
-        TrailTile(game: GameObject(gameType: .abstraction, gameName: ""))
+        TrailTile(game: GameObject(id: UUID(), gameType: .abstraction, gameName: ""))
     }
 }
