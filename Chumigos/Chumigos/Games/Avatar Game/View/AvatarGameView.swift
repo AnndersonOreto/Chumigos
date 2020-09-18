@@ -218,6 +218,8 @@ struct AvatarGameView: View {
                 ExitGamePopUp(showPopUp: self.$showPopUp, dismissGame: self.dismissGame)
             }
         }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
     
     func dismissGame() {

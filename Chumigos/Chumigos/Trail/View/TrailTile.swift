@@ -28,23 +28,20 @@ struct TrailTile: View {
                 makeTile()
                     .padding(.bottom, 10)
                 
-                if !game.isCompleted {
+                if game.percetageCompleted != 1 {
                     progressBar()
                 }
-//
+                
                 Text(game.gameName)
                     .foregroundColor(.textColor)
                     .dynamicFont(name: "Rubik", size: 16, weight: .medium)
                     .lineLimit(0)
-//                    .frame(maxWidth: screenWidth * widthScale, maxHeight: .infinity)
-                
 
                 if !isEndGame {
                     Spacer()
                 }
             }
-        }
-        
+        }.allowsHitTesting(game.isAvailable)
     }
 }
 
@@ -63,7 +60,7 @@ extension TrailTile {
                 .fill(Color.Duck)
                 .frame(width: (screenWidth * widthScale) * CGFloat(game.percetageCompleted), height: 10)
             
-        }//.padding(.top, 10)
+        }
     }
 }
 
@@ -101,7 +98,7 @@ extension TrailTile {
             image += "unavailable"
         }
         
-        if game.isCompleted {
+        if game.percetageCompleted == 1 {
             bottomColor = .Fox
             topColor = .Duck
         }
@@ -120,11 +117,11 @@ extension TrailTile {
                 Image(image)
                     .resizable()
                     .frame(width: screenWidth * 0.06, height: screenWidth * 0.06)
-                    .opacity(game.isCompleted ? 0 : 1)
+                    .opacity(game.percetageCompleted==1 ? 0 : 1)
                 Image(image+"-complete")
                     .resizable()
                     .frame(width: screenWidth * 0.06, height: screenWidth * 0.06)
-                    .opacity(game.isCompleted ? 1 : 0)
+                    .opacity(game.percetageCompleted==1 ? 1 : 0)
             }
         }
     }

@@ -30,6 +30,8 @@ extension GamesView {
             return AnyView(SequenceGameView(gameDifficulty: .medium, game: self.game))
         case GameNames.shapeGameName2:
             return AnyView(ShapeGameView(gameDifficulty: .medium, game: self.game))
+        case GameNames.avatarGameName:
+            return AnyView(AvatarGameView(gameDifficulty: .easy, game: self.game))
         default:
             return AnyView(EmptyView())
         }

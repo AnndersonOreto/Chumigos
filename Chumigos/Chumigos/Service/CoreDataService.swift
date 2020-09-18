@@ -144,6 +144,6 @@ class CoreDataService {
 
         let matrix = [linha1, linha2, linha3, linha4]
 
-        return [TrailSection(available: true, trail: matrix), TrailSection(available: false, trail: matrix)]
+        return [TrailSection(available: true, trail: matrix)]
     }
 }

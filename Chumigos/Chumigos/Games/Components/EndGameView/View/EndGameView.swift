@@ -40,7 +40,7 @@ struct EndGameView: View {
                 Spacer()
                 
                 // Arte
-                Image(Int.random(in: 0...1) == 0 ? "endgame1" : "endgame2")
+                Image("endgame2")
                     .resizable().frame(width: screenWidth * 0.29, height: screenWidth * 0.30, alignment: .center)
                 
                 // Label
@@ -59,14 +59,11 @@ struct EndGameView: View {
                 
                 // Simbolo da trilha
                 
-                TrailTile(game: game)
+                TrailTile(game: game, isEndGame: true)
                     .animation(Animation.easeInOut(duration: 2).delay(1))
                     .onAppear{
                         self.game.increaseCurrentProgress(Float(self.gameScore))
-                        #warning("O Chumiga não curtiu, mais além a gente muda.")
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            self.game.changeIsCompleted()
-                        }
+                        self.game.changeIsCompleted()
                         CoreDataService.shared.saveGameObject(self.game)
                 }
                 
@@ -80,15 +77,16 @@ struct EndGameView: View {
                     Text("Início")
                         .dynamicFont(name: fontName, size: 20, weight: .bold)
                 }.buttonStyle(GameButtonStyle(buttonColor: Color.Humpback, pressedButtonColor: Color.Whale, buttonBackgroundColor: Color.Narwhal, isButtonEnable: true))
+                .padding(.bottom, 30)
                 
                 // Recomecar
-                Button(action: {
-                    self.restartGame()
-                }) {
-                    Text("Recomeçar")
-                        .dynamicFont(name: fontName, size: 20, weight: .bold)
-                }.buttonStyle(GameButtonStyle(buttonColor: Color.Bee, pressedButtonColor: Color.Duck, buttonBackgroundColor: Color.Fox, isButtonEnable: true))
-                    .padding(.bottom, 30)
+//                Button(action: {
+//                    self.restartGame()
+//                }) {
+//                    Text("Recomeçar")
+//                        .dynamicFont(name: fontName, size: 20, weight: .bold)
+//                }.buttonStyle(GameButtonStyle(buttonColor: Color.Bee, pressedButtonColor: Color.Duck, buttonBackgroundColor: Color.Fox, isButtonEnable: true))
+//                    .padding(.bottom, 30)
             }
         }
         .navigationBarTitle("")

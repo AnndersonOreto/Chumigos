@@ -65,7 +65,6 @@ class AvatarGameViewModel: ObservableObject {
         eyeImage =  ""
         mouthImage = ""
         eyebrowImage = ""
-        self.gameScore = GameScore()
     }
     
     func changeGameScore() {

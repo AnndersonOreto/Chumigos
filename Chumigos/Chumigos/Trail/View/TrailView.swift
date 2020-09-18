@@ -26,14 +26,6 @@ struct TrailView: View {
             ZStack {
                 Color.background.edgesIgnoringSafeArea(.all)
                 VStack {
-                    
-                    // Button just for test
-                    Button(action: {
-                        self.matrixList[0].currentLine += 1
-                    }) {
-                        Text("Next Line")
-                    }
-
                     ScrollView(.vertical, showsIndicators: false) {
                         ForEach(self.matrixList) { (section) in
                             VStack(spacing: self.screenWidth * 0.04) {
@@ -62,6 +54,7 @@ struct TrailView: View {
             .onAppear {
                 self.isTabBarActive = true
                 self.matrixList = CoreDataService.shared.retrieveMatrixTrail()
+                //self.matrixList[0].changeCurrentLine()
             }
             
         }.navigationViewStyle(StackNavigationViewStyle())

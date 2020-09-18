@@ -33,7 +33,7 @@ struct SequenceGameView: View {
     }
     
     @ObservedObject var viewModel: SequenceGameViewModel
-    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 1)
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     init(gameDifficulty: Difficulty, game: GameObject) {
         self.viewModel = SequenceGameViewModel(difficulty: gameDifficulty)

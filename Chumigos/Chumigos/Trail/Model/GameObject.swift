@@ -20,7 +20,8 @@ struct GameObject: Hashable, Codable {
     let id: UUID
     let gameType: GameType
     let gameName: String
-    var isAvailable = false
+    #warning("isAvailable é pra ser false. Está true agora pra loja.")
+    var isAvailable = true
     var isCompleted: Bool = false
     
     //Game Progress

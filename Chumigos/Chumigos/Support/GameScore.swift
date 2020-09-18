@@ -14,7 +14,7 @@ class GameScore {
     private let standartScore = 10
     private let recapScore = 5
     private let streakScore = 5
-    
+    private var currentStreak = 0
     //Variables
     private(set) var currentScore: Int = 0
     private(set) var streak: Bool = false
@@ -24,8 +24,15 @@ class GameScore {
     /// Increment score for the normal state
     func incrementDefaultScore() {
         
+        var incrementValue = 0
+        
         //Get the right value for increment
-        let incrementValue = streak ? standartScore + streakScore : standartScore
+        if streak {
+            currentStreak += streakScore
+            incrementValue = standartScore + currentStreak
+        } else {
+            incrementValue = standartScore
+        }
         
         self.currentScore += incrementValue
         
