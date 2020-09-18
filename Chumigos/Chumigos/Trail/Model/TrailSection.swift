@@ -14,7 +14,7 @@ struct TrailSection: Identifiable, Codable {
     
     var id = UUID()
     private(set) var available: Bool
-    private(set) var trail: [[GameObject]]
+    var trail: [[GameObject]]
     var currentLine: Int = 0 {
         didSet {
             self.changeGamesInLineAvailability()
@@ -33,10 +33,6 @@ struct TrailSection: Identifiable, Codable {
     
     mutating func setAvailable(_ newValue: Bool) {
         self.available = newValue
-    }
-    
-    mutating func setTrail(_ newTrail: [[GameObject]]) {
-        self.trail = newTrail
     }
     
     // MARK: - Function(s)

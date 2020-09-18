@@ -10,7 +10,8 @@ import SwiftUI
 
 // This view chooses which game will show
 struct GamesView: View {
-    var gameName: String
+    
+    var game: GameObject
     
     var body: some View {
         showGame()
@@ -20,23 +21,23 @@ struct GamesView: View {
 extension GamesView {
     // Decides which game to show based on the game's name
     func showGame() -> AnyView {
-        switch gameName {
+        switch game.gameName {
         case GameNames.sequenceGameName1:
-            return AnyView(SequenceGameView(gameDifficulty: .easy))
+            return AnyView(SequenceGameView(gameDifficulty: .easy, game: self.game))
         case GameNames.shapeGameName1:
-            return AnyView(ShapeGameView(gameDifficulty: .easy))
+            return AnyView(ShapeGameView(gameDifficulty: .easy, game: self.game))
         case GameNames.sequenceGameName2:
-            return AnyView(SequenceGameView(gameDifficulty: .medium))
+            return AnyView(SequenceGameView(gameDifficulty: .medium, game: self.game))
         case GameNames.shapeGameName2:
-            return AnyView(ShapeGameView(gameDifficulty: .medium))
+            return AnyView(ShapeGameView(gameDifficulty: .medium, game: self.game))
         default:
             return AnyView(EmptyView())
         }
     }
 }
 
-struct GamesView_Previews: PreviewProvider {
-    static var previews: some View {
-        GamesView(gameName: GameNames.sequenceGameName1)
-    }
-}
+//struct GamesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GamesView(gameName: GameNames.sequenceGameName1)
+//    }
+//}

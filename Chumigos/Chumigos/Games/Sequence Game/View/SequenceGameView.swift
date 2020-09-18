@@ -15,6 +15,7 @@ struct SequenceGameView: View {
     
     let generator = UINotificationFeedbackGenerator()
     
+    var game: GameObject
     
     // Save the rects of all the questions
     @State private var questionsFrames: [(question: Question, rect: CGRect)] = []
@@ -32,12 +33,12 @@ struct SequenceGameView: View {
     }
     
     @ObservedObject var viewModel: SequenceGameViewModel
-    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 1)
     
-    init(gameDifficulty: Difficulty) {
+    init(gameDifficulty: Difficulty, game: GameObject) {
         self.viewModel = SequenceGameViewModel(difficulty: gameDifficulty)
+        self.game = game
     }
-    
     
     var body: some View {
         ZStack {
@@ -152,7 +153,7 @@ struct SequenceGameView: View {
                 }.blur(radius: self.showPopUp ? 16 : 0)
                 
             } else {
-                EndGameView(gameType: .pattern, progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
+                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame, game: self.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {
@@ -282,9 +283,9 @@ extension SequenceGameView {
     }
 }
 
-
-struct StudyingView_Previews: PreviewProvider {
-    static var previews: some View {
-        SequenceGameView(gameDifficulty: .medium)
-    }
-}
+//
+//struct StudyingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SequenceGameView(gameDifficulty: .medium)
+//    }
+//}

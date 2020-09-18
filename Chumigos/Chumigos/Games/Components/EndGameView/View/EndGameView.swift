@@ -11,11 +11,11 @@ import SwiftUI
 struct EndGameView: View {
     
     // MARK: - View Model
-    var gameType: GameType
-    
     @ObservedObject var progressViewModel: ProgressBarViewModel = ProgressBarViewModel(questionAmount: 5)
     var dismissGame: (() -> Void)
     var restartGame: (() -> Void)
+    @State var game: GameObject
+    let gameScore: Int
     
     // MARK: - Drawing Contants
     
@@ -23,7 +23,7 @@ struct EndGameView: View {
     private let fontName = "Rubik"
     
     // MARK: - View
-
+    
     
     var body: some View {
         
@@ -39,19 +39,36 @@ struct EndGameView: View {
                 
                 Spacer()
                 
-                    Image(Int.random(in: 0...1) == 0 ? "endgame1" : "endgame2")
-                        .resizable().frame(width: screenWidth * 0.29, height: screenWidth * 0.30, alignment: .center)
-                                        
-                    // Label
+                // Arte
+                Image(Int.random(in: 0...1) == 0 ? "endgame1" : "endgame2")
+                    .resizable().frame(width: screenWidth * 0.29, height: screenWidth * 0.30, alignment: .center)
+                
+                // Label
+                HStack {
                     Text("Parabéns! Você terminou a tarefa!")
                         .foregroundColor(Color.textColor)
                         .dynamicFont(name: fontName, size: 28, weight: .bold)
-                        .padding(.top, screenWidth * 0.03)
-                                  
+                    
+                    Text("+\(self.gameScore)XP")
+                        .foregroundColor(Color.Lion)
+                        .dynamicFont(name: fontName, size: 24, weight: .medium)
+                }
+                .padding(.top, screenWidth * 0.03)
+                
                 Spacer()
-
+                
                 // Simbolo da trilha
-                TrailTile(game: GameObject(gameType: gameType, gameName: "", isAvailable: true), isEndGame: true)
+                
+                TrailTile(game: game)
+                    .animation(Animation.easeInOut(duration: 2).delay(1))
+                    .onAppear{
+                        self.game.increaseCurrentProgress(Float(self.gameScore))
+                        #warning("O Chumiga não curtiu, mais além a gente muda.")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            self.game.changeIsCompleted()
+                        }
+                        CoreDataService.shared.saveGameObject(self.game)
+                }
                 
                 Spacer()
                 

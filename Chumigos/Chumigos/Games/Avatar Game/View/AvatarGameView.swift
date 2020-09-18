@@ -26,6 +26,7 @@ struct AvatarGameView: View {
     // MARK: - Face's Variables
     let avatarWidth = UIScreen.main.bounds.height * 0.63
     let avatarHeight = UIScreen.main.bounds.height * 0.85
+    var game: GameObject
     
     var numberOfColumns: Int = 3
     var numberOfRows: Int {
@@ -35,6 +36,11 @@ struct AvatarGameView: View {
     var feelingColor: Color { self.viewModel.faceIsCorrect() ? .TreeFrog : .FireAnt }
     var borderName: String { self.viewModel.faceIsCorrect() ? "correct-border" : "wrong-border" }
     var iconName: String { self.viewModel.faceIsCorrect() ? "correct-icon" : "wrong-icon"}
+    
+    init(gameDifficulty: Difficulty, game: GameObject) {
+        #warning("Fazer dificuldade no jogo do avatar")
+        self.game = game
+    }
     
     var body: some View {
         
@@ -205,7 +211,7 @@ struct AvatarGameView: View {
                     .padding(.bottom, screenWidth * 0.33)
                 }.blur(radius: self.showPopUp ? 16 : 0)
             } else {
-                EndGameView(gameType: .decomposition, progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame)
+                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame, game: self.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {
@@ -363,8 +369,8 @@ struct AvatarGameTile: View {
     }
 }
 
-struct AvatarGameView_Previews: PreviewProvider {
-    static var previews: some View {
-        AvatarGameView()
-    }
-}
+//struct AvatarGameView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AvatarGameView()
+//    }
+//}

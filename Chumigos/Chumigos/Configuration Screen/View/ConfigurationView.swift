@@ -98,7 +98,7 @@ struct ConfigurationView: View {
                                 .foregroundColor(.Hare)
                                 .fontWeight(.medium)
                                 .tracking(1)
-                        }.buttonStyle(AppButtonStyle(buttonColor: .Swan, pressedButtonColor: .Swan, buttonBackgroundColor: .Hare, isButtonEnable: true, textColor: .Ghost, width: screenWidth * 0.39))
+                        }.buttonStyle(AppButtonStyle(buttonColor: .Swan, pressedButtonColor: .Swan, buttonBackgroundColor: .Hare, isButtonEnable: false, textColor: .Ghost, width: screenWidth * 0.39))
                     }.frame(width: screenWidth * 0.39)
                     .padding(.bottom, screenWidth * 0.015)
                     

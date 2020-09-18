@@ -104,7 +104,6 @@ extension TrailTile {
         if game.isCompleted {
             bottomColor = .Fox
             topColor = .Duck
-            image += "-complete"
         }
         
         return ZStack {
@@ -117,10 +116,16 @@ extension TrailTile {
                 .fill(topColor)
                 .frame(width: screenWidth * widthScale, height: screenWidth * widthScale)
             
-            
-            Image(image)
-                .resizable()
-                .frame(width: screenWidth * 0.06, height: screenWidth * 0.06)
+            ZStack{
+                Image(image)
+                    .resizable()
+                    .frame(width: screenWidth * 0.06, height: screenWidth * 0.06)
+                    .opacity(game.isCompleted ? 0 : 1)
+                Image(image+"-complete")
+                    .resizable()
+                    .frame(width: screenWidth * 0.06, height: screenWidth * 0.06)
+                    .opacity(game.isCompleted ? 1 : 0)
+            }
         }
     }
 }
@@ -129,6 +134,6 @@ extension TrailTile {
 
 struct TrailTile_Previews: PreviewProvider {
     static var previews: some View {
-        TrailTile(game: GameObject(gameType: .abstraction, gameName: ""))
+        TrailTile(game: GameObject(id: UUID(), gameType: .abstraction, gameName: ""))
     }
 }
