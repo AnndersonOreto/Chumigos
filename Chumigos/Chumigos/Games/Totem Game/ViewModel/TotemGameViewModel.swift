@@ -14,4 +14,14 @@ class TotemGameViewModel: ObservableObject {
     init() {
         
     }
+    
+    func allQuestionsAreCorrect() -> Bool {
+        
+        return true
+    }
+    
+    func allQuestionsAreOccupied() -> Bool {
+        
+        return false
+    }
 }

@@ -133,7 +133,7 @@ extension MainView {
             return AnyView(TrailView(isTabBarActive: $isTabBarActive))
         case .achievements:
             //coroa
-            return AnyView(EmptyView())
+            return AnyView(TotemGameView(isTabBarActive: $isTabBarActive))
         case .shop:
             //as bolinhas
             return AnyView(EmptyView())
