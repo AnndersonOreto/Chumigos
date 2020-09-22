@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class AvatarGameViewModel: ObservableObject {
     
@@ -15,6 +16,8 @@ class AvatarGameViewModel: ObservableObject {
     @Published var eyeImage: String = ""
     @Published var mouthImage: String = ""
     @Published var eyebrowImage: String = ""
+    @Published var confirmPressed: Bool = false
+    @Published var avatarFaceImage: UIImage?
     
     var gameState: GameState = .NORMAL
     var gameScore: GameScore = GameScore()
@@ -76,6 +79,24 @@ class AvatarGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
+        }
+    }
+    
+    func cropFaceOfAvatar(image: UIImage) {
+        let imageWidth = image.size.width
+        let width: CGFloat = imageWidth*0.4
+        let height: CGFloat = imageWidth*0.4
+        let origin = CGPoint(x: (imageWidth - width)/2.15, y: height/1.7)
+        let size = CGSize(width: width, height: height)
+        self.avatarFaceImage = image.crop(rect: CGRect(origin: origin, size: size))
+    }
+    
+    func testingMLModel() {
+        if let faceImage = avatarFaceImage, let cgFaceImage = faceImage.cgImage {
+            let rawValue = UInt32(faceImage.imageOrientation.rawValue)
+            if let orientation = CGImagePropertyOrientation(rawValue: rawValue) {
+                FeelingsClassifier.classifyImage(cgFaceImage, orientation: orientation)
+            }
         }
     }
     
