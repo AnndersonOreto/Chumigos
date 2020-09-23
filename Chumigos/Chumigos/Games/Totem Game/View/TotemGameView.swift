@@ -15,12 +15,14 @@ struct TotemGameView: View {
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     @ObservedObject var viewModel: TotemGameViewModel = TotemGameViewModel()
     
+    
     // MARK: - State variables
     
     @State var buttonIsPressed: Bool = false
-    @State var totemPieces: [String] = ["big/01", "big/04", "bigwing/02", "cup/03", "big/05"]
+    //@State var totemPieces: [String] = ["big/01", "big/04", "bigwing/02", "cup/03", "big/05"]
     @State var showPopUp: Bool = false
     @Binding var isTabBarActive: Bool
+    
     
     // MARK: - Flag Variables
     
@@ -68,8 +70,11 @@ struct TotemGameView: View {
                     // Totem
                     VStack(spacing: 0) {
                         
-                        ForEach(totemPieces, id: \.self) { piece in
-                            Image(piece).resizable()
+                        ForEach(self.viewModel.totemPieceList, id: \.self) { piece in
+                            ZStack {
+                                Image(piece.imageName).resizable()
+                                Image(piece.face)
+                            }
                         }
                     }.frame(width: screenWidth * 0.3, height: screenWidth * 0.43)
                     

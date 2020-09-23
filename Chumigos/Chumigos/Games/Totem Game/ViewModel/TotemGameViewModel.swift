@@ -11,8 +11,16 @@ import SwiftUI
 
 class TotemGameViewModel: ObservableObject {
     
+    let model: TotemGameModel = TotemGameModel()
+    
+    @Published var totemPieceList: [TotemPiece] = []
+    
     init() {
-        
+        generateTotem()
+    }
+    
+    func generateTotem() {
+        totemPieceList = model.generateTotem()
     }
     
     func allQuestionsAreCorrect() -> Bool {
