@@ -159,13 +159,13 @@ struct TotemGameTile: View {
             ForEach(imageNameList.reversed(), id: \.self) { image in
                 Image(image)
                     .resizable()
-                    .padding()
+                    .padding(.horizontal, size * 0.0146)
+                    .padding(.vertical, size * 0.025)
                     .frame(width: size * 0.186, height: size * 0.142)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 18)
-                            .stroke(Color.optionBorder, lineWidth: 2)
-                    )
             }
-        }
+        }.overlay(
+            RoundedRectangle(cornerRadius: 18)
+                .stroke(Color.optionBorder, lineWidth: 2)
+        )
     }
 }
