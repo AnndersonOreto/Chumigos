@@ -14,5 +14,5 @@ class TotemGameModel {
         
     }
     
-    
+    func generateTotem
 }
