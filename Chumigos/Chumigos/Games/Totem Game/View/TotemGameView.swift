@@ -95,7 +95,7 @@ struct TotemGameView: View {
                         
                         // Alternatives grid
                         Grid<TotemGameTile>(rows: 2, columns: 2, spacing: screenWidth * 0.0175, content: { (row, column) in
-                            TotemGameTile(size: self.screenWidth)
+                            TotemGameTile(size: self.screenWidth, imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column])
                         })
                         
                         Spacer()
@@ -148,20 +148,24 @@ struct TotemGameView: View {
 
 struct TotemGameTile: View {
     
+    // 1366
     var size: CGFloat
+    var imageNameList: [String]
     
     var body: some View {
         
         ZStack {
             
-            RoundedRectangle(cornerRadius: 18)
-                .stroke(Color.optionBorder, lineWidth: 2)
-                .frame(width: size * 0.175, height: size * 0.134)
-            
-            Image("Avatar 1")
-                .resizable()
-                .frame(width: size * 0.084, height: size * 0.084)
-                .padding()
+            ForEach(imageNameList.reversed(), id: \.self) { image in
+                Image(image)
+                    .resizable()
+                    .padding()
+                    .frame(width: size * 0.186, height: size * 0.142)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 18)
+                            .stroke(Color.optionBorder, lineWidth: 2)
+                    )
+            }
         }
     }
 }

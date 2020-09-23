@@ -18,13 +18,13 @@ struct TotemPiece: Hashable {
     var color:      String // If big it has 5 colors
     var face:       String // Totem's face
     var upTopShape: String // Up top totem view representation
-    var imageName: String = ""
+    var imageName:  String = ""
     
     init(shape: String, color: String, face: String, upTopShape: String) {
         self.shape = shape
         self.color = color
         self.face = face
-        self.upTopShape = face
+        self.upTopShape = upTopShape
         imageName = "\(self.shape)/\(self.color)"
     }
 }

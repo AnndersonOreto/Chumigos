@@ -14,13 +14,19 @@ class TotemGameViewModel: ObservableObject {
     let model: TotemGameModel = TotemGameModel()
     
     @Published var totemPieceList: [TotemPiece] = []
+    @Published var totemAlternativeList: [[String]] = []
     
     init() {
         generateTotem()
+        generateAlternatives()
     }
     
     func generateTotem() {
         totemPieceList = model.generateTotem()
+    }
+    
+    func generateAlternatives() {
+        totemAlternativeList = model.generateAlternatives(with: totemPieceList)
     }
     
     func allQuestionsAreCorrect() -> Bool {

@@ -20,6 +20,7 @@ enum TotemShape: String, CaseIterable {
 class TotemGameModel {
     
     final let MAX_TOTEM_PIECES: Int = 5
+    final let TOTEM_ALTERNATIVES: Int = 4
     
     //TODO: Da pra usar isso pra trabalhar o esquema de level
     let NUM_WINGS = 1
@@ -55,7 +56,7 @@ class TotemGameModel {
             let color = colorArray[index]
             let face = generateRandomTotemFace(totemShape: shape)
             
-            let piece = TotemPiece(shape: shape.rawValue, color: color, face: face, upTopShape: "topview/\(shape)up/\(color)")
+            let piece = TotemPiece(shape: shape.rawValue, color: color, face: face, upTopShape: "topview/\(shape.rawValue)up/\(color)")
             
             if totemPieceList.contains(piece) {
                 continue
@@ -65,11 +66,30 @@ class TotemGameModel {
             index += 1
         }
         
+        totemPieceList.shuffle()
         return totemPieceList
     }
     
-    func generateAlternatives() {
+    func generateAlternatives(with totemPieces: [TotemPiece]) -> [[String]] {
         
+        var totemAlternativeList: [[String]] = []
+        var index: Int = 0
+        
+        var totemPieceList = totemPieces
+        
+        while index < TOTEM_ALTERNATIVES {
+            
+            let totemUpTopImageNameList: [String] = totemPieceList.map( { $0.upTopShape } )
+            
+            totemAlternativeList.append(totemUpTopImageNameList)
+            
+            index += 1
+            
+            totemPieceList.shuffle()
+        }
+        
+        totemAlternativeList.shuffle()
+        return totemAlternativeList
     }
     
     func generateRandomTotemColor() -> String{
