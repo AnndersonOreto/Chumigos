@@ -85,6 +85,7 @@ struct TotemGameView: View {
                             .foregroundColor(.textColor)
                             .multilineTextAlignment(.center)
                             .frame(width: screenWidth * 0.42)
+                            .offset(y: -(screenWidth * 0.053))
                         
                         // Alternatives grid
                         Grid<TotemGameTile>(rows: 2, columns: 2, spacing: screenWidth * 0.0175, content: { (row, column) in
