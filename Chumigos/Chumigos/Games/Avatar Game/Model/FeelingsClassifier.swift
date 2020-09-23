@@ -9,11 +9,17 @@
 import CoreML
 import Vision
 
+// Faz a classificação da imagem pelo vision.
+// Por enquanto esta classe não está sendo utilizada.
+// O motivo de não usarmos ela, é que tem Dispatch.
+
 class FeelingsClassifier {
     
     static func classifyImage(_ myImage: CGImage, orientation: CGImagePropertyOrientation) {
+        
         if let model = try? VNCoreMLModel(for: logginhoFeelings2_0().model) {
             let request = VNCoreMLRequest(model: model, completionHandler: handleResults(request:error:))
+            
             request.imageCropAndScaleOption = .centerCrop
             
             DispatchQueue.global(qos: .userInitiated).async {
@@ -33,6 +39,7 @@ class FeelingsClassifier {
                 print(error!.localizedDescription)
                 return
             }
+            
             for classification in results {
                 print("\(classification.identifier): \(classification.confidence)")
             }

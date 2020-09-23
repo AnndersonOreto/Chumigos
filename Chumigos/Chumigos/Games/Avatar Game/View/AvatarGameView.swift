@@ -32,10 +32,9 @@ struct AvatarGameView: View {
         Int(ceil(Double(viewModel.roundFaceParts.count)/Double(numberOfColumns)))
     }
     
-    var feelingColor: Color { self.viewModel.faceIsCorrect() ? .TreeFrog : .FireAnt }
+    var feelingColor: Color { self.viewModel.faceIsCorrect() ? .TreeFrog :  .FireAnt }
     var borderName: String { self.viewModel.faceIsCorrect() ? "correct-border" : "wrong-border" }
-    var iconName: String { self.viewModel.faceIsCorrect() ? "correct-icon" : "wrong-icon"}
-    
+    var iconName: String { self.viewModel.faceIsCorrect() ? "correct-icon" : "wrong-icon" }
     
     init(gameDifficulty: Difficulty, game: GameObject) {
         #warning("Fazer dificuldade no jogo do avatar")
@@ -72,7 +71,6 @@ struct AvatarGameView: View {
                                     if confirmPressed {
                                         let image = self.avatarImage().asImage()
                                         self.viewModel.cropFaceOfAvatar(image: image)
-                                        self.viewModel.testingMLModel()
                                     }
                             }
                             .onTapGesture {
@@ -88,7 +86,7 @@ struct AvatarGameView: View {
                     ZStack{
                         VStack {
                             Spacer()
-                            if viewModel.confirmPressed {
+                            if viewModel.canShowResult() {
                                 GameFeedbackMessage(feedbackType: .CORRECT)
                                     .padding(.bottom, -(screenWidth * 0.035))
                             }
@@ -141,7 +139,7 @@ struct AvatarGameView: View {
                             .padding(.top, screenWidth * 0.051)
                         }.allowsHitTesting(!viewModel.confirmPressed)
                         
-                        if viewModel.confirmPressed {
+                        if viewModel.canShowResult() {
                             Button(action: {
                                 self.confirmQuestion()
                             }) {
@@ -175,7 +173,7 @@ struct AvatarGameView: View {
                             .frame(width: screenWidth * 0.34, height: screenWidth * 0.25)
                             .overlay(
                                 ZStack {
-                                    if viewModel.confirmPressed {
+                                    if viewModel.canShowResult() {
                                         Image(borderName)
                                             .resizable()
                                     }
@@ -188,14 +186,14 @@ struct AvatarGameView: View {
                                         
                                         CustomText("\(self.viewModel.feeling.rawValue)".uppercased())
                                             .dynamicFont(size: 25, weight: .bold)
-                                            .foregroundColor(viewModel.confirmPressed ? self.feelingColor : .Humpback)
+                                            .foregroundColor(viewModel.canShowResult() ? self.feelingColor : .Humpback)
                                             .padding(.top, screenWidth * 0.03)
                                         Spacer()
                                     }
                                 }
                             )
                         
-                        if viewModel.confirmPressed {
+                        if viewModel.canShowResult() {
                             Image(iconName)
                             .resizable()
                             .frame(width: self.screenWidth*0.043, height: self.screenWidth*0.043)
@@ -223,7 +221,6 @@ struct AvatarGameView: View {
     }
     
     func restartGame() {
-        self.viewModel.confirmPressed = false
         self.showPopUp = false
         self.showChatBalloon = true
         self.isFinished = false
@@ -243,8 +240,6 @@ struct AvatarGameView: View {
         }
         
         self.viewModel.resetGame()
-        
-        self.viewModel.confirmPressed = false
         
         if self.isFinished {
             self.progressViewModel.currentQuestion = -1

@@ -7,31 +7,37 @@
 //
 
 import Foundation
-import Vision
+import UIKit
 
 class FeelingClassificator{
     
-//    Image (Color 299 x 299)
-    
-    let model = logginhoFeelings2_0()
-    
-    init() {
-        
-    }
-    
-    func performImageClassification(_ image: CVPixelBuffer) {
-        
+    /// This fuction is for classify an image.
+    /// - Parameter image: receive an UIImage.toBuffer().
+    /// - Returns: the most likely category the model predicted.
+    static func mostLikely(_ image: CVPixelBuffer) -> String? {
+        let model = logginhoFeelings2_0()
         let output = try? model.prediction(image: image)
         
         if let output = output {
-            
-            //Return category string. examples: "happy", "sad"...
             let mostLikelyCategory = output.classLabel
             
-            //Probability of each category as dictionary of strings to doubles
-            //returns [String : Double]
-            let categoryWithPropability =  output.classLabelProbs
+            return mostLikelyCategory
         }
+        return nil
     }
     
+    /// This function is for classify an image.
+    /// - Parameter image: receive an UIImage.toBuffer().
+    /// - Returns: the probability of each category as a dictionary.
+    static func allPredictions(_ image: CVPixelBuffer) -> [String : Double]?{
+        let model = logginhoFeelings2_0()
+        let output = try? model.prediction(image: image)
+        
+        if let output = output {
+            let categoryWithPropability =  output.classLabelProbs
+            
+            return categoryWithPropability
+        }
+        return nil
+    }
 }
