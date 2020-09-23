@@ -80,6 +80,7 @@ struct TotemGameView: View {
                         
                         Spacer()
                         
+                        #warning("offset seria a melhor solucao? fica a duvida")
                         CustomText("Selecione como as peças apareceriam caso estivesse as observando de cima:")
                             .dynamicFont(name: fontName, size: 20, weight: .medium)
                             .foregroundColor(.textColor)
