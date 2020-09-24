@@ -14,15 +14,15 @@ struct TotemGameView: View {
     
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     @ObservedObject var viewModel: TotemGameViewModel = TotemGameViewModel()
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // MARK: - State variables
     
     @State var buttonIsPressed: Bool = false
-    //@State var totemPieces: [String] = ["big/01", "big/04", "bigwing/02", "cup/03", "big/05"]
     @State var showPopUp: Bool = false
+    @State var tileSelected: Int = -1 // None tile selected
+    @State var isFinished: Bool = false
     @Binding var isTabBarActive: Bool
-    
     
     // MARK: - Flag Variables
     
@@ -95,7 +95,7 @@ struct TotemGameView: View {
                         
                         // Alternatives grid
                         Grid<TotemGameTile>(rows: 2, columns: 2, spacing: screenWidth * 0.0175, content: { (row, column) in
-                            TotemGameTile(size: self.screenWidth, imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column])
+                            TotemGameTile(size: self.screenWidth, imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column], id: (row * 2) + column, selectedTile: $tileSelected)
                         })
                         
                         Spacer()
@@ -137,12 +137,48 @@ struct TotemGameView: View {
                         
                     }
                 }
+            }.blur(radius: self.showPopUp ? 16 : 0)
+            
+            if self.showPopUp {
+                ExitGamePopUp(showPopUp: self.$showPopUp, dismissGame: self.dismissGame)
             }
         }.onAppear {
             self.isTabBarActive = false
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
+    }
+    
+    func dismissGame() {
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
+    func restartGame() {
+        self.buttonIsPressed = false
+        self.showPopUp = false
+        self.isFinished = false
+        self.progressViewModel.restartProgressBar()
+        //self.viewModel.resetGame()
+    }
+    
+    func confirmQuestion() {
+        if self.progressViewModel.isLastQuestion() {
+            self.isFinished = true
+        }
+        
+        //self.viewModel.changeGameScore()
+        
+        withAnimation(.linear(duration: 0.3)) {
+            //self.progressViewModel.checkAnswer(isCorrect: self.viewModel.faceIsCorrect(), nextIndex: self.viewModel.getRecapIndex())
+        }
+        
+        //self.viewModel.resetGame()
+        
+        self.buttonIsPressed = false
+        
+        if self.isFinished {
+            self.progressViewModel.currentQuestion = -1
+        }
     }
 }
 
@@ -151,6 +187,8 @@ struct TotemGameTile: View {
     // 1366
     var size: CGFloat
     var imageNameList: [String]
+    var id: Int
+    @Binding var selectedTile: Int
     
     var body: some View {
         
@@ -164,8 +202,18 @@ struct TotemGameTile: View {
                     .frame(width: size * 0.186, height: size * 0.142)
             }
         }.overlay(
-            RoundedRectangle(cornerRadius: 18)
-                .stroke(Color.optionBorder, lineWidth: 2)
+            Group {
+                if self.selectedTile == self.id {
+                    RoundedRectangle(cornerRadius: 18)
+                        .stroke(Color.Bee, lineWidth: 9)
+                } else {
+                    RoundedRectangle(cornerRadius: 18)
+                        .stroke(Color.optionBorder, lineWidth: 2)
+                }
+            }
         )
+        .onTapGesture {
+            self.selectedTile = self.id
+        }
     }
 }
