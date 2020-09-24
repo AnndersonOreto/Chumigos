@@ -15,7 +15,7 @@ struct UnderConstructionView: View {
     var body: some View {
         ZStack {
             Color.background.edgesIgnoringSafeArea(.all)
-            VStack{
+            VStack {
                 
                 Image("underConstruction")
                     .resizable()
