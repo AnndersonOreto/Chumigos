@@ -196,7 +196,7 @@ struct AvatarGameView: View {
                                     VStack {
                                         CustomText("ME SINTO")
                                             .dynamicFont(size: 18, weight: .medium)
-                                            .foregroundColor(Color.textColor)
+                                            .foregroundColor(Color.Eel)
                                             .padding(.top, screenWidth * 0.04)
                                         
                                         CustomText("\(self.viewModel.feeling.rawValue)".uppercased())
