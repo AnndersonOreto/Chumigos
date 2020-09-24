@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FeelingClassificator{
+class FeelingClassificator {
     
     /// This fuction is for classify an image.
     /// - Parameter image: receive an UIImage.toBuffer().
@@ -29,7 +29,7 @@ class FeelingClassificator{
     /// This function is for classify an image.
     /// - Parameter image: receive an UIImage.toBuffer().
     /// - Returns: the probability of each category as a dictionary.
-    static func allPredictions(_ image: CVPixelBuffer) -> [String : Double]?{
+    static func allPredictions(_ image: CVPixelBuffer) -> [String : Double]? {
         let model = logginhoFeelings2_0()
         let output = try? model.prediction(image: image)
         

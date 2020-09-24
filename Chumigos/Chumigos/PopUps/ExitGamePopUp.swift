@@ -16,7 +16,7 @@ struct ExitGamePopUp: View {
     
     var body: some View {
         
-        ZStack{
+        ZStack {
             Rectangle().fill(Color.background).opacity(0.1)
                 .onTapGesture {
                     self.showPopUp = false
@@ -59,14 +59,19 @@ extension ExitGamePopUp {
                 }) {
                     Text("Sair")
                         .dynamicFont(name: "Rubik", size: 20, weight: .bold)
-                }.buttonStyle(GameButtonStyle(buttonColor: .Cardinal, pressedButtonColor: .Cardinal, buttonBackgroundColor: .FireAnt, isButtonEnable: true, textColor: .Ghost))
+                }.buttonStyle(GameButtonStyle(buttonColor: .Cardinal,
+                                              pressedButtonColor: .Cardinal,
+                                              buttonBackgroundColor: .FireAnt, isButtonEnable: true,
+                                              textColor: .Ghost))
                 
                 Button(action: {
                     self.showPopUp = false
                 }) {
                     Text("Continuar")
                         .dynamicFont(name: "Rubik", size: 20, weight: .bold)
-                }.buttonStyle(GameButtonStyle(buttonColor: .Humpback, pressedButtonColor: .Humpback, buttonBackgroundColor: .Narwhal, isButtonEnable: true, textColor: .Ghost))
+                }.buttonStyle(GameButtonStyle(buttonColor: .Humpback, pressedButtonColor: .Humpback,
+                                              buttonBackgroundColor: .Narwhal,
+                                              isButtonEnable: true, textColor: .Ghost))
             }.padding(.bottom, screenWidth * 0.032)
                 .padding(.horizontal, screenWidth * 0.044)
         }

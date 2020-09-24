@@ -98,7 +98,11 @@ struct ConfigurationView: View {
                                 .foregroundColor(.Hare)
                                 .fontWeight(.medium)
                                 .tracking(1)
-                        }.buttonStyle(AppButtonStyle(buttonColor: .Swan, pressedButtonColor: .Swan, buttonBackgroundColor: .Hare, isButtonEnable: false, textColor: .Ghost, width: screenWidth * 0.39))
+                        }.buttonStyle(
+                            AppButtonStyle(buttonColor: .Swan, pressedButtonColor: .Swan,
+                                           buttonBackgroundColor: .Hare, isButtonEnable: false,
+                                           textColor: .Ghost, width: screenWidth * 0.39)
+                        )
                     }.frame(width: screenWidth * 0.39)
                     .padding(.bottom, screenWidth * 0.015)
                     
@@ -154,7 +158,6 @@ struct ConfigurationView: View {
                                     UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                             }
                             
-                            
                             Toggle(isOn: toggleDarkModeValue()) {
                                 
                                 Text("Dark Mode")
@@ -173,7 +176,6 @@ struct ConfigurationView: View {
                             .background(Color.popUpBackground))
                             .padding(.horizontal, 1)
                             .padding(.vertical, screenWidth * 0.0065)
-                        
                         
                         // Dynamic type slider
                         //                        VStack(alignment: .leading) {
@@ -224,8 +226,11 @@ struct ConfigurationView: View {
                             .foregroundColor(.Ghost)
                             .fontWeight(.medium)
                             .kerning(1)
-                    }.buttonStyle(AppButtonStyle(buttonColor: .Cardinal, pressedButtonColor: .Crab, buttonBackgroundColor: .FireAnt, isButtonEnable: true, textColor: .Ghost, width: screenWidth * 0.39))
-                    
+                    }.buttonStyle(
+                        AppButtonStyle(buttonColor: .Cardinal, pressedButtonColor: .Crab,
+                                       buttonBackgroundColor: .FireAnt, isButtonEnable: true,
+                                       textColor: .Ghost, width: screenWidth * 0.39)
+                    )
                     
                     // Service terms button
                     Button(action: {
@@ -258,7 +263,9 @@ struct ConfigurationView: View {
             set: {
                 SceneDelegate.shared?.window!.overrideUserInterfaceStyle = $0 ? .dark : .light
                 //dark rawvalue = 2 ; light rawvalue = 1
-                UserDefaults.standard.setValue($0 ? UIUserInterfaceStyle.dark.rawValue : UIUserInterfaceStyle.light.rawValue, forKey: "loggio_viewStyle")
+                UserDefaults.standard.setValue(
+                    $0 ? UIUserInterfaceStyle.dark.rawValue : UIUserInterfaceStyle.light.rawValue,
+                    forKey: "loggio_viewStyle")
         }
         )
     }
@@ -271,7 +278,9 @@ struct ConfigurationView: View {
         },
             set: {
                 SceneDelegate.shared?.window!.overrideUserInterfaceStyle = $0 ? .unspecified : .dark
-                UserDefaults.standard.setValue($0 ? UIUserInterfaceStyle.unspecified.rawValue : UIUserInterfaceStyle.dark.rawValue, forKey: "loggio_viewStyle")
+                UserDefaults.standard.setValue(
+                    $0 ? UIUserInterfaceStyle.unspecified.rawValue : UIUserInterfaceStyle.dark.rawValue,
+                    forKey: "loggio_viewStyle")
         }
         )
     }
@@ -288,8 +297,7 @@ struct ConfigurationView: View {
                     UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                     UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                     UserDefaults.standard.set(false, forKey: "loggio_notification")
-                }
-                else {
+                } else {
                     self.isAlert = true
                     UserDefaults.standard.set(true, forKey: "loggio_notification")
                 }
@@ -299,7 +307,7 @@ struct ConfigurationView: View {
     
     func setAvatarName() {
         
-        if result.count <= 0 {
+        if result.isEmpty {
             self.avatarImageName = "Avatar 12"
         } else {
             self.avatarImageName = self.result[0].imageName ?? "Avatar 12"
@@ -310,7 +318,7 @@ struct ConfigurationView: View {
         
         var user: UserData
         
-        if result.count <= 0 {
+        if result.isEmpty {
             user = UserData(context: self.moc)
         } else {
             user = result[0]

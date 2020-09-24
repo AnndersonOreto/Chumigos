@@ -11,8 +11,6 @@ import SwiftUI
 
 class ConfigurationViewModel: ObservableObject {
     
-
-    
     init() {
         
     }

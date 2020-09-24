@@ -23,7 +23,7 @@ struct TrailTile: View {
     var body: some View {
         
         HStack(alignment: .top) {
-            VStack() {
+            VStack {
                 
                 makeTile()
                     .padding(.bottom, 10)
@@ -113,7 +113,7 @@ extension TrailTile {
                 .fill(topColor)
                 .frame(width: screenWidth * widthScale, height: screenWidth * widthScale)
             
-            ZStack{
+            ZStack {
                 Image(image)
                     .resizable()
                     .frame(width: screenWidth * 0.06, height: screenWidth * 0.06)

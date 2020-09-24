@@ -110,8 +110,8 @@ class ShapeGameViewModel: ObservableObject {
         // If some question ain't correct, add it to wrongAnswers list
         if !allQuestionsAreCorrect() {
             
-            for i in 0..<questions.count {
-                model.vacateQuestion(with: i)
+            for index in 0..<questions.count {
+                model.vacateQuestion(with: index)
             }
             
             //To limit recap try to only one time

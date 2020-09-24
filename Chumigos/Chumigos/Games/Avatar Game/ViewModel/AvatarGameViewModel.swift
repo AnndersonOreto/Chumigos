@@ -50,9 +50,9 @@ class AvatarGameViewModel: ObservableObject {
     
     //Functions
     func allOptionsSelected() -> Bool {
-        let eyeSelected: Bool = eyeImage != ""
-        let eyebrownSelected: Bool = eyebrowImage != ""
-        let mouthSelected: Bool = mouthImage != ""
+        let eyeSelected: Bool = !eyeImage.isEmpty
+        let eyebrownSelected: Bool = !eyebrowImage.isEmpty
+        let mouthSelected: Bool = !mouthImage.isEmpty
         return eyeSelected && eyebrownSelected && mouthSelected
     }
     
@@ -105,7 +105,6 @@ class AvatarGameViewModel: ObservableObject {
         // calling prediction
         performPediction(avatarFaceImage)
     }
-    
     
     func performPediction(_ image: UIImage?) {
         // make sure that conversion of the image works as we expected.

@@ -13,12 +13,8 @@ import UIKit
 class NotificationManager {
     
     // MARK: - Constants
-    
-    
-    final let DAY_IN_SECONDS: Double = 86400
-    
-    // MARK: - Int
-    
+    let dailyInSeconds: Double = 86400
+        
     init() {
         
     }
@@ -37,7 +33,7 @@ class NotificationManager {
             notification.body = body ?? "Hop in to learn more and have lots of fun"
             
             // Create a date from now that adds the amount of seconds ahead on time
-            let date = Date().addingTimeInterval(DAY_IN_SECONDS)
+            let date = Date().addingTimeInterval(dailyInSeconds)
             
             // Set components that will be used to count time
             let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
@@ -67,7 +63,8 @@ class NotificationManager {
     
     public func openNotificationSettings() {
         
-        if let bundleIdentifier = Bundle.main.bundleIdentifier, let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
+        if let bundleIdentifier = Bundle.main.bundleIdentifier,
+           let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
             if UIApplication.shared.canOpenURL(appSettings) {
                 UIApplication.shared.open(appSettings)
             }
@@ -76,7 +73,7 @@ class NotificationManager {
     
     public func openNotificationSettingsWithAlert() {
         
-        let alertController = UIAlertController (title: "Title", message: "Go to Settings?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Title", message: "Go to Settings?", preferredStyle: .alert)
 
         let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
 
@@ -132,9 +129,7 @@ class NotificationManager {
     func registerForPushNotifications() {
         UserDefaults.standard.set(true, forKey: "loggio_notification")
         UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge]) {
-                [weak self] granted, error in
-                
+            .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
                 print("Permission granted: \(granted)")
                 guard granted else { return }
                 self?.getNotificationSettings()

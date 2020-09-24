@@ -50,7 +50,7 @@ struct GameObject: Hashable, Codable {
     
     mutating func increaseCurrentProgress(_ value: Float) {
         
-        if currentProgress + value >= maxProgress{
+        if currentProgress + value >= maxProgress {
             currentProgress = maxProgress
         } else {
             self.currentProgress += value

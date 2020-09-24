@@ -10,5 +10,4 @@ import SwiftUI
 
 class TrailViewModel: ObservableObject {
     
-    
 }

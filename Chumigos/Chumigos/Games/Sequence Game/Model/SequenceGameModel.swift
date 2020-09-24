@@ -51,16 +51,16 @@ struct SequenceGameModel {
     }
     
     mutating func resetUUID() {
-        for i in 0..<questions.count {
-            questions[i].id = UUID()
+        for index in 0..<questions.count {
+            questions[index].id = UUID()
         }
         
-        for i in 0..<alternatives.count {
-            alternatives[i].id = UUID()
+        for index in 0..<alternatives.count {
+            alternatives[index].id = UUID()
         }
         
-        for i in 0..<sequence.count {
-            sequence[i].id = UUID()
+        for index in 0..<sequence.count {
+            sequence[index].id = UUID()
         }
     }
     
@@ -72,8 +72,8 @@ struct SequenceGameModel {
     
     private mutating func generatePattern() {
         var array: [Int] = []
-        for n in 1...sizeOfPattern {
-            array.append(n)
+        for index in 1...sizeOfPattern {
+            array.append(index)
         }
         self.pattern = array.shuffled()
     }
@@ -127,24 +127,24 @@ struct SequenceGameModel {
     // MARK: - Functions for the Questions
     
     mutating func occupyQuestion(with index: Int, alternative: Int) {
-        for (i, question) in questions.enumerated() {
+        for (pos, question) in questions.enumerated() {
             if question.currentAnswer == alternative {
-                self.vacateQuestion(with: i)
+                self.vacateQuestion(with: pos)
             }
         }
         self.questions[index].occupy(with: alternative)
         
-        for (i, element) in alternatives.enumerated() {
+        for (pos, element) in alternatives.enumerated() {
             if element.value == alternative {
-                self.alternatives[i].questionValue = self.questions[index].correctAnswer
+                self.alternatives[pos].questionValue = self.questions[index].correctAnswer
             }
         }
     }
     
     mutating func vacateQuestion(with index: Int) {
-        for (i, element) in alternatives.enumerated() {
+        for (pos, element) in alternatives.enumerated() {
             if questions[index].currentAnswer == element.value {
-                self.alternatives[i].questionValue = nil
+                self.alternatives[pos].questionValue = nil
             }
         }
         self.questions[index].vacate()
@@ -195,5 +195,3 @@ struct SequenceGameModel {
         var id = UUID()
     }
 }
-
-

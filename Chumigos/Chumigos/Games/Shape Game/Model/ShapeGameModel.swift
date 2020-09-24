@@ -97,16 +97,16 @@ struct ShapeGameModel {
     }
     
     mutating func resetUUID() {
-        for i in 0..<questions.count {
-            questions[i].id = UUID()
+        for index in 0..<questions.count {
+            questions[index].id = UUID()
         }
         
-        for i in 0..<alternatives.count {
-            alternatives[i].id = UUID()
+        for index in 0..<alternatives.count {
+            alternatives[index].id = UUID()
         }
         
-        for i in 0..<round.count {
-            round[i].id = UUID()
+        for index in 0..<round.count {
+            round[index].id = UUID()
         }
     }
     
@@ -126,7 +126,8 @@ struct ShapeGameModel {
             var randomSides: Int?
             repeat {
                 randomSides = range.randomElement()
-            } while(randomSides == question.correctAnswer || alternatives.compactMap( { $0.value } ).contains(randomSides))
+            } while(randomSides == question.correctAnswer || alternatives.compactMap({$0.value}).contains(randomSides))
+            
             range.remove(at: index)
             alternatives.append(Alternative(value: randomSides!, colorIndex: index))
         }

@@ -15,7 +15,6 @@ class HapticManager: ObservableObject {
     // MARK: - Init
     let generator = UINotificationFeedbackGenerator()
 
-    
     init() {
         
     }
@@ -55,7 +54,6 @@ class HapticManager: ObservableObject {
         generator.notificationOccurred(.error)
     }
 }
-
 
 enum FeedBackHaptic {
     case SUCESS, WARNING, ERROR

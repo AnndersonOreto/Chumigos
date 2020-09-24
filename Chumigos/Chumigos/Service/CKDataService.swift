@@ -31,7 +31,8 @@ struct CKDataService {
     // Standard fetch function
     /// Get all results on database based on a table
     /// - Parameter completion: return the item list on a table
-    static func fetch<T: CKCloudDataProtocol>(tableName: String, completion: @escaping (Result<T, Error>) -> ()) {
+    static func fetch<T: CKCloudDataProtocol>(tableName: String,
+                                              completion: @escaping (Result<T, Error>) -> Void) {
         
         let predicate = NSPredicate(value: true)
         
@@ -72,7 +73,7 @@ struct CKDataService {
     /// - Parameters:
     ///   - item: item that should be created
     ///   - completion: check if item has been created
-    static func create<T: CKCloudDataProtocol>(item: T, completion: @escaping (Result<T, Error>) -> ()) {
+    static func create<T: CKCloudDataProtocol>(item: T, completion: @escaping (Result<T, Error>) -> Void) {
         
         // Parse item into a record
         guard let itemRecord = try? T.parse.toDataRecord(item) else { return }
@@ -110,7 +111,7 @@ struct CKDataService {
     /// - Parameters:
     ///   - item: item that will be updated
     ///   - completion: used to check if the item has been deleted or not returning an result object
-    static func update<T: CKCloudDataProtocol>(item: T, completion: @escaping (Result<T, Error>) -> ()) {
+    static func update<T: CKCloudDataProtocol>(item: T, completion: @escaping (Result<T, Error>) -> Void) {
         
         // Parse item into a record
         guard let recordID = item.recordID else { return }
@@ -156,7 +157,7 @@ struct CKDataService {
     /// - Parameters:
     ///   - recordID: ID that will be deleted
     ///   - completion: used to check if the record has been deleted or an error occurred
-    static func delete(_ recordID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID, Error>) -> ()) {
+    static func delete(_ recordID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID, Error>) -> Void) {
         
         // Delete the record from the database
         CKContainer.default().publicCloudDatabase.delete(withRecordID: recordID) { (recordID, err) in

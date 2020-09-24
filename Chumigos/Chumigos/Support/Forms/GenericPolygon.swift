@@ -81,7 +81,7 @@ extension Path {
         var bottomEdge: CGFloat = 0
 
         // loop over all our points/inner points
-        for corner in 0..<corners * 2  {
+        for corner in 0..<corners * 2 {
             // figure out the location of this point
             let sinAngle = sin(currentAngle)
             let cosAngle = cos(currentAngle)

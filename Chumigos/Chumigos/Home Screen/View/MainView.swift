@@ -37,7 +37,7 @@ struct MainView: View {
 extension MainView {
 
     private func tabBar() -> some View {
-        HStack{
+        HStack {
             ZStack {
                 Rectangle()
                     .fill(Color.tabBarDivider)
@@ -47,7 +47,7 @@ extension MainView {
                     .fill(Color.background)
                     .frame(width: screenWidth * 0.077)
                 
-                VStack(spacing: screenWidth * 0.03){
+                VStack(spacing: screenWidth * 0.03) {
                     
                     //Profile
                     Button(action: {
@@ -113,7 +113,7 @@ extension MainView {
     
     func setAvatarName() -> String {
         
-        if result.count <= 0 {
+        if result.isEmpty {
             return "Avatar 12"
         } else {
             return self.result[0].imageName ?? "Avatar 12"

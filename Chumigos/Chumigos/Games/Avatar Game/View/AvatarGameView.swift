@@ -43,7 +43,7 @@ struct AvatarGameView: View {
     
     var body: some View {
         
-        ZStack{
+        ZStack {
             Color.background
             
             if !isFinished {
@@ -53,7 +53,7 @@ struct AvatarGameView: View {
                     if showChatBalloon {
                         Rectangle()
                             .opacity(0)
-                            .onAppear  {
+                            .onAppear {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
                                     withAnimation(.easeOut) {
                                         self.showChatBalloon = false
@@ -74,7 +74,7 @@ struct AvatarGameView: View {
                                     }
                             }
                             .onTapGesture {
-                                withAnimation(.easeInOut){
+                                withAnimation(.easeInOut) {
                                     self.showChatBalloon = true
                                 }
                             }
@@ -83,7 +83,7 @@ struct AvatarGameView: View {
                     }
                     
                     //Feedback massage
-                    ZStack{
+                    ZStack {
                         VStack {
                             Spacer()
                             if viewModel.canShowResult() {
@@ -119,10 +119,10 @@ struct AvatarGameView: View {
                         .allowsHitTesting(!viewModel.confirmPressed)
                         
                         //Options
-                        HStack{
+                        HStack {
                             Spacer()
                             
-                            VStack(spacing: 22){
+                            VStack(spacing: 22) {
                                 
                                 CustomText("Selecione os elementos que correspondem\na como o Logginho está se sentindo:")
                                     .dynamicFont(size: 20, weight: .medium)
@@ -130,7 +130,11 @@ struct AvatarGameView: View {
                                     .multilineTextAlignment(.center)
                                 
                                 Grid<AvatarGameTile>(rows: numberOfRows, columns: numberOfColumns, spacing: screenWidth * 0.008) { (row, column) in
-                                    AvatarGameTile(facePart: self.viewModel.roundFaceParts[(row * self.numberOfColumns)+column], eyeImage: self.$viewModel.eyeImage, mouthImage: self.$viewModel.mouthImage, eyebrowImage: self.$viewModel.eyebrowImage, confirmPressed: self.$viewModel.confirmPressed)
+                                    AvatarGameTile(facePart: self.viewModel.roundFaceParts[(row * self.numberOfColumns)+column],
+                                                   eyeImage: self.$viewModel.eyeImage,
+                                                   mouthImage: self.$viewModel.mouthImage,
+                                                   eyebrowImage: self.$viewModel.eyebrowImage,
+                                                   confirmPressed: self.$viewModel.confirmPressed)
                                 }
                                 
                                 Spacer()
@@ -146,14 +150,22 @@ struct AvatarGameView: View {
                                 Text("Continuar")
                                     .dynamicFont(name: "Rubik", size: 20, weight: .bold)
                             }.buttonStyle(
-                                self.viewModel.faceIsCorrect() ?
+                                self.viewModel.faceIsCorrect()
+                                    ?
                                     //correct answer
-                                    GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: viewModel.allOptionsSelected()) :
+                                    GameButtonStyle(buttonColor: Color.Owl,
+                                                    pressedButtonColor: Color.Turtle,
+                                                    buttonBackgroundColor: Color.TreeFrog,
+                                                    isButtonEnable: viewModel.allOptionsSelected())
+                                    :
                                     //wrong answer
-                                    GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: viewModel.allOptionsSelected(), textColor: Color.Humpback) )
-                                .padding(.bottom, screenWidth * 0.019)
-                        }
-                        else {
+                                    GameButtonStyle(buttonColor: Color.white,
+                                                    pressedButtonColor: Color.Swan,
+                                                    buttonBackgroundColor: Color.Swan,
+                                                    isButtonEnable: viewModel.allOptionsSelected(),
+                                                    textColor: Color.Humpback)
+                            ).padding(.bottom, screenWidth * 0.019)
+                        } else {
                             //Confirm Button
                             Button(action: {
                                 self.viewModel.confirmPressed = true
@@ -161,9 +173,12 @@ struct AvatarGameView: View {
                             }) {
                                 Text("Confirmar")
                                     .dynamicFont(name: "Rubik", size: 20, weight: .bold)
-                            }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: viewModel.allOptionsSelected()))
-                                .disabled(!viewModel.allOptionsSelected())
-                                .padding(.bottom, screenWidth * 0.019)
+                            }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale,
+                                                          pressedButtonColor: Color.Macaw,
+                                                          buttonBackgroundColor: Color.Narwhal,
+                                                          isButtonEnable: viewModel.allOptionsSelected())
+                            ).disabled(!viewModel.allOptionsSelected())
+                            .padding(.bottom, screenWidth * 0.019)
                         }
                     }
                     
@@ -178,7 +193,7 @@ struct AvatarGameView: View {
                                             .resizable()
                                     }
                                     
-                                    VStack{
+                                    VStack {
                                         CustomText("ME SINTO")
                                             .dynamicFont(size: 18, weight: .medium)
                                             .foregroundColor(Color.textColor)
@@ -205,7 +220,9 @@ struct AvatarGameView: View {
                     .padding(.bottom, screenWidth * 0.33)
                 }.blur(radius: self.showPopUp ? 16 : 0)
             } else {
-                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame, game: self.game, gameScore: self.viewModel.gameScore.currentScore)
+                EndGameView(progressViewModel: self.progressViewModel,
+                            dismissGame: self.dismissGame, restartGame: self.restartGame,
+                            game: self.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {

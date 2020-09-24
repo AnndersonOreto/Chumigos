@@ -1,4 +1,3 @@
-
 //
 //  ProgressBarViewModel.swift
 //  Chumigos
