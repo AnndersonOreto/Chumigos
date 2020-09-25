@@ -15,6 +15,9 @@ class TotemGameViewModel: ObservableObject {
     
     @Published var totemPieceList: [TotemPiece] = []
     @Published var totemAlternativeList: [[String]] = []
+    var correctUpTopTotem: [String] = []
+    var gameScore: GameScore = GameScore()
+    var gameState: GameState = .NORMAL
     
     init() {
         generateTotem()
@@ -26,16 +29,32 @@ class TotemGameViewModel: ObservableObject {
     }
     
     func generateAlternatives() {
-        totemAlternativeList = model.generateAlternatives(with: totemPieceList)
+        let response = model.generateAlternatives(with: totemPieceList)
+        totemAlternativeList = response.0
+        correctUpTopTotem = response.1
     }
     
-    func allQuestionsAreCorrect() -> Bool {
-        
-        return true
+    func resetGame() {
+        totemPieceList.removeAll()
+        totemAlternativeList.removeAll()
+        correctUpTopTotem.removeAll()
+        generateTotem()
+        generateAlternatives()
     }
     
-    func allQuestionsAreOccupied() -> Bool {
-        
-        return false
+    func getRecapIndex() -> Int {
+        return -1
+    }
+    
+    func changeGameScore(isAnswerCorrect: Bool) {
+        if isAnswerCorrect {
+            if self.gameState == .NORMAL {
+                self.gameScore.incrementDefaultScore()
+            } else {
+                self.gameScore.incrementRecapScore()
+            }
+        } else {
+            self.gameScore.disableStreak()
+        }
     }
 }

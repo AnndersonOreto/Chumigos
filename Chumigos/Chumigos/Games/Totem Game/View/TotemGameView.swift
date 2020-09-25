@@ -22,6 +22,7 @@ struct TotemGameView: View {
     @State var showPopUp: Bool = false
     @State var tileSelected: Int = -1 // None tile selected
     @State var isFinished: Bool = false
+    @State var selectedUpTopTotem: [String] = []
     @Binding var isTabBarActive: Bool
     
     // MARK: - Flag Variables
@@ -38,6 +39,17 @@ struct TotemGameView: View {
             
             // Dark light mode
             Color.background.edgesIgnoringSafeArea(.all)
+            
+            //Feedback massage
+            ZStack{
+                VStack {
+                    Spacer()
+                    if buttonIsPressed {
+                        GameFeedbackMessage(feedbackType: self.checkAnswer() ? .CORRECT : .WRONG)
+                            .padding(.bottom, -(screenWidth * 0.035))
+                    }
+                }
+            }
             
             VStack {
                 
@@ -95,7 +107,7 @@ struct TotemGameView: View {
                         
                         // Alternatives grid
                         Grid<TotemGameTile>(rows: 2, columns: 2, spacing: screenWidth * 0.0175, content: { (row, column) in
-                            TotemGameTile(size: self.screenWidth, imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column], id: (row * 2) + column, selectedTile: $tileSelected)
+                            TotemGameTile(size: self.screenWidth, imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column], id: (row * 2) + column, selectedTile: $tileSelected, selectedUpTopTotem: $selectedUpTopTotem)
                         })
                         
                         Spacer()
@@ -110,15 +122,24 @@ struct TotemGameView: View {
                     // Continue Button
                     if buttonIsPressed {
                         Button(action: {
-                            
+                            self.confirmQuestion()
                         }) {
                             Text("Continuar")
                                 .dynamicFont(name: fontName, size: 20, weight: .bold)
                         }.buttonStyle(
-                            GameButtonStyle(buttonColor: Color.Owl,
-                                            pressedButtonColor: Color.Turtle,
-                                            buttonBackgroundColor: Color.TreeFrog,
-                                            isButtonEnable: true))
+                            self.checkAnswer()
+                                ?
+                                // Correct answer
+                                GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle,
+                                                buttonBackgroundColor: Color.TreeFrog,
+                                                isButtonEnable: tileSelected != -1)
+                                :
+                                // Wrong answer
+                                GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan,
+                                                buttonBackgroundColor: Color.Swan,
+                                                isButtonEnable: tileSelected != -1,
+                                                textColor: Color.Humpback)
+                        )
                         .padding(.bottom, 10)
                     } else {
                         //Confirm Button
@@ -166,19 +187,25 @@ struct TotemGameView: View {
             self.isFinished = true
         }
         
-        //self.viewModel.changeGameScore()
+        self.viewModel.changeGameScore(isAnswerCorrect: self.checkAnswer())
         
         withAnimation(.linear(duration: 0.3)) {
-            //self.progressViewModel.checkAnswer(isCorrect: self.viewModel.faceIsCorrect(), nextIndex: self.viewModel.getRecapIndex())
+            self.progressViewModel.checkAnswer(isCorrect: self.checkAnswer(), nextIndex: self.viewModel.getRecapIndex())
         }
         
-        //self.viewModel.resetGame()
+        self.viewModel.resetGame()
         
         self.buttonIsPressed = false
+        self.tileSelected = -1
         
         if self.isFinished {
             self.progressViewModel.currentQuestion = -1
         }
+    }
+    
+    func checkAnswer() -> Bool {
+        
+        return self.selectedUpTopTotem == self.viewModel.correctUpTopTotem
     }
 }
 
@@ -189,6 +216,7 @@ struct TotemGameTile: View {
     var imageNameList: [String]
     var id: Int
     @Binding var selectedTile: Int
+    @Binding var selectedUpTopTotem: [String]
     
     var body: some View {
         
@@ -214,6 +242,7 @@ struct TotemGameTile: View {
         )
         .onTapGesture {
             self.selectedTile = self.id
+            self.selectedUpTopTotem = self.imageNameList
         }
     }
 }

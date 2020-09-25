@@ -70,7 +70,7 @@ class TotemGameModel {
         return totemPieceList
     }
     
-    func generateAlternatives(with totemPieces: [TotemPiece]) -> [[String]] {
+    func generateAlternatives(with totemPieces: [TotemPiece]) -> ([[String]], [String]) {
         
         var totemAlternativeList: [[String]] = []
         var totemSmallPieceList: [String] = totemPieces.filter( { !$0.isBig } ).map( { $0.upTopShape } )
@@ -96,7 +96,7 @@ class TotemGameModel {
         }
         
         totemAlternativeList.shuffle()
-        return totemAlternativeList
+        return (totemAlternativeList, rightAnswer)
     }
     
     /*
