@@ -23,7 +23,7 @@ class CoreDataService {
          error conditions that could cause the creation of the store to fail.
          */
         let container = NSPersistentCloudKitContainer(name: "Chumigos")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -93,7 +93,7 @@ class CoreDataService {
     func decode(result: [UserData]) -> [TrailSection] {
         let decoder = JSONDecoder()
         
-        if result.count > 0 && result[0].trail != nil {
+        if result.isEmpty && result[0].trail != nil {
             
             guard let trailData = result[0].trail else { return [] }
             
@@ -140,7 +140,8 @@ class CoreDataService {
         let linha3 = [GameObject(id: UUID(), gameType: .pattern, gameName: GameNames.sequenceGameName2),
                       GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.shapeGameName2)]
         
-        let linha4 = [GameObject(id: UUID(), gameType: .decomposition, gameName: GameNames.avatarGameName)]
+        let linha4 = [GameObject(id: UUID(), gameType: .decomposition, gameName: GameNames.avatarGameName),
+                      GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.totemGameName)]
 
         let matrix = [linha1, linha2, linha3, linha4]
 

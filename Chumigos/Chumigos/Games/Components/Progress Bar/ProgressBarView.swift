@@ -33,8 +33,12 @@ struct ProgressBarView: View {
                         .foregroundColor(Color.clear)
                         .overlay(
                             Capsule()
-                                .frame(width: index == self.viewModel.currentQuestion ? UIScreen.main.bounds.width*0.115 : UIScreen.main.bounds.width*0.086,
-                                       height: index == self.viewModel.currentQuestion ? UIScreen.main.bounds.width*0.022 : UIScreen.main.bounds.width*0.017)
+                                .frame(width: index == self.viewModel.currentQuestion ?
+                                            UIScreen.main.bounds.width*0.115 :
+                                            UIScreen.main.bounds.width*0.086,
+                                       height: index == self.viewModel.currentQuestion ?
+                                            UIScreen.main.bounds.width*0.022 :
+                                            UIScreen.main.bounds.width*0.017)
                             .foregroundColor(index == self.viewModel.currentQuestion ? Color.Humpback : self.viewModel.progressStatusList[index] )
                     )
                 }

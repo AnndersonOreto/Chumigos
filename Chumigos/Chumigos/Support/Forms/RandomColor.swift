@@ -83,13 +83,13 @@ extension Color {
     
     // MARK: - Random colors
     
-    static let RANDOMIZABLE_COLOR_LIST: [Color] = [Lion, Crab, Fox, Grizzly, Owl, Macaw, Humpback, Betta, Wolf, Starfish]
+    static let colorList: [Color] = [Lion, Crab, Fox, Grizzly, Owl, Macaw, Humpback, Betta, Wolf, Starfish]
     
     // Get single random color
     static func getRandomColor() -> Color {
-        return RANDOMIZABLE_COLOR_LIST.randomElement() ?? Color.white
+        return colorList.randomElement() ?? Color.white
     }
-    
+
     // Get list of random colors
     static func getRandomColors(amount: Int) -> [Color] {
         
@@ -97,21 +97,20 @@ extension Color {
         var colorList = [Lion, Crab, Fox, Grizzly, Owl, Macaw, Humpback, Betta, Wolf, Starfish]
         
         if amount >= colorList.count {
-            
             return colorList
         } else {
-            
             var resp: [Color] = []
             
             for _ in 0..<amount {
-                
                 let randomElement = colorList.randomElement()
                 
                 for (index, element) in colorList.enumerated() {
-                    
                     if element == randomElement {
                         colorList.remove(at: index)
                     }
+                }
+                for (index, element) in colorList.enumerated() where element == randomElement {
+                    print("oi\(index)")
                 }
                 
                 resp.append(randomElement ?? Turtle)

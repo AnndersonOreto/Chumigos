@@ -31,8 +31,7 @@ struct GameFeedbackMessage: View {
                         .dynamicFont(name: fontName, size: 20, weight: .bold)
                         .foregroundColor(Color.Ghost)
                         .padding(.top, 20)
-                }
-                else if feedbackType == .WRONG {
+                } else if feedbackType == .WRONG {
                     Text("ERRRRROOOOOOO!")
                         .dynamicFont(name: fontName, size: 20, weight: .bold)
                         .foregroundColor(Color.Ghost)

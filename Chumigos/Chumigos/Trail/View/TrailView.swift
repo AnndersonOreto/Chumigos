@@ -19,7 +19,7 @@ struct TrailView: View {
     
     @State var matrixList: [TrailSection] = CoreDataService.shared.mockSections()
     
-    //MARK: - View
+    // MARK: - View
     
     var body: some View {
         NavigationView {

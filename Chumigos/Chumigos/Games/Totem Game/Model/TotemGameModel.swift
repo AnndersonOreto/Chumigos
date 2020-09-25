@@ -9,21 +9,21 @@
 import Foundation
 
 enum TotemShape: String, CaseIterable {
-    case big = "big"
-    case small = "small"
-    case cupwing = "cupwing"
-    case bigwing = "bigwing"
-    case smallwing = "smallwing"
-    case cup = "cup"
+    case big
+    case small
+    case cupwing
+    case bigwing
+    case smallwing
+    case cup
 }
 
 class TotemGameModel {
     
-    final let MAX_TOTEM_PIECES: Int = 5
-    final let TOTEM_ALTERNATIVES: Int = 4
+    let maxTotemPieces: Int = 5
+    let totemAlternatives: Int = 4
     
     //TODO: Da pra usar isso pra trabalhar o esquema de level
-    let NUM_WINGS = 1
+    let numWings = 1
     
     private var shapeArray: [TotemShape] = []
     private var faceArray: [[String]] = []
@@ -40,15 +40,14 @@ class TotemGameModel {
         var totemPieceList: [TotemPiece] = []
         var amountWings = 0
         var index = 0
-        while index < MAX_TOTEM_PIECES {
+        while index < maxTotemPieces {
             
             let shape = generateRandomTotemShape()
             
             if shape == .bigwing || shape == .cupwing || shape == .smallwing {
-                if amountWings == NUM_WINGS {
+                if amountWings == numWings {
                     continue
-                }
-                else {
+                } else {
                     amountWings += 1
                 }
             }
@@ -73,15 +72,15 @@ class TotemGameModel {
     func generateAlternatives(with totemPieces: [TotemPiece]) -> ([[String]], [String]) {
         
         var totemAlternativeList: [[String]] = []
-        var totemSmallPieceList: [String] = totemPieces.filter( { !$0.isBig } ).map( { $0.upTopShape } )
-        var totemBigPieceList: [String] = totemPieces.filter( { $0.isBig } ).map( { $0.upTopShape } )
+        var totemSmallPieceList: [String] = totemPieces.filter({ !$0.isBig }).map({ $0.upTopShape })
+        var totemBigPieceList: [String] = totemPieces.filter({ $0.isBig }).map({ $0.upTopShape })
         var index: Int = 0
         
-        let rightAnswer = totemPieces.map( { $0.upTopShape } )
+        let rightAnswer = totemPieces.map({ $0.upTopShape })
         totemAlternativeList.append(rightAnswer)
         
         // Generate all alternatives except for the correct alternative
-        while index < TOTEM_ALTERNATIVES-1 {
+        while index < totemAlternatives-1 {
             
             totemSmallPieceList.shuffle()
             totemBigPieceList.shuffle()
@@ -122,7 +121,7 @@ class TotemGameModel {
      }
      */
     
-    func generateRandomTotemColor() -> String{
+    func generateRandomTotemColor() -> String {
         return colorArray.randomElement() ?? "01"
     }
     
@@ -130,7 +129,7 @@ class TotemGameModel {
         return shapeArray.randomElement() ?? .big
     }
     
-    func generateRandomTotemFace(totemShape: TotemShape) -> String{
+    func generateRandomTotemFace(totemShape: TotemShape) -> String {
         switch totemShape {
         case .big, .bigwing:
             return faceArray[0].randomElement() ?? "face/big/01"

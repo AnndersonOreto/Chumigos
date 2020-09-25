@@ -13,7 +13,7 @@ struct TotemGameView: View {
     // MARK: - View Models
     
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
-    @ObservedObject var viewModel: TotemGameViewModel = TotemGameViewModel()
+    @ObservedObject var viewModel: TotemGameViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // MARK: - State variables
@@ -23,14 +23,20 @@ struct TotemGameView: View {
     @State var tileSelected: Int = -1 // None tile selected
     @State var isFinished: Bool = false
     @State var selectedUpTopTotem: [String] = []
-    @Binding var isTabBarActive: Bool
     
     // MARK: - Flag Variables
+    
+    var game: GameObject
     
     // MARK: - Drawing Constants
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
+    
+    init(gameDifficulty: Difficulty, game: GameObject) {
+        self.viewModel = TotemGameViewModel(difficulty: gameDifficulty)
+        self.game = game
+    }
     
     var body: some View {
         
@@ -41,7 +47,7 @@ struct TotemGameView: View {
             Color.background.edgesIgnoringSafeArea(.all)
             
             //Feedback massage
-            ZStack{
+            ZStack {
                 VStack {
                     Spacer()
                     if buttonIsPressed {
@@ -51,6 +57,7 @@ struct TotemGameView: View {
                 }
             }
             
+            if !isFinished {
             VStack {
                 
                 // Progress Bar
@@ -107,7 +114,10 @@ struct TotemGameView: View {
                         
                         // Alternatives grid
                         Grid<TotemGameTile>(rows: 2, columns: 2, spacing: screenWidth * 0.0175, content: { (row, column) in
-                            TotemGameTile(size: self.screenWidth, imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column], id: (row * 2) + column, selectedTile: $tileSelected, selectedUpTopTotem: $selectedUpTopTotem)
+                            TotemGameTile(size: self.screenWidth,
+                                          imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column],
+                                          id: (row * 2) + column, selectedTile: $tileSelected,
+                                          selectedUpTopTotem: $selectedUpTopTotem)
                         })
                         
                         Spacer()
@@ -159,12 +169,17 @@ struct TotemGameView: View {
                     }
                 }
             }.blur(radius: self.showPopUp ? 16 : 0)
+                
+            } else {
+                
+                EndGameView(progressViewModel: self.progressViewModel,
+                            dismissGame: self.dismissGame, restartGame: self.restartGame,
+                            game: self.game, gameScore: self.viewModel.gameScore.currentScore)
+            }
             
             if self.showPopUp {
                 ExitGamePopUp(showPopUp: self.$showPopUp, dismissGame: self.dismissGame)
             }
-        }.onAppear {
-            self.isTabBarActive = false
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
@@ -179,7 +194,7 @@ struct TotemGameView: View {
         self.showPopUp = false
         self.isFinished = false
         self.progressViewModel.restartProgressBar()
-        //self.viewModel.resetGame()
+        self.viewModel.resetGame()
     }
     
     func confirmQuestion() {

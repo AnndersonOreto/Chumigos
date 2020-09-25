@@ -36,7 +36,7 @@ struct Draggable: ViewModifier {
         content
             .overlay(GeometryReader { geo in
                 Color.clear
-                    .onAppear{
+                    .onAppear {
                         //saving rect here
                         self.rect = geo.frame(in: .global)
                 }
@@ -44,14 +44,14 @@ struct Draggable: ViewModifier {
             .offset(dragAmount)
             .gesture(
                 DragGesture(coordinateSpace: .global)
-                    .onChanged{
+                    .onChanged {
                         //Changing dragAmount based on the drag translation
-                        self.dragAmount = CGSize(width: $0.translation.width + self.newOffSet.width, height: $0.translation.height + self.newOffSet.height)
+                        self.dragAmount = CGSize(width: $0.translation.width + self.newOffSet.width,
+                                                 height: $0.translation.height + self.newOffSet.height)
                         //Saving the state of the drag
                         self.dragState = self.onChanged?($0.location, self.answer) ?? .unknown
                 }
-                .onEnded{
-                    
+                .onEnded {
                     //Getting drop location
                     let newCgPoint = self.onEnded?($0.location, self.rect, self.answer, self.dragState) ?? (x: CGFloat.zero, y: CGFloat.zero)
                     
@@ -59,11 +59,11 @@ struct Draggable: ViewModifier {
                     if self.dragState == .good {
                         
                         //Getting x and y position of the drop location
-                        let x = newCgPoint.x
-                        let y = newCgPoint.y
+                        let newX = newCgPoint.x
+                        let newY = newCgPoint.y
                         
                         //making a cgsize with the position
-                        let currentOffSet = CGSize(width: x, height: y)
+                        let currentOffSet = CGSize(width: newX, height: newY)
                         
                         self.newOffSet = currentOffSet
                         self.dragAmount = currentOffSet

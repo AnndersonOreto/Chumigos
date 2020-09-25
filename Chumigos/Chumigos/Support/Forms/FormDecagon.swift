@@ -30,4 +30,3 @@ public struct Decagon: Shape {
         self.inset = inset
     }
 }
-

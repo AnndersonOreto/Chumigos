@@ -19,7 +19,7 @@ class GameScore {
     private(set) var currentScore: Int = 0
     private(set) var streak: Bool = false
     
-    //MARK:- Functions
+    // MARK: - Functions
     
     /// Increment score for the normal state
     func incrementDefaultScore() {

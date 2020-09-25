@@ -35,4 +35,3 @@ extension View {
         return modifier(AlternativeBackground(size: size))
     }
 }
-

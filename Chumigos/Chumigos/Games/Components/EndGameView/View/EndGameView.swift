@@ -24,7 +24,6 @@ struct EndGameView: View {
     
     // MARK: - View
     
-    
     var body: some View {
         
         ZStack {
@@ -61,7 +60,7 @@ struct EndGameView: View {
                 
                 TrailTile(game: game, isEndGame: true)
                     .animation(Animation.easeInOut(duration: 2).delay(1))
-                    .onAppear{
+                    .onAppear {
                         self.game.increaseCurrentProgress(Float(self.gameScore))
                         self.game.changeIsCompleted()
                         CoreDataService.shared.saveGameObject(self.game)
@@ -76,7 +75,10 @@ struct EndGameView: View {
                 }) {
                     Text("Início")
                         .dynamicFont(name: fontName, size: 20, weight: .bold)
-                }.buttonStyle(GameButtonStyle(buttonColor: Color.Humpback, pressedButtonColor: Color.Whale, buttonBackgroundColor: Color.Narwhal, isButtonEnable: true))
+                }.buttonStyle(GameButtonStyle(buttonColor: Color.Humpback,
+                                              pressedButtonColor: Color.Whale,
+                                              buttonBackgroundColor: Color.Narwhal,
+                                              isButtonEnable: true))
                 .padding(.bottom, 30)
                 
                 // Recomecar

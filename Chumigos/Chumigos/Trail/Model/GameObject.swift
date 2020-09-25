@@ -25,7 +25,7 @@ struct GameObject: Hashable, Codable {
     var isCompleted: Bool = false
     
     //Game Progress
-    let maxProgress: Float = 100
+    var maxProgress: Float = 100
     var currentProgress: Float = 0
     var percetageCompleted: Float {
         currentProgress / maxProgress
@@ -50,7 +50,7 @@ struct GameObject: Hashable, Codable {
     
     mutating func increaseCurrentProgress(_ value: Float) {
         
-        if currentProgress + value >= maxProgress{
+        if currentProgress + value >= maxProgress {
             currentProgress = maxProgress
         } else {
             self.currentProgress += value

@@ -18,7 +18,6 @@ struct AvatarGameView: View {
     private var screenWidth = UIScreen.main.bounds.height
     
     // MARK: - State Variables
-    @State var buttonIsPressed: Bool = false
     @State var isFinished: Bool = false
     @State var showPopUp: Bool = false
     @State var showChatBalloon = true
@@ -33,9 +32,9 @@ struct AvatarGameView: View {
         Int(ceil(Double(viewModel.roundFaceParts.count)/Double(numberOfColumns)))
     }
     
-    var feelingColor: Color { self.viewModel.faceIsCorrect() ? .TreeFrog : .FireAnt }
+    var feelingColor: Color { self.viewModel.faceIsCorrect() ? .TreeFrog :  .FireAnt }
     var borderName: String { self.viewModel.faceIsCorrect() ? "correct-border" : "wrong-border" }
-    var iconName: String { self.viewModel.faceIsCorrect() ? "correct-icon" : "wrong-icon"}
+    var iconName: String { self.viewModel.faceIsCorrect() ? "correct-icon" : "wrong-icon" }
     
     init(gameDifficulty: Difficulty, game: GameObject) {
         #warning("Fazer dificuldade no jogo do avatar")
@@ -44,7 +43,7 @@ struct AvatarGameView: View {
     
     var body: some View {
         
-        ZStack{
+        ZStack {
             Color.background
             
             if !isFinished {
@@ -54,7 +53,7 @@ struct AvatarGameView: View {
                     if showChatBalloon {
                         Rectangle()
                             .opacity(0)
-                            .onAppear  {
+                            .onAppear {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
                                     withAnimation(.easeOut) {
                                         self.showChatBalloon = false
@@ -62,38 +61,32 @@ struct AvatarGameView: View {
                                 }
                         }
                     }
+                    
                     //POLVO
-                    HStack{
-                        VStack{
+                    HStack {
+                        VStack {
                             Spacer()
-                            Image("avatar-main-asset")
-                                .resizable()
-                                .frame(width: avatarWidth, height: avatarHeight)
-                                .overlay(
-                                    VStack(spacing: 0) {
-                                        self.imageForEyebrow()
-                                            .padding(.top, screenWidth * 0.18)
-                                        self.imageForEye()
-                                            .padding(.top, -(screenWidth * 0.008))
-                                        self.imageForMouth()
-                                            .padding(.top, screenWidth * 0.01)
-                                        Spacer()
-                                    }.padding(.trailing, screenWidth * 0.025)
-                            )
-                                .onTapGesture {
-                                    withAnimation(.easeInOut){
-                                        self.showChatBalloon = true
+                            avatarImage()
+                                .onReceive(self.viewModel.$confirmPressed) { (confirmPressed) in
+                                    if confirmPressed {
+                                        let image = self.avatarImage().asImage()
+                                        self.viewModel.cropFaceOfAvatar(image: image)
                                     }
+                            }
+                            .onTapGesture {
+                                withAnimation(.easeInOut) {
+                                    self.showChatBalloon = true
+                                }
                             }
                         }.edgesIgnoringSafeArea(.all)
                         Spacer()
                     }
                     
                     //Feedback massage
-                    ZStack{
+                    ZStack {
                         VStack {
                             Spacer()
-                            if buttonIsPressed {
+                            if viewModel.canShowResult() {
                                 GameFeedbackMessage(feedbackType: .CORRECT)
                                     .padding(.bottom, -(screenWidth * 0.035))
                             }
@@ -122,13 +115,14 @@ struct AvatarGameView: View {
                             HStack {
                                 ProgressBarView(viewModel: progressViewModel)
                             }
-                        }.padding(.top, screenWidth * 0.015).allowsHitTesting(!buttonIsPressed)
+                        }.padding(.top, screenWidth * 0.015)
+                        .allowsHitTesting(!viewModel.confirmPressed)
                         
                         //Options
-                        HStack{
+                        HStack {
                             Spacer()
                             
-                            VStack(spacing: 22){
+                            VStack(spacing: 22) {
                                 
                                 CustomText("Selecione os elementos que correspondem\na como o Logginho está se sentindo:")
                                     .dynamicFont(size: 20, weight: .medium)
@@ -136,40 +130,55 @@ struct AvatarGameView: View {
                                     .multilineTextAlignment(.center)
                                 
                                 Grid<AvatarGameTile>(rows: numberOfRows, columns: numberOfColumns, spacing: screenWidth * 0.008) { (row, column) in
-                                    AvatarGameTile(facePart: self.viewModel.roundFaceParts[(row * self.numberOfColumns)+column], eyeImage: self.$viewModel.eyeImage, mouthImage: self.$viewModel.mouthImage, eyebrowImage: self.$viewModel.eyebrowImage, confirmPressed: self.$buttonIsPressed)
+                                    AvatarGameTile(facePart: self.viewModel.roundFaceParts[(row * self.numberOfColumns)+column],
+                                                   eyeImage: self.$viewModel.eyeImage,
+                                                   mouthImage: self.$viewModel.mouthImage,
+                                                   eyebrowImage: self.$viewModel.eyebrowImage,
+                                                   confirmPressed: self.$viewModel.confirmPressed)
                                 }
                                 
                                 Spacer()
                             }
                             .padding(.trailing, screenWidth * 0.087)
                             .padding(.top, screenWidth * 0.051)
-                        }.allowsHitTesting(!buttonIsPressed)
+                        }.allowsHitTesting(!viewModel.confirmPressed)
                         
-                        if buttonIsPressed {
+                        if viewModel.canShowResult() {
                             Button(action: {
                                 self.confirmQuestion()
                             }) {
                                 Text("Continuar")
                                     .dynamicFont(name: "Rubik", size: 20, weight: .bold)
                             }.buttonStyle(
-                                self.viewModel.faceIsCorrect() ?
+                                self.viewModel.faceIsCorrect()
+                                    ?
                                     //correct answer
-                                    GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: viewModel.allOptionsSelected()) :
+                                    GameButtonStyle(buttonColor: Color.Owl,
+                                                    pressedButtonColor: Color.Turtle,
+                                                    buttonBackgroundColor: Color.TreeFrog,
+                                                    isButtonEnable: viewModel.allOptionsSelected())
+                                    :
                                     //wrong answer
-                                    GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: viewModel.allOptionsSelected(), textColor: Color.Humpback) )
-                                .padding(.bottom, screenWidth * 0.019)
-                        }
-                        else {
+                                    GameButtonStyle(buttonColor: Color.white,
+                                                    pressedButtonColor: Color.Swan,
+                                                    buttonBackgroundColor: Color.Swan,
+                                                    isButtonEnable: viewModel.allOptionsSelected(),
+                                                    textColor: Color.Humpback)
+                            ).padding(.bottom, screenWidth * 0.019)
+                        } else {
                             //Confirm Button
                             Button(action: {
-                                self.buttonIsPressed = true
+                                self.viewModel.confirmPressed = true
                                 self.showChatBalloon = true
                             }) {
                                 Text("Confirmar")
                                     .dynamicFont(name: "Rubik", size: 20, weight: .bold)
-                            }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: viewModel.allOptionsSelected()))
-                                .disabled(!viewModel.allOptionsSelected())
-                                .padding(.bottom, screenWidth * 0.019)
+                            }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale,
+                                                          pressedButtonColor: Color.Macaw,
+                                                          buttonBackgroundColor: Color.Narwhal,
+                                                          isButtonEnable: viewModel.allOptionsSelected())
+                            ).disabled(!viewModel.allOptionsSelected())
+                            .padding(.bottom, screenWidth * 0.019)
                         }
                     }
                     
@@ -179,27 +188,27 @@ struct AvatarGameView: View {
                             .frame(width: screenWidth * 0.34, height: screenWidth * 0.25)
                             .overlay(
                                 ZStack {
-                                    if buttonIsPressed {
+                                    if viewModel.canShowResult() {
                                         Image(borderName)
                                             .resizable()
                                     }
                                     
-                                    VStack{
+                                    VStack {
                                         CustomText("ME SINTO")
                                             .dynamicFont(size: 18, weight: .medium)
-                                            .foregroundColor(Color.textColor)
+                                            .foregroundColor(Color.Eel)
                                             .padding(.top, screenWidth * 0.04)
                                         
                                         CustomText("\(self.viewModel.feeling.rawValue)".uppercased())
                                             .dynamicFont(size: 25, weight: .bold)
-                                            .foregroundColor(buttonIsPressed ? self.feelingColor : .Humpback)
+                                            .foregroundColor(viewModel.canShowResult() ? self.feelingColor : .Humpback)
                                             .padding(.top, screenWidth * 0.03)
                                         Spacer()
                                     }
                                 }
                             )
                         
-                        if buttonIsPressed {
+                        if viewModel.canShowResult() {
                             Image(iconName)
                             .resizable()
                             .frame(width: self.screenWidth*0.043, height: self.screenWidth*0.043)
@@ -211,7 +220,9 @@ struct AvatarGameView: View {
                     .padding(.bottom, screenWidth * 0.33)
                 }.blur(radius: self.showPopUp ? 16 : 0)
             } else {
-                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame, game: self.game, gameScore: self.viewModel.gameScore.currentScore)
+                EndGameView(progressViewModel: self.progressViewModel,
+                            dismissGame: self.dismissGame, restartGame: self.restartGame,
+                            game: self.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {
@@ -227,7 +238,6 @@ struct AvatarGameView: View {
     }
     
     func restartGame() {
-        self.buttonIsPressed = false
         self.showPopUp = false
         self.showChatBalloon = true
         self.isFinished = false
@@ -248,8 +258,6 @@ struct AvatarGameView: View {
         
         self.viewModel.resetGame()
         
-        self.buttonIsPressed = false
-        
         if self.isFinished {
             self.progressViewModel.currentQuestion = -1
         }
@@ -264,6 +272,23 @@ struct AvatarGameView: View {
 }
 
 extension AvatarGameView {
+    
+    func avatarImage() -> some View {
+        Image("avatar-main-asset")
+            .resizable()
+            .frame(width: self.avatarWidth, height: self.avatarHeight)
+            .overlay(
+                VStack(spacing: 0) {
+                    self.imageForEyebrow()
+                        .padding(.top, self.screenWidth * 0.18)
+                    self.imageForEye()
+                        .padding(.top, -(self.screenWidth * 0.008))
+                    self.imageForMouth()
+                        .padding(.top, self.screenWidth * 0.01)
+                    Spacer()
+                }.padding(.trailing, self.screenWidth * 0.025)
+        )
+    }
     
     func imageForEyebrow() -> some View {
         Image(self.viewModel.eyebrowImage)
@@ -370,9 +395,3 @@ struct AvatarGameTile: View {
         }
     }
 }
-
-//struct AvatarGameView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AvatarGameView()
-//    }
-//}

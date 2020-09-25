@@ -16,7 +16,7 @@ struct QuestionTile: View {
     var buttonPressed: Bool
     
     var body: some View {
-        ZStack{
+        ZStack {
             
             if isOccupied && buttonPressed {
                 RoundedRectangle(cornerRadius: 18)

@@ -52,7 +52,7 @@ struct SequenceGameView: View {
             }
             
             if !self.isFinished {
-                Group{
+                Group {
                     VStack(spacing: 0) {
                         
                         ZStack {
@@ -76,15 +76,13 @@ struct SequenceGameView: View {
                         }.padding(.top, screenWidth * 0.015)
                         
                         Spacer()
-                        
-                        
+                                 
                         HStack(spacing: 0) {
                             ForEach(viewModel.sequence) { element in
                                 self.pieceView(for: element)
                             }
                         }.allowsHitTesting(buttonIsPressed ? false : true)
 
-                        
                         Text("Complete a sequência arrastando as peças abaixo:")
                             .foregroundColor(.textColor)
                             .dynamicFont(name: fontName, size: 20, weight: .medium)
@@ -92,7 +90,7 @@ struct SequenceGameView: View {
                         
                         HStack(spacing: screenWidth * 0.036) {
                             ForEach(viewModel.alternatives) { (alternative) in
-                                ZStack{
+                                ZStack {
                                     //Underlay tile with opacity
                                     Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
                                         .alternativeBackground(size: self.tileSize)
@@ -118,14 +116,21 @@ struct SequenceGameView: View {
                                     Text("Continuar")
                                         .dynamicFont(name: fontName, size: 20, weight: .bold)
                                 }.buttonStyle(
-                                    viewModel.allQuestionsAreCorrect() ?
+                                    viewModel.allQuestionsAreCorrect()
+                                        ?
                                         //correct answer
-                                        GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
+                                        GameButtonStyle(buttonColor: Color.Owl,
+                                                        pressedButtonColor: Color.Turtle,
+                                                        buttonBackgroundColor: Color.TreeFrog,
+                                                        isButtonEnable: true)
+                                        :
                                         //wrong answer
-                                        GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
+                                        GameButtonStyle(buttonColor: Color.white,
+                                                        pressedButtonColor: Color.Swan,
+                                                        buttonBackgroundColor: Color.Swan,
+                                                        isButtonEnable: true, textColor: Color.Humpback) )
                                     .padding(.bottom, 10)
-                            }
-                            else {
+                            } else {
                                 //Confirm Button
                                 Button(action: {
                                     self.buttonIsPressed = true
@@ -133,8 +138,11 @@ struct SequenceGameView: View {
                                     Text("Confirmar")
                                         .dynamicFont(name: fontName, size: 20, weight: .bold)
                                 }
-                                .buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
-                                .disabled(!self.viewModel.allQuestionsAreOccupied())
+                                .buttonStyle(GameButtonStyle(buttonColor: Color.Whale,
+                                                             pressedButtonColor: Color.Macaw,
+                                                             buttonBackgroundColor: Color.Narwhal,
+                                                             isButtonEnable: self.viewModel.allQuestionsAreOccupied())
+                                ).disabled(!self.viewModel.allQuestionsAreOccupied())
                                 .padding(.bottom, 10)
                                    
                             }
@@ -153,7 +161,9 @@ struct SequenceGameView: View {
                 }.blur(radius: self.showPopUp ? 16 : 0)
                 
             } else {
-                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame, game: self.game, gameScore: self.viewModel.gameScore.currentScore)
+                EndGameView(progressViewModel: self.progressViewModel,
+                            dismissGame: self.dismissGame, restartGame: self.restartGame,
+                            game: self.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {
@@ -174,9 +184,9 @@ struct SequenceGameView: View {
     
     func findOffset(for question: Question, geometry: GeometryProxy) -> CGSize {
         if let matched = self.questionsFrames.first(where: { $0.question.id == question.id }) {
-            let x = geometry.frame(in: .global).midX.distance(to: matched.rect.midX) + tileSize.width/2.15
-            let y = geometry.frame(in: .global).midY.distance(to: matched.rect.midY) - tileSize.height/2
-            return CGSize(width: x, height: y)
+            let offsetX = geometry.frame(in: .global).midX.distance(to: matched.rect.midX) + tileSize.width/2.15
+            let offsetY = geometry.frame(in: .global).midY.distance(to: matched.rect.midY) - tileSize.height/2
+            return CGSize(width: offsetX, height: offsetY)
         }
         return CGSize.zero
     }
@@ -224,7 +234,8 @@ struct SequenceGameView: View {
     func objectMoved(location: CGPoint, alternative: Int) -> DragState {
         self.alternativeBeingDragged = alternative
         if let matchedFrame = questionsFrames.first(where: { $0.rect.contains(location) }) {
-            if let _ = viewModel.questions.first(where: { $0.correctAnswer == matchedFrame.question.correctAnswer && !$0.isOcupied }) {
+            if viewModel.questions.first(where: {
+                $0.correctAnswer == matchedFrame.question.correctAnswer && !$0.isOcupied }) != nil {
                 return .good
             }
         }
@@ -267,7 +278,10 @@ extension SequenceGameView {
     private func pieceView(for piece: SequenceGameModel.SequencePiece) -> some View {
         ZStack {
             if piece.isAQuestion {
-                QuestionTile(size: self.tileSize, isOccupied: self.viewModel.findQuestion(with: piece.value)!.isOcupied, isCorrect: self.viewModel.findQuestion(with: piece.value)!.isCorrect, buttonPressed: self.buttonIsPressed)
+                QuestionTile(size: self.tileSize,
+                             isOccupied: self.viewModel.findQuestion(with: piece.value)!.isOcupied,
+                             isCorrect: self.viewModel.findQuestion(with: piece.value)!.isCorrect,
+                             buttonPressed: self.buttonIsPressed)
                     .overlay(GeometryReader { geo in
                         Color.clear
                             .onAppear {
@@ -275,8 +289,7 @@ extension SequenceGameView {
                                 self.questionsFrames.append(questionFrame)
                         }
                     })
-            }
-            else {
+            } else {
                 Tile(content: Image(piece.content).resizable(), size: self.tileSize)
             }
         }

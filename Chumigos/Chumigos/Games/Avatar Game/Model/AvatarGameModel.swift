@@ -43,7 +43,9 @@ class AvatarGameModel {
         return [eye1, eye2, eye3, eye4, eye5, eye6, eye7, eye8, eye9, eye10, eye11, eye12, eye13]
     }
     var allEyebrows: [FacePart] {
-        let eyebrow1 = FacePart(partOfFace: .eyebrow, image: "01", feelings: [.calm, .embarrassed, .fearful, .happy, .indifferent, .sad, .sick, .sleepy, .surprised])
+        let eyebrow1 = FacePart(partOfFace: .eyebrow, image: "01",
+                                feelings: [.calm, .embarrassed, .fearful, .happy,
+                                           .indifferent, .sad, .sick, .sleepy, .surprised])
         let eyebrow2 = FacePart(partOfFace: .eyebrow, image: "02", feelings: [.embarrassed, .fearful, .indifferent, .sad, .sick, .surprised])
         let eyebrow3 = FacePart(partOfFace: .eyebrow, image: "03", feelings: [.indifferent, .uncertain])
         let eyebrow4 = FacePart(partOfFace: .eyebrow, image: "04", feelings: [.angry])
@@ -84,10 +86,10 @@ class AvatarGameModel {
         let eyebrows = self.generate(faceParts: self.allEyebrows)
         let mouths = self.generate(faceParts: self.allMouths)
         
-        for i in 0..<eyes.count {
-            facePartsArray.append(eyes[i])
-            facePartsArray.append(eyebrows[i])
-            facePartsArray.append(mouths[i])
+        for index in 0..<eyes.count {
+            facePartsArray.append(eyes[index])
+            facePartsArray.append(eyebrows[index])
+            facePartsArray.append(mouths[index])
         }
         
         self.roundFaceParts = facePartsArray
@@ -110,13 +112,7 @@ class AvatarGameModel {
         
         return parts
     }
-    
-    // TODO: - add machine learning to verify if face is correct
-    func verifyFace() -> Bool {
-        return true
-    }
 }
-
 
 enum PartsOfFace {
     case eye, eyebrow, mouth
@@ -127,4 +123,3 @@ struct FacePart: Hashable {
     var image: String
     var feelings: [Feelings]
 }
-

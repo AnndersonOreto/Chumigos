@@ -53,7 +53,6 @@ struct ShapeGameView: View {
                 }
             }
             
-            
             if !isFinished {
                 
                 Group {
@@ -91,7 +90,6 @@ struct ShapeGameView: View {
                             }
                         }.allowsHitTesting(buttonIsPressed ? false : true)
 
-                        
                         Text("Complete a sequência arrastando as peças abaixo:")
                         .foregroundColor(Color.textColor)
                         .dynamicFont(name: fontName, size: 20, weight: .medium)
@@ -102,15 +100,20 @@ struct ShapeGameView: View {
                             // Build every form in the horizontal based on parameters of pattern
                             ForEach(viewModel.alternatives) { (alternative) in
                                 // Cell that represents the pattern list as a form
-                                ZStack{
+                                ZStack {
                                     //Underlay tile with opacity
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex]).frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
-                                        .alternativeBackground(size: self.tileSize)
+                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex])
+                                        .frame(width: self.screenWidth * 0.06,
+                                               height: self.screenWidth * 0.06),
+                                         size: self.tileSize
+                                    ).alternativeBackground(size: self.tileSize)
                                         
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex]).frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
-                                        .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
+                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex])
+                                        .frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06),
+                                         size: self.tileSize
+                                    ).draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
                                     
                                 }
                                 // Make tile that is being drag appears on top
@@ -130,23 +133,34 @@ struct ShapeGameView: View {
                                     Text("Continuar")
                                         .dynamicFont(name: fontName, size: 20, weight: .bold)
                                 }.buttonStyle(
-                                    viewModel.allQuestionsAreCorrect() ?
+                                    viewModel.allQuestionsAreCorrect()
+                                        ?
                                         //correct answer
-                                        GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle, buttonBackgroundColor: Color.TreeFrog, isButtonEnable: true) :
+                                        GameButtonStyle(buttonColor: Color.Owl,
+                                                        pressedButtonColor: Color.Turtle,
+                                                        buttonBackgroundColor: Color.TreeFrog,
+                                                        isButtonEnable: true)
+                                        :
                                         //wrong answer
-                                        GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan, buttonBackgroundColor: Color.Swan, isButtonEnable: true, textColor: Color.Humpback) )
-                                    .padding(.bottom, 10)
-                            }
-                            else {
+                                        GameButtonStyle(buttonColor: Color.white,
+                                                        pressedButtonColor: Color.Swan,
+                                                        buttonBackgroundColor: Color.Swan,
+                                                        isButtonEnable: true, textColor: Color.Humpback)
+                                ).padding(.bottom, 10)
+                            } else {
                                 //Confirm Button
                                 Button(action: {
                                     self.buttonIsPressed = true
                                 }) {
                                     Text("Confirmar")
                                         .dynamicFont(name: fontName, size: 20, weight: .bold)
-                                }.buttonStyle(GameButtonStyle(buttonColor: Color.Whale, pressedButtonColor: Color.Macaw, buttonBackgroundColor: Color.Narwhal, isButtonEnable: self.viewModel.allQuestionsAreOccupied()))
-                                    .disabled(!self.viewModel.allQuestionsAreOccupied())
-                                    .padding(.bottom, 10)
+                                }.buttonStyle(
+                                    GameButtonStyle(buttonColor: Color.Whale,
+                                                    pressedButtonColor: Color.Macaw,
+                                                    buttonBackgroundColor: Color.Narwhal,
+                                                    isButtonEnable: self.viewModel.allQuestionsAreOccupied())
+                                ).disabled(!self.viewModel.allQuestionsAreOccupied())
+                                .padding(.bottom, 10)
                             }
                         }
                     }
@@ -164,7 +178,9 @@ struct ShapeGameView: View {
                 }.blur(radius: self.showPopUp ? 16 : 0)
                 
             } else {
-                EndGameView(progressViewModel: self.progressViewModel, dismissGame: self.dismissGame, restartGame: self.restartGame, game: self.game, gameScore: self.viewModel.gameScore.currentScore)
+                EndGameView(progressViewModel: self.progressViewModel,
+                            dismissGame: self.dismissGame, restartGame: self.restartGame,
+                            game: self.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {
@@ -179,9 +195,9 @@ struct ShapeGameView: View {
     
     func findOffset(for question: Question, geometry: GeometryProxy) -> CGSize {
         if let matched = self.questionsFrames.first(where: { $0.id == question.correctAnswer }) {
-            let x = geometry.frame(in: .global).midX.distance(to: matched.rect.midX) + tileSize.width/2.15
-            let y = geometry.frame(in: .global).midY.distance(to: matched.rect.midY) - tileSize.height/2
-            return CGSize(width: x, height: y)
+            let xOffset = geometry.frame(in: .global).midX.distance(to: matched.rect.midX) + tileSize.width/2.15
+            let yOffset = geometry.frame(in: .global).midY.distance(to: matched.rect.midY) - tileSize.height/2
+            return CGSize(width: xOffset, height: yOffset)
         }
         return CGSize.zero
     }
@@ -228,7 +244,8 @@ struct ShapeGameView: View {
     func objectMoved(location: CGPoint, alternative: Int) -> DragState {
         self.alternativeBeingDragged = alternative
         if let matchedFrame = questionsFrames.first(where: { $0.rect.contains(location) }) {
-            if let _ = viewModel.questions.first(where: { $0.correctAnswer == matchedFrame.id && !$0.isOcupied }) {
+            if viewModel.questions.first(where: {
+                $0.correctAnswer == matchedFrame.id && !$0.isOcupied }) != nil {
                 return .good
             }
         }
@@ -272,12 +289,16 @@ extension ShapeGameView {
                 
                 // Generic form to build sided forms
                 Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: piece.sides)
-                .fill(self.viewModel.getRandomColors[piece.colorIndex]).frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
+                .fill(self.viewModel.getRandomColors[piece.colorIndex])
+                .frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
                 
             } else {
                 
                 // Form to guess
-                QuestionTile(size: self.tileSize, isOccupied: self.viewModel.findQuestion(with: piece.sides)!.isOcupied, isCorrect: self.viewModel.findQuestion(with: piece.sides)!.isCorrect, buttonPressed: self.buttonIsPressed)
+                QuestionTile(size: self.tileSize,
+                             isOccupied: self.viewModel.findQuestion(with: piece.sides)!.isOcupied,
+                             isCorrect: self.viewModel.findQuestion(with: piece.sides)!.isCorrect,
+                             buttonPressed: self.buttonIsPressed)
                     .overlay(GeometryReader { geo in
                         Color.clear
                             .onAppear {
@@ -289,8 +310,6 @@ extension ShapeGameView {
         }
     }
 }
-
-
 
 //struct ShapeGameNewView_Previews: PreviewProvider {
 //    static var previews: some View {
