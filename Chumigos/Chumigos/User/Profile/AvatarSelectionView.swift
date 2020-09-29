@@ -101,7 +101,7 @@ struct AvatarSelectionView: View {
                 
                 VStack {
                     Spacer()
-                    if self.avatarSelected.isEmpty {
+                    if !self.avatarSelected.isEmpty {
                         ZStack {
                             RoundedRectangle(cornerRadius: 42).fill(Color.Humpback)
                                 .frame(width: geometry.size.width + 5, height: geometry.size.width * 0.16)
