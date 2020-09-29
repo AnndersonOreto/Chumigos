@@ -31,7 +31,7 @@ class TotemGameModel {
     
     init() {
         faceArray = [["face/big/01", "face/big/02", "face/big/03", "face/big/04", "face/big/05"],
-                    ["face/small/01", "face/small/02", "face/small/03", "face/small/04", "face/small/05"]]
+                     ["face/small/01", "face/small/02", "face/small/03", "face/small/04", "face/small/05"]]
         shapeArray = TotemShape.allCases
         colorArray = ["01", "02", "03", "04", "05"]
     }
@@ -79,6 +79,8 @@ class TotemGameModel {
         let rightAnswer = totemPieces.map({ $0.upTopShape })
         totemAlternativeList.append(rightAnswer)
         
+        var isElementEqualTo: Bool = false
+        
         // Generate all alternatives except for the correct alternative
         while index < totemAlternatives-1 {
             
@@ -87,7 +89,39 @@ class TotemGameModel {
             
             let totemUpTopImageNameList: [String] = totemSmallPieceList + totemBigPieceList
             
-            if totemAlternativeList.contains(totemUpTopImageNameList) { continue }
+            if totemBigPieceList.isEmpty {
+                
+                let totemSmallPieceFirstElement: String = totemSmallPieceList[0]
+                let smallAlternativeListFirstElements: [String] = totemAlternativeList.map( { $0[0] } )
+                
+                for i in 0..<smallAlternativeListFirstElements.count {
+                    if smallAlternativeListFirstElements[i] == totemSmallPieceFirstElement {
+                        
+                        isElementEqualTo = true
+                        break
+                    }
+                }
+            } else {
+                
+                let totemSmallPieceFirstElement: String = totemSmallPieceList[0]
+                let totemBigPieceFirstElement: String = totemBigPieceList[0]
+                let smallAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[0] })
+                let bigAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[totemSmallPieceList.count] })
+                
+                for i in 0..<smallAlternativeListFirstElements.count {
+                    if smallAlternativeListFirstElements[i] == totemSmallPieceFirstElement &&
+                        bigAlternativeListFirstElements[i] == totemBigPieceFirstElement {
+                        
+                        isElementEqualTo = true
+                        break
+                    }
+                }
+            }
+            
+            if isElementEqualTo {
+                isElementEqualTo = false
+                continue
+            }
             
             totemAlternativeList.append(totemUpTopImageNameList)
             
@@ -101,23 +135,23 @@ class TotemGameModel {
     /*
      // Generate all alternatives except for the correct alternative
      while index < TOTEM_ALTERNATIVES-1 {
-         
-         totemSmallPieceList.shuffle()
-         totemBigPieceList.shuffle()
-         
-         let totemUpTopImageNameList: [String] = totemSmallPieceList + totemBigPieceList
-         
-         let totemSmallPieceFirstElement: String = totemSmallPieceList[0]
-         let totemBigPieceFirstElement: String = totemBigPieceList[0]
-         let smallAlternativeListFirstElements: [String] = totemAlternativeList.map( { $0[0] } )
-         let bigAlternativeListFirstElements: [String] = totemAlternativeList.map( { $0[totemSmallPieceList.count] } )
-         
-         if smallAlternativeListFirstElements.contains(totemSmallPieceFirstElement) &&
-             bigAlternativeListFirstElements.contains(totemBigPieceFirstElement) { continue }
-         
-         totemAlternativeList.append(totemUpTopImageNameList)
-         
-         index += 1
+     
+     totemSmallPieceList.shuffle()
+     totemBigPieceList.shuffle()
+     
+     let totemUpTopImageNameList: [String] = totemSmallPieceList + totemBigPieceList
+     
+     let totemSmallPieceFirstElement: String = totemSmallPieceList[0]
+     let totemBigPieceFirstElement: String = totemBigPieceList[0]
+     let smallAlternativeListFirstElements: [String] = totemAlternativeList.map( { $0[0] } )
+     let bigAlternativeListFirstElements: [String] = totemAlternativeList.map( { $0[totemSmallPieceList.count] } )
+     
+     if smallAlternativeListFirstElements.contains(totemSmallPieceFirstElement) &&
+     bigAlternativeListFirstElements.contains(totemBigPieceFirstElement) { continue }
+     
+     totemAlternativeList.append(totemUpTopImageNameList)
+     
+     index += 1
      }
      */
     
