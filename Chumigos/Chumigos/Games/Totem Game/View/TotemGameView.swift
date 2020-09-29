@@ -22,6 +22,7 @@ struct TotemGameView: View {
     @State var showPopUp: Bool = false
     @State var tileSelected: Int = -1 // None tile selected
     @State var isFinished: Bool = false
+    @State var isCorrect: Bool = false
     @State var selectedUpTopTotem: [String] = []
     
     // MARK: - Flag Variables
@@ -58,117 +59,120 @@ struct TotemGameView: View {
             }
             
             if !isFinished {
-            VStack {
-                
-                // Progress Bar
-                ZStack {
+                VStack {
                     
-                    // Leave game button
-                    HStack {
-                        Button(action: {
-                            self.showPopUp = true
-                        }) {
-                            Image(systemName: "xmark")
-                                .dynamicFont(name: fontName, size: 34, weight: .bold)
-                                .foregroundColor(.xMark)
-                        }.buttonStyle(PlainButtonStyle())
+                    // Progress Bar
+                    ZStack {
                         
-                        Spacer()
-                    }.padding(.leading, screenWidth * 0.0385)
-                    
-                    HStack {
-                        ProgressBarView(viewModel: progressViewModel)
-                    }
-                }.padding(.top, screenWidth * 0.015)
-                
-                Spacer()
-                
-                // Stack containing totem and alternatives
-                HStack {
-                    
-                    // Totem
-                    VStack(spacing: 0) {
+                        // Leave game button
+                        HStack {
+                            Button(action: {
+                                self.showPopUp = true
+                            }) {
+                                Image(systemName: "xmark")
+                                    .dynamicFont(name: fontName, size: 34, weight: .bold)
+                                    .foregroundColor(.xMark)
+                            }.buttonStyle(PlainButtonStyle())
+                            
+                            Spacer()
+                        }.padding(.leading, screenWidth * 0.0385)
                         
-                        ForEach(self.viewModel.totemPieceList, id: \.self) { piece in
-                            ZStack {
-                                Image(piece.imageName).resizable()
-                                Image(piece.face)
-                            }
+                        HStack {
+                            ProgressBarView(viewModel: progressViewModel)
                         }
-                    }.frame(width: screenWidth * 0.3, height: screenWidth * 0.43)
+                    }.padding(.top, screenWidth * 0.015)
                     
                     Spacer()
                     
-                    // Alternatives text
-                    VStack {
+                    // Stack containing totem and alternatives
+                    HStack {
+                        
+                        // Totem
+                        VStack(spacing: 0) {
+                            
+                            ForEach(self.viewModel.totemPieceList, id: \.self) { piece in
+                                ZStack {
+                                    Image(piece.imageName).resizable()
+                                    Image(piece.face)
+                                }
+                            }
+                        }.frame(width: screenWidth * 0.3, height: screenWidth * 0.43)
                         
                         Spacer()
                         
-                        #warning("offset seria a melhor solucao? fica a duvida")
-                        CustomText("Selecione como as peças apareceriam caso estivesse as observando de cima:")
-                            .dynamicFont(name: fontName, size: 20, weight: .medium)
-                            .foregroundColor(.textColor)
-                            .multilineTextAlignment(.center)
-                            .frame(width: screenWidth * 0.42)
-                            .offset(y: -(screenWidth * 0.053))
-                        
-                        // Alternatives grid
-                        Grid<TotemGameTile>(rows: 2, columns: 2, spacing: screenWidth * 0.0175, content: { (row, column) in
-                            TotemGameTile(size: self.screenWidth,
-                                          imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column],
-                                          id: (row * 2) + column, selectedTile: $tileSelected,
-                                          selectedUpTopTotem: $selectedUpTopTotem)
-                        })
-                        
-                        Spacer()
-                    }
-                }.padding(.horizontal, screenWidth * 0.1)
-                
-                Spacer()
-                
-                // Confirm button
-                ZStack {
-                    
-                    // Continue Button
-                    if buttonIsPressed {
-                        Button(action: {
-                            self.confirmQuestion()
-                        }) {
-                            Text("Continuar")
-                                .dynamicFont(name: fontName, size: 20, weight: .bold)
-                        }.buttonStyle(
-                            self.checkAnswer()
-                                ?
-                                // Correct answer
-                                GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle,
-                                                buttonBackgroundColor: Color.TreeFrog,
-                                                isButtonEnable: tileSelected != -1)
-                                :
-                                // Wrong answer
-                                GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan,
-                                                buttonBackgroundColor: Color.Swan,
-                                                isButtonEnable: tileSelected != -1,
-                                                textColor: Color.Humpback)
-                        )
-                        .padding(.bottom, 10)
-                    } else {
-                        //Confirm Button
-                        Button(action: {
-                            self.buttonIsPressed = true
-                        }) {
-                            Text("Confirmar")
-                                .dynamicFont(name: fontName, size: 20, weight: .bold)
+                        // Alternatives text
+                        VStack {
+                            
+                            Spacer()
+                            
+                            #warning("offset seria a melhor solucao? fica a duvida")
+                            CustomText("Selecione como as peças apareceriam caso estivesse as observando de cima:")
+                                .dynamicFont(name: fontName, size: 20, weight: .medium)
+                                .foregroundColor(.textColor)
+                                .multilineTextAlignment(.center)
+                                .frame(width: screenWidth * 0.42)
+                                .offset(y: -(screenWidth * 0.053))
+                            
+                            // Alternatives grid
+                            Grid<TotemGameTile>(rows: 2, columns: 2, spacing: screenWidth * 0.0175, content: { (row, column) in
+                                TotemGameTile(size: self.screenWidth,
+                                              imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column],
+                                              id: (row * 2) + column, selectedTile: $tileSelected,
+                                              isCorrect: $isCorrect,
+                                              isButtonPressed: $buttonIsPressed,
+                                              selectedUpTopTotem: $selectedUpTopTotem)
+                            })
+                            
+                            Spacer()
                         }
-                        .buttonStyle(GameButtonStyle(buttonColor: Color.Whale,
-                                                     pressedButtonColor: Color.Macaw,
-                                                     buttonBackgroundColor: Color.Narwhal,
-                                                     isButtonEnable: true))
-                        .disabled(false)
-                        .padding(.bottom, 10)
+                    }.padding(.horizontal, screenWidth * 0.1)
+                    
+                    Spacer()
+                    
+                    // Confirm button
+                    ZStack {
                         
+                        // Continue Button
+                        if buttonIsPressed {
+                            Button(action: {
+                                self.confirmQuestion()
+                            }) {
+                                Text("Continuar")
+                                    .dynamicFont(name: fontName, size: 20, weight: .bold)
+                            }.buttonStyle(
+                                self.checkAnswer()
+                                    ?
+                                    // Correct answer
+                                    GameButtonStyle(buttonColor: Color.Owl, pressedButtonColor: Color.Turtle,
+                                                    buttonBackgroundColor: Color.TreeFrog,
+                                                    isButtonEnable: tileSelected != -1)
+                                    :
+                                    // Wrong answer
+                                    GameButtonStyle(buttonColor: Color.white, pressedButtonColor: Color.Swan,
+                                                    buttonBackgroundColor: Color.Swan,
+                                                    isButtonEnable: tileSelected != -1,
+                                                    textColor: Color.Humpback)
+                            )
+                            .padding(.bottom, 10)
+                        } else {
+                            //Confirm Button
+                            Button(action: {
+                                self.buttonIsPressed = true
+                                isCorrect = self.checkAnswer()
+                            }) {
+                                Text("Confirmar")
+                                    .dynamicFont(name: fontName, size: 20, weight: .bold)
+                            }
+                            .buttonStyle(GameButtonStyle(buttonColor: Color.Whale,
+                                                         pressedButtonColor: Color.Macaw,
+                                                         buttonBackgroundColor: Color.Narwhal,
+                                                         isButtonEnable: true))
+                            .disabled(false)
+                            .padding(.bottom, 10)
+                            
+                        }
                     }
-                }
-            }.blur(radius: self.showPopUp ? 16 : 0)
+                }.blur(radius: self.showPopUp ? 16 : 0)
                 
             } else {
                 
@@ -193,6 +197,7 @@ struct TotemGameView: View {
         self.buttonIsPressed = false
         self.showPopUp = false
         self.isFinished = false
+        self.isCorrect = false
         self.progressViewModel.restartProgressBar()
         self.viewModel.resetGame()
     }
@@ -231,6 +236,8 @@ struct TotemGameTile: View {
     var imageNameList: [String]
     var id: Int
     @Binding var selectedTile: Int
+    @Binding var isCorrect: Bool
+    @Binding var isButtonPressed: Bool
     @Binding var selectedUpTopTotem: [String]
     
     var body: some View {
@@ -244,11 +251,35 @@ struct TotemGameTile: View {
                     .padding(.vertical, size * 0.025)
                     .frame(width: size * 0.186, height: size * 0.142)
             }
+            
         }.overlay(
-            Group {
+            ZStack {
                 if self.selectedTile == self.id {
-                    RoundedRectangle(cornerRadius: 18)
-                        .stroke(Color.Bee, lineWidth: 9)
+                    
+                    if isButtonPressed && isCorrect {
+                        
+                        RoundedRectangle(cornerRadius: 18)
+                            .stroke(Color.TreeFrog, lineWidth: 9)
+                        GeometryReader { geometry in
+                            Image("correct-icon")
+                                .frame(width: size * 0.036, height: size * 0.036)
+                                .position(x: geometry.size.width-5, y: 5)
+                        }
+                    } else if isButtonPressed {
+                        
+                        RoundedRectangle(cornerRadius: 18)
+                            .stroke(Color.FireAnt, lineWidth: 9)
+                        
+                        GeometryReader { geometry in
+                            Image("wrong-icon")
+                                .frame(width: size * 0.036, height: size * 0.036)
+                                .position(x: geometry.size.width-5, y: 5)
+                        }
+                    } else {
+                        
+                        RoundedRectangle(cornerRadius: 18)
+                            .stroke(Color.Bee, lineWidth: 9)
+                    }
                 } else {
                     RoundedRectangle(cornerRadius: 18)
                         .stroke(Color.optionBorder, lineWidth: 2)
