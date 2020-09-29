@@ -117,10 +117,10 @@ struct TotemGameView: View {
                             Grid<TotemGameTile>(rows: 2, columns: 2, spacing: screenWidth * 0.0175, content: { (row, column) in
                                 TotemGameTile(size: self.screenWidth,
                                               imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column],
-                                              id: (row * 2) + column, selectedTile: $tileSelected,
-                                              isCorrect: $isCorrect,
-                                              isButtonPressed: $buttonIsPressed,
-                                              selectedUpTopTotem: $selectedUpTopTotem)
+                                              id: (row * 2) + column, selectedTile: self.$tileSelected,
+                                              isCorrect: self.$isCorrect,
+                                              isButtonPressed: self.$buttonIsPressed,
+                                              selectedUpTopTotem: self.$selectedUpTopTotem)
                             })
                             
                             Spacer()
@@ -158,7 +158,7 @@ struct TotemGameView: View {
                             //Confirm Button
                             Button(action: {
                                 self.buttonIsPressed = true
-                                isCorrect = self.checkAnswer()
+                                self.isCorrect = self.checkAnswer()
                             }) {
                                 Text("Confirmar")
                                     .dynamicFont(name: fontName, size: 20, weight: .bold)
@@ -247,9 +247,9 @@ struct TotemGameTile: View {
             ForEach(imageNameList.reversed(), id: \.self) { image in
                 Image(image)
                     .resizable()
-                    .padding(.horizontal, size * 0.0146)
-                    .padding(.vertical, size * 0.025)
-                    .frame(width: size * 0.186, height: size * 0.142)
+                    .padding(.horizontal, self.size * 0.0146)
+                    .padding(.vertical, self.size * 0.025)
+                    .frame(width: self.size * 0.186, height: self.size * 0.142)
             }
             
         }.overlay(
@@ -262,7 +262,7 @@ struct TotemGameTile: View {
                             .stroke(Color.TreeFrog, lineWidth: 9)
                         GeometryReader { geometry in
                             Image("correct-icon")
-                                .frame(width: size * 0.036, height: size * 0.036)
+                                .frame(width: self.size * 0.036, height: self.size * 0.036)
                                 .position(x: geometry.size.width-5, y: 5)
                         }
                     } else if isButtonPressed {
@@ -272,7 +272,7 @@ struct TotemGameTile: View {
                         
                         GeometryReader { geometry in
                             Image("wrong-icon")
-                                .frame(width: size * 0.036, height: size * 0.036)
+                                .frame(width: self.size * 0.036, height: self.size * 0.036)
                                 .position(x: geometry.size.width-5, y: 5)
                         }
                     } else {
