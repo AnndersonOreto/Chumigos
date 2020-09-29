@@ -12,10 +12,12 @@ class SequenceGameViewModel: ObservableObject {
     @Published var model: SequenceGameModel
     let difficulty: Difficulty
     var wrongAnswersArray: [(SequenceGameModel, Int)] = []
+    var game: GameObject
     var gameState: GameState = GameState.NORMAL
     var gameScore: GameScore = GameScore()
     
-    init(difficulty: Difficulty) {
+    init(game: GameObject, difficulty: Difficulty) {
+        self.game = game
         self.difficulty = difficulty
 
         let isFruit = Bool.random()
