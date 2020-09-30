@@ -55,6 +55,7 @@
 		26C186E524BE4AA70094AEC1 /* ChumigosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */; };
 		26E0EA4C24F59FD50078566D /* EndGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0EA4B24F59FD50078566D /* EndGameViewModel.swift */; };
 		26E0EA4E24F59FF20078566D /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0EA4D24F59FF20078566D /* EndGameView.swift */; };
+		26FCAD94251BB9730082F9EC /* TotemPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FCAD93251BB9730082F9EC /* TotemPiece.swift */; };
 		417085B2A96D815683A587A4 /* Pods_Loggio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B48321D0B69C0B2623791CAF /* Pods_Loggio.framework */; };
 		AA04A48525195EFF00F85961 /* FeelingsClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04A48425195EFF00F85961 /* FeelingsClassifier.swift */; };
 		AA24C13124E5B57A006F8C5A /* SequenceGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13024E5B57A006F8C5A /* SequenceGameModel.swift */; };
@@ -177,6 +178,7 @@
 		26C186E624BE4AA70094AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26E0EA4B24F59FD50078566D /* EndGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewModel.swift; sourceTree = "<group>"; };
 		26E0EA4D24F59FF20078566D /* EndGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameView.swift; sourceTree = "<group>"; };
+		26FCAD93251BB9730082F9EC /* TotemPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemPiece.swift; sourceTree = "<group>"; };
 		406304178F0463A17D4BC216 /* Pods-LoggioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggioTests.release.xcconfig"; path = "Target Support Files/Pods-LoggioTests/Pods-LoggioTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A374F1F8BE6FE8191DF6716 /* Pods-Loggio-LoggioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio-LoggioUITests.release.xcconfig"; path = "Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9384132B622563D245ADBC9D /* Pods-Loggio-LoggioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio-LoggioUITests.debug.xcconfig"; path = "Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				26AB83BF2513B916004BDF49 /* TotemGameModel.swift */,
+				26FCAD93251BB9730082F9EC /* TotemPiece.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1095,6 +1098,7 @@
 				2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */,
 				26E0EA4E24F59FF20078566D /* EndGameView.swift in Sources */,
 				E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */,
+				26FCAD94251BB9730082F9EC /* TotemPiece.swift in Sources */,
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
