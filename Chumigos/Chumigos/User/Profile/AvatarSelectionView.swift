@@ -12,14 +12,15 @@ struct Grid<Content: View>: View {
     
     let rows: Int
     let columns: Int
-    let spacing: CGFloat
+    let vSpacing: CGFloat
+    let hSpacing: CGFloat
     let content: (Int, Int) -> Content
     let screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
-        VStack(alignment: .leading, spacing: self.spacing) {
+        VStack(alignment: .leading, spacing: self.vSpacing) {
             ForEach(0..<rows) { row in
-                HStack(alignment: .center, spacing: self.spacing) {
+                HStack(alignment: .center, spacing: self.hSpacing) {
                     ForEach(0..<self.columns) { (column) in
                         self.content(row, column)
                     }
@@ -85,7 +86,8 @@ struct AvatarSelectionView: View {
 
                     ScrollView(showsIndicators: false) {
                         Grid<AvatarView>(rows: self.numberOfRows, columns: self.numberOfColumns,
-                                         spacing:  self.screenWidth * 0.057) { (row, column) in
+                                         vSpacing:  self.screenWidth * 0.057,
+                                         hSpacing: self.screenWidth * 0.057) { (row, column) in
                             if self.avatarSelected == self.getAvatarName(of: row, column: column) {
                                 return AvatarView(avatarName: self.getAvatarName(of: row, column: column),
                                                   avatarSelected: self.$avatarSelected, isSelected: true)
@@ -101,7 +103,7 @@ struct AvatarSelectionView: View {
                 
                 VStack {
                     Spacer()
-                    if self.avatarSelected.isEmpty {
+                    if !self.avatarSelected.isEmpty {
                         ZStack {
                             RoundedRectangle(cornerRadius: 42).fill(Color.Humpback)
                                 .frame(width: geometry.size.width + 5, height: geometry.size.width * 0.16)

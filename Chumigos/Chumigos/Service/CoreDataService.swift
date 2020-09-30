@@ -93,7 +93,7 @@ class CoreDataService {
     func decode(result: [UserData]) -> [TrailSection] {
         let decoder = JSONDecoder()
         
-        if result.isEmpty && result[0].trail != nil {
+        if !result.isEmpty && result[0].trail != nil {
             
             guard let trailData = result[0].trail else { return [] }
             

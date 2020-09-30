@@ -24,7 +24,6 @@ struct ShapeGameView: View {
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
-    var game: GameObject
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.round.count > 9 ? 0.067 : 0.078
@@ -34,8 +33,7 @@ struct ShapeGameView: View {
     @ObservedObject var viewModel: ShapeGameViewModel
     
     init(gameDifficulty: Difficulty, game: GameObject) {
-        self.viewModel = ShapeGameViewModel(difficulty: gameDifficulty)
-        self.game = game
+        self.viewModel = ShapeGameViewModel(game: game, difficulty: gameDifficulty)
     }
     
     var body: some View {
@@ -108,11 +106,12 @@ struct ShapeGameView: View {
                                                height: self.screenWidth * 0.06),
                                          size: self.tileSize
                                     ).alternativeBackground(size: self.tileSize)
-                                        
+                                    
+                                    // tileSize*1.01 to hide questionTile underneath
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
                                         .fill(self.viewModel.getRandomColors[alternative.colorIndex])
                                         .frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06),
-                                         size: self.tileSize
+                                         size: CGSize(width: self.tileSize.width*1.01, height: self.tileSize.height*1.01)
                                     ).draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
                                     
                                 }
@@ -179,8 +178,8 @@ struct ShapeGameView: View {
                 
             } else {
                 EndGameView(progressViewModel: self.progressViewModel,
-                            dismissGame: self.dismissGame, restartGame: self.restartGame,
-                            game: self.game, gameScore: self.viewModel.gameScore.currentScore)
+                            dismissGame: self.dismissGame, restartGame: self.restartGame(game:),
+                            game: self.viewModel.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {
@@ -207,11 +206,12 @@ struct ShapeGameView: View {
         self.presentationMode.wrappedValue.dismiss()
     }
     
-    func restartGame() {
+    func restartGame(game: GameObject) {
         self.viewModel.restartGame()
         self.questionsFrames = []
         self.isFinished = false
         self.progressViewModel.restartProgressBar()
+        self.viewModel.game = game
     }
     
     func checkQuestion() {

@@ -12,12 +12,14 @@ class ShapeGameViewModel: ObservableObject {
     
     @Published var model: ShapeGameModel
     var wrongAnswersArray: [(ShapeGameModel, Int)] = []
+    var game: GameObject
     var gameState: GameState = GameState.NORMAL
     var gameScore: GameScore = GameScore()
     
     var difficulty: Difficulty
     
-    init(difficulty: Difficulty) {
+    init(game: GameObject, difficulty: Difficulty) {
+        self.game = game
         self.difficulty = difficulty
         model = ShapeGameModel(difficulty: difficulty)
     }

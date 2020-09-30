@@ -19,9 +19,11 @@ class TotemGameViewModel: ObservableObject {
     var gameScore: GameScore = GameScore()
     var gameState: GameState = .NORMAL
     var difficulty: Difficulty
+    var game: GameObject
     
-    init(difficulty: Difficulty) {
+    init(difficulty: Difficulty, game: GameObject) {
         self.difficulty = difficulty
+        self.game = game
         generateTotem()
         generateAlternatives()
     }

@@ -11,20 +11,24 @@ import UIKit
 
 class AvatarGameViewModel: ObservableObject {
     
-    @Published var model = createAvatarGame()
-    
+    @Published var model: AvatarGameModel
     @Published var eyeImage: String = ""
     @Published var mouthImage: String = ""
     @Published var eyebrowImage: String = ""
     @Published var confirmPressed: Bool = false
     @Published var finishedPrediction: Bool = false
     
+    let difficulty: Difficulty
+    
+    var game: GameObject
     var gameState: GameState = .NORMAL
     var gameScore: GameScore = GameScore()
     var mostLikelyFeeling: String?
     
-    private static func createAvatarGame() -> AvatarGameModel {
-        return AvatarGameModel()
+    init(game: GameObject, difficulty: Difficulty) {
+        self.model = AvatarGameModel()
+        self.game = game
+        self.difficulty = difficulty
     }
     
     //Variables
@@ -68,7 +72,7 @@ class AvatarGameViewModel: ObservableObject {
     }
     
     func resetGame() {
-        model = AvatarGameViewModel.createAvatarGame()
+        model = AvatarGameModel()
         eyeImage =  ""
         mouthImage = ""
         eyebrowImage = ""
