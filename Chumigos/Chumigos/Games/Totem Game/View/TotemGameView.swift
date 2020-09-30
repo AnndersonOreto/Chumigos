@@ -114,7 +114,7 @@ struct TotemGameView: View {
                                 .offset(y: -(screenWidth * 0.053))
                             
                             // Alternatives grid
-                            Grid<TotemGameTile>(rows: 2, columns: 2, spacing: screenWidth * 0.0175, content: { (row, column) in
+                            Grid<TotemGameTile>(rows: 2, columns: 2, vSpacing: screenWidth * 0.0175, hSpacing: screenWidth * 0.0175, content: { (row, column) in
                                 TotemGameTile(size: self.screenWidth,
                                               imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column],
                                               id: (row * 2) + column, selectedTile: self.$tileSelected,
@@ -177,7 +177,7 @@ struct TotemGameView: View {
             } else {
                 
                 EndGameView(progressViewModel: self.progressViewModel,
-                            dismissGame: self.dismissGame, restartGame: self.restartGame,
+                            dismissGame: self.dismissGame, restartGame: self.restartGame(game:),
                             game: self.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
@@ -193,7 +193,7 @@ struct TotemGameView: View {
         self.presentationMode.wrappedValue.dismiss()
     }
     
-    func restartGame() {
+    func restartGame(game: GameObject) {
         self.buttonIsPressed = false
         self.showPopUp = false
         self.isFinished = false
