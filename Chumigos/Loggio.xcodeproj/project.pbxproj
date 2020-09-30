@@ -587,6 +587,7 @@
 		AA883A27251530E900916E05 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
 				AAE6759C25152E2600342D7F /* UserData+CoreDataClass.swift */,
 				AAE6759D25152E2600342D7F /* UserData+CoreDataProperties.swift */,
 			);
@@ -752,7 +753,6 @@
 				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
 				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
 				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
-				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
 				AB855F1124F430EE00C5A739 /* GameNames.swift */,
 				AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */,
 				AA9C8EC325015C9E0080B06E /* DynamicFont.swift */,
