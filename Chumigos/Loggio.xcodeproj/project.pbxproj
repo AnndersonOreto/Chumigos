@@ -81,6 +81,8 @@
 		AB17FB4B25193BFD0071D82A /* FeelingClassificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB17FB4A25193BFD0071D82A /* FeelingClassificator.swift */; };
 		AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33B3502502B2840042F5BA /* AvatarGameView.swift */; };
 		AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E5196251D069400FCF777 /* UnderConstructionView.swift */; };
+		AB69B83B2524F3CE00872978 /* ColorCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69B83A2524F3CE00872978 /* ColorCarousel.swift */; };
+		AB69B83D2524F53E00872978 /* TestColorCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69B83C2524F53E00872978 /* TestColorCarousel.swift */; };
 		AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69C21125127FD800DF4E38 /* GameScore.swift */; };
 		AB6E8ABA25095B160048345D /* AvatarGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */; };
 		AB6E8ABC250969CE0048345D /* customRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */; };
@@ -206,6 +208,8 @@
 		AB17FB4A25193BFD0071D82A /* FeelingClassificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingClassificator.swift; sourceTree = "<group>"; };
 		AB33B3502502B2840042F5BA /* AvatarGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameView.swift; sourceTree = "<group>"; };
 		AB5E5196251D069400FCF777 /* UnderConstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderConstructionView.swift; sourceTree = "<group>"; };
+		AB69B83A2524F3CE00872978 /* ColorCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCarousel.swift; sourceTree = "<group>"; };
+		AB69B83C2524F53E00872978 /* TestColorCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColorCarousel.swift; sourceTree = "<group>"; };
 		AB69C21125127FD800DF4E38 /* GameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScore.swift; sourceTree = "<group>"; };
 		AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameViewModel.swift; sourceTree = "<group>"; };
 		AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customRoundedCorners.swift; sourceTree = "<group>"; };
@@ -344,6 +348,8 @@
 				AB5E5196251D069400FCF777 /* UnderConstructionView.swift */,
 				2623AC4625016BCC002A24A0 /* AppButtonStyle.swift */,
 				E74A37742502BC47001ADBEB /* CustomDivider.swift */,
+				AB69B83C2524F53E00872978 /* TestColorCarousel.swift */,
+				AB69B83A2524F3CE00872978 /* ColorCarousel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1067,6 +1073,7 @@
 				263D144D24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift in Sources */,
 				260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */,
 				AAE6759F25152E2600342D7F /* UserData+CoreDataProperties.swift in Sources */,
+				AB69B83B2524F3CE00872978 /* ColorCarousel.swift in Sources */,
 				AA63616C2513E5EE00EB4E49 /* CoreDataService.swift in Sources */,
 				AB855F1B24F450A000C5A739 /* TrailView.swift in Sources */,
 				AAA0613B24E31685008CD91B /* SequenceGameViewModel.swift in Sources */,
@@ -1076,6 +1083,7 @@
 				26660AC324C7834E000A9845 /* RandomColor.swift in Sources */,
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
 				2623AC4225015EA9002A24A0 /* ConfigurationView.swift in Sources */,
+				AB69B83D2524F53E00872978 /* TestColorCarousel.swift in Sources */,
 				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
 				AB17FB4925193B340071D82A /* logginhoFeelings2.0.mlmodel in Sources */,
 				AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */,
