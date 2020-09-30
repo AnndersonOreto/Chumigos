@@ -32,6 +32,8 @@ extension GamesView {
             return AnyView(ShapeGameView(gameDifficulty: .medium, game: self.game))
         case GameNames.avatarGameName:
             return AnyView(AvatarGameView(gameDifficulty: .easy, game: self.game))
+        case GameNames.totemGameName:
+            return AnyView(TotemGameView(gameDifficulty: .easy, game: self.game))
         default:
             return AnyView(EmptyView())
         }

@@ -150,7 +150,8 @@ class CoreDataService {
         let linha3 = [GameObject(id: UUID(), gameType: .pattern, gameName: GameNames.sequenceGameName2),
                       GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.shapeGameName2)]
         
-        let linha4 = [GameObject(id: UUID(), gameType: .decomposition, gameName: GameNames.avatarGameName)]
+        let linha4 = [GameObject(id: UUID(), gameType: .decomposition, gameName: GameNames.avatarGameName),
+                      GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.totemGameName)]
 
         let matrix = [linha1, linha2, linha3, linha4]
 

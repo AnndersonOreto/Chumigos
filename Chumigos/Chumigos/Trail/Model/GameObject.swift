@@ -25,7 +25,7 @@ struct GameObject: Hashable, Codable {
     var isCompleted: Bool = false
     
     //Game Progress
-    let maxProgress: Float = 100
+    var maxProgress: Float = 100
     var currentProgress: Float = 0
     var percetageCompleted: Float {
         currentProgress / maxProgress

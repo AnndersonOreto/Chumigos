@@ -15,4 +15,5 @@ class GameNames {
     static let sequenceGameName1 = "Sequência I"
     static let sequenceGameName2 = "Sequência II"
     static let avatarGameName = "Sentimentos"
+    static let totemGameName = "Totem"
 }
