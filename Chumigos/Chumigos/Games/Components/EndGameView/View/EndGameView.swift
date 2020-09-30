@@ -13,7 +13,7 @@ struct EndGameView: View {
     // MARK: - View Model
     @ObservedObject var progressViewModel: ProgressBarViewModel = ProgressBarViewModel(questionAmount: 5)
     var dismissGame: (() -> Void)
-    var restartGame: (() -> Void)
+    var restartGame: ((GameObject) -> Void)
     @State var game: GameObject
     let gameScore: Int
     
@@ -71,7 +71,6 @@ struct EndGameView: View {
                 // Inicio
                 Button(action: {
                     self.dismissGame()
-                    self.restartGame()
                 }) {
                     Text("Início")
                         .dynamicFont(name: fontName, size: 20, weight: .bold)
@@ -79,16 +78,18 @@ struct EndGameView: View {
                                               pressedButtonColor: Color.Whale,
                                               buttonBackgroundColor: Color.Narwhal,
                                               isButtonEnable: true))
-                .padding(.bottom, 30)
                 
                 // Recomecar
-//                Button(action: {
-//                    self.restartGame()
-//                }) {
-//                    Text("Recomeçar")
-//                        .dynamicFont(name: fontName, size: 20, weight: .bold)
-//                }.buttonStyle(GameButtonStyle(buttonColor: Color.Bee, pressedButtonColor: Color.Duck, buttonBackgroundColor: Color.Fox, isButtonEnable: true))
-//                    .padding(.bottom, 30)
+                Button(action: {
+                    self.restartGame(self.game)
+                }) {
+                    Text("Recomeçar")
+                        .dynamicFont(name: fontName, size: 20, weight: .bold)
+                }.buttonStyle(GameButtonStyle(buttonColor: Color.Bee,
+                                              pressedButtonColor: Color.Duck,
+                                              buttonBackgroundColor: Color.Fox,
+                                              isButtonEnable: true))
+                    .padding(.bottom, 30)
             }
         }
         .navigationBarTitle("")

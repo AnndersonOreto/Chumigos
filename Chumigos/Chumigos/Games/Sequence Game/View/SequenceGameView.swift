@@ -15,8 +15,6 @@ struct SequenceGameView: View {
     
     let generator = UINotificationFeedbackGenerator()
     
-    var game: GameObject
-    
     // Save the rects of all the questions
     @State private var questionsFrames: [(question: Question, rect: CGRect)] = []
     // Variable to know which alternative is being dragged
@@ -36,8 +34,7 @@ struct SequenceGameView: View {
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     init(gameDifficulty: Difficulty, game: GameObject) {
-        self.viewModel = SequenceGameViewModel(difficulty: gameDifficulty)
-        self.game = game
+        self.viewModel = SequenceGameViewModel(game: game, difficulty: gameDifficulty)
     }
     
     var body: some View {
@@ -95,7 +92,9 @@ struct SequenceGameView: View {
                                     Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
                                         .alternativeBackground(size: self.tileSize)
                                     
-                                    Tile(content: Image(alternative.content).resizable(), size: self.tileSize)
+                                    // tileSize*1.01 to hide question tile underneath
+                                    Tile(content: Image(alternative.content).resizable(),
+                                         size: CGSize(width: self.tileSize.width*1.01, height: self.tileSize.height*1.01))
                                         .draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
                                     
                                 }
@@ -162,8 +161,8 @@ struct SequenceGameView: View {
                 
             } else {
                 EndGameView(progressViewModel: self.progressViewModel,
-                            dismissGame: self.dismissGame, restartGame: self.restartGame,
-                            game: self.game, gameScore: self.viewModel.gameScore.currentScore)
+                            dismissGame: self.dismissGame, restartGame: self.restartGame(game:),
+                            game: self.viewModel.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {
@@ -196,11 +195,12 @@ struct SequenceGameView: View {
         self.presentationMode.wrappedValue.dismiss()
     }
     
-    func restartGame() {
+    func restartGame(game: GameObject) {
         self.viewModel.restartGame()
         self.questionsFrames = []
         self.isFinished = false
         self.progressViewModel.restartProgressBar()
+        self.viewModel.game = game
     }
     
     func confirmQuestion() {

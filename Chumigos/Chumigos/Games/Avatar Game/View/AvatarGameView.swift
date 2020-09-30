@@ -12,7 +12,7 @@ struct AvatarGameView: View {
     
     // MARK: - View Model
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
-    @ObservedObject var viewModel = AvatarGameViewModel()
+    @ObservedObject var viewModel: AvatarGameViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     private var screenWidth = UIScreen.main.bounds.height
@@ -25,9 +25,8 @@ struct AvatarGameView: View {
     // MARK: - Face's Variables
     let avatarWidth = UIScreen.main.bounds.height * 0.63
     let avatarHeight = UIScreen.main.bounds.height * 0.85
-    var game: GameObject
     
-    var numberOfColumns: Int = 3
+    var numberOfColumns: Int = 4
     var numberOfRows: Int {
         Int(ceil(Double(viewModel.roundFaceParts.count)/Double(numberOfColumns)))
     }
@@ -38,7 +37,7 @@ struct AvatarGameView: View {
     
     init(gameDifficulty: Difficulty, game: GameObject) {
         #warning("Fazer dificuldade no jogo do avatar")
-        self.game = game
+        self.viewModel = AvatarGameViewModel(game: game, difficulty: gameDifficulty)
     }
     
     var body: some View {
@@ -122,14 +121,16 @@ struct AvatarGameView: View {
                         HStack {
                             Spacer()
                             
-                            VStack(spacing: 22) {
+                            VStack(spacing: 35) {
                                 
                                 CustomText("Selecione os elementos que correspondem\na como o Logginho está se sentindo:")
                                     .dynamicFont(size: 20, weight: .medium)
                                     .foregroundColor(.textColor)
                                     .multilineTextAlignment(.center)
                                 
-                                Grid<AvatarGameTile>(rows: numberOfRows, columns: numberOfColumns, spacing: screenWidth * 0.008) { (row, column) in
+                                Grid<AvatarGameTile>(rows: numberOfRows, columns: numberOfColumns,
+                                                     vSpacing: screenWidth * 0.02,
+                                                     hSpacing: screenWidth * 0.006) { (row, column) in
                                     AvatarGameTile(facePart: self.viewModel.roundFaceParts[(row * self.numberOfColumns)+column],
                                                    eyeImage: self.$viewModel.eyeImage,
                                                    mouthImage: self.$viewModel.mouthImage,
@@ -139,8 +140,8 @@ struct AvatarGameView: View {
                                 
                                 Spacer()
                             }
-                            .padding(.trailing, screenWidth * 0.087)
-                            .padding(.top, screenWidth * 0.051)
+                            .padding(.trailing, screenWidth * 0.07)
+                            .padding(.top, screenWidth * 0.125)
                         }.allowsHitTesting(!viewModel.confirmPressed)
                         
                         if viewModel.canShowResult() {
@@ -221,8 +222,8 @@ struct AvatarGameView: View {
                 }.blur(radius: self.showPopUp ? 16 : 0)
             } else {
                 EndGameView(progressViewModel: self.progressViewModel,
-                            dismissGame: self.dismissGame, restartGame: self.restartGame,
-                            game: self.game, gameScore: self.viewModel.gameScore.currentScore)
+                            dismissGame: self.dismissGame, restartGame: self.restartGame(game:),
+                            game: self.viewModel.game, gameScore: self.viewModel.gameScore.currentScore)
             }
             
             if self.showPopUp {
@@ -237,12 +238,13 @@ struct AvatarGameView: View {
         self.presentationMode.wrappedValue.dismiss()
     }
     
-    func restartGame() {
+    func restartGame(game: GameObject) {
         self.showPopUp = false
         self.showChatBalloon = true
         self.isFinished = false
         self.progressViewModel.restartProgressBar()
         self.viewModel.resetGame()
+        self.viewModel.game = game
     }
     
     func confirmQuestion() {

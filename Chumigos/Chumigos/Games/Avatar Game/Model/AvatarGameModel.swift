@@ -82,15 +82,13 @@ class AvatarGameModel {
         var facePartsArray: [FacePart] = []
         
         // Generating each part
-        let eyes = self.generate(faceParts: self.allEyes)
         let eyebrows = self.generate(faceParts: self.allEyebrows)
+        let eyes = self.generate(faceParts: self.allEyes)
         let mouths = self.generate(faceParts: self.allMouths)
         
-        for index in 0..<eyes.count {
-            facePartsArray.append(eyes[index])
-            facePartsArray.append(eyebrows[index])
-            facePartsArray.append(mouths[index])
-        }
+        facePartsArray.append(contentsOf: eyebrows)
+        facePartsArray.append(contentsOf: eyes)
+        facePartsArray.append(contentsOf: mouths)
         
         self.roundFaceParts = facePartsArray
     }
