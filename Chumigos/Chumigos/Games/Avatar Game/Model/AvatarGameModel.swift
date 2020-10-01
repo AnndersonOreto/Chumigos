@@ -93,6 +93,7 @@ class AvatarGameModel {
     }
     
     func generate(faceParts: [FacePart]) -> [FacePart] {
+        #warning("Random element sometimes crash")
         // Generating Correct Part
         let part = faceParts.filter({$0.feelings.contains(randomFeeling ?? .happy)}).randomElement()!
         var parts: [FacePart] = [part]
@@ -107,7 +108,7 @@ class AvatarGameModel {
             parts.append(randomPart)
         }
         
-        return parts
+        return parts.shuffled()
     }
 }
 

@@ -43,7 +43,7 @@ struct AvatarGameView: View {
     var body: some View {
         
         ZStack {
-            Color.background
+            Color.background.edgesIgnoringSafeArea(.all)
             
             if !isFinished {
                 
@@ -79,17 +79,6 @@ struct AvatarGameView: View {
                             }
                         }.edgesIgnoringSafeArea(.all)
                         Spacer()
-                    }
-                    
-                    //Feedback massage
-                    ZStack {
-                        VStack {
-                            Spacer()
-                            if viewModel.canShowResult() {
-                                GameFeedbackMessage(feedbackType: .CORRECT)
-                                    .padding(.bottom, -(screenWidth * 0.035))
-                            }
-                        }
                     }
                     
                     //VStack geral
@@ -143,8 +132,25 @@ struct AvatarGameView: View {
                             .padding(.trailing, screenWidth * 0.07)
                             .padding(.top, screenWidth * 0.125)
                         }.allowsHitTesting(!viewModel.confirmPressed)
+                    }
+                    
+                    //Feedback massage
+                    VStack {
+                        Spacer()
+                        ZStack {
+                            if viewModel.canShowResult() {
+                                GameFeedbackMessage(feedbackType: .CORRECT)
+                                    .padding(.bottom, -(screenWidth * 0.035))
+                            }
+                        }
+                    }
+                    
+                    // Confirm and Continue Buttons
+                    VStack {
+                        Spacer()
                         
                         if viewModel.canShowResult() {
+                            // Continue Button
                             Button(action: {
                                 self.confirmQuestion()
                             }) {

@@ -134,11 +134,6 @@ class CoreDataService {
         self.saveMatrixTrail(matrix)
     }
     
-    func checkIfAlreadyExists() -> Bool {
-        
-        return false
-    }
-    
     // MARK: - MOCK
     
     // Just for test
