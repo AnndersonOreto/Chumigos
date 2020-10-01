@@ -18,6 +18,5 @@ extension UserData {
 
     @NSManaged public var imageName: String?
     @NSManaged public var trail: Data?
-    @NSManaged public var id: Int64
 
 }
