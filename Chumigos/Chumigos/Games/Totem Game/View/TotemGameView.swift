@@ -114,7 +114,10 @@ struct TotemGameView: View {
                                 .offset(y: -(screenWidth * 0.053))
                             
                             // Alternatives grid
-                            Grid<TotemGameTile>(rows: 2, columns: 2, vSpacing: screenWidth * 0.0175, hSpacing: screenWidth * 0.0175, content: { (row, column) in
+                            Grid<TotemGameTile>(rows: 2, columns: 2,
+                                                vSpacing: screenWidth * 0.0175,
+                                                hSpacing: screenWidth * 0.0175,
+                                                content: { (row, column) in
                                 TotemGameTile(size: self.screenWidth,
                                               imageNameList: self.viewModel.totemAlternativeList[(row * 2) + column],
                                               id: (row * 2) + column, selectedTile: self.$tileSelected,

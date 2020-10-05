@@ -92,10 +92,10 @@ class TotemGameModel {
             if totemBigPieceList.isEmpty {
                 
                 let totemSmallPieceFirstElement: String = totemSmallPieceList[0]
-                let smallAlternativeListFirstElements: [String] = totemAlternativeList.map( { $0[0] } )
+                let smallAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[0] })
                 
-                for i in 0..<smallAlternativeListFirstElements.count {
-                    if smallAlternativeListFirstElements[i] == totemSmallPieceFirstElement {
+                for index in 0..<smallAlternativeListFirstElements.count {
+                    if smallAlternativeListFirstElements[index] == totemSmallPieceFirstElement {
                         
                         isElementEqualTo = true
                         break
@@ -108,9 +108,9 @@ class TotemGameModel {
                 let smallAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[0] })
                 let bigAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[totemSmallPieceList.count] })
                 
-                for i in 0..<smallAlternativeListFirstElements.count {
-                    if smallAlternativeListFirstElements[i] == totemSmallPieceFirstElement &&
-                        bigAlternativeListFirstElements[i] == totemBigPieceFirstElement {
+                for index in 0..<smallAlternativeListFirstElements.count {
+                    if smallAlternativeListFirstElements[index] == totemSmallPieceFirstElement &&
+                        bigAlternativeListFirstElements[index] == totemBigPieceFirstElement {
                         
                         isElementEqualTo = true
                         break
