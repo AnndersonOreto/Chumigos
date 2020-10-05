@@ -43,9 +43,8 @@ class AvatarGameModel {
         return [eye1, eye2, eye3, eye4, eye5, eye6, eye7, eye8, eye9, eye10, eye11, eye12, eye13]
     }
     var allEyebrows: [FacePart] {
-        let eyebrow1 = FacePart(partOfFace: .eyebrow, image: "01",
-                                feelings: [.embarrassed, .happy])
-        let eyebrow2 = FacePart(partOfFace: .eyebrow, image: "02", feelings: [.fearful, .sad])
+        let eyebrow1 = FacePart(partOfFace: .eyebrow, image: "01", feelings: [.embarrassed, .happy])
+        let eyebrow2 = FacePart(partOfFace: .eyebrow, image: "02", feelings: [.fearful, .sad, .sick])
         let eyebrow3 = FacePart(partOfFace: .eyebrow, image: "03", feelings: [.uncertain])
         let eyebrow4 = FacePart(partOfFace: .eyebrow, image: "04", feelings: [.angry])
         let eyebrow5 = FacePart(partOfFace: .eyebrow, image: "05", feelings: [.indifferent])
