@@ -64,6 +64,7 @@
 		AA24C13924E5CB22006F8C5A /* ShapeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13824E5CB22006F8C5A /* ShapeGameView.swift */; };
 		AA275AB82507FB980089F63D /* AvatarGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA275AB72507FB980089F63D /* AvatarGameModel.swift */; };
 		AA63616C2513E5EE00EB4E49 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63616B2513E5EE00EB4E49 /* CoreDataService.swift */; };
+		AA7B310E252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AA7B310D252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel */; };
 		AA865AF024E57D960066BF2A /* AlternativeBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */; };
 		AA865AF324E5AC010066BF2A /* ShapeGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA865AF224E5AC010066BF2A /* ShapeGameModel.swift */; };
 		AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C8EC325015C9E0080B06E /* DynamicFont.swift */; };
@@ -77,8 +78,6 @@
 		AAE6759E25152E2600342D7F /* UserData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6759C25152E2600342D7F /* UserData+CoreDataClass.swift */; };
 		AAE6759F25152E2600342D7F /* UserData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6759D25152E2600342D7F /* UserData+CoreDataProperties.swift */; };
 		AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB07C25000F62009E8A67 /* MainView.swift */; };
-		AB17FB4725193A080071D82A /* logginhoFeelings2.0.mlproj in Resources */ = {isa = PBXBuildFile; fileRef = AB17FB4625193A080071D82A /* logginhoFeelings2.0.mlproj */; };
-		AB17FB4925193B340071D82A /* logginhoFeelings2.0.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AB17FB4825193B340071D82A /* logginhoFeelings2.0.mlmodel */; };
 		AB17FB4B25193BFD0071D82A /* FeelingClassificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB17FB4A25193BFD0071D82A /* FeelingClassificator.swift */; };
 		AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33B3502502B2840042F5BA /* AvatarGameView.swift */; };
 		AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E5196251D069400FCF777 /* UnderConstructionView.swift */; };
@@ -192,6 +191,7 @@
 		AA24C13824E5CB22006F8C5A /* ShapeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameView.swift; sourceTree = "<group>"; };
 		AA275AB72507FB980089F63D /* AvatarGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameModel.swift; sourceTree = "<group>"; };
 		AA63616B2513E5EE00EB4E49 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		AA7B310D252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LogginhoFeelingsClassifier.mlmodel; sourceTree = "<group>"; };
 		AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeBackground.swift; sourceTree = "<group>"; };
 		AA865AF224E5AC010066BF2A /* ShapeGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameModel.swift; sourceTree = "<group>"; };
 		AA9C8EC325015C9E0080B06E /* DynamicFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFont.swift; sourceTree = "<group>"; };
@@ -205,8 +205,6 @@
 		AAE6759C25152E2600342D7F /* UserData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AAE6759D25152E2600342D7F /* UserData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB0EB07C25000F62009E8A67 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		AB17FB4625193A080071D82A /* logginhoFeelings2.0.mlproj */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = logginhoFeelings2.0.mlproj; sourceTree = "<group>"; };
-		AB17FB4825193B340071D82A /* logginhoFeelings2.0.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = logginhoFeelings2.0.mlmodel; sourceTree = "<group>"; };
 		AB17FB4A25193BFD0071D82A /* FeelingClassificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingClassificator.swift; sourceTree = "<group>"; };
 		AB33B3502502B2840042F5BA /* AvatarGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameView.swift; sourceTree = "<group>"; };
 		AB5E5196251D069400FCF777 /* UnderConstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderConstructionView.swift; sourceTree = "<group>"; };
@@ -638,8 +636,7 @@
 		AB33B34C2502B2400042F5BA /* Avatar Game */ = {
 			isa = PBXGroup;
 			children = (
-				AB17FB4825193B340071D82A /* logginhoFeelings2.0.mlmodel */,
-				AB17FB4625193A080071D82A /* logginhoFeelings2.0.mlproj */,
+				AA7B310D252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel */,
 				AA275AB62507FB830089F63D /* ViewModel */,
 				AA275AB52507FB7B0089F63D /* Model */,
 				AB33B34E2502B2530042F5BA /* View */,
@@ -925,7 +922,6 @@
 				260A416024DB2CC9003553E7 /* Rubik-BoldItalic.ttf in Resources */,
 				260A416324DB2CC9003553E7 /* Rubik-Regular.ttf in Resources */,
 				26C186CF24BE4AA70094AEC1 /* LaunchScreen.storyboard in Resources */,
-				AB17FB4725193A080071D82A /* logginhoFeelings2.0.mlproj in Resources */,
 				260A416424DB2CC9003553E7 /* Rubik-LightItalic.ttf in Resources */,
 				260A416124DB2CC9003553E7 /* Rubik-Italic.ttf in Resources */,
 				E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */,
@@ -1068,6 +1064,7 @@
 				26AB83BC2513B824004BDF49 /* TotemGameView.swift in Sources */,
 				AB855F1524F4341400C5A739 /* User.swift in Sources */,
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
+				AA7B310E252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel in Sources */,
 				AB17FB4B25193BFD0071D82A /* FeelingClassificator.swift in Sources */,
 				AAA0613924E30819008CD91B /* SequenceGameView.swift in Sources */,
 				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
@@ -1088,7 +1085,6 @@
 				2623AC4225015EA9002A24A0 /* ConfigurationView.swift in Sources */,
 				AB69B83D2524F53E00872978 /* TestColorCarousel.swift in Sources */,
 				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
-				AB17FB4925193B340071D82A /* logginhoFeelings2.0.mlmodel in Sources */,
 				AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */,
 				AAC7A057251A6083005F741A /* View+asImage.swift in Sources */,
 				AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */,
