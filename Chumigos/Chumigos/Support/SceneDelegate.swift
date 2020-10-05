@@ -13,6 +13,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
+    let signInWithAppleManager = SignInWithAppleManager()
+    
     private(set) static var shared: SceneDelegate?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -27,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         
-        let contentView = TestSignInWithAppleView().environment(\.managedObjectContext, context)
+        let contentView = SignInWithAppleView().environment(\.managedObjectContext, context).environmentObject(signInWithAppleManager)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

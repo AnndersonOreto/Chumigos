@@ -30,6 +30,14 @@
 		2656BF292500086100231678 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656BF282500086100231678 /* NotificationManager.swift */; };
 		26660AC324C7834E000A9845 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26660AC224C7834E000A9845 /* RandomColor.swift */; };
 		26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26763D2B24C8C7690056F2BC /* RandomForm.swift */; };
+		2679AC6A252BA15B005BE939 /* SignInWithAppleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC65252BA15B005BE939 /* SignInWithAppleManager.swift */; };
+		2679AC6B252BA15B005BE939 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC66252BA15B005BE939 /* SignInWithAppleButton.swift */; };
+		2679AC6C252BA15B005BE939 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC67252BA15B005BE939 /* AuthState.swift */; };
+		2679AC6D252BA15B005BE939 /* EnvironmentWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC68252BA15B005BE939 /* EnvironmentWindowKey.swift */; };
+		2679AC6E252BA15B005BE939 /* SignInWithAppleDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC69252BA15B005BE939 /* SignInWithAppleDelegates.swift */; };
+		2679AC73252BA2F2005BE939 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC72252BA2F2005BE939 /* SignInWithAppleView.swift */; };
+		2679AC78252BA7E2005BE939 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC77252BA7E2005BE939 /* LoginView.swift */; };
+		2679AC7D252BB21C005BE939 /* LoginLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC7C252BB21C005BE939 /* LoginLoginView.swift */; };
 		2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */; };
 		26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26940AE624C0E18F00F258B6 /* CKCloudDataProtocol.swift */; };
 		26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26940AEA24C0E62000F258B6 /* CKCloudParseProtocol.swift */; };
@@ -102,11 +110,6 @@
 		E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */; };
 		E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
-		E7DC0B7925250041007D69A0 /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC0B7825250041007D69A0 /* SignInWithApple.swift */; };
-		E7DC0B7B2525006D007D69A0 /* TestSignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC0B7A2525006D007D69A0 /* TestSignInWithAppleView.swift */; };
-		E7DC0B7F252504B9007D69A0 /* UserDataProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC0B7E252504B9007D69A0 /* UserDataProfile.swift */; };
-		E7DC0B8425250A08007D69A0 /* AppleSignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC0B8325250A08007D69A0 /* AppleSignInCoordinator.swift */; };
-		E7DC0B8625250A50007D69A0 /* SignInWithAppleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC0B8525250A50007D69A0 /* SignInWithAppleViewModel.swift */; };
 		E9CD1BAE0D151B08733EE975 /* Pods_LoggioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79AEE4EF5A242DAFBABABF /* Pods_LoggioTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +155,14 @@
 		2656BF282500086100231678 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		26660AC224C7834E000A9845 /* RandomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
 		26763D2B24C8C7690056F2BC /* RandomForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomForm.swift; sourceTree = "<group>"; };
+		2679AC65252BA15B005BE939 /* SignInWithAppleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithAppleManager.swift; sourceTree = "<group>"; };
+		2679AC66252BA15B005BE939 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
+		2679AC67252BA15B005BE939 /* AuthState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
+		2679AC68252BA15B005BE939 /* EnvironmentWindowKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentWindowKey.swift; sourceTree = "<group>"; };
+		2679AC69252BA15B005BE939 /* SignInWithAppleDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithAppleDelegates.swift; sourceTree = "<group>"; };
+		2679AC72252BA2F2005BE939 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
+		2679AC77252BA7E2005BE939 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2679AC7C252BB21C005BE939 /* LoginLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLoginView.swift; sourceTree = "<group>"; };
 		2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKDataService.swift; sourceTree = "<group>"; };
 		26940AE624C0E18F00F258B6 /* CKCloudDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKCloudDataProtocol.swift; sourceTree = "<group>"; };
 		26940AEA24C0E62000F258B6 /* CKCloudParseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKCloudParseProtocol.swift; sourceTree = "<group>"; };
@@ -239,11 +250,6 @@
 		E78DA52E24BF7C17001A3079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E78DA53024BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E78DA53124BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E7DC0B7825250041007D69A0 /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
-		E7DC0B7A2525006D007D69A0 /* TestSignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSignInWithAppleView.swift; sourceTree = "<group>"; };
-		E7DC0B7E252504B9007D69A0 /* UserDataProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProfile.swift; sourceTree = "<group>"; };
-		E7DC0B8325250A08007D69A0 /* AppleSignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInCoordinator.swift; sourceTree = "<group>"; };
-		E7DC0B8525250A50007D69A0 /* SignInWithAppleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -814,21 +820,16 @@
 		E7DC0B7725250027007D69A0 /* SignInWithApple */ = {
 			isa = PBXGroup;
 			children = (
-				E7DC0B8025250786007D69A0 /* UserStorage */,
-				E7DC0B7825250041007D69A0 /* SignInWithApple.swift */,
-				E7DC0B7A2525006D007D69A0 /* TestSignInWithAppleView.swift */,
-				E7DC0B8325250A08007D69A0 /* AppleSignInCoordinator.swift */,
-				E7DC0B8525250A50007D69A0 /* SignInWithAppleViewModel.swift */,
+				2679AC67252BA15B005BE939 /* AuthState.swift */,
+				2679AC68252BA15B005BE939 /* EnvironmentWindowKey.swift */,
+				2679AC66252BA15B005BE939 /* SignInWithAppleButton.swift */,
+				2679AC69252BA15B005BE939 /* SignInWithAppleDelegates.swift */,
+				2679AC65252BA15B005BE939 /* SignInWithAppleManager.swift */,
+				2679AC72252BA2F2005BE939 /* SignInWithAppleView.swift */,
+				2679AC77252BA7E2005BE939 /* LoginView.swift */,
+				2679AC7C252BB21C005BE939 /* LoginLoginView.swift */,
 			);
 			path = SignInWithApple;
-			sourceTree = "<group>";
-		};
-		E7DC0B8025250786007D69A0 /* UserStorage */ = {
-			isa = PBXGroup;
-			children = (
-				E7DC0B7E252504B9007D69A0 /* UserDataProfile.swift */,
-			);
-			path = UserStorage;
 			sourceTree = "<group>";
 		};
 		E7FDEB8724C2312A008DDAEB /* Games */ = {
@@ -1078,13 +1079,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7DC0B7F252504B9007D69A0 /* UserDataProfile.swift in Sources */,
 				E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */,
 				26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */,
 				26AB83BE2513B852004BDF49 /* TotemGameViewModel.swift in Sources */,
 				260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */,
 				26E0EA4C24F59FD50078566D /* EndGameViewModel.swift in Sources */,
-				E7DC0B7B2525006D007D69A0 /* TestSignInWithAppleView.swift in Sources */,
 				AA24C13124E5B57A006F8C5A /* SequenceGameModel.swift in Sources */,
 				AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */,
 				AA865AF324E5AC010066BF2A /* ShapeGameModel.swift in Sources */,
@@ -1095,41 +1094,44 @@
 				AA24C13324E5C06A006F8C5A /* Question.swift in Sources */,
 				2623AC4425015ED9002A24A0 /* ConfigurationViewModel.swift in Sources */,
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
-				E7DC0B8425250A08007D69A0 /* AppleSignInCoordinator.swift in Sources */,
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
 				2656BF292500086100231678 /* NotificationManager.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
 				AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */,
 				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,
+				2679AC6A252BA15B005BE939 /* SignInWithAppleManager.swift in Sources */,
+				2679AC73252BA2F2005BE939 /* SignInWithAppleView.swift in Sources */,
 				26AB83BC2513B824004BDF49 /* TotemGameView.swift in Sources */,
 				AB855F1524F4341400C5A739 /* User.swift in Sources */,
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
+				2679AC6E252BA15B005BE939 /* SignInWithAppleDelegates.swift in Sources */,
 				AB17FB4B25193BFD0071D82A /* FeelingClassificator.swift in Sources */,
 				AAA0613924E30819008CD91B /* SequenceGameView.swift in Sources */,
 				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
 				AAE6759E25152E2600342D7F /* UserData+CoreDataClass.swift in Sources */,
 				26946E9424C76398005A316E /* FormPentagon.swift in Sources */,
+				2679AC6D252BA15B005BE939 /* EnvironmentWindowKey.swift in Sources */,
 				263D144D24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift in Sources */,
 				260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */,
 				AAE6759F25152E2600342D7F /* UserData+CoreDataProperties.swift in Sources */,
 				AA63616C2513E5EE00EB4E49 /* CoreDataService.swift in Sources */,
 				AB855F1B24F450A000C5A739 /* TrailView.swift in Sources */,
 				AAA0613B24E31685008CD91B /* SequenceGameViewModel.swift in Sources */,
-				E7DC0B8625250A50007D69A0 /* SignInWithAppleViewModel.swift in Sources */,
 				AA24C13924E5CB22006F8C5A /* ShapeGameView.swift in Sources */,
 				AAB022B425002D5700DE2B34 /* ExitGamePopUp.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
 				26660AC324C7834E000A9845 /* RandomColor.swift in Sources */,
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
 				2623AC4225015EA9002A24A0 /* ConfigurationView.swift in Sources */,
-				E7DC0B7925250041007D69A0 /* SignInWithApple.swift in Sources */,
 				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
 				AB17FB4925193B340071D82A /* logginhoFeelings2.0.mlmodel in Sources */,
 				AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */,
 				AAC7A057251A6083005F741A /* View+asImage.swift in Sources */,
+				2679AC78252BA7E2005BE939 /* LoginView.swift in Sources */,
 				AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */,
 				AB6EFEF8250157F8009A1705 /* Light_Dark_Colors.swift in Sources */,
 				ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */,
+				2679AC6C252BA15B005BE939 /* AuthState.swift in Sources */,
 				E74A37752502BC47001ADBEB /* CustomDivider.swift in Sources */,
 				26BC05AD2507FD9B00A918F5 /* TrailViewModel.swift in Sources */,
 				AB855F1924F439B200C5A739 /* TrailTile.swift in Sources */,
@@ -1143,6 +1145,7 @@
 				26E0EA4E24F59FF20078566D /* EndGameView.swift in Sources */,
 				E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */,
 				26FCAD94251BB9730082F9EC /* TotemPiece.swift in Sources */,
+				2679AC7D252BB21C005BE939 /* LoginLoginView.swift in Sources */,
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
@@ -1154,6 +1157,7 @@
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
 				26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */,
 				AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */,
+				2679AC6B252BA15B005BE939 /* SignInWithAppleButton.swift in Sources */,
 				AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */,
 				AADAB3C924FEBBF8005B04B3 /* GamesView.swift in Sources */,
 				AAA0613D24E49683008CD91B /* Draggable.swift in Sources */,
