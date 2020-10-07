@@ -24,6 +24,7 @@ class AvatarGameViewModel: ObservableObject {
     var gameState: GameState = .NORMAL
     var gameScore: GameScore = GameScore()
     var mostLikelyFeeling: String?
+    var wrongAnswers: [(model: AvatarGameModel, index: Int)] = []
     
     init(game: GameObject, difficulty: Difficulty) {
         self.model = AvatarGameModel()
@@ -31,7 +32,7 @@ class AvatarGameViewModel: ObservableObject {
         self.difficulty = difficulty
     }
     
-    //Variables
+    // MARK: - Access the model
     var feeling: Feelings {
         model.randomFeeling ?? Feelings.happy
     }
@@ -52,7 +53,8 @@ class AvatarGameViewModel: ObservableObject {
         model.allMouths
     }
     
-    //Functions
+    // MARK: - Function(s)
+    
     func allOptionsSelected() -> Bool {
         let eyeSelected: Bool = !eyeImage.isEmpty
         let eyebrownSelected: Bool = !eyebrowImage.isEmpty
@@ -67,12 +69,29 @@ class AvatarGameViewModel: ObservableObject {
         return feeling == mostLikely
     }
     
-    func getRecapIndex() -> Int {
-        return -1
+    // MARK: - Reset & Restart Game
+    func resetGame() {
+        if gameState == .NORMAL {
+            model = AvatarGameModel()
+        } else {
+            if wrongAnswers.isEmpty { return }
+            
+            if let first = wrongAnswers.first {
+                model = first.model
+            }
+        }
+        resetVariables()
     }
     
-    func resetGame() {
-        model = AvatarGameModel()
+    func restartGame() {
+        self.model = AvatarGameModel()
+        self.wrongAnswers = []
+        self.gameState = .NORMAL
+        self.gameScore = GameScore()
+        self.resetVariables()
+    }
+    
+    func resetVariables() {
         eyeImage =  ""
         mouthImage = ""
         eyebrowImage = ""
@@ -80,6 +99,27 @@ class AvatarGameViewModel: ObservableObject {
         finishedPrediction = false
     }
     
+    // MARK: - Recap function(s)
+    func getRecapIndex() -> Int {
+        if gameState == .RECAP && !wrongAnswers.isEmpty {
+            return wrongAnswers.first!.index
+        }
+        return -1
+    }
+    
+    func removeRecapGame() {
+        if gameState == .RECAP && !wrongAnswers.isEmpty {
+            wrongAnswers.removeFirst()
+        }
+    }
+    
+    func ifWrongAddAnswer(with index: Int) {
+        if !faceIsCorrect() && gameState == .NORMAL {
+            wrongAnswers.append((model: self.model, index: index))
+        }
+    }
+    
+    // MARK: - Score function(s)
     func changeGameScore() {
         if self.faceIsCorrect() {
             if self.gameState == .NORMAL {
@@ -91,6 +131,8 @@ class AvatarGameViewModel: ObservableObject {
             self.gameScore.disableStreak()
         }
     }
+    
+    // MARK: - ML auxiliary function(s)
     
     // only show answer when confirm is pressed and prediction has ended
     func canShowResult() -> Bool {
@@ -107,10 +149,10 @@ class AvatarGameViewModel: ObservableObject {
         let avatarFaceImage = image.crop(rect: CGRect(origin: origin, size: size))
         
         // calling prediction
-        performPediction(avatarFaceImage)
+        performPrediction(avatarFaceImage)
     }
     
-    func performPediction(_ image: UIImage?) {
+    func performPrediction(_ image: UIImage?) {
         // make sure that conversion of the image works as we expected.
         guard let imageToConvert =  image,
         let resizedImage = imageToConvert.resizeTo(CGSize(width: 299, height: 299)),

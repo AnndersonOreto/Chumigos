@@ -83,15 +83,10 @@ class SequenceGameViewModel: ObservableObject {
             // Restart game by creating another instance of SequenceGameModel
             model = self.createSequenceGame(difficulty: difficulty)
         } else {
-            
             if wrongAnswersArray.isEmpty { return }
-            print(wrongAnswersArray.count)
             let questionModel = wrongAnswersArray.first!
-            print(wrongAnswersArray.count)
-            print(questions)
             model = questionModel.0
             model.resetUUID()
-            print(questions)
         }
     }
     

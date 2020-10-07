@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct TotemPiece: Hashable {
+struct TotemPiece: Hashable, Identifiable {
     
     // *****************************
     // MARK: - Totem image variables
     // *****************************
-    
+    var id = UUID()
     var shape: String // If it is big, small or has wings
     var color: String // If big it has 5 colors
     var face: String // Totem's face

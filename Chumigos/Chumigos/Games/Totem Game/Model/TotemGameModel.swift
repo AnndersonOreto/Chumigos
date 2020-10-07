@@ -29,11 +29,22 @@ class TotemGameModel {
     private var faceArray: [[String]] = []
     private var colorArray: [String] = []
     
+    private(set) var totemPieceList: [TotemPiece] = []
+    private(set) var totemAlternativeList: [[String]] = []
+    private(set) var correctUpTopTotem: [String] = []
+    
     init() {
         faceArray = [["face/big/01", "face/big/02", "face/big/03", "face/big/04", "face/big/05"],
                      ["face/small/01", "face/small/02", "face/small/03", "face/small/04", "face/small/05"]]
         shapeArray = TotemShape.allCases
         colorArray = ["01", "02", "03", "04", "05"]
+        
+        totemPieceList = generateTotem()
+        
+        let response = generateAlternatives(with: totemPieceList)
+        totemAlternativeList = response.alternatives
+        correctUpTopTotem = response.correctAnswer
+        
     }
     
     func generateTotem() -> [TotemPiece] {
@@ -69,7 +80,7 @@ class TotemGameModel {
         return totemPieceList
     }
     
-    func generateAlternatives(with totemPieces: [TotemPiece]) -> ([[String]], [String]) {
+    func generateAlternatives(with totemPieces: [TotemPiece]) -> (alternatives: [[String]], correctAnswer: [String]) {
         
         var totemAlternativeList: [[String]] = []
         var totemSmallPieceList: [String] = totemPieces.filter({ !$0.isBig }).map({ $0.upTopShape })
@@ -171,5 +182,4 @@ class TotemGameModel {
             return faceArray[1].randomElement() ?? "face/small/01"
         }
     }
-    
 }
