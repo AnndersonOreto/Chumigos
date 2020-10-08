@@ -245,20 +245,24 @@ struct AvatarGameView: View {
     }
     
     func restartGame(game: GameObject) {
+        self.viewModel.restartGame()
         self.showPopUp = false
         self.showChatBalloon = true
         self.isFinished = false
         self.progressViewModel.restartProgressBar()
-        self.viewModel.resetGame()
         self.viewModel.game = game
     }
     
     func confirmQuestion() {
-        if self.progressViewModel.isLastQuestion() {
-            self.isFinished = true
-        }
+        
+        let index = self.progressViewModel.currentQuestion
+        self.viewModel.ifWrongAddAnswer(with: index)
         
         self.viewModel.changeGameScore()
+        
+        if self.progressViewModel.isLastQuestion() && self.viewModel.gameState == .NORMAL {
+            self.viewModel.gameState = .RECAP
+        }
         
         withAnimation(.linear(duration: 0.3)) {
             self.progressViewModel.checkAnswer(isCorrect: self.viewModel.faceIsCorrect(), nextIndex: self.viewModel.getRecapIndex())
@@ -266,9 +270,12 @@ struct AvatarGameView: View {
         
         self.viewModel.resetGame()
         
-        if self.isFinished {
+        if self.viewModel.gameState == .RECAP && self.viewModel.wrongAnswers.isEmpty {
+            self.isFinished = true
             self.progressViewModel.currentQuestion = -1
         }
+        
+        self.viewModel.removeRecapGame()
         
         if !self.showChatBalloon {
             withAnimation(.easeInOut) {
