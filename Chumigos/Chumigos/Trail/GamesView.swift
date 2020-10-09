@@ -39,9 +39,3 @@ extension GamesView {
         }
     }
 }
-
-//struct GamesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GamesView(gameName: GameNames.sequenceGameName1)
-//    }
-//}
