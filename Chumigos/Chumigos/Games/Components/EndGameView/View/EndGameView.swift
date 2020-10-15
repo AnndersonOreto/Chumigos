@@ -61,6 +61,7 @@ struct EndGameView: View {
                 TrailTile(game: game, isEndGame: true)
                     .animation(Animation.easeInOut(duration: 2).delay(1))
                     .onAppear {
+                        AppAnalytics.shared.logEvent(of: .sequenceGameScore, with: self.gameScore)
                         self.game.increaseCurrentProgress(Float(self.gameScore))
                         self.game.changeIsCompleted()
                         CoreDataService.shared.saveGameObject(self.game)

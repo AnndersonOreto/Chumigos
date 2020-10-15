@@ -14,6 +14,7 @@ public enum AnalyticEventType: String {
     case appLaunch = "loggio_launch"
     case appClose = "loggio_close"
     case sequenceGameAllQuestionsCorrect = "loggio_sequenceGame_allQuestionsCorrect"
+    case sequenceGameScore = "loggio_sequenceGame_score"
 }
 
 class AppAnalytics {
