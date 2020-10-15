@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SequenceGameView: View {
     
-    let hapticManager = HapticManager()
     @State var generateHapticFeedback: Bool = false
     
     let generator = UINotificationFeedbackGenerator()
