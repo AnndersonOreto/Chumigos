@@ -48,7 +48,9 @@ class SequenceGameViewModel: ObservableObject {
     }
     
     func allQuestionsAreCorrect() -> Bool {
-        return model.allQuestionsAreCorrect()
+        let result = model.allQuestionsAreCorrect()
+        AppAnalytics.shared.logEvent(of: .sequenceGameAllQuestionsCorrect, with: result)
+        return result
     }
     
     func allQuestionsAreOccupied() -> Bool {
