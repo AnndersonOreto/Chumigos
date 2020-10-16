@@ -126,19 +126,17 @@ class TotemGameModel {
                     }
                 }
             } else {
-                #warning("deu index out of range aqui")
-                let totemSmallPieceFirstElement: String = totemSmallPieceList[0]
+                guard let totemSmallPieceFirstElement: String = totemSmallPieceList.first else {
+                    return self.generateAlternatives(with: totemPieces)
+                }
                 let totemBigPieceFirstElement: String = totemBigPieceList[0]
                 let smallAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[0] })
-                let bigAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[totemSmallPieceList.count] })
+                let bigAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0.first {$0.contains("big")}! })
                 
                 for index in 0..<smallAlternativeListFirstElements.count {
-                    print(smallAlternativeListFirstElements[index], " == ", totemSmallPieceFirstElement)
-                    print(bigAlternativeListFirstElements[index], " == ", totemBigPieceFirstElement,"\n")
                     
                     if smallAlternativeListFirstElements[index] == totemSmallPieceFirstElement &&
                         bigAlternativeListFirstElements[index] == totemBigPieceFirstElement {
-                        print("Entrou")
                         isElementEqualTo = true
                         break
                     }
@@ -146,12 +144,9 @@ class TotemGameModel {
             }
             
             if isElementEqualTo {
-                print("entrou igual")
                 isElementEqualTo = false
                 continue
             }
-            print("passou do continue")
-            print(totemUpTopImageNameList)
             totemAlternativeList.append(totemUpTopImageNameList)
             
             index += 1

@@ -121,9 +121,6 @@ struct ShapeGameView: View {
                             }
                         }.allowsHitTesting(buttonIsPressed ? false : true)
                         .padding(.top, screenWidth * 0.03)
-                            .onAppear {
-                                print(self.screenWidth)
-                        }
                         
                         Spacer()
                         
