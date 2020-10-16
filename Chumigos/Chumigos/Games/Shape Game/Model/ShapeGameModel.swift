@@ -22,13 +22,14 @@ struct ShapeGameModel {
     private(set) var questions: [Question] = []
     private(set) var round: [ShapeGameModel.ShapeForm] = []
     private var difficulty: Difficulty
-    private var randomColors: [Color]
+    private var questionsColors: [Color] = []
+    private var alternativesColors: [Color] = []
     
     // MARK: - Init
     
     init(difficulty: Difficulty) {
         self.difficulty = difficulty
-        randomColors = Color.getRandomColors(amount: amount)
+        generateColors()
         generateRound()
         generateQuestions()
         generateAlternatives()
@@ -36,24 +37,39 @@ struct ShapeGameModel {
     
     // MARK: - Functions to Generate the Variables
     
+    mutating func generateColors() {
+        let colorArray = Color.getRandomColors(amount: amount*2)
+        let halfSize = colorArray.count / 2
+        
+        for index in 0..<halfSize {
+            questionsColors.append(colorArray[index])
+            alternativesColors.append(colorArray[index+4])
+        }
+    }
+    
     func getDifficulty() -> Difficulty {
         return difficulty
     }
     
-    func getRandomColor() -> [Color] {
-        return randomColors
+    func getQuestionsColor() -> [Color] {
+        return questionsColors
+    }
+    
+    func getAlternativesColor() -> [Color] {
+        return alternativesColors
     }
     
     mutating func createGame() {
-        self.randomColors = []
+        self.questionsColors = []
+        self.alternativesColors = []
         self.alternatives = []
         self.questions = []
         self.round = []
-       // self.changeDifficulty()
+       
+        generateColors()
         generateRound()
         generateQuestions()
         generateAlternatives()
-        randomColors = Color.getRandomColors(amount: amount)
     }
     
     private mutating func generateRound() {
@@ -119,7 +135,7 @@ struct ShapeGameModel {
     
     private mutating func generateAlternatives() {
         
-        var range = Array(3...11)
+        var range = Array(3...8)
         let question = questions.first!
         
         for index in 0..<amount-1 {
