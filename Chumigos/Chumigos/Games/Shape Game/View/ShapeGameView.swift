@@ -102,6 +102,8 @@ struct ShapeGameView: View {
                                     //Underlay tile with opacity
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
                                         .fill(self.viewModel.getAlternativesColors[alternative.colorIndex])
+                                        .offset(y: (alternative.value == 3 && self.viewModel.difficultyForm == Form.POLYGON)
+                                                    ? (self.screenWidth*0.0073) : 0)
                                         .frame(width: self.screenWidth * 0.06,
                                                height: self.screenWidth * 0.06),
                                          size: self.tileSize
@@ -110,7 +112,8 @@ struct ShapeGameView: View {
                                     // tileSize*1.01 to hide questionTile underneath
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
                                         .fill(self.viewModel.getAlternativesColors[alternative.colorIndex])
-                                        .offset(y: alternative.value == 3 ? (self.screenWidth*0.0073) : 0)
+                                        .offset(y: (alternative.value == 3 && self.viewModel.difficultyForm == Form.POLYGON)
+                                                    ? (self.screenWidth*0.0073) : 0)
                                         .frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06),
                                          size: CGSize(width: self.tileSize.width*1.01, height: self.tileSize.height*1.01)
                                     ).draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)

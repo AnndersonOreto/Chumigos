@@ -123,7 +123,7 @@ struct TotemGameView: View {
                                               isCorrect: self.$isCorrect,
                                               isButtonPressed: self.$buttonIsPressed,
                                               selectedUpTopTotem: self.$viewModel.selectedUpTopTotem)
-                            })
+                                }).allowsHitTesting(!buttonIsPressed)
                             
                             Spacer()
                         }
