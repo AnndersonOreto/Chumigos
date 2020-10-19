@@ -178,7 +178,6 @@ struct TotemGameView: View {
                 }.blur(radius: self.showPopUp ? 16 : 0)
                 
             } else {
-                
                 EndGameView(progressViewModel: self.progressViewModel,
                             dismissGame: self.dismissGame, restartGame: self.restartGame(game:),
                             game: self.game, gameScore: self.viewModel.gameScore.currentScore)
@@ -211,6 +210,7 @@ struct TotemGameView: View {
         self.viewModel.ifWrongAddAnswer(with: index)
         
         if self.progressViewModel.isLastQuestion() && self.viewModel.gameState == .NORMAL {
+            AppAnalytics.shared.logEvent(of: .gameRecap, parameters: ["recap_amount": viewModel.wrongAnswers.count, "gameObject": viewModel.game.gameName])
             self.viewModel.gameState = .RECAP
         }
         

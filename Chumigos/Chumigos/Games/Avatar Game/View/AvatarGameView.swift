@@ -261,6 +261,7 @@ struct AvatarGameView: View {
         self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion() && self.viewModel.gameState == .NORMAL {
+            AppAnalytics.shared.logEvent(of: .gameRecap, parameters: ["recap_amount": viewModel.wrongAnswers.count, "gameObject": viewModel.game.gameName])
             self.viewModel.gameState = .RECAP
         }
         

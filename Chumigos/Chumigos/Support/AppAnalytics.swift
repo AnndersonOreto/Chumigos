@@ -15,6 +15,8 @@ public enum AnalyticEventType: String {
     case appClose = "loggio_close"
     case gameScore = "game_score"
     case launchGame = "launch_game"
+    case launchAvatarScreen = "launch_avatar_screen"
+    case gameRecap = "game_recap"
 }
 
 class AppAnalytics {
