@@ -33,6 +33,7 @@ struct ShapeGameView: View {
     @ObservedObject var viewModel: ShapeGameViewModel
     
     init(gameDifficulty: Difficulty, game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel = ShapeGameViewModel(game: game, difficulty: gameDifficulty)
     }
     

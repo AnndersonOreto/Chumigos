@@ -13,8 +13,8 @@ import FirebaseAnalytics
 public enum AnalyticEventType: String {
     case appLaunch = "loggio_launch"
     case appClose = "loggio_close"
-    case sequenceGameAllQuestionsCorrect = "loggio_sequenceGame_allQuestionsCorrect"
-    case sequenceGameScore = "loggio_sequenceGame_score"
+    case gameScore = "game_score"
+    case launchGame = "launch_game"
 }
 
 class AppAnalytics {
@@ -34,11 +34,10 @@ class AppAnalytics {
     /// Generates a log event to analytics dashboard
     /// - Parameter type: Event type
     public func logEvent(of type: AnalyticEventType) {
-        
         Analytics.logEvent(type.rawValue, parameters: [
-            AnalyticsParameterItemID: "id-\(type.rawValue)",
-            AnalyticsParameterItemName: type.rawValue,
-            AnalyticsParameterContentType: "cont"
+            "id": "id-\(type.rawValue)",
+            "name": type.rawValue
+            //AnalyticsParameterContentType: "cont"
         ])
     }
     
@@ -52,10 +51,10 @@ class AppAnalytics {
     /// - Parameters type: Event type,  Int
     public func logEvent(of type: AnalyticEventType, with value: Int) {
         Analytics.logEvent(type.rawValue, parameters: [
-            AnalyticsParameterItemID: "id-\(type.rawValue)",
-            AnalyticsParameterItemName: type.rawValue,
-            AnalyticsParameterContentType: "cont",
-            AnalyticsParameterValue: value
+            "id": "id-\(type.rawValue)",
+            "item-name": type.rawValue,
+            //"AnalyticsParameterContentType: "cont",
+            "value": value
         ])
     }
     
@@ -63,10 +62,10 @@ class AppAnalytics {
     /// - Parameters type: Event type,  Bool
     public func logEvent(of type: AnalyticEventType, with value: Bool) {
         Analytics.logEvent(type.rawValue, parameters: [
-            AnalyticsParameterItemID: "id-\(type.rawValue)",
-            AnalyticsParameterItemName: type.rawValue,
-            AnalyticsParameterContentType: "cont",
-            AnalyticsParameterValue: value
+            "id": "id-\(type.rawValue)",
+            "item-name": type.rawValue,
+            //AnalyticsParameterContentType: "cont",
+            "value": value
         ])
     }
     
@@ -74,9 +73,9 @@ class AppAnalytics {
     /// - Parameter type: Event type as a String
     public func logEvent(of type: String) {
         Analytics.logEvent(type, parameters: [
-            AnalyticsParameterItemID: "id-\(type)",
-            AnalyticsParameterItemName: type,
-            AnalyticsParameterContentType: "cont"
+            "id": "id-\(type)",
+            "item-name": type,
+            //AnalyticsParameterContentType: "cont"
         ])
     }
 }

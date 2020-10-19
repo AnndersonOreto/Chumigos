@@ -33,6 +33,7 @@ struct SequenceGameView: View {
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     init(gameDifficulty: Difficulty, game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel = SequenceGameViewModel(game: game, difficulty: gameDifficulty)
     }
     

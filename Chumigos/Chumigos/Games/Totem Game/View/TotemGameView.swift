@@ -34,6 +34,7 @@ struct TotemGameView: View {
     private let fontName = "Rubik"
     
     init(gameDifficulty: Difficulty, game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel = TotemGameViewModel(difficulty: gameDifficulty, game: game)
         self.game = game
     }

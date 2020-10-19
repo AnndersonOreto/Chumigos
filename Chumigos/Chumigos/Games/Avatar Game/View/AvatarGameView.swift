@@ -36,7 +36,7 @@ struct AvatarGameView: View {
     var iconName: String { self.viewModel.faceIsCorrect() ? "correct-icon" : "wrong-icon" }
     
     init(gameDifficulty: Difficulty, game: GameObject) {
-        #warning("Fazer dificuldade no jogo do avatar")
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel = AvatarGameViewModel(game: game, difficulty: gameDifficulty)
     }
     
