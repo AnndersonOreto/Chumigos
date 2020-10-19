@@ -43,14 +43,6 @@
 		265B7697253DD5190037AC5E /* SignInWithAppleDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7696253DD5190037AC5E /* SignInWithAppleDelegates.swift */; };
 		26660AC324C7834E000A9845 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26660AC224C7834E000A9845 /* RandomColor.swift */; };
 		26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26763D2B24C8C7690056F2BC /* RandomForm.swift */; };
-		2679AC6A252BA15B005BE939 /* SignInWithAppleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC65252BA15B005BE939 /* SignInWithAppleManager.swift */; };
-		2679AC6B252BA15B005BE939 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC66252BA15B005BE939 /* SignInWithAppleButton.swift */; };
-		2679AC6C252BA15B005BE939 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC67252BA15B005BE939 /* AuthState.swift */; };
-		2679AC6D252BA15B005BE939 /* EnvironmentWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC68252BA15B005BE939 /* EnvironmentWindowKey.swift */; };
-		2679AC6E252BA15B005BE939 /* SignInWithAppleDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC69252BA15B005BE939 /* SignInWithAppleDelegates.swift */; };
-		2679AC73252BA2F2005BE939 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC72252BA2F2005BE939 /* SignInWithAppleView.swift */; };
-		2679AC78252BA7E2005BE939 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC77252BA7E2005BE939 /* LoginView.swift */; };
-		2679AC7D252BB21C005BE939 /* LoginLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC7C252BB21C005BE939 /* LoginLoginView.swift */; };
 		2693CB3424BF8B9500D1DEC9 /* CKDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */; };
 		26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26940AE624C0E18F00F258B6 /* CKCloudDataProtocol.swift */; };
 		26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26940AEA24C0E62000F258B6 /* CKCloudParseProtocol.swift */; };
@@ -1298,13 +1290,10 @@
 				26590E112538CEFF00AB3A1B /* PreLaunchView.swift in Sources */,
 				AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */,
 				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,
-				2679AC6A252BA15B005BE939 /* SignInWithAppleManager.swift in Sources */,
-				2679AC73252BA2F2005BE939 /* SignInWithAppleView.swift in Sources */,
 				265B768A253DD4810037AC5E /* SignInWithAppleManager.swift in Sources */,
 				26AB83BC2513B824004BDF49 /* TotemGameView.swift in Sources */,
 				AB855F1524F4341400C5A739 /* User.swift in Sources */,
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
-				2679AC6E252BA15B005BE939 /* SignInWithAppleDelegates.swift in Sources */,
 				AA7B310E252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel in Sources */,
 				AB17FB4B25193BFD0071D82A /* FeelingClassificator.swift in Sources */,
 				26B7DA7125377ADE00B44BFA /* AppAnalytics.swift in Sources */,
@@ -1313,7 +1302,6 @@
 				AAE6759E25152E2600342D7F /* UserData+CoreDataClass.swift in Sources */,
 				265B766A253DD3FB0037AC5E /* EnvironmentWindowKey.swift in Sources */,
 				26946E9424C76398005A316E /* FormPentagon.swift in Sources */,
-				2679AC6D252BA15B005BE939 /* EnvironmentWindowKey.swift in Sources */,
 				263D144D24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift in Sources */,
 				260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */,
 				26465532253791AD00B18DBC /* DatabaseManager.swift in Sources */,
@@ -1334,11 +1322,9 @@
 				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
 				AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */,
 				AAC7A057251A6083005F741A /* View+asImage.swift in Sources */,
-				2679AC78252BA7E2005BE939 /* LoginView.swift in Sources */,
 				AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */,
 				AB6EFEF8250157F8009A1705 /* Light_Dark_Colors.swift in Sources */,
 				ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */,
-				2679AC6C252BA15B005BE939 /* AuthState.swift in Sources */,
 				E74A37752502BC47001ADBEB /* CustomDivider.swift in Sources */,
 				26BC05AD2507FD9B00A918F5 /* TrailViewModel.swift in Sources */,
 				AB855F1924F439B200C5A739 /* TrailTile.swift in Sources */,
@@ -1354,7 +1340,6 @@
 				26E0EA4E24F59FF20078566D /* EndGameView.swift in Sources */,
 				E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */,
 				26FCAD94251BB9730082F9EC /* TotemPiece.swift in Sources */,
-				2679AC7D252BB21C005BE939 /* LoginLoginView.swift in Sources */,
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */,
 				265B765A253DD3C00037AC5E /* SignInWithAppleViewModel.swift in Sources */,
@@ -1368,7 +1353,6 @@
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
 				26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */,
 				AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */,
-				2679AC6B252BA15B005BE939 /* SignInWithAppleButton.swift in Sources */,
 				265B7697253DD5190037AC5E /* SignInWithAppleDelegates.swift in Sources */,
 				AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */,
 				265B7682253DD44F0037AC5E /* AuthState.swift in Sources */,
