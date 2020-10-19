@@ -15,7 +15,7 @@ class FeelingClassificator {
     /// - Parameter image: receive an UIImage.toBuffer().
     /// - Returns: the most likely category the model predicted.
     static func mostLikely(_ image: CVPixelBuffer) -> String? {
-        let model = logginhoFeelings2_0()
+        let model = LogginhoFeelingsClassifier()
         let output = try? model.prediction(image: image)
         
         if let output = output {
@@ -30,7 +30,7 @@ class FeelingClassificator {
     /// - Parameter image: receive an UIImage.toBuffer().
     /// - Returns: the probability of each category as a dictionary.
     static func allPredictions(_ image: CVPixelBuffer) -> [String : Double]? {
-        let model = logginhoFeelings2_0()
+        let model = LogginhoFeelingsClassifier()
         let output = try? model.prediction(image: image)
         
         if let output = output {

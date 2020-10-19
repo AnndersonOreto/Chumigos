@@ -12,6 +12,7 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let environmentManager: EnvironmentManager = EnvironmentManager()
     
     let signInWithAppleManager = SignInWithAppleManager()
     
@@ -29,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         
-        let contentView = SignInWithAppleView().environment(\.managedObjectContext, context).environmentObject(signInWithAppleManager)
+        let contentView = PreLaunchView().environment(\.managedObjectContext, context).environmentObject(environmentManager)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

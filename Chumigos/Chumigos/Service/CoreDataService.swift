@@ -60,7 +60,6 @@ class CoreDataService {
     }
     
     func retrieveMatrixTrail() -> [TrailSection] {
-        
         let request: NSFetchRequest<UserData> = UserData.fetchRequest()
         
         do {
@@ -74,9 +73,15 @@ class CoreDataService {
     }
     
     func saveMatrixTrail(_ trail: TrailMatrixList) {
-        let user = UserData(context: self.persistentContainer.viewContext)
-        user.id = 0
-        user.trail = encode(matrix: trail)
+        let request: NSFetchRequest<UserData> = UserData.fetchRequest()
+        let encodedTrail = encode(matrix: trail)
+        
+        if let object = try? self.persistentContainer.viewContext.fetch(request), !object.isEmpty {
+            object.first?.trail = encodedTrail
+        } else {
+            let user = UserData(context: self.persistentContainer.viewContext)
+            user.trail = encodedTrail
+        }
         self.saveContext()
     }
     

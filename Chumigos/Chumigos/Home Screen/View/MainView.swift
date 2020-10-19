@@ -16,6 +16,8 @@ struct MainView: View {
     
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var result: FetchedResults<UserData>
     
+    @EnvironmentObject var environmentManager: EnvironmentManager
+    
     private var screenWidth = UIScreen.main.bounds.width
     @State private var currentTab: TabItem = .trail
     @State private var showPopUp = false
@@ -97,6 +99,7 @@ extension MainView {
                     //Logout
                     Button(action: {
                         //TODO: Logout action
+                        self.environmentManager.logout()
                     }) {
                         Image("logout")
                         .resizable()

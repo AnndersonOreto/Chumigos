@@ -17,7 +17,7 @@ class FeelingsClassifier {
     
     static func classifyImage(_ myImage: CGImage, orientation: CGImagePropertyOrientation) {
         
-        if let model = try? VNCoreMLModel(for: logginhoFeelings2_0().model) {
+        if let model = try? VNCoreMLModel(for: LogginhoFeelingsClassifier().model) {
             let request = VNCoreMLRequest(model: model, completionHandler: handleResults(request:error:))
             
             request.imageCropAndScaleOption = .centerCrop

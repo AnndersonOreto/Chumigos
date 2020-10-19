@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,7 +27,20 @@
 		2623AC4725016BCC002A24A0 /* AppButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623AC4625016BCC002A24A0 /* AppButtonStyle.swift */; };
 		263D144D24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D144C24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift */; };
 		263D144F24EEF0A800111A76 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D144E24EEF0A800111A76 /* GameState.swift */; };
+		264655252537904E00B18DBC /* EnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264655242537904E00B18DBC /* EnvironmentManager.swift */; };
+		2646552A253790C300B18DBC /* AuthenticationProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26465529253790C300B18DBC /* AuthenticationProfile.swift */; };
+		26465532253791AD00B18DBC /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26465531253791AD00B18DBC /* DatabaseManager.swift */; };
 		2656BF292500086100231678 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656BF282500086100231678 /* NotificationManager.swift */; };
+		26590E112538CEFF00AB3A1B /* PreLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26590E102538CEFF00AB3A1B /* PreLaunchView.swift */; };
+		265B765A253DD3C00037AC5E /* SignInWithAppleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7659253DD3C00037AC5E /* SignInWithAppleViewModel.swift */; };
+		265B7662253DD3D90037AC5E /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7661253DD3D90037AC5E /* SignInWithAppleButton.swift */; };
+		265B766A253DD3FB0037AC5E /* EnvironmentWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7669253DD3FB0037AC5E /* EnvironmentWindowKey.swift */; };
+		265B7672253DD41A0037AC5E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7671253DD41A0037AC5E /* LoginView.swift */; };
+		265B767A253DD4360037AC5E /* UndefinedLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7679253DD4360037AC5E /* UndefinedLoginView.swift */; };
+		265B7682253DD44F0037AC5E /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7681253DD44F0037AC5E /* AuthState.swift */; };
+		265B768A253DD4810037AC5E /* SignInWithAppleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7689253DD4810037AC5E /* SignInWithAppleManager.swift */; };
+		265B7692253DD4C10037AC5E /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7691253DD4C10037AC5E /* SignInWithAppleView.swift */; };
+		265B7697253DD5190037AC5E /* SignInWithAppleDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7696253DD5190037AC5E /* SignInWithAppleDelegates.swift */; };
 		26660AC324C7834E000A9845 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26660AC224C7834E000A9845 /* RandomColor.swift */; };
 		26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26763D2B24C8C7690056F2BC /* RandomForm.swift */; };
 		2679AC6A252BA15B005BE939 /* SignInWithAppleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679AC65252BA15B005BE939 /* SignInWithAppleManager.swift */; };
@@ -51,8 +64,12 @@
 		26AB83BC2513B824004BDF49 /* TotemGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BB2513B824004BDF49 /* TotemGameView.swift */; };
 		26AB83BE2513B852004BDF49 /* TotemGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BD2513B852004BDF49 /* TotemGameViewModel.swift */; };
 		26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BF2513B916004BDF49 /* TotemGameModel.swift */; };
+		26B7DA7125377ADE00B44BFA /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */; };
 		26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */; };
 		26BC05AD2507FD9B00A918F5 /* TrailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AC2507FD9B00A918F5 /* TrailViewModel.swift */; };
+		26BCB0862537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
+		26BCB0872537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
+		26BCB0882537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
 		26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */; };
 		26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */; };
 		26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */; };
@@ -72,6 +89,7 @@
 		AA24C13924E5CB22006F8C5A /* ShapeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13824E5CB22006F8C5A /* ShapeGameView.swift */; };
 		AA275AB82507FB980089F63D /* AvatarGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA275AB72507FB980089F63D /* AvatarGameModel.swift */; };
 		AA63616C2513E5EE00EB4E49 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63616B2513E5EE00EB4E49 /* CoreDataService.swift */; };
+		AA7B310E252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AA7B310D252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel */; };
 		AA865AF024E57D960066BF2A /* AlternativeBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */; };
 		AA865AF324E5AC010066BF2A /* ShapeGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA865AF224E5AC010066BF2A /* ShapeGameModel.swift */; };
 		AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C8EC325015C9E0080B06E /* DynamicFont.swift */; };
@@ -85,11 +103,11 @@
 		AAE6759E25152E2600342D7F /* UserData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6759C25152E2600342D7F /* UserData+CoreDataClass.swift */; };
 		AAE6759F25152E2600342D7F /* UserData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6759D25152E2600342D7F /* UserData+CoreDataProperties.swift */; };
 		AB0EB07D25000F62009E8A67 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB07C25000F62009E8A67 /* MainView.swift */; };
-		AB17FB4725193A080071D82A /* logginhoFeelings2.0.mlproj in Resources */ = {isa = PBXBuildFile; fileRef = AB17FB4625193A080071D82A /* logginhoFeelings2.0.mlproj */; };
-		AB17FB4925193B340071D82A /* logginhoFeelings2.0.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AB17FB4825193B340071D82A /* logginhoFeelings2.0.mlmodel */; };
 		AB17FB4B25193BFD0071D82A /* FeelingClassificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB17FB4A25193BFD0071D82A /* FeelingClassificator.swift */; };
 		AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33B3502502B2840042F5BA /* AvatarGameView.swift */; };
 		AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E5196251D069400FCF777 /* UnderConstructionView.swift */; };
+		AB69B83B2524F3CE00872978 /* ColorCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69B83A2524F3CE00872978 /* ColorCarousel.swift */; };
+		AB69B83D2524F53E00872978 /* TestColorCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69B83C2524F53E00872978 /* TestColorCarousel.swift */; };
 		AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69C21125127FD800DF4E38 /* GameScore.swift */; };
 		AB6E8ABA25095B160048345D /* AvatarGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */; };
 		AB6E8ABC250969CE0048345D /* customRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */; };
@@ -110,6 +128,12 @@
 		E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */; };
 		E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
+		E7AEEB53252B940F009F457D /* InitialScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AEEB52252B940F009F457D /* InitialScreen.swift */; };
+		E7D8310F252F83C5000EC2D9 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D8310E252F83C5000EC2D9 /* WelcomeView.swift */; };
+		E7DE8F34252BA0B60048B276 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE8F33252BA0B60048B276 /* SignInView.swift */; };
+		E7E8EE7F252BA153003921D3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E8EE7E252BA153003921D3 /* CustomTextField.swift */; };
+		E7E8EE83252BAD24003921D3 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E8EE82252BAD24003921D3 /* SignUpView.swift */; };
+		E7E8EE85252BB068003921D3 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E8EE84252BB068003921D3 /* CheckView.swift */; };
 		E9CD1BAE0D151B08733EE975 /* Pods_LoggioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79AEE4EF5A242DAFBABABF /* Pods_LoggioTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -152,7 +176,20 @@
 		2623AC4625016BCC002A24A0 /* AppButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButtonStyle.swift; sourceTree = "<group>"; };
 		263D144C24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameWrongAnswers.swift; sourceTree = "<group>"; };
 		263D144E24EEF0A800111A76 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		264655242537904E00B18DBC /* EnvironmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentManager.swift; sourceTree = "<group>"; };
+		26465529253790C300B18DBC /* AuthenticationProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfile.swift; sourceTree = "<group>"; };
+		26465531253791AD00B18DBC /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		2656BF282500086100231678 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		26590E102538CEFF00AB3A1B /* PreLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLaunchView.swift; sourceTree = "<group>"; };
+		265B7659253DD3C00037AC5E /* SignInWithAppleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewModel.swift; sourceTree = "<group>"; };
+		265B7661253DD3D90037AC5E /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
+		265B7669253DD3FB0037AC5E /* EnvironmentWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentWindowKey.swift; sourceTree = "<group>"; };
+		265B7671253DD41A0037AC5E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		265B7679253DD4360037AC5E /* UndefinedLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndefinedLoginView.swift; sourceTree = "<group>"; };
+		265B7681253DD44F0037AC5E /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
+		265B7689253DD4810037AC5E /* SignInWithAppleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleManager.swift; sourceTree = "<group>"; };
+		265B7691253DD4C10037AC5E /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
+		265B7696253DD5190037AC5E /* SignInWithAppleDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleDelegates.swift; sourceTree = "<group>"; };
 		26660AC224C7834E000A9845 /* RandomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
 		26763D2B24C8C7690056F2BC /* RandomForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomForm.swift; sourceTree = "<group>"; };
 		2679AC65252BA15B005BE939 /* SignInWithAppleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithAppleManager.swift; sourceTree = "<group>"; };
@@ -176,8 +213,10 @@
 		26AB83BB2513B824004BDF49 /* TotemGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameView.swift; sourceTree = "<group>"; };
 		26AB83BD2513B852004BDF49 /* TotemGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameViewModel.swift; sourceTree = "<group>"; };
 		26AB83BF2513B916004BDF49 /* TotemGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameModel.swift; sourceTree = "<group>"; };
+		26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
 		26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailMatrixList.swift; sourceTree = "<group>"; };
 		26BC05AC2507FD9B00A918F5 /* TrailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrailViewModel.swift; path = Chumigos/Trail/Model/TrailViewModel.swift; sourceTree = SOURCE_ROOT; };
+		26BCB0852537613F00176274 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		26C186BC24BE4AA50094AEC1 /* Loggio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loggio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +245,7 @@
 		AA24C13824E5CB22006F8C5A /* ShapeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameView.swift; sourceTree = "<group>"; };
 		AA275AB72507FB980089F63D /* AvatarGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameModel.swift; sourceTree = "<group>"; };
 		AA63616B2513E5EE00EB4E49 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		AA7B310D252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LogginhoFeelingsClassifier.mlmodel; sourceTree = "<group>"; };
 		AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeBackground.swift; sourceTree = "<group>"; };
 		AA865AF224E5AC010066BF2A /* ShapeGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameModel.swift; sourceTree = "<group>"; };
 		AA9C8EC325015C9E0080B06E /* DynamicFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFont.swift; sourceTree = "<group>"; };
@@ -219,11 +259,11 @@
 		AAE6759C25152E2600342D7F /* UserData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AAE6759D25152E2600342D7F /* UserData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB0EB07C25000F62009E8A67 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		AB17FB4625193A080071D82A /* logginhoFeelings2.0.mlproj */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = logginhoFeelings2.0.mlproj; sourceTree = "<group>"; };
-		AB17FB4825193B340071D82A /* logginhoFeelings2.0.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = logginhoFeelings2.0.mlmodel; sourceTree = "<group>"; };
 		AB17FB4A25193BFD0071D82A /* FeelingClassificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingClassificator.swift; sourceTree = "<group>"; };
 		AB33B3502502B2840042F5BA /* AvatarGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameView.swift; sourceTree = "<group>"; };
 		AB5E5196251D069400FCF777 /* UnderConstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderConstructionView.swift; sourceTree = "<group>"; };
+		AB69B83A2524F3CE00872978 /* ColorCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCarousel.swift; sourceTree = "<group>"; };
+		AB69B83C2524F53E00872978 /* TestColorCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColorCarousel.swift; sourceTree = "<group>"; };
 		AB69C21125127FD800DF4E38 /* GameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScore.swift; sourceTree = "<group>"; };
 		AB6E8AB925095B160048345D /* AvatarGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameViewModel.swift; sourceTree = "<group>"; };
 		AB6E8ABB250969CE0048345D /* customRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customRoundedCorners.swift; sourceTree = "<group>"; };
@@ -250,6 +290,12 @@
 		E78DA52E24BF7C17001A3079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E78DA53024BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E78DA53124BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E7AEEB52252B940F009F457D /* InitialScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreen.swift; sourceTree = "<group>"; };
+		E7D8310E252F83C5000EC2D9 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		E7DE8F33252BA0B60048B276 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		E7E8EE7E252BA153003921D3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		E7E8EE82252BAD24003921D3 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		E7E8EE84252BB068003921D3 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +377,46 @@
 			path = Forms;
 			sourceTree = "<group>";
 		};
+		2621CD03253A17BE00B85B7E /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2679AC65252BA15B005BE939 /* SignInWithAppleManager.swift */,
+				2679AC72252BA2F2005BE939 /* SignInWithAppleView.swift */,
+				2679AC69252BA15B005BE939 /* SignInWithAppleDelegates.swift */,
+				2679AC68252BA15B005BE939 /* EnvironmentWindowKey.swift */,
+				2679AC77252BA7E2005BE939 /* LoginView.swift */,
+				2679AC67252BA15B005BE939 /* AuthState.swift */,
+				2679AC7C252BB21C005BE939 /* LoginLoginView.swift */,
+				2679AC66252BA15B005BE939 /* SignInWithAppleButton.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		2621CD0F253A189700B85B7E /* AppleLogin */ = {
+			isa = PBXGroup;
+			children = (
+				265B7659253DD3C00037AC5E /* SignInWithAppleViewModel.swift */,
+				265B7661253DD3D90037AC5E /* SignInWithAppleButton.swift */,
+				265B7669253DD3FB0037AC5E /* EnvironmentWindowKey.swift */,
+				265B7671253DD41A0037AC5E /* LoginView.swift */,
+				265B7679253DD4360037AC5E /* UndefinedLoginView.swift */,
+				265B7681253DD44F0037AC5E /* AuthState.swift */,
+				265B7689253DD4810037AC5E /* SignInWithAppleManager.swift */,
+				265B7691253DD4C10037AC5E /* SignInWithAppleView.swift */,
+				265B7696253DD5190037AC5E /* SignInWithAppleDelegates.swift */,
+			);
+			path = AppleLogin;
+			sourceTree = "<group>";
+		};
+		2621CD2B253A18D100B85B7E /* EmailLogin */ = {
+			isa = PBXGroup;
+			children = (
+				264655242537904E00B18DBC /* EnvironmentManager.swift */,
+				26465529253790C300B18DBC /* AuthenticationProfile.swift */,
+			);
+			path = EmailLogin;
+			sourceTree = "<group>";
+		};
 		2623AC3E25015DF4002A24A0 /* Configuration Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +448,10 @@
 				AB5E5196251D069400FCF777 /* UnderConstructionView.swift */,
 				2623AC4625016BCC002A24A0 /* AppButtonStyle.swift */,
 				E74A37742502BC47001ADBEB /* CustomDivider.swift */,
+				AB69B83C2524F53E00872978 /* TestColorCarousel.swift */,
+				AB69B83A2524F3CE00872978 /* ColorCarousel.swift */,
+				E7E8EE7E252BA153003921D3 /* CustomTextField.swift */,
+				E7E8EE84252BB068003921D3 /* CheckView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -369,6 +459,7 @@
 		2693CB3524BF8BAA00D1DEC9 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				26465531253791AD00B18DBC /* DatabaseManager.swift */,
 				2693CB3324BF8B9500D1DEC9 /* CKDataService.swift */,
 				26940AE624C0E18F00F258B6 /* CKCloudDataProtocol.swift */,
 				26940AEA24C0E62000F258B6 /* CKCloudParseProtocol.swift */,
@@ -422,6 +513,7 @@
 				26C186BD24BE4AA50094AEC1 /* Products */,
 				ABCDB24124BF88EE00F9A9B8 /* Frameworks */,
 				AF7405CDBB8472E51E5CB9D7 /* Pods */,
+				2621CD03253A17BE00B85B7E /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -438,6 +530,7 @@
 		26C186BE24BE4AA50094AEC1 /* Chumigos */ = {
 			isa = PBXGroup;
 			children = (
+				E7AEEB50252B9342009F457D /* Login */,
 				AAB022B225002D2C00DE2B34 /* PopUps */,
 				AB855F1324F4340700C5A739 /* User */,
 				AB855F0B24F42BDF00C5A739 /* Trail */,
@@ -451,6 +544,7 @@
 				AA883A27251530E900916E05 /* CoreData */,
 				26C186C824BE4AA70094AEC1 /* Assets.xcassets */,
 				ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */,
+				26BCB0852537613F00176274 /* GoogleService-Info.plist */,
 				26C186CA24BE4AA70094AEC1 /* Preview Content */,
 			);
 			path = Chumigos;
@@ -606,6 +700,7 @@
 		AA883A27251530E900916E05 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
 				AAE6759C25152E2600342D7F /* UserData+CoreDataClass.swift */,
 				AAE6759D25152E2600342D7F /* UserData+CoreDataProperties.swift */,
 			);
@@ -647,8 +742,7 @@
 		AB33B34C2502B2400042F5BA /* Avatar Game */ = {
 			isa = PBXGroup;
 			children = (
-				AB17FB4825193B340071D82A /* logginhoFeelings2.0.mlmodel */,
-				AB17FB4625193A080071D82A /* logginhoFeelings2.0.mlproj */,
+				AA7B310D252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel */,
 				AA275AB62507FB830089F63D /* ViewModel */,
 				AA275AB52507FB7B0089F63D /* Model */,
 				AB33B34E2502B2530042F5BA /* View */,
@@ -705,7 +799,6 @@
 		AB855F1324F4340700C5A739 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				E7DC0B762525001A007D69A0 /* Login */,
 				E751219D24FE08470042FC00 /* Profile */,
 				AB855F1424F4341400C5A739 /* User.swift */,
 			);
@@ -772,7 +865,6 @@
 				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
 				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
 				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
-				26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */,
 				AB855F1124F430EE00C5A739 /* GameNames.swift */,
 				AB6EFEF7250157F8009A1705 /* Light_Dark_Colors.swift */,
 				AA9C8EC325015C9E0080B06E /* DynamicFont.swift */,
@@ -780,6 +872,7 @@
 				AB69C21125127FD800DF4E38 /* GameScore.swift */,
 				AAC7A058251A6591005F741A /* UIImage+Crop.swift */,
 				AAC7A056251A6083005F741A /* View+asImage.swift */,
+				26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -809,27 +902,74 @@
 			path = "Localized Strings";
 			sourceTree = "<group>";
 		};
-		E7DC0B762525001A007D69A0 /* Login */ = {
+		E7AEEB50252B9342009F457D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				E7DC0B7725250027007D69A0 /* SignInWithApple */,
+				2621CD2B253A18D100B85B7E /* EmailLogin */,
+				2621CD0F253A189700B85B7E /* AppleLogin */,
+				E7AEEB51252B934E009F457D /* InitialScreen */,
+				E7D8310D252F83AA000EC2D9 /* Welcome */,
+				E7DE8F30252BA06F0048B276 /* Sign In */,
+				E7E8EE80252BACEA003921D3 /* Sign Up */,
 			);
 			path = Login;
 			sourceTree = "<group>";
 		};
-		E7DC0B7725250027007D69A0 /* SignInWithApple */ = {
+		E7AEEB51252B934E009F457D /* InitialScreen */ = {
 			isa = PBXGroup;
 			children = (
-				2679AC67252BA15B005BE939 /* AuthState.swift */,
-				2679AC68252BA15B005BE939 /* EnvironmentWindowKey.swift */,
-				2679AC66252BA15B005BE939 /* SignInWithAppleButton.swift */,
-				2679AC69252BA15B005BE939 /* SignInWithAppleDelegates.swift */,
-				2679AC65252BA15B005BE939 /* SignInWithAppleManager.swift */,
-				2679AC72252BA2F2005BE939 /* SignInWithAppleView.swift */,
-				2679AC77252BA7E2005BE939 /* LoginView.swift */,
-				2679AC7C252BB21C005BE939 /* LoginLoginView.swift */,
+				E7AEEB52252B940F009F457D /* InitialScreen.swift */,
+				26590E102538CEFF00AB3A1B /* PreLaunchView.swift */,
 			);
-			path = SignInWithApple;
+			path = InitialScreen;
+			sourceTree = "<group>";
+		};
+		E7D8310D252F83AA000EC2D9 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				E7D8310E252F83C5000EC2D9 /* WelcomeView.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		E7DE8F30252BA06F0048B276 /* Sign In */ = {
+			isa = PBXGroup;
+			children = (
+				E7DE8F31252BA0810048B276 /* View */,
+				E7DE8F32252BA0860048B276 /* ViewModel */,
+			);
+			path = "Sign In";
+			sourceTree = "<group>";
+		};
+		E7DE8F31252BA0810048B276 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E7DE8F33252BA0B60048B276 /* SignInView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E7DE8F32252BA0860048B276 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E7E8EE80252BACEA003921D3 /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				E7E8EE81252BAD14003921D3 /* View */,
+			);
+			path = "Sign Up";
+			sourceTree = "<group>";
+		};
+		E7E8EE81252BAD14003921D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E7E8EE82252BAD24003921D3 /* SignUpView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E7FDEB8724C2312A008DDAEB /* Games */ = {
@@ -856,6 +996,8 @@
 				26C186B924BE4AA50094AEC1 /* Frameworks */,
 				26C186BA24BE4AA50094AEC1 /* Resources */,
 				E7472779251D0F4D00DF2449 /* ShellScript */,
+				4CD9880D9975F7410E471349 /* [CP] Embed Pods Frameworks */,
+				26BCB0A4253778D600176274 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -893,6 +1035,7 @@
 				26C186DC24BE4AA70094AEC1 /* Sources */,
 				26C186DD24BE4AA70094AEC1 /* Frameworks */,
 				26C186DE24BE4AA70094AEC1 /* Resources */,
+				8F98DAC9901A24117136BAC2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -959,11 +1102,11 @@
 				260A416024DB2CC9003553E7 /* Rubik-BoldItalic.ttf in Resources */,
 				260A416324DB2CC9003553E7 /* Rubik-Regular.ttf in Resources */,
 				26C186CF24BE4AA70094AEC1 /* LaunchScreen.storyboard in Resources */,
-				AB17FB4725193A080071D82A /* logginhoFeelings2.0.mlproj in Resources */,
 				260A416424DB2CC9003553E7 /* Rubik-LightItalic.ttf in Resources */,
 				260A416124DB2CC9003553E7 /* Rubik-Italic.ttf in Resources */,
 				E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */,
 				260A416224DB2CC9003553E7 /* Rubik-MediumItalic.ttf in Resources */,
+				26BCB0862537613F00176274 /* GoogleService-Info.plist in Resources */,
 				260A416824DB2CC9003553E7 /* Rubik-BlackItalic.ttf in Resources */,
 				260A416924DB2CC9003553E7 /* Rubik-Black.ttf in Resources */,
 				26C186CC24BE4AA70094AEC1 /* Preview Assets.xcassets in Resources */,
@@ -976,6 +1119,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26BCB0872537613F00176274 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -983,12 +1127,48 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26BCB0882537613F00176274 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		26BCB0A4253778D600176274 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+";
+		};
+		4CD9880D9975F7410E471349 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Loggio/Pods-Loggio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Loggio/Pods-Loggio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loggio/Pods-Loggio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4E30EAA4B5A90AF39C90D94B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1009,6 +1189,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F98DAC9901A24117136BAC2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9387257914CCAFBA493080AA /* [CP] Check Pods Manifest.lock */ = {
@@ -1084,6 +1281,7 @@
 				26AB83BE2513B852004BDF49 /* TotemGameViewModel.swift in Sources */,
 				260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */,
 				26E0EA4C24F59FD50078566D /* EndGameViewModel.swift in Sources */,
+				265B767A253DD4360037AC5E /* UndefinedLoginView.swift in Sources */,
 				AA24C13124E5B57A006F8C5A /* SequenceGameModel.swift in Sources */,
 				AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */,
 				AA865AF324E5AC010066BF2A /* ShapeGameModel.swift in Sources */,
@@ -1097,34 +1295,43 @@
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
 				2656BF292500086100231678 /* NotificationManager.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
+				26590E112538CEFF00AB3A1B /* PreLaunchView.swift in Sources */,
 				AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */,
 				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,
 				2679AC6A252BA15B005BE939 /* SignInWithAppleManager.swift in Sources */,
 				2679AC73252BA2F2005BE939 /* SignInWithAppleView.swift in Sources */,
+				265B768A253DD4810037AC5E /* SignInWithAppleManager.swift in Sources */,
 				26AB83BC2513B824004BDF49 /* TotemGameView.swift in Sources */,
 				AB855F1524F4341400C5A739 /* User.swift in Sources */,
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
 				2679AC6E252BA15B005BE939 /* SignInWithAppleDelegates.swift in Sources */,
+				AA7B310E252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel in Sources */,
 				AB17FB4B25193BFD0071D82A /* FeelingClassificator.swift in Sources */,
+				26B7DA7125377ADE00B44BFA /* AppAnalytics.swift in Sources */,
 				AAA0613924E30819008CD91B /* SequenceGameView.swift in Sources */,
 				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
 				AAE6759E25152E2600342D7F /* UserData+CoreDataClass.swift in Sources */,
+				265B766A253DD3FB0037AC5E /* EnvironmentWindowKey.swift in Sources */,
 				26946E9424C76398005A316E /* FormPentagon.swift in Sources */,
 				2679AC6D252BA15B005BE939 /* EnvironmentWindowKey.swift in Sources */,
 				263D144D24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift in Sources */,
 				260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */,
+				26465532253791AD00B18DBC /* DatabaseManager.swift in Sources */,
 				AAE6759F25152E2600342D7F /* UserData+CoreDataProperties.swift in Sources */,
+				AB69B83B2524F3CE00872978 /* ColorCarousel.swift in Sources */,
 				AA63616C2513E5EE00EB4E49 /* CoreDataService.swift in Sources */,
 				AB855F1B24F450A000C5A739 /* TrailView.swift in Sources */,
 				AAA0613B24E31685008CD91B /* SequenceGameViewModel.swift in Sources */,
 				AA24C13924E5CB22006F8C5A /* ShapeGameView.swift in Sources */,
+				E7DE8F34252BA0B60048B276 /* SignInView.swift in Sources */,
 				AAB022B425002D5700DE2B34 /* ExitGamePopUp.swift in Sources */,
 				26C186C524BE4AA50094AEC1 /* Chumigos.xcdatamodeld in Sources */,
 				26660AC324C7834E000A9845 /* RandomColor.swift in Sources */,
 				E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */,
+				E7E8EE85252BB068003921D3 /* CheckView.swift in Sources */,
 				2623AC4225015EA9002A24A0 /* ConfigurationView.swift in Sources */,
+				AB69B83D2524F53E00872978 /* TestColorCarousel.swift in Sources */,
 				2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */,
-				AB17FB4925193B340071D82A /* logginhoFeelings2.0.mlmodel in Sources */,
 				AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */,
 				AAC7A057251A6083005F741A /* View+asImage.swift in Sources */,
 				2679AC78252BA7E2005BE939 /* LoginView.swift in Sources */,
@@ -1137,7 +1344,9 @@
 				AB855F1924F439B200C5A739 /* TrailTile.swift in Sources */,
 				AB6E8ABC250969CE0048345D /* customRoundedCorners.swift in Sources */,
 				26946E9224C762A3005A316E /* FormDecagon.swift in Sources */,
+				264655252537904E00B18DBC /* EnvironmentManager.swift in Sources */,
 				263D144F24EEF0A800111A76 /* GameState.swift in Sources */,
+				E7D8310F252F83C5000EC2D9 /* WelcomeView.swift in Sources */,
 				26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */,
 				AAC7A059251A6591005F741A /* UIImage+Crop.swift in Sources */,
 				AA275AB82507FB980089F63D /* AvatarGameModel.swift in Sources */,
@@ -1148,19 +1357,29 @@
 				2679AC7D252BB21C005BE939 /* LoginLoginView.swift in Sources */,
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */,
+				265B765A253DD3C00037AC5E /* SignInWithAppleViewModel.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
 				2600932025001E8F00077BCE /* HapticManager.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
 				2623AC4725016BCC002A24A0 /* AppButtonStyle.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
 				AA04A48525195EFF00F85961 /* FeelingsClassifier.swift in Sources */,
+				265B7692253DD4C10037AC5E /* SignInWithAppleView.swift in Sources */,
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
 				26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */,
 				AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */,
 				2679AC6B252BA15B005BE939 /* SignInWithAppleButton.swift in Sources */,
+				265B7697253DD5190037AC5E /* SignInWithAppleDelegates.swift in Sources */,
 				AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */,
+				265B7682253DD44F0037AC5E /* AuthState.swift in Sources */,
+				E7AEEB53252B940F009F457D /* InitialScreen.swift in Sources */,
+				E7E8EE83252BAD24003921D3 /* SignUpView.swift in Sources */,
 				AADAB3C924FEBBF8005B04B3 /* GamesView.swift in Sources */,
 				AAA0613D24E49683008CD91B /* Draggable.swift in Sources */,
+				265B7662253DD3D90037AC5E /* SignInWithAppleButton.swift in Sources */,
+				265B7672253DD41A0037AC5E /* LoginView.swift in Sources */,
+				2646552A253790C300B18DBC /* AuthenticationProfile.swift in Sources */,
+				E7E8EE7F252BA153003921D3 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1349,6 +1568,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.Chumigos;
 				PRODUCT_NAME = Loggio;
 				SWIFT_VERSION = 5.0;
@@ -1372,6 +1592,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.Chumigos;
 				PRODUCT_NAME = Loggio;
 				SWIFT_VERSION = 5.0;

@@ -43,7 +43,7 @@ struct AvatarGameView: View {
     var body: some View {
         
         ZStack {
-            Color.background
+            Color.background.edgesIgnoringSafeArea(.all)
             
             if !isFinished {
                 
@@ -79,17 +79,6 @@ struct AvatarGameView: View {
                             }
                         }.edgesIgnoringSafeArea(.all)
                         Spacer()
-                    }
-                    
-                    //Feedback massage
-                    ZStack {
-                        VStack {
-                            Spacer()
-                            if viewModel.canShowResult() {
-                                GameFeedbackMessage(feedbackType: .CORRECT)
-                                    .padding(.bottom, -(screenWidth * 0.035))
-                            }
-                        }
                     }
                     
                     //VStack geral
@@ -143,8 +132,25 @@ struct AvatarGameView: View {
                             .padding(.trailing, screenWidth * 0.07)
                             .padding(.top, screenWidth * 0.125)
                         }.allowsHitTesting(!viewModel.confirmPressed)
+                    }
+                    
+                    //Feedback massage
+                    VStack {
+                        Spacer()
+                        ZStack {
+                            if viewModel.canShowResult() {
+                                GameFeedbackMessage(feedbackType: .CORRECT)
+                                    .padding(.bottom, -(screenWidth * 0.035))
+                            }
+                        }
+                    }
+                    
+                    // Confirm and Continue Buttons
+                    VStack {
+                        Spacer()
                         
                         if viewModel.canShowResult() {
+                            // Continue Button
                             Button(action: {
                                 self.confirmQuestion()
                             }) {
@@ -239,20 +245,24 @@ struct AvatarGameView: View {
     }
     
     func restartGame(game: GameObject) {
+        self.viewModel.restartGame()
         self.showPopUp = false
         self.showChatBalloon = true
         self.isFinished = false
         self.progressViewModel.restartProgressBar()
-        self.viewModel.resetGame()
         self.viewModel.game = game
     }
     
     func confirmQuestion() {
-        if self.progressViewModel.isLastQuestion() {
-            self.isFinished = true
-        }
+        
+        let index = self.progressViewModel.currentQuestion
+        self.viewModel.ifWrongAddAnswer(with: index)
         
         self.viewModel.changeGameScore()
+        
+        if self.progressViewModel.isLastQuestion() && self.viewModel.gameState == .NORMAL {
+            self.viewModel.gameState = .RECAP
+        }
         
         withAnimation(.linear(duration: 0.3)) {
             self.progressViewModel.checkAnswer(isCorrect: self.viewModel.faceIsCorrect(), nextIndex: self.viewModel.getRecapIndex())
@@ -260,9 +270,12 @@ struct AvatarGameView: View {
         
         self.viewModel.resetGame()
         
-        if self.isFinished {
+        if self.viewModel.gameState == .RECAP && self.viewModel.wrongAnswers.isEmpty {
+            self.isFinished = true
             self.progressViewModel.currentQuestion = -1
         }
+        
+        self.viewModel.removeRecapGame()
         
         if !self.showChatBalloon {
             withAnimation(.easeInOut) {
