@@ -24,17 +24,20 @@ class AvatarGameViewModel: ObservableObject {
     var gameState: GameState = .NORMAL
     var gameScore: GameScore = GameScore()
     var mostLikelyFeeling: String?
+    var randomFeelings: [Feelings]
+    var round: Int = 0
     var wrongAnswers: [(model: AvatarGameModel, index: Int)] = []
     
     init(game: GameObject, difficulty: Difficulty) {
-        self.model = AvatarGameModel()
+        self.randomFeelings = AvatarGameViewModel.generateRandomFeelings()
+        self.model = AvatarGameModel(feeling: randomFeelings[round])
         self.game = game
         self.difficulty = difficulty
     }
     
     // MARK: - Access the model
     var feeling: Feelings {
-        model.randomFeeling ?? Feelings.happy
+        model.randomFeeling
     }
     
     var roundFaceParts: [FacePart] {
@@ -55,6 +58,32 @@ class AvatarGameViewModel: ObservableObject {
     
     // MARK: - Function(s)
     
+    // Generate different feelings for the 5 rounds of the game
+    static func generateRandomFeelings() -> [Feelings] {
+        var feelings: [Feelings] = []
+        
+        // Add first element on the array
+        if let random = Feelings.allCases.randomElement() {
+            feelings.append(random)
+        }
+        
+        // Populate the rest of the array
+        while feelings.count < 5 {
+            if let random = Feelings.allCases.randomElement() {
+                var nothingIsEqual: Bool = true
+                for index in 0..<feelings.count {
+                    if random == feelings[index] {
+                        nothingIsEqual = false
+                    }
+                }
+                if nothingIsEqual {
+                    feelings.append(random)
+                }
+            }
+        }
+        return feelings
+    }
+    
     func allOptionsSelected() -> Bool {
         let eyeSelected: Bool = !eyeImage.isEmpty
         let eyebrownSelected: Bool = !eyebrowImage.isEmpty
@@ -72,11 +101,13 @@ class AvatarGameViewModel: ObservableObject {
     // MARK: - Reset & Restart Game
     func resetGame() {
         if gameState == .NORMAL {
-            model = AvatarGameModel()
+            round += 1
+            model = AvatarGameModel(feeling: randomFeelings[round])
         } else {
             if wrongAnswers.isEmpty { return }
             
             if let first = wrongAnswers.first {
+                round = first.index
                 model = first.model
             }
         }
@@ -84,7 +115,9 @@ class AvatarGameViewModel: ObservableObject {
     }
     
     func restartGame() {
-        self.model = AvatarGameModel()
+        self.round = 0
+        self.randomFeelings = AvatarGameViewModel.generateRandomFeelings()
+        self.model = AvatarGameModel(feeling: randomFeelings[round])
         self.wrongAnswers = []
         self.gameState = .NORMAL
         self.gameScore = GameScore()

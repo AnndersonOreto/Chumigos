@@ -24,7 +24,7 @@ enum Feelings: String, CaseIterable {
 
 class AvatarGameModel {
     
-    let randomFeeling = Feelings.allCases.randomElement()
+    let randomFeeling: Feelings
     
     var allEyes: [FacePart] {
         let eye1 = FacePart(partOfFace: .eye, image: "01", feelings: [.happy, .surprised, .uncertain])
@@ -71,7 +71,8 @@ class AvatarGameModel {
     
     var roundFaceParts: [FacePart] = []
     
-    init() {
+    init(feeling: Feelings) {
+        randomFeeling = feeling
         generateRoundFaceParts()
     }
     
@@ -93,7 +94,7 @@ class AvatarGameModel {
     
     func generate(faceParts: [FacePart]) -> [FacePart] {
         // Generating Correct Part
-        let part = faceParts.filter({$0.feelings.contains(randomFeeling ?? .happy)}).randomElement()!
+        let part = faceParts.filter({$0.feelings.contains(randomFeeling)}).randomElement()!
         var parts: [FacePart] = [part]
         
         // Removing correct part of the array
