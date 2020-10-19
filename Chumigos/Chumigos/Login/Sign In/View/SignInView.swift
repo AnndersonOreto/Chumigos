@@ -76,9 +76,9 @@ struct SignInView: View {
                     
                 }
                 
-                #warning("Colocar botao do sign in with apple")
                 Button(action: {
                     //Sign In
+                    self.environmentManager.startSignInWithAppleFlow()
                 }) {
                     Text("Sign In Apple").dynamicFont(size: 20, weight: .bold)
                 }.padding(.vertical, screenWidth * 0.03266331658)

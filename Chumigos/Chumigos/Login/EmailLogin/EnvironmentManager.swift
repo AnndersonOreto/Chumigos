@@ -11,14 +11,16 @@ import SwiftUI
 import FirebaseAuth
 import Combine
 import AuthenticationServices
+import CryptoKit
 
-class EnvironmentManager: ObservableObject {
+class EnvironmentManager: NSObject, ObservableObject {
+    
     
     // MARK: - Database variables
     
     private var database = DatabaseManager()
     
-   // MARK: - Combine variables
+    // MARK: - Combine variables
     
     var didchange = PassthroughSubject<EnvironmentManager, Never>()
     
@@ -34,8 +36,71 @@ class EnvironmentManager: ObservableObject {
     
     // MARK: - Apple Login variables
     
-    @Published var isUserAuthenticated: AuthState = .undefined
-    let userIdentifierKey = "userIdentifier"
+    // Unhashed nonce.
+    fileprivate var currentNonce: String?
+    
+    @Environment(\.window) var window: UIWindow?
+    
+    // MARK: - Encrypting functions
+    
+    // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: Array<Character> =
+            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+                }
+                return random
+            }
+            
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+                
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    @available(iOS 13, *)
+    func startSignInWithAppleFlow() {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    @available(iOS 13, *)
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            return String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
+    }
     
     // MARK: - Authentication functions
     
@@ -49,6 +114,15 @@ class EnvironmentManager: ObservableObject {
                 self.database.getUserProfile(userUid: self.replaceEmail(email: user.email ?? ""), completion: { profile in
                     
                     self.profile = profile
+                    
+                    #warning("This is just for DEBUG purposes")
+                    if profile != nil {
+                        print(profile.email ?? "COD01: erro de email")
+                        print(profile.id)
+                        print(profile.name)
+                    } else {
+                        print(profile)
+                    }
                 })
             } else {
                 
@@ -117,46 +191,50 @@ class EnvironmentManager: ObservableObject {
     deinit {
         unbind()
     }
+}
+
+@available(iOS 13.0, *)
+extension EnvironmentManager: ASAuthorizationControllerDelegate {
     
-    func checkUserAuth(completion: @escaping (AuthState) -> ()) {
-        guard let userIdentifier = UserDefaults.standard.string(forKey: userIdentifierKey) else {
-            print("User identifier does not exist")
-            self.isUserAuthenticated = .undefined
-            completion(.undefined)
-            return
-        }
-        if userIdentifier == "" {
-            print("User identifier is empty string")
-            self.isUserAuthenticated = .undefined
-            completion(.undefined)
-            return
-        }
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        appleIDProvider.getCredentialState(forUserID: userIdentifier) { (credentialState, error) in
-            DispatchQueue.main.async {
-                switch credentialState {
-                case .authorized:
-                    // The Apple ID credential is valid. Show Home UI Here
-                    print("Credential state: .authorized")
-                    self.isUserAuthenticated = .signedIn
-                    completion(.signedIn)
-                    break
-                case .revoked:
-                    // The Apple ID credential is revoked. Show SignIn UI Here.
-                    print("Credential state: .revoked")
-                    self.isUserAuthenticated = .undefined
-                    completion(.undefined)
-                    break
-                case .notFound:
-                    // No credential was found. Show SignIn UI Here.
-                    print("Credential state: .notFound")
-                    self.isUserAuthenticated = .signedOut
-                    completion(.signedOut)
-                    break
-                default:
-                    break
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            guard let nonce = currentNonce else {
+                fatalError("Invalid state: A login callback was received, but no login request was sent.")
+            }
+            guard let appleIDToken = appleIDCredential.identityToken else {
+                print("Unable to fetch identity token")
+                return
+            }
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+                return
+            }
+            // Initialize a Firebase credential.
+            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+            // Sign in with Firebase.
+            Auth.auth().signIn(with: credential) { (authResult, error) in
+                if (error != nil) {
+                    // Error. If error.code == .MissingOrInvalidNonce, make sure
+                    // you're sending the SHA256-hashed nonce as a hex string with
+                    // your request to Apple.
+                    print(error!.localizedDescription)
+                    return
                 }
+                // User is signed in to Firebase with Apple.
+                // ...
             }
         }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+        print("Sign in with Apple errored: \(error)")
+    }
+    
+}
+
+extension EnvironmentManager: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.window!
     }
 }
