@@ -34,6 +34,7 @@ struct TotemGameView: View {
     private let fontName = "Rubik"
     
     init(gameDifficulty: Difficulty, game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel = TotemGameViewModel(difficulty: gameDifficulty, game: game)
         self.game = game
     }
@@ -177,7 +178,6 @@ struct TotemGameView: View {
                 }.blur(radius: self.showPopUp ? 16 : 0)
                 
             } else {
-                
                 EndGameView(progressViewModel: self.progressViewModel,
                             dismissGame: self.dismissGame, restartGame: self.restartGame(game:),
                             game: self.game, gameScore: self.viewModel.gameScore.currentScore)
@@ -196,6 +196,7 @@ struct TotemGameView: View {
     }
     
     func restartGame(game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel.restartGame()
         self.buttonIsPressed = false
         self.showPopUp = false
@@ -212,6 +213,7 @@ struct TotemGameView: View {
         self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion() && self.viewModel.gameState == .NORMAL {
+            AppAnalytics.shared.logEvent(of: .gameRecap, parameters: ["recap_amount": viewModel.wrongAnswers.count, "gameObject": viewModel.game.gameName])
             self.viewModel.gameState = .RECAP
         }
         

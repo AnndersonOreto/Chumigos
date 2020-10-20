@@ -33,6 +33,7 @@ struct ShapeGameView: View {
     @ObservedObject var viewModel: ShapeGameViewModel
     
     init(gameDifficulty: Difficulty, game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel = ShapeGameViewModel(game: game, difficulty: gameDifficulty)
     }
     
@@ -211,6 +212,7 @@ struct ShapeGameView: View {
     }
     
     func restartGame(game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel.restartGame()
         self.questionsFrames = []
         self.isFinished = false
@@ -227,6 +229,7 @@ struct ShapeGameView: View {
         self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+            AppAnalytics.shared.logEvent(of: .gameRecap, parameters: ["recap_amount": viewModel.wrongAnswersArray.count, "gameObject": viewModel.game.gameName])
             self.viewModel.gameState = .RECAP
         }
         

@@ -36,7 +36,7 @@ struct AvatarGameView: View {
     var iconName: String { self.viewModel.faceIsCorrect() ? "correct-icon" : "wrong-icon" }
     
     init(gameDifficulty: Difficulty, game: GameObject) {
-        #warning("Fazer dificuldade no jogo do avatar")
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel = AvatarGameViewModel(game: game, difficulty: gameDifficulty)
     }
     
@@ -245,6 +245,7 @@ struct AvatarGameView: View {
     }
     
     func restartGame(game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel.restartGame()
         self.showPopUp = false
         self.showChatBalloon = true
@@ -261,6 +262,7 @@ struct AvatarGameView: View {
         self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion() && self.viewModel.gameState == .NORMAL {
+            AppAnalytics.shared.logEvent(of: .gameRecap, parameters: ["recap_amount": viewModel.wrongAnswers.count, "gameObject": viewModel.game.gameName])
             self.viewModel.gameState = .RECAP
         }
         

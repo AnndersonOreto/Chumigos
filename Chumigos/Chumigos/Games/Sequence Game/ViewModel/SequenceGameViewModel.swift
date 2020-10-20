@@ -48,7 +48,8 @@ class SequenceGameViewModel: ObservableObject {
     }
     
     func allQuestionsAreCorrect() -> Bool {
-        return model.allQuestionsAreCorrect()
+        let result = model.allQuestionsAreCorrect()
+        return result
     }
     
     func allQuestionsAreOccupied() -> Bool {
