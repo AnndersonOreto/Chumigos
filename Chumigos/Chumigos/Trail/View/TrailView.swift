@@ -54,9 +54,22 @@ struct TrailView: View {
             .onAppear {
                 self.isTabBarActive = true
                 self.matrixList = CoreDataService.shared.retrieveMatrixTrail()
-                //self.matrixList[0].changeCurrentLine()
             }
             
         }.navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    func qtdFinishedGames() -> Int {
+        var count = 0
+        for trail in matrixList {
+            for trailList in trail.trail {
+                for game in trailList {
+                    if game.isCompleted {
+                        count+=1
+                    }
+                }
+            }
+        }
+        return count
     }
 }

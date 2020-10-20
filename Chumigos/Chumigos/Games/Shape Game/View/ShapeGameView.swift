@@ -102,7 +102,9 @@ struct ShapeGameView: View {
                                 ZStack {
                                     //Underlay tile with opacity
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex])
+                                        .fill(self.viewModel.getAlternativesColors[alternative.colorIndex])
+                                        .offset(y: (alternative.value == 3 && self.viewModel.difficultyForm == Form.POLYGON)
+                                                    ? (self.screenWidth*0.0073) : 0)
                                         .frame(width: self.screenWidth * 0.06,
                                                height: self.screenWidth * 0.06),
                                          size: self.tileSize
@@ -110,7 +112,9 @@ struct ShapeGameView: View {
                                     
                                     // tileSize*1.01 to hide questionTile underneath
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex])
+                                        .fill(self.viewModel.getAlternativesColors[alternative.colorIndex])
+                                        .offset(y: (alternative.value == 3 && self.viewModel.difficultyForm == Form.POLYGON)
+                                                    ? (self.screenWidth*0.0073) : 0)
                                         .frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06),
                                          size: CGSize(width: self.tileSize.width*1.01, height: self.tileSize.height*1.01)
                                     ).draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
@@ -292,7 +296,9 @@ extension ShapeGameView {
                 
                 // Generic form to build sided forms
                 Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: piece.sides)
-                .fill(self.viewModel.getRandomColors[piece.colorIndex])
+                .fill(self.viewModel.getQuestionsColors[piece.colorIndex])
+                .offset(y: (piece.sides == 3 && self.viewModel.difficultyForm == Form.POLYGON)
+                            ? (self.screenWidth*0.0073) : 0)
                 .frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
                 
             } else {

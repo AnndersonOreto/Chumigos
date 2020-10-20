@@ -124,7 +124,7 @@ struct TotemGameView: View {
                                               isCorrect: self.$isCorrect,
                                               isButtonPressed: self.$buttonIsPressed,
                                               selectedUpTopTotem: self.$viewModel.selectedUpTopTotem)
-                            })
+                                }).allowsHitTesting(!buttonIsPressed)
                             
                             Spacer()
                         }
@@ -169,8 +169,8 @@ struct TotemGameView: View {
                             .buttonStyle(GameButtonStyle(buttonColor: Color.Whale,
                                                          pressedButtonColor: Color.Macaw,
                                                          buttonBackgroundColor: Color.Narwhal,
-                                                         isButtonEnable: true))
-                            .disabled(false)
+                                                         isButtonEnable: tileSelected != -1))
+                            .disabled(tileSelected == -1)
                             .padding(.bottom, 10)
                             
                         }
@@ -210,12 +210,12 @@ struct TotemGameView: View {
         let index = self.progressViewModel.currentQuestion
         self.viewModel.ifWrongAddAnswer(with: index)
         
+        self.viewModel.changeGameScore()
+        
         if self.progressViewModel.isLastQuestion() && self.viewModel.gameState == .NORMAL {
             AppAnalytics.shared.logEvent(of: .gameRecap, parameters: ["recap_amount": viewModel.wrongAnswers.count, "gameObject": viewModel.game.gameName])
             self.viewModel.gameState = .RECAP
         }
-        
-        self.viewModel.changeGameScore()
         
         withAnimation(.linear(duration: 0.3)) {
             self.progressViewModel.checkAnswer(isCorrect: self.viewModel.answerIsCorrect(), nextIndex: self.viewModel.getRecapIndex())
