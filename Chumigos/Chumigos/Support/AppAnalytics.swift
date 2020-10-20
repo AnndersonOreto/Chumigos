@@ -23,10 +23,7 @@ public enum AnalyticEventType: String {
 class AppAnalytics {
     
     // MARK: - Singleton instance
-    static var shared: AppAnalytics {
-        let instance = AppAnalytics()
-        return instance
-    }
+    static let shared = AppAnalytics()
     
     // MARK: - Init
     

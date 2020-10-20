@@ -58,18 +58,4 @@ struct TrailView: View {
             
         }.navigationViewStyle(StackNavigationViewStyle())
     }
-    
-    func qtdFinishedGames() -> Int {
-        var count = 0
-        for trail in matrixList {
-            for trailList in trail.trail {
-                for game in trailList {
-                    if game.isCompleted {
-                        count+=1
-                    }
-                }
-            }
-        }
-        return count
-    }
 }
