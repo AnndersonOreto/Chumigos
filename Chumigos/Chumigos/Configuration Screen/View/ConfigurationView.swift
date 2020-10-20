@@ -52,6 +52,7 @@ struct ConfigurationView: View {
                         
                         // Avatar change button
                         Button(action: {
+                            AppAnalytics.shared.logEvent(of: .launchAvatarScreen)
                             self.showAvatarSelection.toggle()
                         }) {
                             Text("Mudar Avatar")

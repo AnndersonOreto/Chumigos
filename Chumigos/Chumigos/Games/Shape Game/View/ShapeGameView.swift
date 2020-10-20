@@ -33,6 +33,7 @@ struct ShapeGameView: View {
     @ObservedObject var viewModel: ShapeGameViewModel
     
     init(gameDifficulty: Difficulty, game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel = ShapeGameViewModel(game: game, difficulty: gameDifficulty)
     }
     
@@ -101,7 +102,9 @@ struct ShapeGameView: View {
                                 ZStack {
                                     //Underlay tile with opacity
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex])
+                                        .fill(self.viewModel.getAlternativesColors[alternative.colorIndex])
+                                        .offset(y: (alternative.value == 3 && self.viewModel.difficultyForm == Form.POLYGON)
+                                                    ? (self.screenWidth*0.0073) : 0)
                                         .frame(width: self.screenWidth * 0.06,
                                                height: self.screenWidth * 0.06),
                                          size: self.tileSize
@@ -109,7 +112,9 @@ struct ShapeGameView: View {
                                     
                                     // tileSize*1.01 to hide questionTile underneath
                                     Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: alternative.value)
-                                        .fill(self.viewModel.getRandomColors[alternative.colorIndex])
+                                        .fill(self.viewModel.getAlternativesColors[alternative.colorIndex])
+                                        .offset(y: (alternative.value == 3 && self.viewModel.difficultyForm == Form.POLYGON)
+                                                    ? (self.screenWidth*0.0073) : 0)
                                         .frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06),
                                          size: CGSize(width: self.tileSize.width*1.01, height: self.tileSize.height*1.01)
                                     ).draggable(onChanged: self.objectMoved, onEnded: self.objectDropped, answer: alternative.value)
@@ -207,6 +212,7 @@ struct ShapeGameView: View {
     }
     
     func restartGame(game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel.restartGame()
         self.questionsFrames = []
         self.isFinished = false
@@ -223,6 +229,7 @@ struct ShapeGameView: View {
         self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+            AppAnalytics.shared.logEvent(of: .gameRecap, parameters: ["recap_amount": viewModel.wrongAnswersArray.count, "gameObject": viewModel.game.gameName])
             self.viewModel.gameState = .RECAP
         }
         
@@ -289,7 +296,9 @@ extension ShapeGameView {
                 
                 // Generic form to build sided forms
                 Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: piece.sides)
-                .fill(self.viewModel.getRandomColors[piece.colorIndex])
+                .fill(self.viewModel.getQuestionsColors[piece.colorIndex])
+                .offset(y: (piece.sides == 3 && self.viewModel.difficultyForm == Form.POLYGON)
+                            ? (self.screenWidth*0.0073) : 0)
                 .frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
                 
             } else {

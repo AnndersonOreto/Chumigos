@@ -46,8 +46,12 @@ class ShapeGameViewModel: ObservableObject {
         model.getDifficulty() == .medium ? .STAR : .POLYGON
     }
     
-    var getRandomColors: [Color] {
-        model.getRandomColor()
+    var getQuestionsColors: [Color] {
+        model.getQuestionsColor()
+    }
+    
+    var getAlternativesColors: [Color] {
+        model.getAlternativesColor()
     }
     
     // MARK: - Access to the Model

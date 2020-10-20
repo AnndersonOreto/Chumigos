@@ -32,7 +32,7 @@ struct GameFeedbackMessage: View {
                         .foregroundColor(Color.Ghost)
                         .padding(.top, 20)
                 } else if feedbackType == .WRONG {
-                    Text("ERRRRROOOOOOO!")
+                    Text("Não foi dessa vez!")
                         .dynamicFont(name: fontName, size: 20, weight: .bold)
                         .foregroundColor(Color.Ghost)
                         .padding(.top, 20)
@@ -40,8 +40,3 @@ struct GameFeedbackMessage: View {
         }
     }
 }
-//struct GameFeedbackMessage_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GameFeedbackMessage(feedbackType: .CORRECT)
-//    }
-//}
