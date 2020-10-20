@@ -126,16 +126,17 @@ class TotemGameModel {
                     }
                 }
             } else {
-                
-                let totemSmallPieceFirstElement: String = totemSmallPieceList[0]
+                guard let totemSmallPieceFirstElement: String = totemSmallPieceList.first else {
+                    return self.generateAlternatives(with: totemPieces)
+                }
                 let totemBigPieceFirstElement: String = totemBigPieceList[0]
                 let smallAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[0] })
-                let bigAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[totemSmallPieceList.count] })
+                let bigAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0.first {$0.contains("big")}! })
                 
                 for index in 0..<smallAlternativeListFirstElements.count {
+                    
                     if smallAlternativeListFirstElements[index] == totemSmallPieceFirstElement &&
                         bigAlternativeListFirstElements[index] == totemBigPieceFirstElement {
-                        
                         isElementEqualTo = true
                         break
                     }
@@ -146,7 +147,6 @@ class TotemGameModel {
                 isElementEqualTo = false
                 continue
             }
-            
             totemAlternativeList.append(totemUpTopImageNameList)
             
             index += 1

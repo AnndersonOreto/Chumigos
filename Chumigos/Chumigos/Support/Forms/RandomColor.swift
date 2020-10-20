@@ -109,9 +109,6 @@ extension Color {
                         colorList.remove(at: index)
                     }
                 }
-                for (index, element) in colorList.enumerated() where element == randomElement {
-                    print("oi\(index)")
-                }
                 
                 resp.append(randomElement ?? Turtle)
             }

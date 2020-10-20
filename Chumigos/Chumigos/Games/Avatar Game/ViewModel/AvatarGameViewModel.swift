@@ -24,17 +24,20 @@ class AvatarGameViewModel: ObservableObject {
     var gameState: GameState = .NORMAL
     var gameScore: GameScore = GameScore()
     var mostLikelyFeeling: String?
+    var randomFeelings: [Feelings]
+    var round: Int = 0
     var wrongAnswers: [(model: AvatarGameModel, index: Int)] = []
     
     init(game: GameObject, difficulty: Difficulty) {
-        self.model = AvatarGameModel()
+        self.randomFeelings = Feelings.randomFeelings(quantity: 5)
+        self.model = AvatarGameModel(feeling: randomFeelings[round])
         self.game = game
         self.difficulty = difficulty
     }
     
     // MARK: - Access the model
     var feeling: Feelings {
-        model.randomFeeling ?? Feelings.happy
+        model.randomFeeling
     }
     
     var roundFaceParts: [FacePart] {
@@ -72,11 +75,13 @@ class AvatarGameViewModel: ObservableObject {
     // MARK: - Reset & Restart Game
     func resetGame() {
         if gameState == .NORMAL {
-            model = AvatarGameModel()
+            round += 1
+            model = AvatarGameModel(feeling: randomFeelings[round])
         } else {
             if wrongAnswers.isEmpty { return }
             
             if let first = wrongAnswers.first {
+                round = first.index
                 model = first.model
             }
         }
@@ -84,7 +89,9 @@ class AvatarGameViewModel: ObservableObject {
     }
     
     func restartGame() {
-        self.model = AvatarGameModel()
+        self.round = 0
+        self.randomFeelings = Feelings.randomFeelings(quantity: 5)
+        self.model = AvatarGameModel(feeling: randomFeelings[round])
         self.wrongAnswers = []
         self.gameState = .NORMAL
         self.gameScore = GameScore()
