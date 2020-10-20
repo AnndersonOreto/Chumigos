@@ -20,6 +20,32 @@ enum Feelings: String, CaseIterable {
     case sleepy = "Sonolento"
     case surprised = "Surpreso"
     case uncertain = "Incerto"
+    
+    // Create an array with different feelings
+    static func randomFeelings(quantity: Int) -> [Feelings] {
+        var feelings: [Feelings] = []
+        
+        // Add first element on the array
+        if let random = Feelings.allCases.randomElement() {
+            feelings.append(random)
+        }
+        
+        // Populate the rest of the array
+        while feelings.count < quantity {
+            if let random = Feelings.allCases.randomElement() {
+                var nothingIsEqual: Bool = true
+                for index in 0..<feelings.count {
+                    if random == feelings[index] {
+                        nothingIsEqual = false
+                    }
+                }
+                if nothingIsEqual {
+                    feelings.append(random)
+                }
+            }
+        }
+        return feelings
+    }
 }
 
 class AvatarGameModel {
