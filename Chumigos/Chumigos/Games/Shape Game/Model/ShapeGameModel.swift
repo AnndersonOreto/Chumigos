@@ -14,7 +14,9 @@ struct ShapeGameModel {
     // MARK: - Variables
     
     // Constant variables
-    private var amount: Int = 4
+    private var amount: Int {
+        difficulty == .hard ? 5 : 4
+    }
     private let isAscending: Bool = Bool.random()
     
     // Variables
@@ -127,8 +129,7 @@ struct ShapeGameModel {
     }
     
     private mutating func generateQuestions() {
-        
-        let questionIndex = round.count-1
+        let questionIndex = round.count - (difficulty == .hard ? 2 : 1)
         questions.append(Question(correctAnswer: round[questionIndex].sides))
         round[questionIndex].isAQuestion = true
     }
@@ -137,8 +138,9 @@ struct ShapeGameModel {
         
         var range = Array(3...8)
         let question = questions.first!
+        let maxIndex = amount - (difficulty == .hard ? 2 : 1)
         
-        for index in 0..<amount-1 {
+        for index in 0..<maxIndex {
             var randomSides: Int?
             repeat {
                 randomSides = range.randomElement()
@@ -147,7 +149,7 @@ struct ShapeGameModel {
             range.remove(at: index)
             alternatives.append(Alternative(value: randomSides!, colorIndex: index))
         }
-        alternatives.append(Alternative(value: question.correctAnswer, colorIndex: amount-1))
+        alternatives.append(Alternative(value: question.correctAnswer, colorIndex: maxIndex))
         alternatives.shuffle()
     }
     

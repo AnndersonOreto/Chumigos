@@ -294,7 +294,8 @@ extension ShapeGameView {
                 // Generic form to build sided forms
                 Tile(content: GenericForm(form: self.viewModel.difficultyForm, sides: piece.sides)
                 .fill(self.viewModel.getQuestionsColors[piece.colorIndex])
-                .offset(y: piece.sides == 3 ? (self.screenWidth*0.0073) : 0)
+                .offset(y: (piece.sides == 3 && self.viewModel.difficultyForm == Form.POLYGON)
+                            ? (self.screenWidth*0.0073) : 0)
                 .frame(width: self.screenWidth * 0.06, height: self.screenWidth * 0.06), size: self.tileSize)
                 
             } else {
