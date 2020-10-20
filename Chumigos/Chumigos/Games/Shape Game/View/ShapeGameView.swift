@@ -208,6 +208,7 @@ struct ShapeGameView: View {
     }
     
     func restartGame(game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel.restartGame()
         self.questionsFrames = []
         self.isFinished = false
