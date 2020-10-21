@@ -75,20 +75,15 @@ struct SignInView: View {
                         .foregroundColor(Color.xMark)
                     
                 }
-                
-                Button(action: {
-                    //Sign In
+                         
+                SignInWithAppleButton().onTapGesture {
                     self.environmentManager.startSignInWithAppleFlow()
-                }) {
-                    Text("Sign In Apple").dynamicFont(size: 20, weight: .bold)
-                }.padding(.vertical, screenWidth * 0.03266331658)
-                    .buttonStyle(AppButtonStyle(buttonColor: .black, pressedButtonColor: .Whale,
-                                                buttonBackgroundColor: .black, isButtonEnable: true,
-                                                textColor: .white, width: screenWidth * 0.243))
+                }.frame(width: screenWidth * 0.243718593, height: screenWidth * 0.04)
+                .padding(.vertical, screenWidth * 0.03266331658)
                 
+    
             }.frame(width: screenWidth/2)
-            
             Spacer()
-        }
+        }.background(Color.background)
     }
 }
