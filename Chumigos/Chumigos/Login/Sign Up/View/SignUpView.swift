@@ -76,7 +76,7 @@ struct SignUpView: View {
                 //TODO: Funcao para cadastro
                 Button(action: {
                     //Sign up
-                    environmentManager.signUp(email: self.emailTextField, password: self.passwordTextField, name: self.fullNameTextField) { (result, error) in
+                    self.environmentManager.signUp(email: self.emailTextField, password: self.passwordTextField, name: self.fullNameTextField) { (result, error) in
                         
                         if let error = error {
                             

@@ -105,7 +105,7 @@ class DatabaseManager {
         }
     }
     
-    func getUserProfile(userUid: String, completion: @escaping(AuthenticationProfile)->()) {
+    func getUserProfile(userUid: String, completion: @escaping(AuthenticationProfile)-> Void) {
 
         ref.child("users").child(userUid).observeSingleEvent(of: .value, with: { (snapshopt) in
 
@@ -177,7 +177,7 @@ class DatabaseManager {
 //        })
 //    }
     
-    func getPendingStatus(userUid: String, completion: @escaping(String)->()) {
+    func getPendingStatus(userUid: String, completion: @escaping(String)-> Void) {
         ref.child("users").child(userUid).observeSingleEvent(of: .value) { (snapshot) in
             if let value = snapshot.value as? NSDictionary {
                 if let pendingEmail = value["pending"] as? String {
@@ -189,4 +189,3 @@ class DatabaseManager {
         }
     }
 }
-

@@ -49,7 +49,7 @@ struct SignInView: View {
                 //TODO: Funcao de Sign In
                 Button(action: {
                     //Sign In
-                    environmentManager.signIn(email: self.emailTextField, password: self.passwordTextField) { (result, error) in
+                    self.environmentManager.signIn(email: self.emailTextField, password: self.passwordTextField) { (result, error) in
                         
                         if let error = error {
                             

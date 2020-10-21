@@ -110,22 +110,10 @@ class EnvironmentManager: NSObject, ObservableObject {
         handle = Auth.auth().addStateDidChangeListener { (_, user) in
             
             if let user = user {
-                
                 self.database.getUserProfile(userUid: self.replaceEmail(email: user.email ?? ""), completion: { profile in
-                    
                     self.profile = profile
-                    
-                    #warning("This is just for DEBUG purposes")
-                    if profile != nil {
-                        print(profile.email ?? "COD01: erro de email")
-                        print(profile.id)
-                        print(profile.name)
-                    } else {
-                        print(profile)
-                    }
                 })
             } else {
-                
                 self.profile = nil
             }
         }
@@ -220,8 +208,19 @@ extension EnvironmentManager: ASAuthorizationControllerDelegate {
                     print(error!.localizedDescription)
                     return
                 }
-                // User is signed in to Firebase with Apple.
-                // ...
+                
+                let replacedEmail = self.replaceEmail(email: authResult?.user.email ?? "")
+                //Get user profile
+                self.database.getUserProfile(userUid: replacedEmail, completion: { profile in
+                    self.profile = profile
+                    if profile.name.isEmpty {
+                        let name = (appleIDCredential.fullName?.givenName ?? "") + " " +
+                            (appleIDCredential.fullName?.familyName ?? "")
+                        self.database.saveNewProfile(email: replacedEmail,
+                                                     name: name,
+                                                     userUid: authResult?.user.email ?? "")
+                    }
+                })
             }
         }
     }

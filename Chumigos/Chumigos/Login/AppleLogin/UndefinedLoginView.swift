@@ -21,7 +21,7 @@ struct UndefinedLoginView: View {
         VStack {
         Text("Hello, World!")
         }.onAppear {
-            switch signInWithAppleManager.isUserAuthenticated {
+            switch self.signInWithAppleManager.isUserAuthenticated {
             
             case .undefined:
                 self.performExistingAccountFlows()
