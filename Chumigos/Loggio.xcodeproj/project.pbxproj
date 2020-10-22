@@ -31,7 +31,6 @@
 		26465532253791AD00B18DBC /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26465531253791AD00B18DBC /* DatabaseManager.swift */; };
 		2656BF292500086100231678 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656BF282500086100231678 /* NotificationManager.swift */; };
 		26590E112538CEFF00AB3A1B /* PreLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26590E102538CEFF00AB3A1B /* PreLaunchView.swift */; };
-		265B765A253DD3C00037AC5E /* SignInWithAppleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7659253DD3C00037AC5E /* SignInWithAppleViewModel.swift */; };
 		265B7662253DD3D90037AC5E /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7661253DD3D90037AC5E /* SignInWithAppleButton.swift */; };
 		265B766A253DD3FB0037AC5E /* EnvironmentWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7669253DD3FB0037AC5E /* EnvironmentWindowKey.swift */; };
 		265B7672253DD41A0037AC5E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B7671253DD41A0037AC5E /* LoginView.swift */; };
@@ -58,7 +57,6 @@
 		26B7DA7125377ADE00B44BFA /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */; };
 		26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */; };
 		26BC05AD2507FD9B00A918F5 /* TrailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AC2507FD9B00A918F5 /* TrailViewModel.swift */; };
-		26BCB0862537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
 		26BCB0872537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
 		26BCB0882537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
 		26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */; };
@@ -174,7 +172,6 @@
 		26465531253791AD00B18DBC /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		2656BF282500086100231678 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		26590E102538CEFF00AB3A1B /* PreLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLaunchView.swift; sourceTree = "<group>"; };
-		265B7659253DD3C00037AC5E /* SignInWithAppleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewModel.swift; sourceTree = "<group>"; };
 		265B7661253DD3D90037AC5E /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		265B7669253DD3FB0037AC5E /* EnvironmentWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentWindowKey.swift; sourceTree = "<group>"; };
 		265B7671253DD41A0037AC5E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -383,7 +380,6 @@
 		2621CD0F253A189700B85B7E /* AppleLogin */ = {
 			isa = PBXGroup;
 			children = (
-				265B7659253DD3C00037AC5E /* SignInWithAppleViewModel.swift */,
 				265B7661253DD3D90037AC5E /* SignInWithAppleButton.swift */,
 				265B7669253DD3FB0037AC5E /* EnvironmentWindowKey.swift */,
 				265B7671253DD41A0037AC5E /* LoginView.swift */,
@@ -1180,23 +1176,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8F98DAC9901A24117136BAC2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9387257914CCAFBA493080AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1339,7 +1318,6 @@
 				26FCAD94251BB9730082F9EC /* TotemPiece.swift in Sources */,
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
 				26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */,
-				265B765A253DD3C00037AC5E /* SignInWithAppleViewModel.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
 				2623AC4725016BCC002A24A0 /* AppButtonStyle.swift in Sources */,
