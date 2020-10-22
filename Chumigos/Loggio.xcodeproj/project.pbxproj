@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2600932025001E8F00077BCE /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600931F25001E8F00077BCE /* HapticManager.swift */; };
 		260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260751F024DB4E1C005816DB /* ProgressBarView.swift */; };
 		260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */; };
 		260A412F24D9F327003553E7 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A412E24D9F327003553E7 /* GameButton.swift */; };
@@ -114,11 +113,14 @@
 		ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
 		B0D798E9D8CCFBCB51AA012E /* Pods_Loggio_LoggioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF387EA7BE4343F3D3AC9CF2 /* Pods_Loggio_LoggioUITests.framework */; };
+		E745370D2538C7A3002C58AC /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E745370C2538C7A3002C58AC /* AppAnalytics.swift */; };
+		E745370F2538C806002C58AC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E745370E2538C806002C58AC /* Podfile */; };
 		E747277B251D13D600DF2449 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E747277A251D13D600DF2449 /* .swiftlint.yml */; };
 		E74A37752502BC47001ADBEB /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A37742502BC47001ADBEB /* CustomDivider.swift */; };
 		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
 		E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */; };
 		E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */; };
+		E7727D602538CD2400D8CC2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7727D5F2538CD2400D8CC2E /* GoogleService-Info.plist */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
 		E7AEEB53252B940F009F457D /* InitialScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AEEB52252B940F009F457D /* InitialScreen.swift */; };
 		E7D8310F252F83C5000EC2D9 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D8310E252F83C5000EC2D9 /* WelcomeView.swift */; };
@@ -148,7 +150,6 @@
 
 /* Begin PBXFileReference section */
 		0F35B1734862A0E91D3E1F11 /* Pods-Loggio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio.debug.xcconfig"; path = "Target Support Files/Pods-Loggio/Pods-Loggio.debug.xcconfig"; sourceTree = "<group>"; };
-		2600931F25001E8F00077BCE /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		260751F024DB4E1C005816DB /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarViewModel.swift; sourceTree = "<group>"; };
 		260A412E24D9F327003553E7 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
@@ -274,11 +275,14 @@
 		B48321D0B69C0B2623791CAF /* Pods_Loggio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Loggio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CAB839D920BC04A51F9C18 /* Pods-Loggio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio.release.xcconfig"; path = "Target Support Files/Pods-Loggio/Pods-Loggio.release.xcconfig"; sourceTree = "<group>"; };
 		C9D7316B1E6B79F68CD1A857 /* Pods-LoggioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggioTests.debug.xcconfig"; path = "Target Support Files/Pods-LoggioTests/Pods-LoggioTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E745370C2538C7A3002C58AC /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
+		E745370E2538C806002C58AC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E747277A251D13D600DF2449 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E74A37742502BC47001ADBEB /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionView.swift; sourceTree = "<group>"; };
 		E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFeedbackMessage.swift; sourceTree = "<group>"; };
+		E7727D5F2538CD2400D8CC2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E78DA52E24BF7C17001A3079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E78DA53024BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E78DA53124BF7EA1001A3079 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -325,14 +329,6 @@
 				2656BF282500086100231678 /* NotificationManager.swift */,
 			);
 			path = Notifications;
-			sourceTree = "<group>";
-		};
-		26009322250021EB00077BCE /* Haptic */ = {
-			isa = PBXGroup;
-			children = (
-				2600931F25001E8F00077BCE /* HapticManager.swift */,
-			);
-			path = Haptic;
 			sourceTree = "<group>";
 		};
 		260A414B24DB297C003553E7 /* Fonts */ = {
@@ -534,6 +530,7 @@
 				2693CB3524BF8BAA00D1DEC9 /* Service */,
 				AA883A27251530E900916E05 /* CoreData */,
 				26C186C824BE4AA70094AEC1 /* Assets.xcassets */,
+				E7727D5F2538CD2400D8CC2E /* GoogleService-Info.plist */,
 				ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */,
 				26BCB0852537613F00176274 /* GoogleService-Info.plist */,
 				26C186CA24BE4AA70094AEC1 /* Preview Content */,
@@ -848,12 +845,13 @@
 		E74D7F8824BF7318000BF076 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				E745370E2538C806002C58AC /* Podfile */,
 				2623AC4525016B7C002A24A0 /* Components */,
-				26009322250021EB00077BCE /* Haptic */,
 				26009321250021C000077BCE /* Notifications */,
 				2620EA0B24C75A30001F1EE0 /* Forms */,
 				26C186D024BE4AA70094AEC1 /* Info.plist */,
 				26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */,
+				E745370C2538C7A3002C58AC /* AppAnalytics.swift */,
 				26C186C124BE4AA50094AEC1 /* SceneDelegate.swift */,
 				26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */,
 				AB855F1124F430EE00C5A739 /* GameNames.swift */,
@@ -967,8 +965,8 @@
 		E7FDEB8724C2312A008DDAEB /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				26AB83B72513B76F004BDF49 /* Totem Game */,
 				AA48142724EB1D1F00134024 /* Components */,
+				26AB83B72513B76F004BDF49 /* Totem Game */,
 				AB33B34C2502B2400042F5BA /* Avatar Game */,
 				AA865AF124E5ABE60066BF2A /* Sequence Game */,
 				AA865AF524E5AC110066BF2A /* Shape Game */,
@@ -988,8 +986,7 @@
 				26C186B924BE4AA50094AEC1 /* Frameworks */,
 				26C186BA24BE4AA50094AEC1 /* Resources */,
 				E7472779251D0F4D00DF2449 /* ShellScript */,
-				4CD9880D9975F7410E471349 /* [CP] Embed Pods Frameworks */,
-				26BCB0A4253778D600176274 /* ShellScript */,
+				1089D287C80467B24A4A3E62 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1027,7 +1024,7 @@
 				26C186DC24BE4AA70094AEC1 /* Sources */,
 				26C186DD24BE4AA70094AEC1 /* Frameworks */,
 				26C186DE24BE4AA70094AEC1 /* Resources */,
-				8F98DAC9901A24117136BAC2 /* [CP] Embed Pods Frameworks */,
+				2BCD31D462AF71F8ED010438 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1098,11 +1095,12 @@
 				260A416124DB2CC9003553E7 /* Rubik-Italic.ttf in Resources */,
 				E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */,
 				260A416224DB2CC9003553E7 /* Rubik-MediumItalic.ttf in Resources */,
-				26BCB0862537613F00176274 /* GoogleService-Info.plist in Resources */,
+				E745370F2538C806002C58AC /* Podfile in Resources */,
 				260A416824DB2CC9003553E7 /* Rubik-BlackItalic.ttf in Resources */,
 				260A416924DB2CC9003553E7 /* Rubik-Black.ttf in Resources */,
 				26C186CC24BE4AA70094AEC1 /* Preview Assets.xcassets in Resources */,
 				26C186C924BE4AA70094AEC1 /* Assets.xcassets in Resources */,
+				E7727D602538CD2400D8CC2E /* GoogleService-Info.plist in Resources */,
 				260A416524DB2CC9003553E7 /* Rubik-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1126,25 +1124,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		26BCB0A4253778D600176274 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "
-";
-		};
-		4CD9880D9975F7410E471349 /* [CP] Embed Pods Frameworks */ = {
+		1089D287C80467B24A4A3E62 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1159,6 +1139,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loggio/Pods-Loggio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2BCD31D462AF71F8ED010438 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4E30EAA4B5A90AF39C90D94B /* [CP] Check Pods Manifest.lock */ = {
@@ -1344,13 +1341,13 @@
 				26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */,
 				265B765A253DD3C00037AC5E /* SignInWithAppleViewModel.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
-				2600932025001E8F00077BCE /* HapticManager.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
 				2623AC4725016BCC002A24A0 /* AppButtonStyle.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
 				AA04A48525195EFF00F85961 /* FeelingsClassifier.swift in Sources */,
 				265B7692253DD4C10037AC5E /* SignInWithAppleView.swift in Sources */,
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
+				E745370D2538C7A3002C58AC /* AppAnalytics.swift in Sources */,
 				26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */,
 				AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */,
 				265B7697253DD5190037AC5E /* SignInWithAppleDelegates.swift in Sources */,
@@ -1543,7 +1540,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.0;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
@@ -1567,7 +1564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.0;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;

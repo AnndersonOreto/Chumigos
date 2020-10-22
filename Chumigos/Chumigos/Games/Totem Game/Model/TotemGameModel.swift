@@ -19,21 +19,24 @@ enum TotemShape: String, CaseIterable {
 
 class TotemGameModel {
     
-    let maxTotemPieces: Int = 5
-    let totemAlternatives: Int = 4
+    private let maxTotemPieces: Int = 5
+    private let totemAlternatives: Int = 4
     
-    //TODO: Da pra usar isso pra trabalhar o esquema de level
-    let numWings = 1
-    
-    private var shapeArray: [TotemShape] = []
-    private var faceArray: [[String]] = []
+    private var difficulty: Difficulty
     private var colorArray: [String] = []
+    private var faceArray: [[String]] = []
+    private var numWings: Int = 0
+    private var shapeArray: [TotemShape] = []
     
     private(set) var totemPieceList: [TotemPiece] = []
     private(set) var totemAlternativeList: [[String]] = []
     private(set) var correctUpTopTotem: [String] = []
     
-    init() {
+    init(difficulty: Difficulty) {
+        self.difficulty = difficulty
+        
+        setNumOfWings()
+        
         faceArray = [["face/big/01", "face/big/02", "face/big/03", "face/big/04", "face/big/05"],
                      ["face/small/01", "face/small/02", "face/small/03", "face/small/04", "face/small/05"]]
         shapeArray = TotemShape.allCases
@@ -44,7 +47,17 @@ class TotemGameModel {
         let response = generateAlternatives(with: totemPieceList)
         totemAlternativeList = response.alternatives
         correctUpTopTotem = response.correctAnswer
-        
+    }
+    
+    func setNumOfWings() {
+        switch difficulty {
+        case .easy:
+            self.numWings = 0
+        case .medium:
+            self.numWings = 1
+        case .hard:
+            self.numWings = Bool.random() ? 1 : 2
+        }
     }
     
     func generateTotem() -> [TotemPiece] {
@@ -113,16 +126,16 @@ class TotemGameModel {
                     }
                 }
             } else {
-                
-                let totemSmallPieceFirstElement: String = totemSmallPieceList[0]
+                guard let totemSmallPieceFirstElement: String = totemSmallPieceList.first else {
+                    return self.generateAlternatives(with: totemPieces)
+                }
                 let totemBigPieceFirstElement: String = totemBigPieceList[0]
                 let smallAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[0] })
-                let bigAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[totemSmallPieceList.count] })
+                let bigAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0.first {$0.contains("big")}! })
                 
-                for index in 0..<smallAlternativeListFirstElements.count {
+                for index in 0..<smallAlternativeListFirstElements.count {   
                     if smallAlternativeListFirstElements[index] == totemSmallPieceFirstElement &&
                         bigAlternativeListFirstElements[index] == totemBigPieceFirstElement {
-                        
                         isElementEqualTo = true
                         break
                     }
@@ -133,7 +146,6 @@ class TotemGameModel {
                 isElementEqualTo = false
                 continue
             }
-            
             totemAlternativeList.append(totemUpTopImageNameList)
             
             index += 1

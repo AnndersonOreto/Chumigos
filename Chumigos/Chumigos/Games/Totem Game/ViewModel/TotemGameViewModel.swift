@@ -11,7 +11,7 @@ import SwiftUI
 
 class TotemGameViewModel: ObservableObject {
     
-    @Published var model: TotemGameModel = TotemGameModel()
+    @Published var model: TotemGameModel
     @Published var selectedUpTopTotem: [String] = []
     
     var difficulty: Difficulty
@@ -23,6 +23,7 @@ class TotemGameViewModel: ObservableObject {
     init(difficulty: Difficulty, game: GameObject) {
         self.difficulty = difficulty
         self.game = game
+        self.model = TotemGameModel(difficulty: difficulty)
     }
     
     // MARK: - Access the model
@@ -45,7 +46,7 @@ class TotemGameViewModel: ObservableObject {
     // MARK: - Reset & Restart
     func resetGame() {
         if gameState == .NORMAL {
-            model = TotemGameModel()
+            model = TotemGameModel(difficulty: difficulty)
         } else {
             if wrongAnswers.isEmpty { return }
             if let first = wrongAnswers.first {
@@ -56,7 +57,7 @@ class TotemGameViewModel: ObservableObject {
     }
     
     func restartGame() {
-        model = TotemGameModel()
+        model = TotemGameModel(difficulty: difficulty)
         gameState = .NORMAL
         gameScore = GameScore()
         selectedUpTopTotem = []
