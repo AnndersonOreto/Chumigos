@@ -55,4 +55,8 @@ extension Color {
     static var progressBar: Color {
         Color("progressBar")
     }
+    
+    static var textFieldColor: Color {
+        Color("textFieldColor")
+    }
 }

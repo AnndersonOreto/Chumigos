@@ -178,6 +178,7 @@ struct ConfigurationView: View {
                             .padding(.horizontal, 1)
                             .padding(.vertical, screenWidth * 0.0065)
                         
+                        #warning("Dynamic type slider")
                         // Dynamic type slider
                         //                        VStack(alignment: .leading) {
                         //

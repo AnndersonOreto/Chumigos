@@ -2,6 +2,7 @@
 //  AppAnalytics.swift
 //  Loggio
 //
+//  Created by Annderson Packeiser Oreto on 14/10/20.
 //  Created by Guilherme Piccoli on 15/10/20.
 //  Copyright © 2020 Chumigos. All rights reserved.
 //

@@ -133,8 +133,7 @@ class TotemGameModel {
                 let smallAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0[0] })
                 let bigAlternativeListFirstElements: [String] = totemAlternativeList.map({ $0.first {$0.contains("big")}! })
                 
-                for index in 0..<smallAlternativeListFirstElements.count {
-                    
+                for index in 0..<smallAlternativeListFirstElements.count {   
                     if smallAlternativeListFirstElements[index] == totemSmallPieceFirstElement &&
                         bigAlternativeListFirstElements[index] == totemBigPieceFirstElement {
                         isElementEqualTo = true

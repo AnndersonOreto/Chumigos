@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         
         FirebaseApp.configure()
+        
+        let title: String = "loggio-launch"
+        
+        Analytics.logEvent(title, parameters: [
+          AnalyticsParameterItemID: "id-\(title)",
+          AnalyticsParameterItemName: title
+        ])
+        
         return true
     }
     

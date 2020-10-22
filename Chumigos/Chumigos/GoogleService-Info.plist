@@ -19,7 +19,7 @@
 	<key>STORAGE_BUCKET</key>
 	<string>loggio-f46bd.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false/> 
 	<key>IS_ANALYTICS_ENABLED</key>
 	<true/>
 	<key>IS_APPINVITE_ENABLED</key>
