@@ -95,16 +95,6 @@ struct SignUpView: View {
                     .buttonStyle(AppButtonStyle(buttonColor: .Humpback, pressedButtonColor: .Whale,
                                                 buttonBackgroundColor: .Narwhal, isButtonEnable: true,
                                                 textColor: .white, width: screenWidth * 0.243))
-                
-                #warning("sign in with apple")
-                Button(action: {
-                    //Sign In
-                }) {
-                    Text("Sign In Apple").dynamicFont(size: 20, weight: .bold)
-                }.buttonStyle(AppButtonStyle(buttonColor: .black, pressedButtonColor: .Whale,
-                                             buttonBackgroundColor: .black, isButtonEnable: true,
-                                             textColor: .white, width: screenWidth * 0.243))
-                
             }.frame(width: screenWidth/2)
                 .sheet(isPresented: $showTOS) {
                     ScrollView {

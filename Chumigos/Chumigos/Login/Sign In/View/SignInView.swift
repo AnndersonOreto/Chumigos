@@ -14,11 +14,12 @@ struct SignInView: View {
     
     @Binding var currentScreen: InitialFlow
     
-    @EnvironmentObject var environmentManager: EnvironmentManager
-    
     @State var emailTextField: String = ""
     @State var passwordTextField: String = ""
     @State var error: String = ""
+    
+    @EnvironmentObject var environmentManager: EnvironmentManager
+
     
     var body: some View {
         VStack {
@@ -49,7 +50,8 @@ struct SignInView: View {
                 //TODO: Funcao de Sign In
                 Button(action: {
                     //Sign In
-                    self.environmentManager.signIn(email: self.emailTextField, password: self.passwordTextField) { (result, error) in
+                    self.environmentManager.signIn(email: self.emailTextField,
+                                                   password: self.passwordTextField) { (result, error) in
                         
                         if let error = error {
                             
@@ -75,13 +77,6 @@ struct SignInView: View {
                         .foregroundColor(Color.xMark)
                     
                 }
-                         
-                SignInWithAppleButton().onTapGesture {
-                    self.environmentManager.startSignInWithAppleFlow()
-                }.frame(width: screenWidth * 0.243718593, height: screenWidth * 0.04)
-                .padding(.vertical, screenWidth * 0.03266331658)
-                
-    
             }.frame(width: screenWidth/2)
             Spacer()
         }.background(Color.background)
