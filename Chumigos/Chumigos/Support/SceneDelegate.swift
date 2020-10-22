@@ -13,9 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let environmentManager: EnvironmentManager = EnvironmentManager()
-    
-    let signInWithAppleManager = SignInWithAppleManager()
-    
+        
     private(set) static var shared: SceneDelegate?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
