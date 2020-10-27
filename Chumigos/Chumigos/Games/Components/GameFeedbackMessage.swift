@@ -24,7 +24,7 @@ struct GameFeedbackMessage: View {
             Rectangle()
                 .fill(Color.feedbackShape)
                 .customRoundedCorners(radius: 42, corners: [.topLeft,  .topRight])
-                .frame(width: screenWidth, height: screenWidth * 0.14)
+                .frame(width: screenWidth, height: screenWidth * 0.15)
                 
                 if feedbackType == .CORRECT {
                     Text("Muito bem!")
