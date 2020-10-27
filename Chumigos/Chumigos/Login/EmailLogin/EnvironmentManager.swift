@@ -34,6 +34,9 @@ class EnvironmentManager: NSObject, ObservableObject {
     // Listener that changes user profile status variable
     var handle: AuthStateDidChangeListenerHandle?
     
+    @Published var signInError: Bool = false
+    @Published var signUpError: String = ""
+    
     // MARK: - Apple Login variables
     
     // Unhashed nonce.
@@ -114,15 +117,6 @@ class EnvironmentManager: NSObject, ObservableObject {
                 self.database.getUserProfile(userUid: self.replaceEmail(email: user.email ?? ""), completion: { profile in
                     
                     self.profile = profile
-                    
-                    #warning("This is just for DEBUG purposes")
-                    if profile != nil {
-                        print(profile.email ?? "COD01: erro de email")
-                        print(profile.id)
-                        print(profile.name)
-                    } else {
-                        print(profile)
-                    }
                 })
             } else {
                 
@@ -141,12 +135,36 @@ class EnvironmentManager: NSObject, ObservableObject {
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
-            if let userResult = user?.user {
-                
-                self.database.saveNewProfile(email: self.replaceEmail(email: email), name: name, userUid: userResult.uid)
+            if let error = error as NSError? {
+                switch AuthErrorCode(rawValue: error.code) {
+                case .operationNotAllowed:
+                    print("Error: \(error.localizedDescription)")
+                // Error: The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section.
+                case .emailAlreadyInUse:
+                    print("Error: \(error.localizedDescription)")
+                    self.signUpError = "Email já está em uso."
+                // Error: The email address is already in use by another account.
+                case .invalidEmail:
+                    print("Error: \(error.localizedDescription)")
+                    self.signUpError = "Verifique se o seu email está escrito corretamente."
+                // Error: The email address is badly formatted.
+                case .weakPassword:
+                    print("Error: \(error.localizedDescription)")
+                    self.signUpError = "Senha muito fraca."
+                // Error: The password must be 6 characters long or more.
+                default:
+                    print("Error: \(error.localizedDescription)")
+                    self.signUpError = error.localizedDescription
+                }
             } else {
                 
-                print(error?.localizedDescription ?? "")
+                if let userResult = user?.user {
+                    
+                    self.database.saveNewProfile(email: self.replaceEmail(email: email), name: name, userUid: userResult.uid)
+                } else {
+                    
+                    print(error?.localizedDescription ?? "")
+                }
             }
         }
     }
@@ -158,7 +176,84 @@ class EnvironmentManager: NSObject, ObservableObject {
     ///   - handler: callback used to sign in user
     func signIn(email: String, password: String, handler: @escaping AuthDataResultCallback) {
         
-        Auth.auth().signIn(withEmail: email, password: password)
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            
+            if let error = error as NSError? {
+                
+                switch AuthErrorCode(rawValue: error.code) {
+                case .operationNotAllowed:
+                    self.signInError = true
+                // Error: Indicates that email and password accounts are not enabled. Enable them in the Auth section of the Firebase console.
+                case .userDisabled:
+                    self.signInError = true
+                // Error: The user account has been disabled by an administrator.
+                case .wrongPassword:
+                    // Error: The password is invalid or the user does not have a password.
+                    self.signInError = true
+                case .invalidEmail:
+                    // Error: Indicates the email address is malformed.
+                    self.signInError = true
+                default:
+                    print("Error: \(error.localizedDescription)")
+                    self.signInError = true
+                }
+            } else {
+                self.signInError = false
+            }
+        }
+    }
+    
+    /// Resets user password.
+    /// - Parameters:
+    ///   - email: user email to send email
+    ///   - handler: callback for error
+    func resetPassword(email: String, handler: @escaping AuthDataResultCallback) {
+        
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if let error = error as? NSError {
+                switch AuthErrorCode(rawValue: error.code) {
+                case .userNotFound:
+                    print("Error message: \(error.localizedDescription)")
+                // Error: The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section.
+                case .invalidEmail:
+                    print("Error message: \(error.localizedDescription)")
+                // Error: The email address is badly formatted.
+                case .invalidRecipientEmail:
+                    print("Error message: \(error.localizedDescription)")
+                // Error: Indicates an invalid recipient email was sent in the request.
+                case .invalidSender:
+                    print("Error message: \(error.localizedDescription)")
+                // Error: Indicates an invalid sender email is set in the console for this action.
+                case .invalidMessagePayload:
+                    print("Error message: \(error.localizedDescription)")
+                // Error: Indicates an invalid email template for sending update email.
+                default:
+                    print("Error message: \(error.localizedDescription)")
+                }
+            } else {
+                print("Reset password email has been successfully sent")
+            }
+        }
+    }
+    
+    func deleteAccount() {
+        
+        Auth.auth().currentUser?.delete(completion: { (error) in
+            if let error = error as? NSError {
+                switch AuthErrorCode(rawValue: error.code) {
+                case .operationNotAllowed:
+                    // Error: The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section.
+                    print("Email/ Password sign in provider is new disabled")
+                case .requiresRecentLogin:
+                    // Error: Updating a user’s password is a security sensitive operation that requires a recent login from the user. This error indicates the user has not signed in recently enough. To resolve, reauthenticate the user by invoking reauthenticateWithCredential:completion: on FIRUser.
+                    print("Updating a user’s password is a security sensitive operation that requires a recent login from the user. This error indicates the user has not signed in recently enough. To resolve, reauthenticate the user by invoking reauthenticateWithCredential:completion: on FIRUser.")
+                default:
+                    print("Error message: \(error.localizedDescription)")
+                }
+            } else {
+                print("User account is deleted successfully")
+            }
+        })
     }
     
     /// Logout a user.
@@ -213,15 +308,43 @@ extension EnvironmentManager: ASAuthorizationControllerDelegate {
             let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
             // Sign in with Firebase.
             Auth.auth().signIn(with: credential) { (authResult, error) in
-                if (error != nil) {
-                    // Error. If error.code == .MissingOrInvalidNonce, make sure
-                    // you're sending the SHA256-hashed nonce as a hex string with
-                    // your request to Apple.
-                    print(error!.localizedDescription)
-                    return
+                if let error = error as NSError? {
+                    
+                    switch AuthErrorCode(rawValue: error.code) {
+                    case .operationNotAllowed:
+                        print("Error: \(error.localizedDescription)")
+                    // Error: Indicates that email and password accounts are not enabled. Enable them in the Auth section of the Firebase console.
+                    case .userDisabled:
+                        print("Error: \(error.localizedDescription)")
+                    // Error: The user account has been disabled by an administrator.
+                    case .wrongPassword:
+                        // Error: The password is invalid or the user does not have a password.
+                        self.signInError = true
+                    case .invalidEmail:
+                        // Error: Indicates the email address is malformed.
+                        self.signInError = true
+                    default:
+                        print("Error: \(error.localizedDescription)")
+                    }
+                } else {
+                    self.signInError = false
                 }
+                
                 // User is signed in to Firebase with Apple.
                 // ...
+                var nameExists: Bool = true
+                self.database.getUserProfile(userUid: self.replaceEmail(email: appleIDCredential.email ?? ""), completion: { profile in
+                    if profile.name.isEmpty {
+                        nameExists = false
+                    }
+                })
+                
+                if !nameExists {
+                    let email = appleIDCredential.email
+                    let name = appleIDCredential.fullName?.givenName
+                    let userUid = self.replaceEmail(email: email ?? "")
+                    self.database.saveNewProfile(email: email ?? "", name: name ?? "", userUid: userUid)
+                }
             }
         }
     }
