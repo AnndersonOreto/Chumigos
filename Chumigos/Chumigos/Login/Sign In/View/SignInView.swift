@@ -33,7 +33,7 @@ struct SignInView: View {
                 }) {
                     Image(systemName: "xmark")
                         .dynamicFont(name: "Rubik", size: 34, weight: .bold)
-                        .foregroundColor(.xMark)
+                        .foregroundColor(.Humpback)
                 }.buttonStyle(PlainButtonStyle())
                     .padding(.top, screenWidth * 0.023)
                     .padding(.leading, -(screenWidth * 0.23))
@@ -45,7 +45,7 @@ struct SignInView: View {
                 VStack {
                     CustomText("Entrar")
                         .dynamicFont(size: 30, weight: .bold)
-                        .foregroundColor(Color.textColor)
+                        .foregroundColor(Color.Eel)
                         .padding(.bottom, self.keyboardOffSet != CGFloat.zero ? screenWidth * 0.03266331658 : screenWidth * 0.05)
                         .padding(.top, self.keyboardOffSet != CGFloat.zero ? screenWidth * 0.0462 : 0)
                     
@@ -83,7 +83,7 @@ struct SignInView: View {
                     }) {
                         CustomText("Esqueceu a senha?")
                             .dynamicFont(size: 18, weight: .regular)
-                            .foregroundColor(Color.xMark)
+                            .foregroundColor(Color.Humpback)
                         
                     }
                 }.frame(width: screenWidth/2)
@@ -105,6 +105,6 @@ struct SignInView: View {
                 }
             }
         }
-        .background(Color.background)
+        .background(Color.Ghost)
     }
 }

@@ -14,12 +14,19 @@ struct CustomTextField: View {
     @Binding var text: String
     
     var body: some View {
-        TextField(placeholder, text: $text)
+        //i did this way to not change the color of the placeholder
+        ZStack(alignment: .leading) {
+            if text.isEmpty {
+                Text(placeholder).foregroundColor(.Wolf)
+                .padding(10)
+                .padding(.leading, 20)
+                .dynamicFont(size: 18, weight: .regular)
+            }
+            TextField("", text: $text)
             .padding(10)
             .padding(.leading, 20)
             .dynamicFont(size: 18, weight: .regular)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color.textFieldColor))
-            .foregroundColor(Color.textColor)
+            .foregroundColor(Color.Wolf)
+        }.background(RoundedRectangle(cornerRadius: 10).fill(Color.Swan))
     }
 }
-

@@ -42,6 +42,7 @@ struct SignUpView: View {
     var body: some View {
         
         ZStack {
+            Color.Ghost
             //i separated this button so it doesn't go up anymore with the view
             VStack {
                 Button(action: {
@@ -49,7 +50,7 @@ struct SignUpView: View {
                 }) {
                     Image(systemName: "xmark")
                         .dynamicFont(name: "Rubik", size: 34, weight: .bold)
-                        .foregroundColor(.xMark)
+                        .foregroundColor(.Humpback)
                 }.buttonStyle(PlainButtonStyle())
                     .padding(.top, screenWidth * 0.023)
                     .padding(.leading, -(screenWidth * 0.23))
@@ -64,7 +65,7 @@ struct SignUpView: View {
                 VStack {
                     CustomText("Inscrever-se")
                         .dynamicFont(size: 30, weight: .bold)
-                        .foregroundColor(Color.textColor)
+                        .foregroundColor(Color.Eel)
                         .padding(.bottom, self.keyboardOffSet != CGFloat.zero ? 0 : screenWidth * 0.05)
                         .padding(.top, self.keyboardOffSet != CGFloat.zero ? screenWidth * 0.0462 : 0)
                     
