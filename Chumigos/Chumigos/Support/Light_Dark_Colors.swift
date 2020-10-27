@@ -33,7 +33,7 @@ extension Color {
     }
     
     static var descriptionTextColor: Color {
-        Color("descriptionTextColor")
+        Color("DescriptionTextColor")
     }
     
     static var textColor: Color {
