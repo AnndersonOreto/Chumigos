@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 // Not using this class yet!
 class User {
