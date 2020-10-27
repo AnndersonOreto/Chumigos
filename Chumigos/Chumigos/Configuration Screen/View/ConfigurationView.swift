@@ -57,11 +57,9 @@ struct ConfigurationView: View {
                             AppAnalytics.shared.logEvent(of: .launchAvatarScreen)
                             self.showAvatarSelection.toggle()
                         }) {
-                            Text("Mudar Avatar")
-                                .font(.custom(fontName, size: screenWidth * 0.016))
+                            CustomText("Mudar Avatar")
+                                .dynamicFont(size: screenWidth * 0.016, weight: .medium)
                                 .foregroundColor(.Humpback)
-                                .fontWeight(.medium)
-                                .tracking(1)
                         }.sheet(isPresented: $showAvatarSelection) {
                             withAnimation {
                                 AvatarSelectionView(closeModalAction: {
@@ -82,19 +80,15 @@ struct ConfigurationView: View {
                     // Config label
                     VStack(alignment: .leading) {
                         
-                        Text("Configurações")
-                            .font(.custom(fontName, size: screenWidth * 0.023))
+                        CustomText("Configurações")
+                            .dynamicFont(size: screenWidth * 0.023, weight: .medium)
                             .foregroundColor(.textColor)
-                            .fontWeight(.medium)
-                            .tracking(1)
                         
                         // Switch notification
                         Toggle(isOn: self.toggleNotificationValue()) {
-                            Text("Notificações")
-                                .font(.custom(fontName, size: screenWidth * 0.015))
+                            CustomText("Notificações")
+                                .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                 .foregroundColor(.textColor)
-                                .tracking(1)
-                                .fontWeight(.medium)
                         }
                         .padding(.horizontal, screenWidth * 0.02)
                         .padding(.vertical, screenWidth * 0.008)
@@ -108,11 +102,9 @@ struct ConfigurationView: View {
                         // Switch theme
                         VStack(alignment: .leading) {
                             
-                            Text("Tema")
-                                .font(.custom(fontName, size: screenWidth * 0.015))
+                            CustomText("Tema")
+                                .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                 .foregroundColor(.textColor)
-                                .fontWeight(.medium)
-                                .kerning(1)
                                 .padding(.horizontal, screenWidth * 0.02)
                                 .padding(.top, screenWidth * 0.008)
                             
@@ -120,24 +112,21 @@ struct ConfigurationView: View {
                             
                             Toggle(isOn: toggleSystemThemePreference()) {
                                 
-                                Text("Preferências do Dispositivo")
-                                    .font(.custom(fontName, size: screenWidth * 0.015))
+                                CustomText("Preferências do Dispositivo")
+                                    .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                     .foregroundColor(.textColor)
-                                    .kerning(1)
-                                    .fontWeight(.medium)
+                                
                             }.padding(.horizontal, screenWidth * 0.02)
-                                .padding(.vertical, screenWidth * 0.008)
-                                .onAppear {
-                                    UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
+                            .padding(.vertical, screenWidth * 0.008)
+                            .onAppear {
+                                UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                             }
                             
                             Toggle(isOn: toggleDarkModeValue()) {
                                 
-                                Text("Dark Mode")
-                                    .font(.custom(fontName, size: screenWidth * 0.015))
+                                CustomText("Dark Mode")
+                                    .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                     .foregroundColor(.textColor)
-                                    .fontWeight(.medium)
-                                    .kerning(1)
                             }
                             .padding(.horizontal, screenWidth * 0.02)
                             .padding(.vertical, screenWidth * 0.008)
@@ -195,11 +184,9 @@ struct ConfigurationView: View {
                     Button(action: {
                         
                     }) {
-                        Text("Sair")
-                            .font(.custom(fontName, size: screenWidth * 0.016))
+                        CustomText("Sair")
+                            .dynamicFont(size: screenWidth * 0.016, weight: .medium)
                             .foregroundColor(.Ghost)
-                            .fontWeight(.medium)
-                            .kerning(1)
                     }.buttonStyle(
                         AppButtonStyle(buttonColor: .Cardinal, pressedButtonColor: .Crab,
                                        buttonBackgroundColor: .FireAnt, isButtonEnable: true,
@@ -210,13 +197,11 @@ struct ConfigurationView: View {
                     Button(action: {
                         
                     }) {
-                        Text("Termos de Serviço")
-                            .font(.custom(fontName, size: screenWidth * 0.016))
+                        CustomText("Termos de Serviço")
+                            .dynamicFont(size: screenWidth * 0.016, weight: .medium)
                             .foregroundColor(.Humpback)
-                            .fontWeight(.medium)
-                            .kerning(1)
                     }.padding(.top, screenWidth * 0.03)
-                        .padding(.bottom, screenWidth * 0.03)
+                    .padding(.bottom, screenWidth * 0.03)
                 }
                 
             }.onAppear(perform: {
