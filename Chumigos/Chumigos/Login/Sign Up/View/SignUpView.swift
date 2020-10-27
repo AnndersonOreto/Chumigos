@@ -72,7 +72,7 @@ struct SignUpView: View {
                     VStack(spacing: screenWidth * 0.01423785595) {
                         CustomTextField(placeholder: "E-mail", text: $emailTextField)
                         CustomTextField(placeholder: "Nome Completo", text: $fullNameTextField)
-                        CustomTextField(placeholder: "Senha", text: $passwordTextField)
+                        CustomPasswordField(placeholder: "Senha", text: $passwordTextField)
                     }.frame(width: screenWidth * 0.3433835846)
                     
                     HStack(spacing: 0) {

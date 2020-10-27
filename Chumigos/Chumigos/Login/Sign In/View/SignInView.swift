@@ -51,7 +51,7 @@ struct SignInView: View {
                     
                     VStack(spacing: screenWidth * 0.01423785595) {
                         CustomTextField(placeholder: "E-mail", text: $emailTextField)
-                        CustomTextField(placeholder: "Senha", text: $passwordTextField)
+                        CustomPasswordField(placeholder: "Senha", text: $passwordTextField)
                     }.frame(width: screenWidth * 0.3433835846)
                     
                     //TODO: Funcao de Sign In
