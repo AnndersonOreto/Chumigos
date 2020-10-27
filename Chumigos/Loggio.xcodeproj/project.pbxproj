@@ -754,7 +754,7 @@
 		AB855F1324F4340700C5A739 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				E751219D24FE08470042FC00 /* Profile */,
+				E751219D24FE08470042FC00 /* Avatar Selection */,
 				AB855F1424F4341400C5A739 /* User.swift */,
 			);
 			path = User;
@@ -833,12 +833,12 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		E751219D24FE08470042FC00 /* Profile */ = {
+		E751219D24FE08470042FC00 /* Avatar Selection */ = {
 			isa = PBXGroup;
 			children = (
 				E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */,
 			);
-			path = Profile;
+			path = "Avatar Selection";
 			sourceTree = "<group>";
 		};
 		E7712CA324F42F0B00B4191C /* Models */ = {

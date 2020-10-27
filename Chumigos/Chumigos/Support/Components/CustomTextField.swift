@@ -22,4 +22,3 @@ struct CustomTextField: View {
             .foregroundColor(Color.textColor)
     }
 }
-

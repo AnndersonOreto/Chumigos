@@ -12,13 +12,15 @@ import Combine
 struct ConfigurationView: View {
     
     @Environment(\.colorScheme) var colorScheme
+    
     // MARK: - CoreData variables
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var result: FetchedResults<UserData>
     @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     @State var avatarImageName: String = "Avatar 1"
     @State private var showAvatarSelection = false
-    
+        
     var notificationManager = NotificationManager()
     
     @ObservedObject var viewModel: ConfigurationViewModel = ConfigurationViewModel()
@@ -55,11 +57,9 @@ struct ConfigurationView: View {
                             AppAnalytics.shared.logEvent(of: .launchAvatarScreen)
                             self.showAvatarSelection.toggle()
                         }) {
-                            Text("Mudar Avatar")
-                                .font(.custom(fontName, size: screenWidth * 0.016))
+                            CustomText("Mudar Avatar")
+                                .dynamicFont(size: screenWidth * 0.016, weight: .medium)
                                 .foregroundColor(.Humpback)
-                                .fontWeight(.medium)
-                                .tracking(1)
                         }.sheet(isPresented: $showAvatarSelection) {
                             withAnimation {
                                 AvatarSelectionView(closeModalAction: {
@@ -69,60 +69,26 @@ struct ConfigurationView: View {
                             }
                         }
                     }.padding(.top, screenWidth * 0.04)
-                    .padding(.bottom, screenWidth * 0.05)
+                        .padding(.bottom, screenWidth * 0.05)
                     
                     // My Profile
                     VStack(alignment: .leading) {
-                        
-                        // My profile
-                        Text("Meu Perfil")
-                            .font(.custom(fontName, size: screenWidth * 0.023))
-                            .foregroundColor(.textColor)
-                            .fontWeight(.medium)
-                            .tracking(1)
-                        
-                        // My profile description
-                        Text("Em breve você poderá se cadastrar na plataforma e ter acesso às configurações de perfil.")
-                            .font(.custom(fontName, size: screenWidth * 0.015))
-                            .foregroundColor(.descriptionTextColor)
-                            .fontWeight(.medium)
-                            .tracking(1)
-                            .padding(.top, screenWidth * 0.013)
-                            .padding(.bottom, screenWidth * 0.0065)
-                        
-                        // Register button
-                        Button(action: {
-                            
-                        }) {
-                            Text("Cadastrar-se")
-                                .font(.custom(fontName, size: screenWidth * 0.016))
-                                .foregroundColor(.Hare)
-                                .fontWeight(.medium)
-                                .tracking(1)
-                        }.buttonStyle(
-                            AppButtonStyle(buttonColor: .Swan, pressedButtonColor: .Swan,
-                                           buttonBackgroundColor: .Hare, isButtonEnable: false,
-                                           textColor: .Ghost, width: screenWidth * 0.39)
-                        )
+                        headerConfigView()
                     }.frame(width: screenWidth * 0.39)
-                    .padding(.bottom, screenWidth * 0.015)
+                        .padding(.bottom, screenWidth * 0.015)
                     
                     // Config label
                     VStack(alignment: .leading) {
                         
-                        Text("Configurações")
-                            .font(.custom(fontName, size: screenWidth * 0.023))
+                        CustomText("Configurações")
+                            .dynamicFont(size: screenWidth * 0.023, weight: .medium)
                             .foregroundColor(.textColor)
-                            .fontWeight(.medium)
-                            .tracking(1)
                         
                         // Switch notification
                         Toggle(isOn: self.toggleNotificationValue()) {
-                            Text("Notificações")
-                                .font(.custom(fontName, size: screenWidth * 0.015))
+                            CustomText("Notificações")
+                                .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                 .foregroundColor(.textColor)
-                                .tracking(1)
-                                .fontWeight(.medium)
                         }
                         .padding(.horizontal, screenWidth * 0.02)
                         .padding(.vertical, screenWidth * 0.008)
@@ -136,11 +102,9 @@ struct ConfigurationView: View {
                         // Switch theme
                         VStack(alignment: .leading) {
                             
-                            Text("Tema")
-                                .font(.custom(fontName, size: screenWidth * 0.015))
+                            CustomText("Tema")
+                                .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                 .foregroundColor(.textColor)
-                                .fontWeight(.medium)
-                                .kerning(1)
                                 .padding(.horizontal, screenWidth * 0.02)
                                 .padding(.top, screenWidth * 0.008)
                             
@@ -148,24 +112,21 @@ struct ConfigurationView: View {
                             
                             Toggle(isOn: toggleSystemThemePreference()) {
                                 
-                                Text("Preferências do Dispositivo")
-                                    .font(.custom(fontName, size: screenWidth * 0.015))
+                                CustomText("Preferências do Dispositivo")
+                                    .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                     .foregroundColor(.textColor)
-                                    .kerning(1)
-                                    .fontWeight(.medium)
+                                
                             }.padding(.horizontal, screenWidth * 0.02)
-                                .padding(.vertical, screenWidth * 0.008)
-                                .onAppear {
-                                    UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
+                            .padding(.vertical, screenWidth * 0.008)
+                            .onAppear {
+                                UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                             }
                             
                             Toggle(isOn: toggleDarkModeValue()) {
                                 
-                                Text("Dark Mode")
-                                    .font(.custom(fontName, size: screenWidth * 0.015))
+                                CustomText("Dark Mode")
+                                    .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                     .foregroundColor(.textColor)
-                                    .fontWeight(.medium)
-                                    .kerning(1)
                             }
                             .padding(.horizontal, screenWidth * 0.02)
                             .padding(.vertical, screenWidth * 0.008)
@@ -218,16 +179,14 @@ struct ConfigurationView: View {
                         //                    }.frame(width: screenWidth * 0.39)
                         //                    .padding(.bottom, screenWidth * 0.02)
                     }.frame(width: screenWidth * 0.39)
-                    .padding(.bottom, screenWidth * 0.02)
+                        .padding(.bottom, screenWidth * 0.02)
                     // Logout button
                     Button(action: {
                         
                     }) {
-                        Text("Sair")
-                            .font(.custom(fontName, size: screenWidth * 0.016))
+                        CustomText("Sair")
+                            .dynamicFont(size: screenWidth * 0.016, weight: .medium)
                             .foregroundColor(.Ghost)
-                            .fontWeight(.medium)
-                            .kerning(1)
                     }.buttonStyle(
                         AppButtonStyle(buttonColor: .Cardinal, pressedButtonColor: .Crab,
                                        buttonBackgroundColor: .FireAnt, isButtonEnable: true,
@@ -238,13 +197,11 @@ struct ConfigurationView: View {
                     Button(action: {
                         
                     }) {
-                        Text("Termos de Serviço")
-                            .font(.custom(fontName, size: screenWidth * 0.016))
+                        CustomText("Termos de Serviço")
+                            .dynamicFont(size: screenWidth * 0.016, weight: .medium)
                             .foregroundColor(.Humpback)
-                            .fontWeight(.medium)
-                            .kerning(1)
                     }.padding(.top, screenWidth * 0.03)
-                        .padding(.bottom, screenWidth * 0.03)
+                    .padding(.bottom, screenWidth * 0.03)
                 }
                 
             }.onAppear(perform: {
@@ -254,6 +211,92 @@ struct ConfigurationView: View {
         }.frame(width: screenWidth * 0.4)
             .navigationBarTitle("")
             .navigationBarHidden(true)
+    }
+    
+    func headerConfigView() -> some View {
+        return (
+            Group {
+                
+                CustomText("Meu Perfil")
+                    .dynamicFont(size: screenWidth * 0.023, weight: .medium)
+                    .foregroundColor(.textColor)
+                    .padding(.bottom, screenWidth * 0.014)
+                
+                //User not logged
+                if !User.shared.isLogged {
+                    CustomText("Para ter acesso às configurações de perfil, é necessário realizar login ou cadastrar-se no aplicativo")
+                        .dynamicFont(size: screenWidth * 0.015, weight: .medium)
+                        .foregroundColor(.descriptionTextColor)
+                        .padding(.top, screenWidth * 0.013)
+                        .padding(.bottom, screenWidth * 0.0075)
+                    
+                    // Register button
+                    Button(action: {
+                        withAnimation(.easeInOut) {
+                            self.environmentManager.logout()
+                        }
+                    }) {
+                        CustomText("Cadastrar-se")
+                            .dynamicFont(size: screenWidth * 0.016, weight: .medium)
+                    }.buttonStyle(
+                        AppButtonStyle(buttonColor: .Owl, pressedButtonColor: .Turtle,
+                                       buttonBackgroundColor: .TreeFrog, isButtonEnable: true,
+                                       textColor: .Ghost, width: screenWidth * 0.39)
+                    )
+                // User is logged
+                } else {
+                    VStack(spacing: screenWidth * 0.0135) {
+                        HStack {
+                            CustomText("Nome")
+                                .dynamicFont(size: screenWidth * 0.015 , weight: .medium)
+                                .foregroundColor(.Humpback)
+                                .padding(.trailing, screenWidth * 0.041)
+                            CustomText(User.shared.name)
+                                .dynamicFont(size: screenWidth * 0.015 , weight: .medium)
+                                .foregroundColor(.textColor)
+        
+                            Spacer()
+                            
+                        }.padding(.horizontal, screenWidth * 0.02)
+                        .padding(.vertical, screenWidth * 0.008)
+                        .background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
+                        .stroke(Color.Humpback, lineWidth: 2)
+                        .background(Color.popUpBackground))
+                        .padding(.horizontal, 1)
+
+                        HStack {
+                            CustomText("E-mail")
+                                .dynamicFont(size: screenWidth * 0.015 , weight: .medium)
+                                .foregroundColor(.Humpback)
+                                .padding(.trailing, screenWidth * 0.035)
+                            CustomText(User.shared.email)
+                                .dynamicFont(size: screenWidth * 0.015 , weight: .medium)
+                                .foregroundColor(.textColor)
+                            
+                            Spacer()
+                            
+                        }.padding(.horizontal, screenWidth * 0.02)
+                        .padding(.vertical, screenWidth * 0.008)
+                        .background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
+                        .stroke(Color.Humpback, lineWidth: 2)
+                        .background(Color.popUpBackground))
+                        .padding(.horizontal, 1)
+
+                        // Register button
+                        Button(action: {
+                            
+                        }) {
+                            CustomText("Alterar Senha")
+                                .dynamicFont(size: screenWidth * 0.016, weight: .medium)
+                        }.buttonStyle(
+                            AppButtonStyle(buttonColor: .Humpback, pressedButtonColor: .Whale,
+                                           buttonBackgroundColor: .Narwhal, isButtonEnable: true,
+                                           textColor: .Ghost, width: screenWidth * 0.39)
+                        )
+                    }.frame(width: screenWidth * 0.39)
+                }
+            }
+        )
     }
     
     // MARK: - View Functions
@@ -293,7 +336,6 @@ struct ConfigurationView: View {
                 UserDefaults.standard.bool(forKey: "loggio_notification")
         },
             set: {
-                //TODO
                 if !$0 {
                     self.isAlert = false
                     UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
