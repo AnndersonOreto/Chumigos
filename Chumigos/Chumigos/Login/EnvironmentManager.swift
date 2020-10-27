@@ -15,7 +15,6 @@ import CryptoKit
 
 class EnvironmentManager: NSObject, ObservableObject {
     
-    
     // MARK: - Database variables
     
     private var database = DatabaseManager()
