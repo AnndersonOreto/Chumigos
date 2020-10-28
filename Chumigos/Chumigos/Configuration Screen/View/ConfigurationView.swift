@@ -45,81 +45,52 @@ struct ConfigurationView: View {
                 // Stack to increase scrollView width
                 HStack {
                     Spacer()
-                    // Vertical configuration stack
                     VStack {
-                        // Avatar image
-                        Image(avatarImageName)
-                            .resizable()
-                            .frame(width: screenWidth * 0.108, height: screenWidth * 0.108, alignment: .center)
-                            .padding(.bottom, screenWidth * 0.008)
-                        
-                        // Avatar change button
-                        Button(action: {
-                            AppAnalytics.shared.logEvent(of: .launchAvatarScreen)
-                            self.showAvatarSelection.toggle()
-                        }) {
-                            CustomText("Mudar Avatar")
-                                .dynamicFont(size: screenWidth * 0.016, weight: .medium)
-                                .foregroundColor(.Humpback)
-                        }.sheet(isPresented: $showAvatarSelection) {
-                            withAnimation {
-                                AvatarSelectionView(closeModalAction: {
-                                    self.showAvatarSelection = false
-                                    self.saveAvatar()
-                                }, avatarSelected: self.$avatarImageName)
+                        // Vertical configuration stack
+                        VStack {
+                            // Avatar image
+                            Image(avatarImageName)
+                                .resizable()
+                                .frame(width: screenWidth * 0.108, height: screenWidth * 0.108, alignment: .center)
+                                .padding(.bottom, screenWidth * 0.008)
+                            
+                            // Avatar change button
+                            Button(action: {
+                                AppAnalytics.shared.logEvent(of: .launchAvatarScreen)
+                                self.showAvatarSelection.toggle()
+                            }) {
+                                CustomText("Mudar Avatar")
+                                    .dynamicFont(size: screenWidth * 0.016, weight: .medium)
+                                    .foregroundColor(.Humpback)
+                            }.sheet(isPresented: $showAvatarSelection) {
+                                withAnimation {
+                                    AvatarSelectionView(closeModalAction: {
+                                        self.showAvatarSelection = false
+                                        self.saveAvatar()
+                                    }, avatarSelected: self.$avatarImageName)
+                                }
                             }
-                        }
-                    }.padding(.top, screenWidth * 0.04)
-                        .padding(.bottom, screenWidth * 0.05)
-                    
-                    // My Profile
-                    VStack(alignment: .leading) {
-                        headerConfigView()
-                    }.frame(width: screenWidth * 0.39)
-                        .padding(.bottom, screenWidth * 0.015)
-                    
-                    // Config label
-                    VStack(alignment: .leading) {
+                        }.padding(.top, screenWidth * 0.04)
+                            .padding(.bottom, screenWidth * 0.05)
                         
-                        CustomText("Configurações")
-                            .dynamicFont(size: screenWidth * 0.023, weight: .medium)
-                            .foregroundColor(.textColor)
-                        
-                        // Switch notification
-                        Toggle(isOn: self.toggleNotificationValue()) {
-                            CustomText("Notificações")
-                                .dynamicFont(size: screenWidth * 0.015, weight: .medium)
-                                .foregroundColor(.textColor)
-                        }
-                        .padding(.horizontal, screenWidth * 0.02)
-                        .padding(.vertical, screenWidth * 0.008)
-                        .background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
-                        .stroke(Color.Humpback, lineWidth: 2)
-                        .background(Color.popUpBackground))
-                        .onAppear {
-                            UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
-                        }.padding(.horizontal, 1)
+                        // My Profile
+                        VStack(alignment: .leading) {
+                            headerConfigView()
+                        }.frame(width: screenWidth * 0.39)
+                            .padding(.bottom, screenWidth * 0.015)
                         
                         // Config label
                         VStack(alignment: .leading) {
-                            CustomText("Tema")
-                                .dynamicFont(size: screenWidth * 0.015, weight: .medium)
+                            
+                            CustomText("Configurações")
+                                .dynamicFont(size: screenWidth * 0.023, weight: .medium)
                                 .foregroundColor(.textColor)
-                                .padding(.horizontal, screenWidth * 0.02)
-                                .padding(.top, screenWidth * 0.008)
                             
-                            CustomDivider(color: Color.Humpback, width: 2)
-                            
-                            Toggle(isOn: toggleSystemThemePreference()) {
-                                
-                                CustomText("Preferências do Dispositivo")
+                            // Switch notification
+                            Toggle(isOn: self.toggleNotificationValue()) {
+                                CustomText("Notificações")
                                     .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                     .foregroundColor(.textColor)
-                                
-                            }.padding(.horizontal, screenWidth * 0.02)
-                            .padding(.vertical, screenWidth * 0.008)
-                            .onAppear {
-                                UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                             }
                             .padding(.horizontal, screenWidth * 0.02)
                             .padding(.vertical, screenWidth * 0.008)
@@ -130,87 +101,73 @@ struct ConfigurationView: View {
                                 UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                             }.padding(.horizontal, 1)
                             
-                            // Switch theme
+                            // Config label
                             VStack(alignment: .leading) {
-                                
-                                CustomText("Dark Mode")
+                                CustomText("Tema")
                                     .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                     .foregroundColor(.textColor)
-                            }
-                            .padding(.horizontal, screenWidth * 0.02)
-                            .padding(.vertical, screenWidth * 0.008)
-                            .onAppear {
-                                UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
-                            }
-                        }.background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
-                            .stroke(Color.Humpback, lineWidth: 2)
-                            .background(Color.popUpBackground))
-                            .padding(.horizontal, 1)
-                            .padding(.vertical, screenWidth * 0.0065)
+                                    .padding(.horizontal, screenWidth * 0.02)
+                                    .padding(.top, screenWidth * 0.008)
+                                
+                                CustomDivider(color: Color.Humpback, width: 2)
+                                
+                                Toggle(isOn: toggleSystemThemePreference()) {
+                                    
+                                    CustomText("Preferências do Dispositivo")
+                                        .dynamicFont(size: screenWidth * 0.015, weight: .medium)
+                                        .foregroundColor(.textColor)
+                                    
+                                }.padding(.horizontal, screenWidth * 0.02)
+                                    .padding(.vertical, screenWidth * 0.008)
+                                    .onAppear {
+                                        UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
+                                }
+                                
+                                // Switch theme
+                                Toggle(isOn: toggleDarkModeValue()) {
+                                    
+                                    CustomText("Dark Mode")
+                                        .dynamicFont(size: screenWidth * 0.015, weight: .medium)
+                                        .foregroundColor(.textColor)
+                                }
+                                .padding(.horizontal, screenWidth * 0.02)
+                                .padding(.vertical, screenWidth * 0.008)
+                                .onAppear {
+                                    UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
+                                }
+                            }.background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
+                                .stroke(Color.Humpback, lineWidth: 2)
+                                .background(Color.popUpBackground))
+                                .padding(.horizontal, 1)
+                                .padding(.vertical, screenWidth * 0.0065)
+                        }.frame(width: screenWidth * 0.39)
+                            .padding(.bottom, screenWidth * 0.02)
                         
-                        #warning("Dynamic type slider")
-                        // Dynamic type slider
-                        //                        VStack(alignment: .leading) {
-                        //
-                        //                            Text("Dynamic Type")
-                        //                                .font(.custom(fontName, size: screenWidth * 0.015))
-                        //                                .foregroundColor(.textColor)
-                        //                                .fontWeight(.medium)
-                        //                                .kerning(1)
-                        //                                .padding(.horizontal, screenWidth * 0.02)
-                        //                                .padding(.top, screenWidth * 0.008)
-                        //
-                        //                            CustomDivider(color: Color.Humpback, width: 2)
-                        //
-                        //                            HStack {
-                        //                                Text("A").font(.custom(fontName, size: 14))                                .fontWeight(.medium)
-                        //                                    .foregroundColor(.textColor)
-                        //                                Spacer()
-                        //                                Text("A").font(.custom(fontName, size: 18))                                .fontWeight(.medium)
-                        //                                    .foregroundColor(.textColor)
-                        //                                    .padding(.leading, screenWidth * 0.0075)
-                        //                                Spacer()
-                        //                                Text("A").font(.custom(fontName, size: 26))                                .fontWeight(.medium)
-                        //                                    .foregroundColor(.textColor)
-                        //                            }.padding(.horizontal, screenWidth * 0.02)
-                        //                                .padding(.top, screenWidth * 0.008)
-                        //                                .padding(.bottom, -(screenWidth * 0.01))
-                        //
-                        //                            Slider(value: self.$sliderDynamicType, in: 0...100, step: 50.0)
-                        //                                .padding(.horizontal, screenWidth * 0.02)
-                        //                                .padding(.bottom, screenWidth * 0.008)
-                        //
-                        //                        }.background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
-                        //                            .stroke(Color.Humpback, lineWidth: 2)
-                        //                            .background(Color.popUpBackground))
-                        //                            .padding(.horizontal, 1)
-                        //
-                        //                    }.frame(width: screenWidth * 0.39)
-                        //                    .padding(.bottom, screenWidth * 0.02)
-                    }.frame(width: screenWidth * 0.39)
-                        .padding(.bottom, screenWidth * 0.02)
-                    // Logout button
-                    Button(action: {
+                        // Logout button
+                        Button(action: {
+                            self.environmentManager.logout()
+                        }) {
+                            CustomText("Sair")
+                                .dynamicFont(size: screenWidth * 0.016, weight: .medium)
+                                .foregroundColor(.Ghost)
+                        }.buttonStyle(
+                            AppButtonStyle(buttonColor: .Cardinal, pressedButtonColor: .Crab,
+                                           buttonBackgroundColor: .FireAnt, isButtonEnable: true,
+                                           textColor: .Ghost, width: screenWidth * 0.39)
+                        )
                         
-                    }) {
-                        CustomText("Sair")
-                            .dynamicFont(size: screenWidth * 0.016, weight: .medium)
-                            .foregroundColor(.Ghost)
-                    }.buttonStyle(
-                        AppButtonStyle(buttonColor: .Cardinal, pressedButtonColor: .Crab,
-                                       buttonBackgroundColor: .FireAnt, isButtonEnable: true,
-                                       textColor: .Ghost, width: screenWidth * 0.39)
-                    )
+                        // Service terms button
+                        Button(action: {
+                            // TODO: show terms of service
+                        }) {
+                            CustomText("Termos de Serviço")
+                                .dynamicFont(size: screenWidth * 0.016, weight: .medium)
+                                .foregroundColor(.Humpback)
+                        }.padding(.top, screenWidth * 0.03)
+                            .padding(.bottom, screenWidth * 0.03)
+                    }
                     
-                    // Service terms button
-                    Button(action: {
-                        
-                    }) {
-                        CustomText("Termos de Serviço")
-                            .dynamicFont(size: screenWidth * 0.016, weight: .medium)
-                            .foregroundColor(.Humpback)
-                    }.padding(.top, screenWidth * 0.03)
-                    .padding(.bottom, screenWidth * 0.03)
+                    Spacer()
                 }
             }.onAppear(perform: {
                 self.setAvatarName()
@@ -292,7 +249,7 @@ struct ConfigurationView: View {
 
                         // Register button
                         Button(action: {
-                            
+                            // TODO: change password
                         }) {
                             CustomText("Alterar Senha")
                                 .dynamicFont(size: screenWidth * 0.016, weight: .medium)

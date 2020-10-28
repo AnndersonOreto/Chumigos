@@ -65,7 +65,6 @@ class CoreDataService {
         do {
             let result = try self.persistentContainer.viewContext.fetch(request)
             let decodedResult = decode(result: result)
-            
             return decodedResult
         } catch {
             fatalError("Não conseguiu fazer request!")
