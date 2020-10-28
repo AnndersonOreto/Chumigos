@@ -28,6 +28,8 @@ struct InitialScreen: View {
             switchViews()
         
         }.edgesIgnoringSafeArea(.all)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
     
     func switchViews() -> AnyView {

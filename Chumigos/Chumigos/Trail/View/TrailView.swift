@@ -20,7 +20,7 @@ struct TrailView: View {
     // MARK: - View
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             ZStack {
                 Color.background.edgesIgnoringSafeArea(.all)
                 VStack {
@@ -53,6 +53,6 @@ struct TrailView: View {
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
-        }.navigationViewStyle(StackNavigationViewStyle())
+//        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

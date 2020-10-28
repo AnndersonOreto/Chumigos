@@ -32,21 +32,30 @@ struct SplashScreen: View {
     //Timer to change current image over time
     let timer = Timer.publish(every: 0.04, on: .main, in: .common).autoconnect()
     
+    @State var goToMain = false
+    
     var body: some View {
-        ZStack {
-            Color.Macaw
-            //Animation image
-            Image(splashImages[imageIndex])
-            .scaledToFill()
-            .onReceive(timer) { _ in
-                if self.imageIndex < self.splashImages.count-1 {
-                    //Changing current image
-                    self.imageIndex += 1
-                } else {
-                    //Ja da pra trocar de tela aqui
+        NavigationView {
+            ZStack {
+                NavigationLink("", destination: MainView(), isActive: $goToMain)
+                Color.Macaw
+                //Animation image
+                Image(splashImages[imageIndex])
+                .scaledToFill()
+                .onReceive(timer) { _ in
+                    if self.imageIndex < self.splashImages.count-1 {
+                        //Changing current image
+                        self.imageIndex += 1
+                    } else {
+                        //Ja da pra trocar de tela aqui
+                        print("Acabou o timer")
+                        self.timer.upstream.connect().cancel()
+                        
+                        self.goToMain = true
+                    }
                 }
-            }
-        }.edgesIgnoringSafeArea(.all)
+            }.edgesIgnoringSafeArea(.all)
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     func generateSplashArray() {

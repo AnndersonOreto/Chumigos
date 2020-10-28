@@ -15,7 +15,7 @@ struct TestColorCarousel: View {
     //Every 7 seconds tells the view to change the color
     let timer = Timer.publish(every: 7, on: .main, in: .common).autoconnect()
     
-    @State var currentColor: Color = Color.clear
+    @State var currentColor: Color = .Beetle
     
     var body: some View {
         
