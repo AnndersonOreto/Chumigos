@@ -51,8 +51,14 @@ struct SignInView: View {
                     
                     VStack(spacing: screenWidth * 0.01423785595) {
                         CustomTextField(placeholder: "E-mail", text: $emailTextField)
+                        .overlay(self.environmentManager.signInError ? RoundedRectangle(cornerRadius: 10).stroke(Color.red, lineWidth: 3) : nil)
                         CustomPasswordField(placeholder: "Senha", text: $passwordTextField)
+                        .overlay(self.environmentManager.signInError ? RoundedRectangle(cornerRadius: 10).stroke(Color.red, lineWidth: 3) : nil)
                     }.frame(width: screenWidth * 0.3433835846)
+
+                    CustomText(self.environmentManager.signInError ? "Email ou senha invalidos." : "")
+                    .dynamicFont(size: 18, weight: .regular)
+                    .foregroundColor(Color.red)
                     
                     //TODO: Funcao de Sign In
                     Button(action: {

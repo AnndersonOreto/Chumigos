@@ -71,9 +71,17 @@ struct SignUpView: View {
                     
                     VStack(spacing: screenWidth * 0.01423785595) {
                         CustomTextField(placeholder: "E-mail", text: $emailTextField)
+                        .overlay(!self.environmentManager.signUpError.isEmpty ? RoundedRectangle(cornerRadius: 10).stroke(Color.red, lineWidth: 3) : nil)
                         CustomTextField(placeholder: "Nome Completo", text: $fullNameTextField)
+                        .overlay(!self.environmentManager.signUpError.isEmpty ? RoundedRectangle(cornerRadius: 10).stroke(Color.red, lineWidth: 3) : nil)
                         CustomPasswordField(placeholder: "Senha", text: $passwordTextField)
+                        .overlay(!self.environmentManager.signUpError.isEmpty ? RoundedRectangle(cornerRadius: 10).stroke(Color.red, lineWidth: 3) : nil)
                     }.frame(width: screenWidth * 0.3433835846)
+
+                    CustomText(!self.environmentManager.signUpError.isEmpty ?
+                           self.environmentManager.signUpError : "")
+                    .dynamicFont(size: 16, weight: .regular)
+                    .foregroundColor(Color.red)
                     
                     HStack(spacing: 0) {
                         CheckView(isChecked: true, title: "Li e aceito os ")
