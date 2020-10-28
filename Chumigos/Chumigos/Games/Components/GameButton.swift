@@ -43,6 +43,6 @@ struct GameButtonStyle: ButtonStyle {
                     .offset(y: configuration.isPressed ? (UIScreen.main.bounds.width * 0.013)/2 : 0)
                     .foregroundColor(textColor == nil ? Color.Ghost : textColor)
             }
-        }
+        }.padding(.bottom, 10)
     }
 }
