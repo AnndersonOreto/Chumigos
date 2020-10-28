@@ -29,8 +29,10 @@ class NotificationManager {
             
             // Create a notification and set its message
             let notification = UNMutableNotificationContent()
-            notification.title = title ?? "It is time for practice"
-            notification.body = body ?? "Hop in to learn more and have lots of fun"
+            // It is time for practice
+            notification.title = title ?? "É hora de praticar"
+            // Hop in to learn more and have lots of fun
+            notification.body = body ?? "Entre para aprender mais e se divertir muito"
             
             // Create a date from now that adds the amount of seconds ahead on time
             let date = Date().addingTimeInterval(dailyInSeconds)

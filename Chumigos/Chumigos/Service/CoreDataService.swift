@@ -65,7 +65,6 @@ class CoreDataService {
         do {
             let result = try self.persistentContainer.viewContext.fetch(request)
             let decodedResult = decode(result: result)
-            
             return decodedResult
         } catch {
             fatalError("Não conseguiu fazer request!")
@@ -140,15 +139,19 @@ class CoreDataService {
     func mockSections() -> [TrailSection] {
         let linha1 = [GameObject(id: UUID(), gameType: .pattern, gameName: GameNames.sequenceGameName1)]
 
-        let linha2 = [GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.shapeGameName1)]
+        let linha2 = [GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.totemGameName1),
+                      GameObject(id: UUID(), gameType: .pattern, gameName: GameNames.shapeGameName1)]
 
         let linha3 = [GameObject(id: UUID(), gameType: .pattern, gameName: GameNames.sequenceGameName2),
-                      GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.shapeGameName2)]
+                      GameObject(id: UUID(), gameType: .pattern, gameName: GameNames.shapeGameName2)]
         
         let linha4 = [GameObject(id: UUID(), gameType: .decomposition, gameName: GameNames.avatarGameName),
-                      GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.totemGameName)]
+                      GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.totemGameName2),
+                      GameObject(id: UUID(), gameType: .pattern, gameName: GameNames.shapeGameName3)]
+        
+        let linha5 = [GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.totemGameName3)]
 
-        let matrix = [linha1, linha2, linha3, linha4]
+        let matrix = [linha1, linha2, linha3, linha4, linha5]
 
         return [TrailSection(available: true, trail: matrix)]
     }

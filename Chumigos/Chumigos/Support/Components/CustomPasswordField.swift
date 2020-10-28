@@ -1,14 +1,14 @@
 //
-//  CustomTextField.swift
+//  CustomPasswordField.swift
 //  Loggio
 //
-//  Created by Guilherme Piccoli on 05/10/20.
+//  Created by Marcus Vinicius Vieira Badiale on 27/10/20.
 //  Copyright © 2020 Chumigos. All rights reserved.
 //
 
 import SwiftUI
 
-struct CustomTextField: View {
+struct CustomPasswordField: View {
     
     var placeholder: String
     @Binding var text: String
@@ -22,7 +22,7 @@ struct CustomTextField: View {
                 .padding(.leading, 20)
                 .dynamicFont(size: 18, weight: .regular)
             }
-            TextField("", text: $text)
+            SecureField("", text: $text)
             .padding(10)
             .padding(.leading, 20)
             .dynamicFont(size: 18, weight: .regular)

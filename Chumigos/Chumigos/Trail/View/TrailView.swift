@@ -12,12 +12,10 @@ struct TrailView: View {
     
     // MARK: - Variable(s) & Contant(s)
     
-    @ObservedObject var viewModel: TrailViewModel = TrailViewModel()
     let screenWidth = UIScreen.main.bounds.width
     
     @Binding var isTabBarActive: Bool
-    
-    @State var matrixList: [TrailSection] = CoreDataService.shared.mockSections()
+    @State private var matrixList: [TrailSection] = CoreDataService.shared.mockSections()
     
     // MARK: - View
     
@@ -46,17 +44,15 @@ struct TrailView: View {
                             }.padding(.bottom, self.screenWidth * 0.04)
                             .background(section.available ? Color.background : Color.sectionUnavailable)
                         }
+                        .onAppear {
+                            self.isTabBarActive = true
+                            self.matrixList = CoreDataService.shared.retrieveMatrixTrail()
+                        }
                     }
                 }.padding(.vertical)
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
-            .onAppear {
-                self.isTabBarActive = true
-                self.matrixList = CoreDataService.shared.retrieveMatrixTrail()
-                //self.matrixList[0].changeCurrentLine()
-            }
-            
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

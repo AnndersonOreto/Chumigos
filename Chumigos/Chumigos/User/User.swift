@@ -11,12 +11,40 @@ import Foundation
 // Not using this class yet!
 class User {
     
-    var name: String
-    var trail: [TrailSection]
+    var environmentManager: EnvironmentManager!
+    static let shared = User()
     
-    init(name: String, trail: [TrailSection]) {
-        self.name = name
-        self.trail = trail
+//    var name: String
+//    var trail: [TrailSection]
+//
+//    init(name: String, trail: [TrailSection]) {
+//        self.name = name
+//        self.trail = trail
+//        self.shared = User(name: name, trail: trail)
+//    }
+    
+    private init() { }
+    
+    var profile: AuthenticationProfile? {
+        guard let profile = environmentManager.profile else {
+            return nil
+        }
+        return profile
+    }
+    
+    var name: String {
+        return profile?.name ?? ""
+    }
+    
+    var email: String {
+        return profile?.email ?? ""
+    }
+    
+    var isLogged: Bool {
+        guard let profile = environmentManager.profile else {
+            return false
+        }
+        return !profile.name.isEmpty
     }
     
     //Available next section

@@ -13,9 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let environmentManager: EnvironmentManager = EnvironmentManager()
-    
-    let signInWithAppleManager = SignInWithAppleManager()
-    
+        
     private(set) static var shared: SceneDelegate?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -31,6 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         
         let contentView = PreLaunchView().environment(\.managedObjectContext, context).environmentObject(environmentManager)
+        User.shared.environmentManager = environmentManager
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

@@ -52,6 +52,7 @@ struct GameObject: Hashable, Codable {
         
         if currentProgress + value >= maxProgress {
             currentProgress = maxProgress
+            AppAnalytics.shared.logEvent(of: .finishedGame, parameters: ["gameObject": gameName])
         } else {
             self.currentProgress += value
         }

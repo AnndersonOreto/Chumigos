@@ -15,7 +15,6 @@ import CryptoKit
 
 class EnvironmentManager: NSObject, ObservableObject {
     
-    
     // MARK: - Database variables
     
     private var database = DatabaseManager()
@@ -113,13 +112,10 @@ class EnvironmentManager: NSObject, ObservableObject {
         handle = Auth.auth().addStateDidChangeListener { (_, user) in
             
             if let user = user {
-                
                 self.database.getUserProfile(userUid: self.replaceEmail(email: user.email ?? ""), completion: { profile in
-                    
                     self.profile = profile
                 })
             } else {
-                
                 self.profile = nil
             }
         }
@@ -330,21 +326,18 @@ extension EnvironmentManager: ASAuthorizationControllerDelegate {
                     self.signInError = false
                 }
                 
-                // User is signed in to Firebase with Apple.
-                // ...
-                var nameExists: Bool = true
-                self.database.getUserProfile(userUid: self.replaceEmail(email: appleIDCredential.email ?? ""), completion: { profile in
+                let replacedEmail = self.replaceEmail(email: authResult?.user.email ?? "")
+                //Get user profile
+                self.database.getUserProfile(userUid: replacedEmail, completion: { profile in
+                    self.profile = profile
                     if profile.name.isEmpty {
-                        nameExists = false
+                        let name = (appleIDCredential.fullName?.givenName ?? "") + " " +
+                            (appleIDCredential.fullName?.familyName ?? "")
+                        self.database.saveNewProfile(email: replacedEmail,
+                                                     name: name,
+                                                     userUid: authResult?.user.email ?? "")
                     }
                 })
-                
-                if !nameExists {
-                    let email = appleIDCredential.email
-                    let name = appleIDCredential.fullName?.givenName
-                    let userUid = self.replaceEmail(email: email ?? "")
-                    self.database.saveNewProfile(email: email ?? "", name: name ?? "", userUid: userUid)
-                }
             }
         }
     }

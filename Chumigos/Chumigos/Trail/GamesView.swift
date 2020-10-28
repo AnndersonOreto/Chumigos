@@ -30,18 +30,18 @@ extension GamesView {
             return AnyView(SequenceGameView(gameDifficulty: .medium, game: self.game))
         case GameNames.shapeGameName2:
             return AnyView(ShapeGameView(gameDifficulty: .medium, game: self.game))
+        case GameNames.shapeGameName3:
+            return AnyView(ShapeGameView(gameDifficulty: .hard, game: self.game))
         case GameNames.avatarGameName:
             return AnyView(AvatarGameView(gameDifficulty: .easy, game: self.game))
-        case GameNames.totemGameName:
+        case GameNames.totemGameName1:
             return AnyView(TotemGameView(gameDifficulty: .easy, game: self.game))
+        case GameNames.totemGameName2:
+            return AnyView(TotemGameView(gameDifficulty: .medium, game: self.game))
+        case GameNames.totemGameName3:
+            return AnyView(TotemGameView(gameDifficulty: .hard, game: self.game))
         default:
             return AnyView(EmptyView())
         }
     }
 }
-
-//struct GamesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GamesView(gameName: GameNames.sequenceGameName1)
-//    }
-//}

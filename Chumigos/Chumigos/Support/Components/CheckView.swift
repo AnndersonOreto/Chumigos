@@ -24,7 +24,7 @@ struct CheckView: View {
                 .foregroundColor(Color.Humpback)
             if title != nil {
                 CustomText(title ?? "").dynamicFont(size: 16, weight: .regular)
-                    .foregroundColor(Color.textColor)
+                    .foregroundColor(Color.Eel)
             }
         }.onTapGesture {
             self.toggle()

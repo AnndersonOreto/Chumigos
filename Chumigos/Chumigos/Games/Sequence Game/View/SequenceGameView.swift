@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SequenceGameView: View {
     
-    let hapticManager = HapticManager()
     @State var generateHapticFeedback: Bool = false
     
     let generator = UINotificationFeedbackGenerator()
@@ -34,6 +33,7 @@ struct SequenceGameView: View {
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     init(gameDifficulty: Difficulty, game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel = SequenceGameViewModel(game: game, difficulty: gameDifficulty)
     }
     
@@ -196,6 +196,7 @@ struct SequenceGameView: View {
     }
     
     func restartGame(game: GameObject) {
+        AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
         self.viewModel.restartGame()
         self.questionsFrames = []
         self.isFinished = false
@@ -213,6 +214,7 @@ struct SequenceGameView: View {
         self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion()  && self.viewModel.gameState == .NORMAL {
+            AppAnalytics.shared.logEvent(of: .gameRecap, parameters: ["recap_amount": viewModel.wrongAnswersArray.count, "gameObject": viewModel.game.gameName])
             self.viewModel.gameState = .RECAP
         }
         
