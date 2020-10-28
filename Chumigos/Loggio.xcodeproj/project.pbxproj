@@ -88,7 +88,6 @@
 		AB17FB4B25193BFD0071D82A /* FeelingClassificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB17FB4A25193BFD0071D82A /* FeelingClassificator.swift */; };
 		AB33B3512502B2840042F5BA /* AvatarGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33B3502502B2840042F5BA /* AvatarGameView.swift */; };
 		AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E5196251D069400FCF777 /* UnderConstructionView.swift */; };
-		AB6848922549EA5F00E02D69 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6848912549EA5F00E02D69 /* SplashScreen.swift */; };
 		AB69B83B2524F3CE00872978 /* ColorCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69B83A2524F3CE00872978 /* ColorCarousel.swift */; };
 		AB69B83D2524F53E00872978 /* TestColorCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69B83C2524F53E00872978 /* TestColorCarousel.swift */; };
 		AB69C21225127FD800DF4E38 /* GameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69C21125127FD800DF4E38 /* GameScore.swift */; };
@@ -240,7 +239,6 @@
 		AB17FB4A25193BFD0071D82A /* FeelingClassificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingClassificator.swift; sourceTree = "<group>"; };
 		AB33B3502502B2840042F5BA /* AvatarGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameView.swift; sourceTree = "<group>"; };
 		AB5E5196251D069400FCF777 /* UnderConstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderConstructionView.swift; sourceTree = "<group>"; };
-		AB6848912549EA5F00E02D69 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		AB69B83A2524F3CE00872978 /* ColorCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCarousel.swift; sourceTree = "<group>"; };
 		AB69B83C2524F53E00872978 /* TestColorCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColorCarousel.swift; sourceTree = "<group>"; };
 		AB69C21125127FD800DF4E38 /* GameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScore.swift; sourceTree = "<group>"; };
@@ -727,14 +725,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AB6848902549EA4E00E02D69 /* SplashScreen */ = {
-			isa = PBXGroup;
-			children = (
-				AB6848912549EA5F00E02D69 /* SplashScreen.swift */,
-			);
-			path = SplashScreen;
-			sourceTree = "<group>";
-		};
 		AB855F0B24F42BDF00C5A739 /* Trail */ = {
 			isa = PBXGroup;
 			children = (
@@ -874,7 +864,6 @@
 		E7AEEB50252B9342009F457D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				AB6848902549EA4E00E02D69 /* SplashScreen */,
 				264655242537904E00B18DBC /* EnvironmentManager.swift */,
 				2621CD2B253A18D100B85B7E /* EmailLogin */,
 				2621CD0F253A189700B85B7E /* AppleLogin */,
@@ -1229,7 +1218,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB6848922549EA5F00E02D69 /* SplashScreen.swift in Sources */,
 				E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */,
 				26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */,
 				26AB83BE2513B852004BDF49 /* TotemGameViewModel.swift in Sources */,

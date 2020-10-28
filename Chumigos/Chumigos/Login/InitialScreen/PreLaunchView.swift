@@ -46,8 +46,11 @@ struct PreLaunchView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                //MainView navigation link, when goToMain become true goes to main view
                 NavigationLink("", destination: MainView(), isActive: $goToMain)
+                //LoginView navigation link, when goToLogin become true goes to login/signup view
                 NavigationLink("", destination: InitialScreen(), isActive: $goToLogin)
+                //Background color for the animation occupy theh whole screen
                 Color.Macaw
                 //Animation image
                 Image(splashImages[imageIndex])
@@ -57,15 +60,14 @@ struct PreLaunchView: View {
                             //Changing current image
                             self.imageIndex += 1
                         } else {
+                            //Stoping the timer
                             self.timer.upstream.connect().cancel()
-                            //Ja da pra trocar de tela aqui
-                            
+                            //Change screen here
                             if self.environmentManager.profile != nil {
                                 self.goToMain = true
                             } else {
                                 self.goToLogin = true
                             }
-                            
                         }
                 }                
             }.onAppear(perform: getUser)
