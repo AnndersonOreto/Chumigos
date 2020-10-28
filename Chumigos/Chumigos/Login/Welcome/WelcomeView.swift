@@ -18,16 +18,16 @@ struct WelcomeView: View {
     
     var body: some View {
         ZStack {
-            Color.background
+            Color.Ghost
             VStack {
                 VStack(spacing: screenWidth * 0.088) {
                     CustomText("Bem-vindo ao Loggio!")
                         .dynamicFont(size: 30, weight: .bold)
-                        .foregroundColor(Color.textColor)
+                        .foregroundColor(Color.Eel)
                     
                     CustomText("Faça o login ou inscreva-se:")
                         .dynamicFont(size: 18, weight: .regular)
-                        .foregroundColor(Color.textColor)
+                        .foregroundColor(Color.Eel)
                 }.padding(.top, screenWidth * 0.1097152429)
                 
                 VStack(spacing: screenWidth * 0.005) {

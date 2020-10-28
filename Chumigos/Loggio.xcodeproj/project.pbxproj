@@ -100,6 +100,7 @@
 		AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1624F4354800C5A739 /* TrailSection.swift */; };
 		AB855F1924F439B200C5A739 /* TrailTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1824F439B200C5A739 /* TrailTile.swift */; };
 		AB855F1B24F450A000C5A739 /* TrailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1A24F450A000C5A739 /* TrailView.swift */; };
+		ABAF2CB525489F7D007D7A6F /* CustomPasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAF2CB425489F7D007D7A6F /* CustomPasswordField.swift */; };
 		ABC7426024DB249600CC3B7E /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7425F24DB249600CC3B7E /* Tile.swift */; };
 		ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
@@ -250,6 +251,7 @@
 		AB855F1624F4354800C5A739 /* TrailSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSection.swift; sourceTree = "<group>"; };
 		AB855F1824F439B200C5A739 /* TrailTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailTile.swift; sourceTree = "<group>"; };
 		AB855F1A24F450A000C5A739 /* TrailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailView.swift; sourceTree = "<group>"; };
+		ABAF2CB425489F7D007D7A6F /* CustomPasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPasswordField.swift; sourceTree = "<group>"; };
 		ABC7425F24DB249600CC3B7E /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTile.swift; sourceTree = "<group>"; };
 		ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				AB69B83A2524F3CE00872978 /* ColorCarousel.swift */,
 				E7E8EE7E252BA153003921D3 /* CustomTextField.swift */,
 				E7E8EE84252BB068003921D3 /* CheckView.swift */,
+				ABAF2CB425489F7D007D7A6F /* CustomPasswordField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1245,6 +1248,7 @@
 				AAA0613924E30819008CD91B /* SequenceGameView.swift in Sources */,
 				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
 				AAE6759E25152E2600342D7F /* UserData+CoreDataClass.swift in Sources */,
+				ABAF2CB525489F7D007D7A6F /* CustomPasswordField.swift in Sources */,
 				265B766A253DD3FB0037AC5E /* EnvironmentWindowKey.swift in Sources */,
 				26946E9424C76398005A316E /* FormPentagon.swift in Sources */,
 				263D144D24EEE5DC00111A76 /* ShapeGameWrongAnswers.swift in Sources */,

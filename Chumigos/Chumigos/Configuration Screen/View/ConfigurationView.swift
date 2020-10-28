@@ -42,9 +42,10 @@ struct ConfigurationView: View {
         // Main stack
         ScrollView(showsIndicators: false) {
             ZStack {
-                // Vertical configuration stack
-                VStack {
-                    // Avatar information
+                // Stack to increase scrollView width
+                HStack {
+                    Spacer()
+                    // Vertical configuration stack
                     VStack {
                         // Avatar image
                         Image(avatarImageName)
@@ -99,9 +100,8 @@ struct ConfigurationView: View {
                             UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                         }.padding(.horizontal, 1)
                         
-                        // Switch theme
+                        // Config label
                         VStack(alignment: .leading) {
-                            
                             CustomText("Tema")
                                 .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                                 .foregroundColor(.textColor)
@@ -121,8 +121,17 @@ struct ConfigurationView: View {
                             .onAppear {
                                 UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
                             }
+                            .padding(.horizontal, screenWidth * 0.02)
+                            .padding(.vertical, screenWidth * 0.008)
+                            .background(RoundedRectangle(cornerRadius: screenWidth * 0.008)
+                            .stroke(Color.Humpback, lineWidth: 2)
+                            .background(Color.popUpBackground))
+                            .onAppear {
+                                UISwitch.appearance().onTintColor = UIColor(red: 0.169, green: 0.439, blue: 0.788, alpha: 1.0)
+                            }.padding(.horizontal, 1)
                             
-                            Toggle(isOn: toggleDarkModeValue()) {
+                            // Switch theme
+                            VStack(alignment: .leading) {
                                 
                                 CustomText("Dark Mode")
                                     .dynamicFont(size: screenWidth * 0.015, weight: .medium)
@@ -203,12 +212,11 @@ struct ConfigurationView: View {
                     }.padding(.top, screenWidth * 0.03)
                     .padding(.bottom, screenWidth * 0.03)
                 }
-                
             }.onAppear(perform: {
                 self.setAvatarName()
             })
             
-        }.frame(width: screenWidth * 0.4)
+        }
             .navigationBarTitle("")
             .navigationBarHidden(true)
     }
