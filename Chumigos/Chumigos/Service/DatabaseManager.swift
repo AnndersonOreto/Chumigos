@@ -21,14 +21,16 @@ class DatabaseManager {
     func saveNewProfile(email: String, name: String, userUid: String) {
         
         let post = ["name": name]
-        
-        ref.child("users").child(email).setValue(post) { (error, _) in
+        let profileRef = ref.child("users").child(email)
+        profileRef.setValue(post) { (error, _) in
             
             if let error = error {
                 
                 print(error.localizedDescription)
             }
         }
+        let trailMockup = CoreDataService.shared.mockSections()
+        createTrail(trailMockup, profileRef: profileRef)
     }
 
     func sendPending(source: String, target: String) {
@@ -92,6 +94,40 @@ class DatabaseManager {
                 } else {
                     completion("")
                 }
+            }
+        }
+    }
+    
+    func createTrail(_ trail: [TrailSection], profileRef: DatabaseReference) {
+        var sectionsRef = profileRef.child("trail/sections")
+        
+        // Primeiro "for" percorre as seções da trilha
+        for (index01,section) in trail.enumerated() {
+            sectionsRef = sectionsRef.child("\(index01)")
+            sectionsRef.setValue([
+                "id": section.id,
+                "available": section.available,
+                "currentLine": section.currentLine
+            ])
+            sectionsRef = sectionsRef.child("lines")
+            
+            // Segundo "for" percorre as linhas dentro de cada seção
+            for (index02,line) in section.trail.enumerated() {
+                let lineRef = sectionsRef.child("\(index02)")
+                var games = [[String: Any]]()
+                
+                // Terceiro "for" percorre os jogos dentro de cada linha
+                for game in line {
+                    let gameDict = ["id": game.id.uuidString,
+                                    "gameName": game.gameName,
+                                    "gameType": game.gameType.rawValue,
+                                    "isAvailable": game.isAvailable,
+                                    "isCompleted": game.isCompleted,
+                                    "currentProgress": game.currentProgress] as [String : Any]
+                    games.append(gameDict)
+                }
+                
+                lineRef.setValue(games)
             }
         }
     }

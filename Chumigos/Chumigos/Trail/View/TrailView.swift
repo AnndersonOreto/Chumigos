@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
 
 struct TrailView: View {
     
