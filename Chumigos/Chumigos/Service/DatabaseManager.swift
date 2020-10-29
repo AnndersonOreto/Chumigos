@@ -131,4 +131,45 @@ class DatabaseManager {
             }
         }
     }
+    
+    func requestTrail() {
+        let email = "arthur@gmail(dot)com"
+        ref.child("users/\(email)/trail").observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? [String: Any] {
+                if let sectionsDict = value["sections"] as? [[String: Any]] {
+                    var sectionsObjects = [TrailSection]()
+                    for section in sectionsDict {
+                        guard let available = section["available"] as? Bool else { return }
+                        guard let currentLine = section["currentLine"] as? Int else { return }
+                        guard let id = section["id"] as? UUID else { return }
+                        
+                        if let lines = section["lines"] as? [[[String: Any]]] {
+                            var linesObjects = [[GameObject]]()
+                            for line in lines {
+                                var games = [GameObject]()
+                                for game in line {
+                                    guard let currentProgress = game["currentProgress"] as? Float else { return }
+                                    guard let id = game["id"] as? UUID else { return }
+                                    guard let isAvailable = game["isAvailable"] as? Bool else { return }
+                                    guard let isCompleted = game["isCompleted"] as? Bool else { return }
+                                    guard let gameName = game["gameName"] as? String else { return }
+                                    guard let gameType = game["gameType"] as? GameType else { return }
+                                    
+                                    let gameObject = GameObject(id: id,
+                                                                gameType: gameType,
+                                                                gameName: gameName,
+                                                                isAvailable: isAvailable,
+                                                                isCompleted: isCompleted,
+                                                                currentProgress: currentProgress)
+                                    games.append(gameObject)
+                                }
+                                linesObjects.append(games)
+                            }
+                            sectionsObjects.append(TrailSection(available: available, trail: linesObjects))
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
