@@ -23,5 +23,3 @@ extension EnvironmentValues {
         set { self[WindowKey.self] = .init(value: newValue) }
     }
 }
-
-

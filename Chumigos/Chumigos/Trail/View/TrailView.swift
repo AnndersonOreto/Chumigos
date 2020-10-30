@@ -48,6 +48,7 @@ struct TrailView: View {
                         .onAppear {
                             self.isTabBarActive = true
                             self.matrixList = CoreDataService.shared.retrieveMatrixTrail()
+                            DatabaseManager().requestTrail()
                         }
                     }
                 }.padding(.vertical)

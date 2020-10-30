@@ -15,7 +15,6 @@ struct WelcomeView: View {
     
     @EnvironmentObject var environmentManager: EnvironmentManager
 
-    
     var body: some View {
         ZStack {
             Color.Ghost
