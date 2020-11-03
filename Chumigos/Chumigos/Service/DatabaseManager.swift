@@ -133,6 +133,7 @@ class DatabaseManager {
     }
     
     func requestTrail() {
+        // email só pra teste
         let email = "arthur@gmail(dot)com"
         ref.child("users/\(email)/trail").observeSingleEvent(of: .value) { (snapshot) in
             
@@ -149,6 +150,7 @@ class DatabaseManager {
                         let available = section["available"] as? Bool ?? true
                         let currentLine = section["currentLine"] as? Int ?? 0
                         let id = section["id"] as? String ?? ""
+                        let sectionId = UUID(uuidString: id)!
                         
                         // Pega as linhas de cada seção como um array de array de dicinário
                         if let lines = section["lines"] as? [[[String: Any]]] {
@@ -184,7 +186,10 @@ class DatabaseManager {
                                 linesObjects.append(games)
                             }
                             // Adiciona cada linha na respectiva seção
-                            sectionsObjects.append(TrailSection(available: available, trail: linesObjects))
+                            sectionsObjects.append(TrailSection(id: sectionId,
+                                                                available: available,
+                                                                trail: linesObjects,
+                                                                currentLine: currentLine))
                         }
                     }
                 }

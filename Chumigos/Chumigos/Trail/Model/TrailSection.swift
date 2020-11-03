@@ -21,7 +21,14 @@ struct TrailSection: Identifiable, Codable {
         }
     }
     
-    // MARK: - Init
+    // MARK: - Init(s)
+    
+    init(id: UUID, available: Bool, trail: [[GameObject]], currentLine: Int) {
+        self.id = id
+        self.available = available
+        self.trail = trail
+        self.currentLine = currentLine
+    }
     
     init(available: Bool, trail: [[GameObject]]) {
         self.available = available
