@@ -142,7 +142,7 @@ class DatabaseManager {
                 
                 // Pega as seções como um array de dicinário
                 if let sectionsDict = value["sections"] as? [[String: Any]] {
-                    var sectionsObjects = [TrailSection]()
+                    var trail = [TrailSection]()
                     
                     // Itera sobre as seções existentes
                     for section in sectionsDict {
@@ -185,11 +185,15 @@ class DatabaseManager {
                                 // Adiciona a lista de jogos na respectiva linha
                                 linesObjects.append(games)
                             }
-                            // Adiciona cada linha na respectiva seção
-                            sectionsObjects.append(TrailSection(id: sectionId,
-                                                                lines: linesObjects,
-                                                                available: available,
-                                                                currentLine: currentLine))
+                            
+                            // Cria a seção com as respectivas linhas
+                            let section = TrailSection(id: sectionId,
+                                                       lines: linesObjects,
+                                                       available: available,
+                                                       currentLine: currentLine)
+                            
+                            // Adiciona a seção criada na trail
+                            trail.append(section)
                         }
                     }
                 }

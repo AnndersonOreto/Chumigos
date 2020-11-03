@@ -49,7 +49,7 @@
 		26AB83BE2513B852004BDF49 /* TotemGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BD2513B852004BDF49 /* TotemGameViewModel.swift */; };
 		26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BF2513B916004BDF49 /* TotemGameModel.swift */; };
 		26B7DA7125377ADE00B44BFA /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */; };
-		26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */; };
+		26BC05AB2507F7A200A918F5 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AA2507F7A200A918F5 /* Trail.swift */; };
 		26BCB0872537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
 		26BCB0882537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
 		26C186C024BE4AA50094AEC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */; };
@@ -192,7 +192,7 @@
 		26AB83BD2513B852004BDF49 /* TotemGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameViewModel.swift; sourceTree = "<group>"; };
 		26AB83BF2513B916004BDF49 /* TotemGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameModel.swift; sourceTree = "<group>"; };
 		26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
-		26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailMatrixList.swift; sourceTree = "<group>"; };
+		26BC05AA2507F7A200A918F5 /* Trail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		26BCB0852537613F00176274 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		26C186BC24BE4AA50094AEC1 /* Loggio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loggio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C186BF24BE4AA50094AEC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -740,7 +740,7 @@
 			children = (
 				AB855F0F24F42FD000C5A739 /* GameObject.swift */,
 				AB855F1624F4354800C5A739 /* TrailSection.swift */,
-				26BC05AA2507F7A200A918F5 /* TrailMatrixList.swift */,
+				26BC05AA2507F7A200A918F5 /* Trail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1297,7 +1297,7 @@
 				AA04A48525195EFF00F85961 /* FeelingsClassifier.swift in Sources */,
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
 				E745370D2538C7A3002C58AC /* AppAnalytics.swift in Sources */,
-				26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */,
+				26BC05AB2507F7A200A918F5 /* Trail.swift in Sources */,
 				AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */,
 				AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */,
 				E7AEEB53252B940F009F457D /* InitialScreen.swift in Sources */,

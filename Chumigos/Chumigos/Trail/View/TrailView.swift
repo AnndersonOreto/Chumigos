@@ -47,7 +47,7 @@ struct TrailView: View {
                         }
                         .onAppear {
                             self.isTabBarActive = true
-                            self.matrixList = CoreDataService.shared.retrieveMatrixTrail()
+                            self.matrixList = CoreDataService.shared.retrieveTrailSections()
                             DatabaseManager().requestTrail()
                         }
                     }

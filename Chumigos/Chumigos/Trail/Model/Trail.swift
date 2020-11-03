@@ -1,5 +1,5 @@
 //
-//  TrailMatrixList.swift
+//  Trail.swift
 //  Chumigos
 //
 //  Created by Annderson Packeiser Oreto on 08/09/20.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct TrailMatrixList: Codable {
+struct Trail: Codable {
     
     // MARK: - Variables
     
-    var matrixList: [TrailSection] = []
+    var sections: [TrailSection] = []
 }
