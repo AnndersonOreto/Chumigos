@@ -15,12 +15,12 @@ class User {
     static let shared = User()
     
 //    var name: String
-//    var trail: [TrailSection]
+//    var lines: [TrailSection]
 //
-//    init(name: String, trail: [TrailSection]) {
+//    init(name: String, lines: [TrailSection]) {
 //        self.name = name
-//        self.trail = trail
-//        self.shared = User(name: name, trail: trail)
+//        self.lines = lines
+//        self.shared = User(name: name, lines: lines)
 //    }
     
     private init() { }
@@ -51,7 +51,7 @@ class User {
 //    func makeNextSectionAvailable() {
 //        
 //        //Get first section where isnt available
-//        let nextSectionIndex = self.trail.firstIndex(where: {
+//        let nextSectionIndex = self.lines.firstIndex(where: {
 //            $0.available == false
 //        })
 //        

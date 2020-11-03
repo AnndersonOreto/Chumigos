@@ -28,7 +28,7 @@ struct TrailView: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         ForEach(self.matrixList) { (section) in
                             VStack(spacing: self.screenWidth * 0.04) {
-                                ForEach(section.trail, id: \.self) { line in
+                                ForEach(section.lines, id: \.self) { line in
                                     HStack(spacing: self.screenWidth * 0.06) {
                                         Spacer()
                                         ForEach(line, id: \.self) { game in

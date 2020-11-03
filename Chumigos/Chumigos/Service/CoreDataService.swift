@@ -120,11 +120,11 @@ class CoreDataService {
         
         #warning("Muitos for aninhados! Precisamos refatorar.")
         for section in 0..<sectionsTrail.count {
-            for line in 0..<sectionsTrail[section].trail.count {
-                for column in 0..<sectionsTrail[section].trail[line].count {
-                    let game = sectionsTrail[section].trail[line][column]
+            for line in 0..<sectionsTrail[section].lines.count {
+                for column in 0..<sectionsTrail[section].lines[line].count {
+                    let game = sectionsTrail[section].lines[line][column]
                     if game.id == gameObject.id {
-                        sectionsTrail[section].trail[line][column] = gameObject
+                        sectionsTrail[section].lines[line][column] = gameObject
                     }
                 }
             }
@@ -153,6 +153,6 @@ class CoreDataService {
 
         let matrix = [linha1, linha2, linha3, linha4, linha5]
 
-        return [TrailSection(available: true, trail: matrix)]
+        return [TrailSection(available: true, lines: matrix)]
     }
 }

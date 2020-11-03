@@ -112,7 +112,7 @@ class DatabaseManager {
             sectionsRef = sectionsRef.child("lines")
             
             // Segundo "for" percorre as linhas dentro de cada seção
-            for (index02,line) in section.trail.enumerated() {
+            for (index02,line) in section.lines.enumerated() {
                 let lineRef = sectionsRef.child("\(index02)")
                 var games = [[String: Any]]()
                 
@@ -187,8 +187,8 @@ class DatabaseManager {
                             }
                             // Adiciona cada linha na respectiva seção
                             sectionsObjects.append(TrailSection(id: sectionId,
+                                                                lines: linesObjects,
                                                                 available: available,
-                                                                trail: linesObjects,
                                                                 currentLine: currentLine))
                         }
                     }
