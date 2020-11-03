@@ -47,6 +47,8 @@ class User {
         return !profile.name.isEmpty
     }
     
+    var lifeManager: LifeManager = LifeManager()
+    
     //Available next section
 //    func makeNextSectionAvailable() {
 //        

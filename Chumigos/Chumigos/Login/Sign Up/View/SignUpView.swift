@@ -71,11 +71,14 @@ struct SignUpView: View {
                     
                     VStack(spacing: screenWidth * 0.01423785595) {
                         CustomTextField(placeholder: "E-mail", text: $emailTextField)
-                        .overlay(!self.environmentManager.signUpError.isEmpty ? RoundedRectangle(cornerRadius: 10).stroke(Color.red, lineWidth: 3) : nil)
+                        .overlay(!self.environmentManager.signUpError.isEmpty ? RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.red, lineWidth: 3) : nil)
                         CustomTextField(placeholder: "Nome Completo", text: $fullNameTextField)
-                        .overlay(!self.environmentManager.signUpError.isEmpty ? RoundedRectangle(cornerRadius: 10).stroke(Color.red, lineWidth: 3) : nil)
+                        .overlay(!self.environmentManager.signUpError.isEmpty ? RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.red, lineWidth: 3) : nil)
                         CustomPasswordField(placeholder: "Senha", text: $passwordTextField)
-                        .overlay(!self.environmentManager.signUpError.isEmpty ? RoundedRectangle(cornerRadius: 10).stroke(Color.red, lineWidth: 3) : nil)
+                        .overlay(!self.environmentManager.signUpError.isEmpty ? RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.red, lineWidth: 3) : nil)
                     }.frame(width: screenWidth * 0.3433835846)
 
                     CustomText(!self.environmentManager.signUpError.isEmpty ?
@@ -97,7 +100,9 @@ struct SignUpView: View {
                     //TODO: Funcao para cadastro
                     Button(action: {
                         //Sign up
-                        self.environmentManager.signUp(email: self.emailTextField, password: self.passwordTextField, name: self.fullNameTextField) { (result, error) in
+                        self.environmentManager.signUp(email: self.emailTextField,
+                                                       password: self.passwordTextField,
+                                                       name: self.fullNameTextField) { (result, error) in
                             
                             if let error = error {
                                 
@@ -127,7 +132,8 @@ struct SignUpView: View {
             .offset(y: -self.keyboardOffSet)
             .animation(.spring())
             .onAppear {
-                NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
+                NotificationCenter.default.addObserver(forName:
+                UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
                     
                     let value = noti.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
                     let height = value?.height
@@ -135,7 +141,8 @@ struct SignUpView: View {
                     self.keyboardOffSet = (height ?? 0)/2
                 }
                 
-                NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
+                NotificationCenter.default.addObserver(forName:
+                UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
                     
                     self.keyboardOffSet = CGFloat.zero
                 }

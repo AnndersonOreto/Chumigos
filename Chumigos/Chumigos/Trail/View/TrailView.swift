@@ -15,6 +15,8 @@ struct TrailView: View {
     let screenWidth = UIScreen.main.bounds.width
     
     @Binding var isTabBarActive: Bool
+    @State var allowNavigation: Bool = false
+    @State var chosenGame: GameObject = GameObject(id: UUID(), gameType: .abstraction, gameName: ".")
     @State private var matrixList: [TrailSection] = CoreDataService.shared.mockSections()
     
     // MARK: - View
@@ -22,6 +24,7 @@ struct TrailView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                NavigationLink("", destination: GamesView(game: chosenGame), isActive: $allowNavigation)
                 Color.background.edgesIgnoringSafeArea(.all)
                 VStack {
                     ScrollView(.vertical, showsIndicators: false) {
@@ -31,12 +34,22 @@ struct TrailView: View {
                                     HStack(spacing: self.screenWidth * 0.06) {
                                         Spacer()
                                         ForEach(line, id: \.self) { game in
-                                            NavigationLink(destination: GamesView(game: game)) {
+//                                            NavigationLink(destination: GamesView(game: game)) {
                                                 TrailTile(game: game)
-                                            }.buttonStyle(PlainButtonStyle())
-                                                .simultaneousGesture(TapGesture().onEnded {
-                                                    self.isTabBarActive = false
-                                                })
+                                                    .onTapGesture {
+                                                        if User.shared.lifeManager.haveLifeToPlay {
+                                                            self.chosenGame = game
+                                                            self.allowNavigation = true
+                                                            self.isTabBarActive = false
+                                                        } else {
+                                                            self.allowNavigation = false
+                                                            // aparecer view da vida
+                                                        }
+                                                }
+//                                            }.buttonStyle(PlainButtonStyle())
+                                                //.simultaneousGesture(TapGesture().onEnded {
+                                                   // self.isTabBarActive = false
+                                             //   })
                                         }
                                         Spacer()
                                     }

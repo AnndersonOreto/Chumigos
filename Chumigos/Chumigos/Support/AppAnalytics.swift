@@ -75,7 +75,7 @@ class AppAnalytics {
     public func logEvent(of type: String) {
         Analytics.logEvent(type, parameters: [
             "id": "id-\(type)",
-            "item-name": type,
+            "item-name": type
             //AnalyticsParameterContentType: "cont"
         ])
     }

@@ -60,10 +60,8 @@ struct TotemGameView: View {
             
             if !isFinished {
                 VStack {
-                    
                     // Progress Bar
                     ZStack {
-                        
                         // Leave game button
                         HStack {
                             Button(action: {
@@ -86,10 +84,8 @@ struct TotemGameView: View {
                     
                     // Stack containing totem and alternatives
                     HStack {
-                        
                         // Totem
                         VStack(spacing: 0) {
-                            
                             ForEach(self.viewModel.totemPieceList) { piece in
                                 ZStack {
                                     Image(piece.imageName).resizable()
@@ -213,7 +209,9 @@ struct TotemGameView: View {
         self.viewModel.changeGameScore()
         
         if self.progressViewModel.isLastQuestion() && self.viewModel.gameState == .NORMAL {
-            AppAnalytics.shared.logEvent(of: .gameRecap, parameters: ["recap_amount": viewModel.wrongAnswers.count, "gameObject": viewModel.game.gameName])
+            AppAnalytics.shared.logEvent(of: .gameRecap, parameters:
+                ["recap_amount": viewModel.wrongAnswers.count,
+                 "gameObject": viewModel.game.gameName])
             self.viewModel.gameState = .RECAP
         }
         

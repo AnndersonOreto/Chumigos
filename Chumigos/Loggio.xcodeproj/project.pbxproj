@@ -111,6 +111,7 @@
 		E74A37752502BC47001ADBEB /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A37742502BC47001ADBEB /* CustomDivider.swift */; };
 		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
 		E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */; };
+		E76827D52551CCFE00BA139E /* LifeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76827D42551CCFE00BA139E /* LifeManager.swift */; };
 		E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */; };
 		E7727D602538CD2400D8CC2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7727D5F2538CD2400D8CC2E /* GoogleService-Info.plist */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
@@ -266,6 +267,7 @@
 		E74A37742502BC47001ADBEB /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionView.swift; sourceTree = "<group>"; };
+		E76827D42551CCFE00BA139E /* LifeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeManager.swift; sourceTree = "<group>"; };
 		E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFeedbackMessage.swift; sourceTree = "<group>"; };
 		E7727D5F2538CD2400D8CC2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E78DA52E24BF7C17001A3079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 			children = (
 				E751219D24FE08470042FC00 /* Avatar Selection */,
 				AB855F1424F4341400C5A739 /* User.swift */,
+				E76827D42551CCFE00BA139E /* LifeManager.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1289,6 +1292,7 @@
 				E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */,
 				26FCAD94251BB9730082F9EC /* TotemPiece.swift in Sources */,
 				26946E9624C76424005A316E /* FormStar.swift in Sources */,
+				E76827D52551CCFE00BA139E /* LifeManager.swift in Sources */,
 				26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */,
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,

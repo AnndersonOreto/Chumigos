@@ -94,6 +94,7 @@ class TotemGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
+            User.shared.lifeManager.decreaseLife()
         }
     }
 }

@@ -136,6 +136,7 @@ class AvatarGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
+            User.shared.lifeManager.decreaseLife()
         }
     }
     

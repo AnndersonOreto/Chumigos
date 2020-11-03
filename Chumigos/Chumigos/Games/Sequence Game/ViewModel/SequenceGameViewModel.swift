@@ -130,6 +130,7 @@ class SequenceGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
+            User.shared.lifeManager.decreaseLife()
         }
     }
 }
