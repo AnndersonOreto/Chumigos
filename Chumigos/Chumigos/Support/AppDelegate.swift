@@ -33,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        // Keep data saved when offline
+        Database.database().isPersistenceEnabled = true
+        
         let title: String = "loggio-launch"
         
         Analytics.logEvent(title, parameters: [

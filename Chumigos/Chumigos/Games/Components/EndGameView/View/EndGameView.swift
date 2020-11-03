@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
 
 struct EndGameView: View {
     
@@ -16,6 +17,8 @@ struct EndGameView: View {
     var restartGame: ((GameObject) -> Void)
     @State var game: GameObject
     let gameScore: Int
+    @EnvironmentObject var environmentManager: EnvironmentManager
+    let database = DatabaseManager()
     
     // MARK: - Drawing Contants
     
@@ -67,7 +70,9 @@ struct EndGameView: View {
                         ])
                         self.game.increaseCurrentProgress(Float(self.gameScore))
                         self.game.changeIsCompleted()
-                        CoreDataService.shared.saveGameObject(self.game)
+                        //CoreDataService.shared.saveGameObject(self.game)
+                        self.environmentManager.profile?.saveGameObject(self.game)
+                        self.database.createTrail(self.environmentManager.profile?.trail ?? [], profileRef: Database.database().reference())
                 }
                 
                 Spacer()

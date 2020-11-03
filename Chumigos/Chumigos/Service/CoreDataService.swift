@@ -12,6 +12,7 @@ import CoreData
 class CoreDataService {
     
     static var shared = CoreDataService()
+    let database = DatabaseManager()
     
     // MARK: - Core Data stack
     

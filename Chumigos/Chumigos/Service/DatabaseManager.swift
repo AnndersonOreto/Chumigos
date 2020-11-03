@@ -9,7 +9,23 @@
 import Foundation
 import FirebaseDatabase
 
+protocol NoSuchEmailError: LocalizedError {
+
+    var title: String? { get }
+}
+
+struct MissingEmailError: NoSuchEmailError {
+
+    var title: String?
+
+    init(title: String?) {
+        self.title = title ?? "Error"
+    }
+}
+
 class DatabaseManager {
+    
+    // MARK: - Init
     
     private var ref: DatabaseReference!
     
@@ -18,17 +34,26 @@ class DatabaseManager {
         ref = Database.database().reference()
     }
     
+    // ====================================
+    // MARK: - Database save functions
+    // ====================================
+    
+    /// Save a new profile to the database
+    /// - Parameters:
+    ///   - email: email to be saved
+    ///   - name: name to be saved
+    ///   - userUid: id of the user
     func saveNewProfile(email: String, name: String, userUid: String) {
         
         let post = ["name": name]
         let profileRef = ref.child("users").child(email)
+        
         profileRef.setValue(post) { (error, _) in
-            
             if let error = error {
-                
                 print(error.localizedDescription)
             }
         }
+        
         let trailMockup = CoreDataService.shared.mockSections()
         createTrail(trailMockup, profileRef: profileRef)
     }
@@ -38,9 +63,7 @@ class DatabaseManager {
         let post = ["pending": source]
         
         ref.child("users").child(target).updateChildValues(post) { (error, ret) in
-            
             if let error = error {
-                
                 print(error.localizedDescription)
             }
         }
@@ -51,9 +74,7 @@ class DatabaseManager {
         var post = ["pending": ""]
         
         ref.child("users").child(source).updateChildValues(post) { (error, ret) in
-            
             if let error = error {
-                
                 print(error.localizedDescription)
             }
         }
@@ -63,41 +84,16 @@ class DatabaseManager {
                 "phone": phone]
         
         ref.child("users").child(target).child("professional_list").childByAutoId().setValue(post) { (error, ret) in
-            
             if let error = error {
-                
                 print(error.localizedDescription)
             }
         }
     }
     
-    func getUserProfile(userUid: String, completion: @escaping(AuthenticationProfile) -> Void) {
-
-        ref.child("users").child(userUid).observeSingleEvent(of: .value, with: { (snapshopt) in
-
-            let value = snapshopt.value as? NSDictionary
-            let email = userUid.replacingOccurrences(of: "(dot)", with: ".").lowercased()
-            let name = value?["name"] as? String ?? ""
-
-            let profile = AuthenticationProfile(id: userUid, email: email)
-            profile.name = name
-
-            completion(profile)
-        })
-    }
-    
-    func getPendingStatus(userUid: String, completion: @escaping(String) -> Void) {
-        ref.child("users").child(userUid).observeSingleEvent(of: .value) { (snapshot) in
-            if let value = snapshot.value as? NSDictionary {
-                if let pendingEmail = value["pending"] as? String {
-                    completion(pendingEmail)
-                } else {
-                    completion("")
-                }
-            }
-        }
-    }
-    
+    /// Creates a default trail strucure
+    /// - Parameters:
+    ///   - trail: trail to be created
+    ///   - profileRef: profile in which you want to save the trail
     func createTrail(_ trail: [TrailSection], profileRef: DatabaseReference) {
         var sectionsRef = profileRef.child("trail/sections")
         
@@ -105,7 +101,7 @@ class DatabaseManager {
         for (index01,section) in trail.enumerated() {
             sectionsRef = sectionsRef.child("\(index01)")
             sectionsRef.setValue([
-                "id": section.id,
+                "id": section.id.uuidString,
                 "available": section.available,
                 "currentLine": section.currentLine
             ])
@@ -132,17 +128,66 @@ class DatabaseManager {
         }
     }
     
-    func requestTrail() {
-        // email só pra teste
-        let email = "arthur@gmail(dot)com"
-        ref.child("users/\(email)/trail").observeSingleEvent(of: .value) { (snapshot) in
+    // ====================================
+    // MARK: - Database fetch functions
+    // ====================================
+    
+    func getUserProfile(userUid: String, completion: @escaping(AuthenticationProfile) -> Void) {
+        var matrixList: [TrailSection] = []
+
+        ref.child("users").child(userUid).observeSingleEvent(of: .value, with: { (snapshopt) in
+
+            let value = snapshopt.value as? NSDictionary
+            let email = userUid.replacingOccurrences(of: "(dot)", with: ".").lowercased()
+            let name = value?["name"] as? String ?? ""
+            
+            self.requestTrail(of: userUid) { (result) in
+                switch result {
+                case .success(let trail):
+                    matrixList = trail
+                    break
+                case .failure(_):
+                    matrixList = []
+                    break
+                }
+                
+                let profile = AuthenticationProfile(id: userUid, email: email, trail: matrixList)
+                profile.name = name
+
+                completion(profile)
+            }
+        })
+    }
+    
+    func getPendingStatus(userUid: String, completion: @escaping(String) -> Void) {
+        ref.child("users").child(userUid).observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? NSDictionary {
+                if let pendingEmail = value["pending"] as? String {
+                    completion(pendingEmail)
+                } else {
+                    completion("")
+                }
+            }
+        }
+    }
+    
+    /// Request the user trail
+    /// - Parameter profile: profile email
+    func requestTrail(of profile: String, completion: @escaping(Result<[TrailSection], Error>) -> Void) {
+        var trail = [TrailSection]()
+        
+        if profile.isEmpty {
+            completion(.failure(MissingEmailError(title: "No such email")))
+            return
+        }
+        
+        ref.child("users/\(profile)/trail").observeSingleEvent(of: .value) { (snapshot) in
             
             // Transforma snapshot vindo do Firebase para um dicionário
             if let value = snapshot.value as? [String: Any] {
                 
                 // Pega as seções como um array de dicinário
                 if let sectionsDict = value["sections"] as? [[String: Any]] {
-                    var trail = [TrailSection]()
                     
                     // Itera sobre as seções existentes
                     for section in sectionsDict {
@@ -198,6 +243,8 @@ class DatabaseManager {
                     }
                 }
             }
+            
+            completion(.success(trail))
         }
     }
 }

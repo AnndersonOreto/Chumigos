@@ -14,9 +14,12 @@ struct TrailView: View {
     // MARK: - Variable(s) & Contant(s)
     
     let screenWidth = UIScreen.main.bounds.width
+    let database = DatabaseManager()
     
     @Binding var isTabBarActive: Bool
     @State private var matrixList: [TrailSection] = CoreDataService.shared.mockSections()
+    
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     // MARK: - View
     
@@ -47,8 +50,7 @@ struct TrailView: View {
                         }
                         .onAppear {
                             self.isTabBarActive = true
-                            self.matrixList = CoreDataService.shared.retrieveTrailSections()
-                            DatabaseManager().requestTrail()
+                            self.matrixList = environmentManager.profile?.trail ?? []
                         }
                     }
                 }.padding(.vertical)
