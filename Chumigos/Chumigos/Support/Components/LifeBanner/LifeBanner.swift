@@ -47,9 +47,12 @@ struct LifeBanner: View {
                             freeLife(lifeCount: 1)
                             paidLife(lifeCount: 5)
                             unlimitedLife()
-                        }.padding(.top)
+                        }.padding(.vertical)
+                        
                     }.padding()
+                    
                     Spacer()
+                    
                 }.background(
                     Rectangle()
                     .fill(Color.background)
