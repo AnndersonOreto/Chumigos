@@ -101,6 +101,7 @@
 		AB855F1924F439B200C5A739 /* TrailTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1824F439B200C5A739 /* TrailTile.swift */; };
 		AB855F1B24F450A000C5A739 /* TrailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB855F1A24F450A000C5A739 /* TrailView.swift */; };
 		ABAF2CB525489F7D007D7A6F /* CustomPasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAF2CB425489F7D007D7A6F /* CustomPasswordField.swift */; };
+		ABBD466F255323A1002FAF66 /* LifeBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBD466E255323A1002FAF66 /* LifeBanner.swift */; };
 		ABC7426024DB249600CC3B7E /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7425F24DB249600CC3B7E /* Tile.swift */; };
 		ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
@@ -255,6 +256,7 @@
 		AB855F1824F439B200C5A739 /* TrailTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailTile.swift; sourceTree = "<group>"; };
 		AB855F1A24F450A000C5A739 /* TrailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailView.swift; sourceTree = "<group>"; };
 		ABAF2CB425489F7D007D7A6F /* CustomPasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPasswordField.swift; sourceTree = "<group>"; };
+		ABBD466E255323A1002FAF66 /* LifeBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeBanner.swift; sourceTree = "<group>"; };
 		ABC7425F24DB249600CC3B7E /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTile.swift; sourceTree = "<group>"; };
 		ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 		2623AC4525016B7C002A24A0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				ABBD466D2553238A002FAF66 /* LifeBanner */,
 				E76827D82551EC8500BA139E /* Life Component */,
 				AB5E5196251D069400FCF777 /* UnderConstructionView.swift */,
 				2623AC4625016BCC002A24A0 /* AppButtonStyle.swift */,
@@ -769,6 +772,14 @@
 				E76827D42551CCFE00BA139E /* LifeManager.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		ABBD466D2553238A002FAF66 /* LifeBanner */ = {
+			isa = PBXGroup;
+			children = (
+				ABBD466E255323A1002FAF66 /* LifeBanner.swift */,
+			);
+			path = LifeBanner;
 			sourceTree = "<group>";
 		};
 		ABCDB24124BF88EE00F9A9B8 /* Frameworks */ = {
@@ -1253,6 +1264,7 @@
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
 				2656BF292500086100231678 /* NotificationManager.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
+				ABBD466F255323A1002FAF66 /* LifeBanner.swift in Sources */,
 				26590E112538CEFF00AB3A1B /* PreLaunchView.swift in Sources */,
 				AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */,
 				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,

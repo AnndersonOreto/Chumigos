@@ -18,6 +18,7 @@ struct TrailView: View {
     @State var allowNavigation: Bool = false
     @State var chosenGame: GameObject = GameObject(id: UUID(), gameType: .abstraction, gameName: ".")
     @State private var matrixList: [TrailSection] = CoreDataService.shared.mockSections()
+    @State var showLifeBanner = false
     
     // MARK: - View
     
@@ -42,7 +43,7 @@ struct TrailView: View {
                                                         self.isTabBarActive = false
                                                     } else {
                                                         self.allowNavigation = false
-                                                        // aparecer view da vida
+                                                        self.showLifeBanner = true
                                                     }
                                             }
                                         }
@@ -58,10 +59,25 @@ struct TrailView: View {
                         }
                     }
                 }.padding(.vertical)
+                    .blur(radius: self.showLifeBanner ? 27 : 0)
+                
+                if showLifeBanner {
+                    VStack {
+                        LifeBanner(showLifeBanner: self.$showLifeBanner)
+                            .edgesIgnoringSafeArea(.top)
+                        Spacer()
+                    }.onAppear {
+                        self.isTabBarActive = false
+                    }
+                    .onDisappear {
+                        self.isTabBarActive = true
+                    }
+                }
+                
                 VStack {
                     HStack {
                         Spacer()
-                        LifeComponent()
+                        LifeComponent(showLifeBanner: self.$showLifeBanner)
                     }
                     Spacer()
                 }.padding()
