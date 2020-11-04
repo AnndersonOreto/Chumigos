@@ -232,6 +232,32 @@ class EnvironmentManager: NSObject, ObservableObject {
         }
     }
     
+    func reauthenticate(password: String) {
+        
+        guard let email = profile?.email else { return }
+        
+        let user = Auth.auth().currentUser
+        var credential: AuthCredential = EmailAuthProvider.credential(withEmail: email, password: password)
+        
+        // Prompt the user to re-provide their sign-in credentials
+        
+        user?.reauthenticate(with: credential) { (result, err) in
+            if let err = err {
+                // An error happened.
+                print(err.localizedDescription)
+            } else {
+                // User re-authenticated.
+            }
+        }
+    }
+    
+    func changePassword(newPassword: String) {
+        
+        Auth.auth().currentUser?.updatePassword(to: newPassword) { (error) in
+          // ...
+        }
+    }
+    
     func deleteAccount() {
         
         Auth.auth().currentUser?.delete(completion: { (error) in

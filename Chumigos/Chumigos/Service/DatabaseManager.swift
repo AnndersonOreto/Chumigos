@@ -30,7 +30,6 @@ class DatabaseManager {
     private var ref: DatabaseReference!
     
     init() {
-        
         ref = Database.database().reference()
     }
     
@@ -96,6 +95,44 @@ class DatabaseManager {
     ///   - profileRef: profile in which you want to save the trail
     func createTrail(_ trail: [TrailSection], profileRef: DatabaseReference) {
         var sectionsRef = profileRef.child("trail/sections")
+        
+        // Primeiro "for" percorre as seções da trilha
+        for (index01,section) in trail.enumerated() {
+            sectionsRef = sectionsRef.child("\(index01)")
+            sectionsRef.setValue([
+                "id": section.id.uuidString,
+                "available": section.available,
+                "currentLine": section.currentLine
+            ])
+            sectionsRef = sectionsRef.child("lines")
+            
+            // Segundo "for" percorre as linhas dentro de cada seção
+            for (index02,line) in section.lines.enumerated() {
+                let lineRef = sectionsRef.child("\(index02)")
+                var games = [[String: Any]]()
+                
+                // Terceiro "for" percorre os jogos dentro de cada linha
+                for game in line {
+                    let gameDict = ["id": game.id.uuidString,
+                                    "gameName": game.gameName,
+                                    "gameType": game.gameType.rawValue,
+                                    "isAvailable": game.isAvailable,
+                                    "isCompleted": game.isCompleted,
+                                    "currentProgress": game.currentProgress] as [String : Any]
+                    games.append(gameDict)
+                }
+                
+                lineRef.setValue(games)
+            }
+        }
+    }
+    
+    /// Creates a default trail strucure
+    /// - Parameters:
+    ///   - trail: trail to be created
+    ///   - userUid: id to append information
+    func createTrail(_ trail: [TrailSection], userUid: String) {
+        var sectionsRef = ref.child("users/\(userUid)/trail/sections")
         
         // Primeiro "for" percorre as seções da trilha
         for (index01,section) in trail.enumerated() {

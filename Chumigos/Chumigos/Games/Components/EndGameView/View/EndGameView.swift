@@ -72,7 +72,7 @@ struct EndGameView: View {
                         self.game.changeIsCompleted()
                         //CoreDataService.shared.saveGameObject(self.game)
                         self.environmentManager.profile?.saveGameObject(self.game)
-                        self.database.createTrail(self.environmentManager.profile?.trail ?? [], profileRef: Database.database().reference())
+                        self.database.createTrail(self.environmentManager.profile?.trail ?? [], userUid: self.environmentManager.profile?.id ?? "")
                 }
                 
                 Spacer()
