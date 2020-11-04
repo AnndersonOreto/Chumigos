@@ -18,6 +18,10 @@ class LifeManager {
     var countBonusLife: Int
     //tempo p regenerar
     
+    var totalLifes: Int {
+        return countLife + countBonusLife
+    }
+    
     var haveLifeToPlay: Bool {
         if countLife > 0 || countBonusLife > 0 {
             return true

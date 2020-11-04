@@ -112,6 +112,8 @@
 		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
 		E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */; };
 		E76827D52551CCFE00BA139E /* LifeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76827D42551CCFE00BA139E /* LifeManager.swift */; };
+		E76827D72551EB9000BA139E /* LifeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76827D62551EB9000BA139E /* LifeComponent.swift */; };
+		E76827DA2551EC9600BA139E /* LifeComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76827D92551EC9600BA139E /* LifeComponentViewModel.swift */; };
 		E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */; };
 		E7727D602538CD2400D8CC2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7727D5F2538CD2400D8CC2E /* GoogleService-Info.plist */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
@@ -268,6 +270,8 @@
 		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionView.swift; sourceTree = "<group>"; };
 		E76827D42551CCFE00BA139E /* LifeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeManager.swift; sourceTree = "<group>"; };
+		E76827D62551EB9000BA139E /* LifeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeComponent.swift; sourceTree = "<group>"; };
+		E76827D92551EC9600BA139E /* LifeComponentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeComponentViewModel.swift; sourceTree = "<group>"; };
 		E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFeedbackMessage.swift; sourceTree = "<group>"; };
 		E7727D5F2538CD2400D8CC2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E78DA52E24BF7C17001A3079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -412,6 +416,7 @@
 		2623AC4525016B7C002A24A0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E76827D82551EC8500BA139E /* Life Component */,
 				AB5E5196251D069400FCF777 /* UnderConstructionView.swift */,
 				2623AC4625016BCC002A24A0 /* AppButtonStyle.swift */,
 				E74A37742502BC47001ADBEB /* CustomDivider.swift */,
@@ -845,6 +850,15 @@
 				E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */,
 			);
 			path = "Avatar Selection";
+			sourceTree = "<group>";
+		};
+		E76827D82551EC8500BA139E /* Life Component */ = {
+			isa = PBXGroup;
+			children = (
+				E76827D62551EB9000BA139E /* LifeComponent.swift */,
+				E76827D92551EC9600BA139E /* LifeComponentViewModel.swift */,
+			);
+			path = "Life Component";
 			sourceTree = "<group>";
 		};
 		E7712CA324F42F0B00B4191C /* Models */ = {
@@ -1303,8 +1317,10 @@
 				E745370D2538C7A3002C58AC /* AppAnalytics.swift in Sources */,
 				26BC05AB2507F7A200A918F5 /* TrailMatrixList.swift in Sources */,
 				AB855F1724F4354800C5A739 /* TrailSection.swift in Sources */,
+				E76827DA2551EC9600BA139E /* LifeComponentViewModel.swift in Sources */,
 				AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */,
 				E7AEEB53252B940F009F457D /* InitialScreen.swift in Sources */,
+				E76827D72551EB9000BA139E /* LifeComponent.swift in Sources */,
 				E7E8EE83252BAD24003921D3 /* SignUpView.swift in Sources */,
 				AADAB3C924FEBBF8005B04B3 /* GamesView.swift in Sources */,
 				AAA0613D24E49683008CD91B /* Draggable.swift in Sources */,

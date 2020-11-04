@@ -34,28 +34,23 @@ struct TrailView: View {
                                     HStack(spacing: self.screenWidth * 0.06) {
                                         Spacer()
                                         ForEach(line, id: \.self) { game in
-//                                            NavigationLink(destination: GamesView(game: game)) {
-                                                TrailTile(game: game)
-                                                    .onTapGesture {
-                                                        if User.shared.lifeManager.haveLifeToPlay {
-                                                            self.chosenGame = game
-                                                            self.allowNavigation = true
-                                                            self.isTabBarActive = false
-                                                        } else {
-                                                            self.allowNavigation = false
-                                                            // aparecer view da vida
-                                                        }
-                                                }
-//                                            }.buttonStyle(PlainButtonStyle())
-                                                //.simultaneousGesture(TapGesture().onEnded {
-                                                   // self.isTabBarActive = false
-                                             //   })
+                                            TrailTile(game: game)
+                                                .onTapGesture {
+                                                    if User.shared.lifeManager.haveLifeToPlay {
+                                                        self.chosenGame = game
+                                                        self.allowNavigation = true
+                                                        self.isTabBarActive = false
+                                                    } else {
+                                                        self.allowNavigation = false
+                                                        // aparecer view da vida
+                                                    }
+                                            }
                                         }
                                         Spacer()
                                     }
                                 }
                             }.padding(.bottom, self.screenWidth * 0.04)
-                            .background(section.available ? Color.background : Color.sectionUnavailable)
+                                .background(section.available ? Color.background : Color.sectionUnavailable)
                         }
                         .onAppear {
                             self.isTabBarActive = true
@@ -63,6 +58,13 @@ struct TrailView: View {
                         }
                     }
                 }.padding(.vertical)
+                VStack {
+                    HStack {
+                        Spacer()
+                        LifeComponent()
+                    }
+                    Spacer()
+                }.padding()
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
