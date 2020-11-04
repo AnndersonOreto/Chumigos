@@ -134,6 +134,8 @@ class DatabaseManager {
     func createTrail(_ trail: [TrailSection], userUid: String) {
         var sectionsRef = ref.child("users/\(userUid)/trail/sections")
         
+        sectionsRef.keepSynced(true)
+        
         // Primeiro "for" percorre as seções da trilha
         for (index01,section) in trail.enumerated() {
             sectionsRef = sectionsRef.child("\(index01)")
@@ -143,6 +145,7 @@ class DatabaseManager {
                 "currentLine": section.currentLine
             ])
             sectionsRef = sectionsRef.child("lines")
+            
             
             // Segundo "for" percorre as linhas dentro de cada seção
             for (index02,line) in section.lines.enumerated() {
