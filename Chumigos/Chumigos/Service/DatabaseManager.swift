@@ -221,7 +221,7 @@ class DatabaseManager {
             return
         }
         
-        ref.child("users/\(profile)/trail").observeSingleEvent(of: .value) { (snapshot) in
+        let handle = ref.child("users/\(profile)/trail").observe(.value, with: { (snapshot) in
             
             // Transforma snapshot vindo do Firebase para um dicionário
             if let value = snapshot.value as? [String: Any] {
@@ -285,6 +285,9 @@ class DatabaseManager {
             }
             
             completion(.success(trail))
-        }
+        })
+        
+        // If does not want to update data in real time
+        // ref.removeObserver(withHandle: handle)
     }
 }
