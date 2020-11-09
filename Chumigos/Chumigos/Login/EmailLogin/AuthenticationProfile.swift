@@ -17,15 +17,17 @@ class AuthenticationProfile {
     var phone: String = ""
     var role: String = ""
     var pending: String = ""
+    var lives: Int = 0
     var trail: [TrailSection] = []
 //    @Published var feelings: FeelingsInfoArray = FeelingsInfoArray(user_array: [])
 //    @Published var patients: [Patient] = []
     
-    init(id: String, email: String?, trail: [TrailSection]) {
+    init(id: String, email: String?, lives: Int, trail: [TrailSection]) {
         
         self.id = id
         self.email = email
         self.trail = trail
+        self.lives = lives
     }
     
     init(id: String, email: String?, name: String, phone: String, role: String, pending: String) {

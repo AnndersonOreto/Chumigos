@@ -42,9 +42,10 @@ class DatabaseManager {
     ///   - email: email to be saved
     ///   - name: name to be saved
     ///   - userUid: id of the user
-    func saveNewProfile(email: String, name: String, userUid: String) {
+    func saveNewProfile(email: String, name: String, userUid: String, lives: Int) {
         
-        let post = ["name": name]
+        let post: [String: Any] = ["name": name,
+                                   "lives": lives]
         let profileRef = ref.child("users").child(email)
         
         profileRef.setValue(post) { (error, _) in
@@ -57,11 +58,11 @@ class DatabaseManager {
         createTrail(trailMockup, profileRef: profileRef)
     }
 
-    func sendPending(source: String, target: String) {
+    func updateLives(lives: Int, userUid: String) {
         
-        let post = ["pending": source]
+        let post = ["lives": lives]
         
-        ref.child("users").child(target).updateChildValues(post) { (error, ret) in
+        ref.child("users").child(userUid).updateChildValues(post) { (error, ret) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -180,6 +181,7 @@ class DatabaseManager {
             let value = snapshopt.value as? NSDictionary
             let email = userUid.replacingOccurrences(of: "(dot)", with: ".").lowercased()
             let name = value?["name"] as? String ?? ""
+            let lives = value?["lives"] as? Int ?? 0
             
             self.requestTrail(of: userUid) { (result) in
                 switch result {
@@ -191,7 +193,7 @@ class DatabaseManager {
                     break
                 }
                 
-                let profile = AuthenticationProfile(id: userUid, email: email, trail: matrixList)
+                let profile = AuthenticationProfile(id: userUid, email: email, lives: lives, trail: matrixList)
                 profile.name = name
 
                 completion(profile)

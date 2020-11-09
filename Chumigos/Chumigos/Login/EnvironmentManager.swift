@@ -156,7 +156,7 @@ class EnvironmentManager: NSObject, ObservableObject {
                 
                 if let userResult = user?.user {
                     
-                    self.database.saveNewProfile(email: self.replaceEmail(email: email), name: name, userUid: userResult.uid)
+                    self.database.saveNewProfile(email: self.replaceEmail(email: email), name: name, userUid: userResult.uid, lives: 5)
                 } else {
                     
                     print(error?.localizedDescription ?? "")
@@ -361,7 +361,7 @@ extension EnvironmentManager: ASAuthorizationControllerDelegate {
                             (appleIDCredential.fullName?.familyName ?? "")
                         self.database.saveNewProfile(email: replacedEmail,
                                                      name: name,
-                                                     userUid: authResult?.user.email ?? "")
+                                                     userUid: authResult?.user.email ?? "", lives: 5)
                     }
                 })
             }
