@@ -48,6 +48,11 @@
 		26AB83BC2513B824004BDF49 /* TotemGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BB2513B824004BDF49 /* TotemGameView.swift */; };
 		26AB83BE2513B852004BDF49 /* TotemGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BD2513B852004BDF49 /* TotemGameViewModel.swift */; };
 		26AB83C02513B916004BDF49 /* TotemGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB83BF2513B916004BDF49 /* TotemGameModel.swift */; };
+		26AC83DC255C583500419F70 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AC83DB255C583500419F70 /* StoreKit.framework */; };
+		26AC83E0255C58C700419F70 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC83DF255C58C700419F70 /* IAPHelper.swift */; };
+		26AC83EC255C5F3500419F70 /* ConsumableProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC83EB255C5F3500419F70 /* ConsumableProducts.swift */; };
+		26AC83F1255C62B900419F70 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC83F0255C62B900419F70 /* ProductsView.swift */; };
+		26AC83F9255C632B00419F70 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC83F8255C632B00419F70 /* ProductsViewModel.swift */; };
 		26B7DA7125377ADE00B44BFA /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */; };
 		26BC05AB2507F7A200A918F5 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AA2507F7A200A918F5 /* Trail.swift */; };
 		26BCB0872537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
@@ -191,6 +196,11 @@
 		26AB83BB2513B824004BDF49 /* TotemGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameView.swift; sourceTree = "<group>"; };
 		26AB83BD2513B852004BDF49 /* TotemGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameViewModel.swift; sourceTree = "<group>"; };
 		26AB83BF2513B916004BDF49 /* TotemGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemGameModel.swift; sourceTree = "<group>"; };
+		26AC83DB255C583500419F70 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		26AC83DF255C58C700419F70 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		26AC83EB255C5F3500419F70 /* ConsumableProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableProducts.swift; sourceTree = "<group>"; };
+		26AC83F0255C62B900419F70 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
+		26AC83F8255C632B00419F70 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
 		26BC05AA2507F7A200A918F5 /* Trail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		26BCB0852537613F00176274 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -284,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26AC83DC255C583500419F70 /* StoreKit.framework in Frameworks */,
 				ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */,
 				417085B2A96D815683A587A4 /* Pods_Loggio.framework in Frameworks */,
 			);
@@ -469,6 +480,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		26AC83DD255C587E00419F70 /* in-App Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				26AC83DF255C58C700419F70 /* IAPHelper.swift */,
+				26AC83F0255C62B900419F70 /* ProductsView.swift */,
+				26AC83F8255C632B00419F70 /* ProductsViewModel.swift */,
+				26AC83DE255C588F00419F70 /* Consumable */,
+			);
+			path = "in-App Purchases";
+			sourceTree = "<group>";
+		};
+		26AC83DE255C588F00419F70 /* Consumable */ = {
+			isa = PBXGroup;
+			children = (
+				26AC83EB255C5F3500419F70 /* ConsumableProducts.swift */,
+			);
+			path = Consumable;
+			sourceTree = "<group>";
+		};
 		26C186B324BE4AA50094AEC1 = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +526,7 @@
 		26C186BE24BE4AA50094AEC1 /* Chumigos */ = {
 			isa = PBXGroup;
 			children = (
+				26AC83DD255C587E00419F70 /* in-App Purchases */,
 				E7AEEB50252B9342009F457D /* Login */,
 				AAB022B225002D2C00DE2B34 /* PopUps */,
 				AB855F1324F4340700C5A739 /* User */,
@@ -766,6 +797,7 @@
 		ABCDB24124BF88EE00F9A9B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26AC83DB255C583500419F70 /* StoreKit.framework */,
 				ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */,
 				B48321D0B69C0B2623791CAF /* Pods_Loggio.framework */,
 				AF387EA7BE4343F3D3AC9CF2 /* Pods_Loggio_LoggioUITests.framework */,
@@ -1230,6 +1262,7 @@
 				ABC7426024DB249600CC3B7E /* Tile.swift in Sources */,
 				AB6E8ABA25095B160048345D /* AvatarGameViewModel.swift in Sources */,
 				AB855F1224F430EE00C5A739 /* GameNames.swift in Sources */,
+				26AC83F9255C632B00419F70 /* ProductsViewModel.swift in Sources */,
 				AA24C13324E5C06A006F8C5A /* Question.swift in Sources */,
 				2623AC4425015ED9002A24A0 /* ConfigurationViewModel.swift in Sources */,
 				26C186C224BE4AA50094AEC1 /* SceneDelegate.swift in Sources */,
@@ -1238,6 +1271,7 @@
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
 				26590E112538CEFF00AB3A1B /* PreLaunchView.swift in Sources */,
 				AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */,
+				26AC83F1255C62B900419F70 /* ProductsView.swift in Sources */,
 				AB855F1024F42FD000C5A739 /* GameObject.swift in Sources */,
 				26AB83BC2513B824004BDF49 /* TotemGameView.swift in Sources */,
 				AB855F1524F4341400C5A739 /* User.swift in Sources */,
@@ -1280,6 +1314,7 @@
 				26946E9224C762A3005A316E /* FormDecagon.swift in Sources */,
 				264655252537904E00B18DBC /* EnvironmentManager.swift in Sources */,
 				263D144F24EEF0A800111A76 /* GameState.swift in Sources */,
+				26AC83EC255C5F3500419F70 /* ConsumableProducts.swift in Sources */,
 				E7D8310F252F83C5000EC2D9 /* WelcomeView.swift in Sources */,
 				26940AEB24C0E62000F258B6 /* CKCloudParseProtocol.swift in Sources */,
 				AAC7A059251A6591005F741A /* UIImage+Crop.swift in Sources */,
@@ -1302,6 +1337,7 @@
 				AA9C8EC425015C9E0080B06E /* DynamicFont.swift in Sources */,
 				E7AEEB53252B940F009F457D /* InitialScreen.swift in Sources */,
 				E7E8EE83252BAD24003921D3 /* SignUpView.swift in Sources */,
+				26AC83E0255C58C700419F70 /* IAPHelper.swift in Sources */,
 				AADAB3C924FEBBF8005B04B3 /* GamesView.swift in Sources */,
 				AAA0613D24E49683008CD91B /* Draggable.swift in Sources */,
 				265B7662253DD3D90037AC5E /* SignInWithAppleButton.swift in Sources */,
@@ -1491,6 +1527,7 @@
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Chumigos/Support/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1515,6 +1552,7 @@
 				DEVELOPMENT_TEAM = LZ4KUFVTZH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Chumigos/Support/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

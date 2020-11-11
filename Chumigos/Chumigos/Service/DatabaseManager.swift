@@ -62,7 +62,7 @@ class DatabaseManager {
         
         let post = ["lives": lives]
         
-        ref.child("users").child(userUid).updateChildValues(post) { (error, ret) in
+        ref.child("users").child(userUid).updateChildValues(post) { (error, _) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -73,7 +73,7 @@ class DatabaseManager {
         
         var post = ["pending": ""]
         
-        ref.child("users").child(source).updateChildValues(post) { (error, ret) in
+        ref.child("users").child(source).updateChildValues(post) { (error, _) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -83,7 +83,7 @@ class DatabaseManager {
                 "name": name,
                 "phone": phone]
         
-        ref.child("users").child(target).child("professional_list").childByAutoId().setValue(post) { (error, ret) in
+        ref.child("users").child(target).child("professional_list").childByAutoId().setValue(post) { (error, _) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -147,7 +147,6 @@ class DatabaseManager {
             ])
             sectionsRef = sectionsRef.child("lines")
             
-            
             // Segundo "for" percorre as linhas dentro de cada seção
             for (index02,line) in section.lines.enumerated() {
                 let lineRef = sectionsRef.child("\(index02)")
@@ -187,10 +186,8 @@ class DatabaseManager {
                 switch result {
                 case .success(let trail):
                     matrixList = trail
-                    break
-                case .failure(_):
+                case .failure:
                     matrixList = []
-                    break
                 }
                 
                 let profile = AuthenticationProfile(id: userUid, email: email, lives: lives, trail: matrixList)
@@ -223,7 +220,8 @@ class DatabaseManager {
             return
         }
         
-        let handle = ref.child("users/\(profile)/trail").observe(.value, with: { (snapshot) in
+        //let handle =
+            ref.child("users/\(profile)/trail").observe(.value, with: { (snapshot) in
             
             // Transforma snapshot vindo do Firebase para um dicionário
             if let value = snapshot.value as? [String: Any] {
