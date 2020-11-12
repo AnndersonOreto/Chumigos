@@ -23,12 +23,46 @@ struct ProductsView: View {
                 
                 ForEach(self.viewModel.products, id: \.self) { product in
                     
-                    HStack {
-                        Text(product.localizedTitle)
-                        Text(ProductsViewModel.priceFormatter.string(from: product.price) ?? "")
-                    }
+                    ProductView(product: product)
                 }
             }
         }
     }
+}
+
+struct ProductView: View {
+    
+    var product: SKProduct?
+    @State var productName: String = ""
+    @State var productPrice: String = ""
+    @State var buttonText: String = ""
+    
+    var body: some View {
+        
+        HStack {
+            Text(productName)
+            Text(productPrice)
+            Button {
+                ConsumableProducts.store.buyProduct(product!)
+            } label: {
+                Text(buttonText)
+            }
+        }.onAppear(perform: setup)
+    }
+    
+    func setup() {
+        
+        guard let product = product else { return }
+        
+        productName = product.localizedTitle
+        
+        if ConsumableProducts.store.isProductPurchased(product.productIdentifier) {
+            productPrice = "COMPROU"
+            buttonText = "Comprar"
+        } else if IAPHelper.canMakePayments() {
+            productPrice = ProductsViewModel.priceFormatter.string(from: product.price) ?? ""
+            buttonText = "Comprar"
+        }
+    }
+    
 }

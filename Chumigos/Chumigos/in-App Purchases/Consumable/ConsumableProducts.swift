@@ -10,7 +10,7 @@ import Foundation
 
 public struct ConsumableProducts {
     
-    public static let SwiftShopping = "com.mc.Chumigos.generaluserlife"
+    public static let SwiftShopping = "generaluserlife"
     
     private static let productIdentifiers: Set<ProductIdentifier> = [ConsumableProducts.SwiftShopping]
     
