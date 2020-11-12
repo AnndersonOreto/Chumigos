@@ -20,7 +20,7 @@ class DatabaseManager {
     
     func saveNewProfile(email: String, name: String, userUid: String) {
         
-        let post = ["name": name]
+        let post = ["name": name, "user_life": ["current_life": 5]] as [String : Any]
         
         ref.child("users").child(email).setValue(post) { (error, _) in
             
@@ -28,6 +28,35 @@ class DatabaseManager {
                 
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func saveLastErrorDate(date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .medium
+        dateFormatter.locale = Locale.current
+        let dateFormatted = dateFormatter.string(from: date)
+
+        let post = ["lastError_date": dateFormatted]
+
+        ref.child("users").child(User.shared.email.replaceEmail()).child("user_life").updateChildValues(post) { (error, _) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func updateUserLifes() {
+        
+    }
+    
+    func getUserLifes(completion: @escaping(Int) -> Void)  {
+        var currentLife = 0
+        ref.child("users").child(User.shared.email.replaceEmail()).child("user_life").observeSingleEvent(of: .value) { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            currentLife = value?["current_life"] as? Int ?? 0
+            completion(currentLife)
         }
     }
 

@@ -40,9 +40,3 @@ struct LifeComponent: View {
             }
     }
 }
-
-//struct LifeComponent_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LifeComponent()
-//    }
-//}

@@ -10,6 +10,10 @@ import Foundation
 
 class LifeManager {
     
+    #warning("trocar para singleton!!!!!!")
+    let database: DatabaseManager = DatabaseManager()
+    
+    let MAXLIFES = 5
     var countLife: Int {
         didSet {
             print("***", countLife)
@@ -30,8 +34,8 @@ class LifeManager {
         }
     }
     
-    init() {
-        countLife = 5
+    init(currentLife: Int) {
+        countLife = currentLife
         countBonusLife = 0
     }
     
@@ -96,8 +100,8 @@ class LifeManager {
     /// Increment life value by 1
     private func incrementCountLife() {
         countLife += 1
-        if countLife > 5 {
-            countLife = 5
+        if countLife > MAXLIFES {
+            countLife = MAXLIFES
         }
     }
     
@@ -105,13 +109,16 @@ class LifeManager {
     /// - Parameter value: number to increment
     private func incrementCountLife(by value: Int) {
         countLife += value
-        if countLife > 5 {
-            countLife = 5
+        if countLife > MAXLIFES {
+            countLife = MAXLIFES
         }
     }
     
     /// Decrease life value by 1
     private func decreaseCountLife() {
+        if countLife == MAXLIFES {
+            database.saveLastErrorDate(date: Date())
+        }
         countLife -= 1
         if countLife < 0 {
             countLife = 0
@@ -130,8 +137,8 @@ class LifeManager {
     /// Increment bonus life value by 1
     private func incrementCountBonusLife() {
         countBonusLife += 1
-        if countBonusLife > 5 {
-            countBonusLife = 5
+        if countBonusLife > MAXLIFES {
+            countBonusLife = MAXLIFES
         }
     }
     
@@ -139,8 +146,8 @@ class LifeManager {
     /// - Parameter value: number to increment
     private func incrementCountBonusLife(by value: Int) {
         countBonusLife += value
-        if countBonusLife > 5 {
-            countBonusLife = 5
+        if countBonusLife > MAXLIFES {
+            countBonusLife = MAXLIFES
         }
     }
     

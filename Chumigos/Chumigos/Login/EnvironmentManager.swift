@@ -354,3 +354,13 @@ extension EnvironmentManager: ASAuthorizationControllerPresentationContextProvid
         return self.window!
     }
 }
+
+extension String {
+    func replaceEmail() -> String {
+        if self.contains(".") {
+            return self.replacingOccurrences(of: ".", with: "(dot)").lowercased()
+        } else {
+            return self.replacingOccurrences(of: "(dot)", with: ".").lowercased()
+        }
+    }
+}
