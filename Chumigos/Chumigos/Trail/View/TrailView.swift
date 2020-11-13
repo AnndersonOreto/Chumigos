@@ -50,7 +50,7 @@ struct TrailView: View {
                         }
                         .onAppear {
                             self.isTabBarActive = true
-                            self.matrixList = environmentManager.profile?.trail ?? []
+                            self.matrixList = self.environmentManager.profile?.trail ?? []
                         }
                     }
                 }.padding(.vertical)
