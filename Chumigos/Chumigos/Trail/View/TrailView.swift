@@ -7,18 +7,22 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
 
 struct TrailView: View {
     
     // MARK: - Variable(s) & Contant(s)
     
     let screenWidth = UIScreen.main.bounds.width
+    let database = DatabaseManager()
     
     @Binding var isTabBarActive: Bool
     @State var allowNavigation: Bool = false
     @State var chosenGame: GameObject = GameObject(id: UUID(), gameType: .abstraction, gameName: ".")
     @State private var matrixList: [TrailSection] = CoreDataService.shared.mockSections()
     @State var showLifeBanner = false
+    
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     // MARK: - View
     
@@ -31,7 +35,7 @@ struct TrailView: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         ForEach(self.matrixList) { (section) in
                             VStack(spacing: self.screenWidth * 0.04) {
-                                ForEach(section.trail, id: \.self) { line in
+                                ForEach(section.lines, id: \.self) { line in
                                     HStack(spacing: self.screenWidth * 0.06) {
                                         Spacer()
                                         ForEach(line, id: \.self) { game in
@@ -55,7 +59,7 @@ struct TrailView: View {
                         }
                         .onAppear {
                             self.isTabBarActive = true
-                            self.matrixList = CoreDataService.shared.retrieveMatrixTrail()
+                            self.matrixList = self.environmentManager.profile?.trail ?? []
                         }
                     }
                 }.padding(.vertical)

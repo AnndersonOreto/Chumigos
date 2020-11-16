@@ -17,13 +17,21 @@ class AuthenticationProfile {
     var phone: String = ""
     var role: String = ""
     var pending: String = ""
+    var lives: Int = 0
+    var bonusLives: Int = 0
+    var lastErrorDate = ""
+    var trail: [TrailSection] = []
+    var lifeManager: LifeManager = LifeManager()
 //    @Published var feelings: FeelingsInfoArray = FeelingsInfoArray(user_array: [])
 //    @Published var patients: [Patient] = []
     
-    init(id: String, email: String?) {
+    init(name: String, id: String, email: String?, lives: Int, trail: [TrailSection], lastErrorDate: String) {
         
         self.id = id
         self.email = email
+        self.trail = trail
+        self.lives = lives
+        self.lastErrorDate = lastErrorDate
     }
     
     init(id: String, email: String?, name: String, phone: String, role: String, pending: String) {
@@ -34,6 +42,21 @@ class AuthenticationProfile {
         self.phone = phone
         self.role = role
         self.pending = pending
+    }
+    
+    func saveGameObject(_ gameObject: GameObject) {
+        
+        #warning("Muitos for aninhados! Precisamos refatorar.")
+        for section in 0..<trail.count {
+            for line in 0..<trail[section].lines.count {
+                for column in 0..<trail[section].lines[line].count {
+                    let game = trail[section].lines[line][column]
+                    if game.id == gameObject.id {
+                        trail[section].lines[line][column] = gameObject
+                    }
+                }
+            }
+        }
     }
     
 //    init(id: String, email: String?, name: String, phone: String, role: String, pending: String, patients: [Patient]) {

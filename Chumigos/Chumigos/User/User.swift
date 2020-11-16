@@ -15,12 +15,12 @@ class User {
     static let shared = User()
     
 //    var name: String
-//    var trail: [TrailSection]
+//    var lines: [TrailSection]
 //
-//    init(name: String, trail: [TrailSection]) {
+//    init(name: String, lines: [TrailSection]) {
 //        self.name = name
-//        self.trail = trail
-//        self.shared = User(name: name, trail: trail)
+//        self.lines = lines
+//        self.shared = User(name: name, lines: lines)
 //    }
     
     private init() { }
@@ -40,6 +40,14 @@ class User {
         return profile?.email ?? ""
     }
     
+    var lives: Int {
+        return profile?.lives ?? 5
+    }
+    
+    var bonusLives: Int {
+        return profile?.bonusLives ?? 0
+    }
+    
     var isLogged: Bool {
         guard let profile = environmentManager.profile else {
             return false
@@ -47,18 +55,13 @@ class User {
         return !profile.name.isEmpty
     }
     
-    
-    var lifeManager: LifeManager = LifeManager(currentLife: 5)
-    
-    func getCurrentLife() -> Int{
-        
-    }
+    var lifeManager: LifeManager = LifeManager()
     
     //Available next section
 //    func makeNextSectionAvailable() {
 //        
 //        //Get first section where isnt available
-//        let nextSectionIndex = self.trail.firstIndex(where: {
+//        let nextSectionIndex = self.lines.firstIndex(where: {
 //            $0.available == false
 //        })
 //        

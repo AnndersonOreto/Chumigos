@@ -6,7 +6,7 @@
 //  Copyright © 2020 Annderson Packeiser Oreto. All rights reserved.
 //
 
-enum GameType: Int, Codable {
+enum GameType: String, Codable {
     case pattern, algorithm, decomposition, abstraction
 }
 
@@ -21,7 +21,7 @@ struct GameObject: Hashable, Codable {
     let gameType: GameType
     let gameName: String
     #warning("isAvailable é pra ser false. Está true agora pra loja.")
-    var isAvailable = true
+    var isAvailable: Bool = true
     var isCompleted: Bool = false
     
     //Game Progress

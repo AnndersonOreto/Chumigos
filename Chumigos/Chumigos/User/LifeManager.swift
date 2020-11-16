@@ -12,13 +12,9 @@ class LifeManager {
     
     #warning("trocar para singleton!!!!!!")
     let database: DatabaseManager = DatabaseManager()
-    
+
     let MAXLIFES = 5
-    var countLife: Int {
-        didSet {
-            print("***", countLife)
-        }
-    }
+    var countLife: Int = 0
     var countBonusLife: Int
     //tempo p regenerar
     
@@ -34,8 +30,9 @@ class LifeManager {
         }
     }
     
-    init(currentLife: Int) {
-        countLife = currentLife
+    init() {
+
+        countLife = 5
         countBonusLife = 0
     }
     
@@ -96,6 +93,16 @@ class LifeManager {
             self.decreaseCountLife(by: value)
         }
     }
+    
+    private func updateLives() {
+//        database.getUserLifes { (value) in
+//            self.countLife = value
+//        }
+    }
+    
+    private func calculateCurrentLives() {
+        
+    }
         
     /// Increment life value by 1
     private func incrementCountLife() {
@@ -123,6 +130,8 @@ class LifeManager {
         if countLife < 0 {
             countLife = 0
         }
+        
+        database.updateUserLifes(newLives: countLife)
     }
 
     /// Decrease life value by certain value
