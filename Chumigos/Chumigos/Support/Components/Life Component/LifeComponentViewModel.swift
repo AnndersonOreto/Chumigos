@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 class LifeComponentViewModel: ObservableObject {
     
-    @Published var totalLifes: Int = User.shared.lifeManager.totalLifes
+    @Published var totalLifes: Int = 0
     
-    init() {
-        
+    init(totalLifes: Int) {
+        self.totalLifes = totalLifes
     }
 }

@@ -12,6 +12,7 @@ struct LifeBanner: View {
     
     let screenWidth = UIScreen.main.bounds.width
     @Binding var showLifeBanner: Bool
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     var body: some View {
         
@@ -29,7 +30,7 @@ struct LifeBanner: View {
                     Spacer()
                     //Main VStack
                     VStack(spacing: 12) {
-                        CustomText("Você possui \(User.shared.lifeManager.totalLifes) energias!")
+                        CustomText("Você possui \(String(describing: self.environmentManager.profile?.lifeManager.totalLifes)) energias!")
                             .dynamicFont(size: 20, weight: .medium)
                             .foregroundColor(.textColor)
                             .padding(.top)

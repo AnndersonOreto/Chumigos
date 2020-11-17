@@ -21,7 +21,7 @@ class AuthenticationProfile {
     var bonusLives: Int = 0
     var lastErrorDate = ""
     var trail: [TrailSection] = []
-    var lifeManager: LifeManager = LifeManager()
+    var lifeManager: LifeManager
 //    @Published var feelings: FeelingsInfoArray = FeelingsInfoArray(user_array: [])
 //    @Published var patients: [Patient] = []
     
@@ -32,16 +32,7 @@ class AuthenticationProfile {
         self.trail = trail
         self.lives = lives
         self.lastErrorDate = lastErrorDate
-    }
-    
-    init(id: String, email: String?, name: String, phone: String, role: String, pending: String) {
-        
-        self.id = id
-        self.email = email
-        self.name = name
-        self.phone = phone
-        self.role = role
-        self.pending = pending
+        self.lifeManager = LifeManager(userLifes: lives, lastErrorDate: lastErrorDate, userEmail: email ?? "")
     }
     
     func saveGameObject(_ gameObject: GameObject) {

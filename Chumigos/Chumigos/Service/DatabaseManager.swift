@@ -57,7 +57,7 @@ class DatabaseManager {
         createTrail(trailMockup, profileRef: profileRef)
     }
     
-    func saveLastErrorDate(date: Date) {
+    func saveLastErrorDate(date: Date, email: String) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .medium
@@ -66,27 +66,27 @@ class DatabaseManager {
 
         let post = ["lastError_date": dateFormatted]
 
-        ref.child("users").child(User.shared.email.replaceEmail()).child("user_life").updateChildValues(post) { (error, _) in
+        ref.child("users").child(email.replaceEmail()).child("user_life").updateChildValues(post) { (error, _) in
             if let error = error {
                 print(error.localizedDescription)
             }
         }
     }
     
-    func updateUserLifes(newLives: Int) {
+    func updateUserLifes(newLives: Int, email: String) {
         
         let post = ["current_life": newLives]
         
-        ref.child("users").child(User.shared.email.replaceEmail()).child("user_life").updateChildValues(post) { (err, _) in
+        ref.child("users").child(email.replaceEmail()).child("user_life").updateChildValues(post) { (err, _) in
             if let error = err {
                 print(error.localizedDescription)
             }
         }
     }
     
-    func getUserLifes(completion: @escaping(Int) -> Void) {
+    func getUserLifes(email: String, completion: @escaping(Int) -> Void) {
         var currentLife = 0
-        ref.child("users").child(User.shared.email.replaceEmail()).child("user_life").observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("users").child(email.replaceEmail()).child("user_life").observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as? NSDictionary
             currentLife = value?["current_life"] as? Int ?? 0
             completion(currentLife)
@@ -216,7 +216,7 @@ class DatabaseManager {
             let email = userUid.replacingOccurrences(of: "(dot)", with: ".").lowercased()
             let name = value?["name"] as? String ?? ""
             let userLife = value?["user_life"] as? NSDictionary
-            let lives = userLife?["curent_life"] as? Int ?? 0
+            let lives = userLife?["current_life"] as? Int ?? 0
             let lastErrorDate = userLife?["lastError_date"] as? String ?? ""
 
             self.requestTrail(of: userUid) { (result) in

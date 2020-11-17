@@ -10,6 +10,7 @@ import SwiftUI
 
 class SequenceGameViewModel: ObservableObject {
     @Published var model: SequenceGameModel
+    @EnvironmentObject var environmentManager: EnvironmentManager
     let difficulty: Difficulty
     var wrongAnswersArray: [(SequenceGameModel, Int)] = []
     var game: GameObject
@@ -130,7 +131,7 @@ class SequenceGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
-            User.shared.lifeManager.decreaseLife()
+            self.environmentManager.profile?.lifeManager.decreaseLife()
         }
     }
 }

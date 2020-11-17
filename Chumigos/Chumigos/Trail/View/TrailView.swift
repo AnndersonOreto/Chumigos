@@ -41,7 +41,7 @@ struct TrailView: View {
                                         ForEach(line, id: \.self) { game in
                                             TrailTile(game: game)
                                                 .onTapGesture {
-                                                    if User.shared.lifeManager.haveLifeToPlay {
+                                                    if let haveLifeToPlay = self.environmentManager.profile?.lifeManager.haveLifeToPlay, haveLifeToPlay {
                                                         self.chosenGame = game
                                                         self.allowNavigation = true
                                                         self.isTabBarActive = false

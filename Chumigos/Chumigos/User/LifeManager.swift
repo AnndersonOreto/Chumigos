@@ -10,17 +10,25 @@ import Foundation
 
 class LifeManager {
     
-    #warning("trocar para singleton!!!!!!")
     let database: DatabaseManager = DatabaseManager()
 
+    // Maximum lives that user can have as time earned lives
     let MAXLIFES = 5
-    var countLife: Int = 0
-    var countBonusLife: Int
-    //tempo p regenerar
     
+    // Current amount of lives the user has
+    var countLife: Int
+    
+    // Bought lives that are apart from time earned ones
+    var countBonusLife: Int
+    
+    // Sum of bought lives and time earned lives
     var totalLifes: Int {
         return countLife + countBonusLife
     }
+    
+    var userEmail: String = ""
+    
+    var lastErrorDate: String
     
     var haveLifeToPlay: Bool {
         if countLife > 0 || countBonusLife > 0 {
@@ -30,10 +38,12 @@ class LifeManager {
         }
     }
     
-    init() {
+    init(userLifes: Int, lastErrorDate: String, userEmail: String) {
 
-        countLife = 5
+        self.lastErrorDate = lastErrorDate
+        countLife = userLifes
         countBonusLife = 0
+        self.userEmail = userEmail
     }
     
     /// Increment life or bonus life according to isBonus parameter. Default value is setted to false.
@@ -124,14 +134,14 @@ class LifeManager {
     /// Decrease life value by 1
     private func decreaseCountLife() {
         if countLife == MAXLIFES {
-            database.saveLastErrorDate(date: Date())
+            database.saveLastErrorDate(date: Date(), email: userEmail)
         }
         countLife -= 1
         if countLife < 0 {
             countLife = 0
         }
         
-        database.updateUserLifes(newLives: countLife)
+        database.updateUserLifes(newLives: countLife, email: userEmail)
     }
 
     /// Decrease life value by certain value

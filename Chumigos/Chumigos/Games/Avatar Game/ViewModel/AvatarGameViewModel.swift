@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 class AvatarGameViewModel: ObservableObject {
     
@@ -17,6 +18,7 @@ class AvatarGameViewModel: ObservableObject {
     @Published var eyebrowImage: String = ""
     @Published var confirmPressed: Bool = false
     @Published var finishedPrediction: Bool = false
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     let difficulty: Difficulty
     
@@ -136,7 +138,7 @@ class AvatarGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
-            User.shared.lifeManager.decreaseLife()
+            self.environmentManager.profile?.lifeManager.decreaseLife()
         }
     }
     
