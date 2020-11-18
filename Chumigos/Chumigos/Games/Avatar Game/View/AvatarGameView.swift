@@ -236,6 +236,10 @@ struct AvatarGameView: View {
                 ExitGamePopUp(showPopUp: self.$showPopUp, dismissGame: self.dismissGame)
             }
         }
+        //Performing this, because the first prediction is slower then the others
+        .onAppear {
+            viewModel.performPrediction(UIImage())
+        }
         .navigationBarTitle("")
         .navigationBarHidden(true)
     }
