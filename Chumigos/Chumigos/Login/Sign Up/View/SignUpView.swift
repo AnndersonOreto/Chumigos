@@ -96,6 +96,7 @@ struct SignUpView: View {
                     
                     //TODO: Funcao para cadastro
                     Button(action: {
+                        UIApplication.shared.endEditing()
                         //Sign up
                         self.environmentManager.signUp(email: self.emailTextField, password: self.passwordTextField, name: self.fullNameTextField) { (result, error) in
                             

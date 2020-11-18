@@ -62,6 +62,7 @@ struct SignInView: View {
                     
                     //TODO: Funcao de Sign In
                     Button(action: {
+                        UIApplication.shared.endEditing()
                         //Sign In
                         self.environmentManager.signIn(email: self.emailTextField,
                                                        password: self.passwordTextField) { (result, error) in
@@ -112,5 +113,13 @@ struct SignInView: View {
             }
         }
         .background(Color.Ghost)
+    }
+}
+
+
+extension UIApplication {
+    
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
