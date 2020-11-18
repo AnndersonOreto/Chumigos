@@ -14,6 +14,7 @@ struct AvatarGameView: View {
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     @ObservedObject var viewModel: AvatarGameViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     private var screenWidth = UIScreen.main.bounds.height
     
@@ -238,6 +239,9 @@ struct AvatarGameView: View {
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
+        .onAppear {
+            self.viewModel.environmentManager = environmentManager
+        }
     }
     
     func dismissGame() {

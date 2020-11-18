@@ -12,6 +12,7 @@ struct ShapeGameView: View {
     
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     // Save the rects of all the questions
     @State private var questionsFrames: [(id: Int, rect: CGRect)] = []
@@ -193,6 +194,9 @@ struct ShapeGameView: View {
             
         }.navigationBarTitle("")
         .navigationBarHidden(true)
+        .onAppear {
+            self.viewModel.environmentManager = environmentManager
+        }
     }
     
     // MARK: - Finding question's position

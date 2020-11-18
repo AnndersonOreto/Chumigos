@@ -15,6 +15,7 @@ struct TotemGameView: View {
     @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     @ObservedObject var viewModel: TotemGameViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     // MARK: - State variables
     
@@ -185,6 +186,9 @@ struct TotemGameView: View {
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
+        .onAppear {
+            self.viewModel.environmentManager = environmentManager
+        }
     }
     
     func dismissGame() {

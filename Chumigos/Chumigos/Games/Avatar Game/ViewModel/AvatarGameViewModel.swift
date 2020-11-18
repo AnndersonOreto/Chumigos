@@ -18,7 +18,7 @@ class AvatarGameViewModel: ObservableObject {
     @Published var eyebrowImage: String = ""
     @Published var confirmPressed: Bool = false
     @Published var finishedPrediction: Bool = false
-    @EnvironmentObject var environmentManager: EnvironmentManager
+    @Published var environmentManager: EnvironmentManager?
     
     let difficulty: Difficulty
     
@@ -138,7 +138,7 @@ class AvatarGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
-            self.environmentManager.profile?.lifeManager.decreaseLife()
+            self.environmentManager?.profile?.lifeManager.decreaseLife()
         }
     }
     

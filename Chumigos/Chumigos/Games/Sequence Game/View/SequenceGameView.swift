@@ -23,6 +23,7 @@ struct SequenceGameView: View {
     @State var isFinished: Bool = false
     @State var showPopUp: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
@@ -172,6 +173,9 @@ struct SequenceGameView: View {
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
+        .onAppear {
+            self.viewModel.environmentManager = environmentManager
+        }
     }
     
     // MARK: - Drawing Contants

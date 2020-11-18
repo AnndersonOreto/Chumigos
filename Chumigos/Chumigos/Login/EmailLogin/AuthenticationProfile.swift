@@ -22,8 +22,6 @@ class AuthenticationProfile {
     var lastErrorDate = ""
     var trail: [TrailSection] = []
     var lifeManager: LifeManager
-//    @Published var feelings: FeelingsInfoArray = FeelingsInfoArray(user_array: [])
-//    @Published var patients: [Patient] = []
     
     init(name: String, id: String, email: String?, lives: Int, trail: [TrailSection], lastErrorDate: String) {
         
@@ -49,19 +47,4 @@ class AuthenticationProfile {
             }
         }
     }
-    
-//    init(id: String, email: String?, name: String, phone: String, role: String, pending: String, patients: [Patient]) {
-//        
-//        self.id = id
-//        self.email = email
-//        self.name = name
-//        self.phone = phone
-//        self.role = role
-//        self.pending = pending
-//        self.patients = patients
-//    }
-//    
-//    func setPatients(_ patients: [Patient]) {
-//        self.patients = patients
-//    }
 }

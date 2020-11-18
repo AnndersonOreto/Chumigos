@@ -11,7 +11,7 @@ import SwiftUI
 class ShapeGameViewModel: ObservableObject {
     
     @Published var model: ShapeGameModel
-    @EnvironmentObject var environmentManager: EnvironmentManager
+    @Published var environmentManager: EnvironmentManager?
     var wrongAnswersArray: [(ShapeGameModel, Int)] = []
     var game: GameObject
     var gameState: GameState = GameState.NORMAL
@@ -144,7 +144,7 @@ class ShapeGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
-            self.environmentManager.profile?.lifeManager.decreaseLife()
+            self.environmentManager?.profile?.lifeManager.decreaseLife()
         }
     }
 }

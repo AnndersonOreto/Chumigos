@@ -9,13 +9,21 @@
 import SwiftUI
 
 class SequenceGameViewModel: ObservableObject {
+    
+    // MARK: - Combine variables
+    
     @Published var model: SequenceGameModel
-    @EnvironmentObject var environmentManager: EnvironmentManager
+    @Published var environmentManager: EnvironmentManager = EnvironmentManager()
+    
+    // MARK: - Variables
+    
     let difficulty: Difficulty
     var wrongAnswersArray: [(SequenceGameModel, Int)] = []
     var game: GameObject
     var gameState: GameState = GameState.NORMAL
     var gameScore: GameScore = GameScore()
+    
+    // MARK: - Init
     
     init(game: GameObject, difficulty: Difficulty) {
         self.game = game
@@ -26,6 +34,8 @@ class SequenceGameViewModel: ObservableObject {
             return isFruit ? "fruit-\(assetIndex)" : "shape-\(assetIndex)"
         }
     }
+    
+    // MARK: - Functions
     
     func createSequenceGame(difficulty: Difficulty) -> SequenceGameModel {
         let isFruit = Bool.random()

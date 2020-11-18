@@ -12,8 +12,4 @@ import SwiftUI
 class LifeComponentViewModel: ObservableObject {
     
     @Published var totalLifes: Int = 0
-    
-    init(totalLifes: Int) {
-        self.totalLifes = totalLifes
-    }
 }
