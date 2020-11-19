@@ -27,6 +27,7 @@ class AuthenticationProfile {
         
         self.id = id
         self.email = email
+        self.name = name
         self.trail = trail
         self.lives = lives
         self.lastErrorDate = lastErrorDate

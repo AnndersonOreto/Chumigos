@@ -187,7 +187,7 @@ struct TotemGameView: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .onAppear {
-            self.viewModel.environmentManager = environmentManager
+            self.viewModel.environmentManager = self.environmentManager
         }
     }
     

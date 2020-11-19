@@ -86,7 +86,7 @@ class DatabaseManager {
     
     func getUserLifes(email: String, completion: @escaping(Int) -> Void) {
         var currentLife = 0
-        ref.child("users").child(email.replaceEmail()).child("user_life").observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("users").child(email.replaceEmail()).child("user_life").observe(.value) { (snapshot) in
             let value = snapshot.value as? NSDictionary
             currentLife = value?["current_life"] as? Int ?? 0
             completion(currentLife)
@@ -210,7 +210,7 @@ class DatabaseManager {
     func getUserProfile(userUid: String, completion: @escaping(AuthenticationProfile) -> Void) {
         var matrixList: [TrailSection] = []
 
-        ref.child("users").child(userUid).observeSingleEvent(of: .value, with: { (snapshopt) in
+        ref.child("users").child(userUid).observe(.value, with: { (snapshopt) in
 
             let value = snapshopt.value as? NSDictionary
             let email = userUid.replacingOccurrences(of: "(dot)", with: ".").lowercased()
@@ -237,7 +237,7 @@ class DatabaseManager {
     }
     
     func getPendingStatus(userUid: String, completion: @escaping(String) -> Void) {
-        ref.child("users").child(userUid).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("users").child(userUid).observe(.value) { (snapshot) in
             if let value = snapshot.value as? NSDictionary {
                 if let pendingEmail = value["pending"] as? String {
                     completion(pendingEmail)
