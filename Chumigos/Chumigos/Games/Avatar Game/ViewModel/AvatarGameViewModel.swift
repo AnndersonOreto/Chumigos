@@ -19,6 +19,7 @@ class AvatarGameViewModel: ObservableObject {
     @Published var confirmPressed: Bool = false
     @Published var finishedPrediction: Bool = false
     @Published var environmentManager: EnvironmentManager?
+    @Published var haveLifeToPlay: Bool = true
     
     let difficulty: Difficulty
     
@@ -139,6 +140,7 @@ class AvatarGameViewModel: ObservableObject {
         } else {
             self.gameScore.disableStreak()
             self.environmentManager?.profile?.lifeManager.decreaseLife()
+            self.haveLifeToPlay = environmentManager?.profile?.lifeManager.haveLifeToPlay ?? true
         }
     }
     

@@ -12,6 +12,9 @@ class ShapeGameViewModel: ObservableObject {
     
     @Published var model: ShapeGameModel
     @Published var environmentManager: EnvironmentManager?
+    
+    @Published var haveLifeToPlay: Bool = true
+    
     var wrongAnswersArray: [(ShapeGameModel, Int)] = []
     var game: GameObject
     var gameState: GameState = GameState.NORMAL
@@ -145,6 +148,7 @@ class ShapeGameViewModel: ObservableObject {
         } else {
             self.gameScore.disableStreak()
             self.environmentManager?.profile?.lifeManager.decreaseLife()
+            self.haveLifeToPlay = environmentManager?.profile?.lifeManager.haveLifeToPlay ?? true
         }
     }
 }

@@ -13,7 +13,9 @@ class SequenceGameViewModel: ObservableObject {
     // MARK: - Combine variables
     
     @Published var model: SequenceGameModel
-    @Published var environmentManager: EnvironmentManager = EnvironmentManager()
+    @Published var environmentManager: EnvironmentManager?
+    
+    @Published var haveLifeToPlay: Bool = true
     
     // MARK: - Variables
     
@@ -141,7 +143,8 @@ class SequenceGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
-            self.environmentManager.profile?.lifeManager.decreaseLife()
+            self.environmentManager?.profile?.lifeManager.decreaseLife()
+            self.haveLifeToPlay = environmentManager?.profile?.lifeManager.haveLifeToPlay ?? true
         }
     }
 }

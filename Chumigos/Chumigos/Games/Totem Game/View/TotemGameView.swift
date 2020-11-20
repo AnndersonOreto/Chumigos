@@ -61,25 +61,6 @@ struct TotemGameView: View {
             
             if !isFinished {
                 VStack {
-                    // Progress Bar
-                    ZStack {
-                        // Leave game button
-                        HStack {
-                            Button(action: {
-                                self.showPopUp = true
-                            }) {
-                                Image(systemName: "xmark")
-                                    .dynamicFont(name: fontName, size: 34, weight: .bold)
-                                    .foregroundColor(.xMark)
-                            }.buttonStyle(PlainButtonStyle())
-                            
-                            Spacer()
-                        }.padding(.leading, screenWidth * 0.0385)
-                        
-                        HStack {
-                            ProgressBarView(viewModel: progressViewModel)
-                        }
-                    }.padding(.top, screenWidth * 0.015)
                     
                     Spacer()
                     
@@ -102,7 +83,6 @@ struct TotemGameView: View {
                             
                             Spacer()
                             
-                            #warning("offset seria a melhor solucao? fica a duvida")
                             CustomText("Selecione como as peças apareceriam caso estivesse as observando de cima:")
                                 .dynamicFont(name: fontName, size: 20, weight: .medium)
                                 .foregroundColor(.textColor)
@@ -172,12 +152,47 @@ struct TotemGameView: View {
                             
                         }
                     }
-                }.blur(radius: self.showPopUp ? 16 : 0)
+                }.blur(radius: self.showPopUp || !self.viewModel.haveLifeToPlay ? 16 : 0)
                 
             } else {
                 EndGameView(progressViewModel: self.progressViewModel,
                             dismissGame: self.dismissGame, restartGame: self.restartGame(game:),
                             game: self.game, gameScore: self.viewModel.gameScore.currentScore)
+            }
+            
+            ZStack {
+                
+                VStack {
+                    HStack {
+                        ProgressBarView(viewModel: progressViewModel)
+                    }
+                    Spacer()
+                }.padding(.top)
+                
+                if !self.viewModel.haveLifeToPlay {
+                    LifeBanner(showLifeBanner: self.$viewModel.haveLifeToPlay)
+                        .edgesIgnoringSafeArea(.top)
+                }
+                
+                VStack {
+                    if !isFinished {
+                        HStack {
+                            Button(action: {
+                                self.showPopUp = true
+                            }) {
+                                Image(systemName: "xmark")
+                                    .dynamicFont(name: fontName, size: 34, weight: .bold)
+                                    .foregroundColor(.xMark)
+                            }.buttonStyle(PlainButtonStyle())
+                            
+                            Spacer()
+                            
+                            LifeComponent(showLifeBanner: Binding.constant(false))
+                        }.padding(.leading, screenWidth*0.0385)
+                        .padding(.trailing, screenWidth*0.016)
+                    }
+                    Spacer()
+                }
             }
             
             if self.showPopUp {

@@ -53,26 +53,6 @@ struct SequenceGameView: View {
                 Group {
                     VStack(spacing: 0) {
                         
-                        ZStack {
-                            if !isFinished {
-                                HStack {
-                                    Button(action: {
-                                        self.showPopUp = true
-                                    }) {
-                                        Image(systemName: "xmark")
-                                            .dynamicFont(name: fontName, size: 34, weight: .bold)
-                                            .foregroundColor(.xMark)
-                                    }.buttonStyle(PlainButtonStyle())
-                                    
-                                    Spacer()
-                                }.padding(.leading, screenWidth*0.0385)
-                            }
-                            
-                            HStack {
-                                ProgressBarView(viewModel: progressViewModel)
-                            }
-                        }.padding(.top, screenWidth * 0.015)
-                        
                         Spacer()
                                  
                         HStack(spacing: 0) {
@@ -158,12 +138,47 @@ struct SequenceGameView: View {
                                 .opacity(self.buttonIsPressed ? 1 : 0)
                         }
                     }
-                }.blur(radius: self.showPopUp ? 16 : 0)
+                }.blur(radius: self.showPopUp || !self.viewModel.haveLifeToPlay ? 16 : 0)
                 
             } else {
                 EndGameView(progressViewModel: self.progressViewModel,
                             dismissGame: self.dismissGame, restartGame: self.restartGame(game:),
                             game: self.viewModel.game, gameScore: self.viewModel.gameScore.currentScore)
+            }
+            
+            ZStack {
+                
+                VStack {
+                    HStack {
+                        ProgressBarView(viewModel: progressViewModel)
+                    }
+                    Spacer()
+                }.padding(.top)
+                
+                if !self.viewModel.haveLifeToPlay {
+                    LifeBanner(showLifeBanner: self.$viewModel.haveLifeToPlay)
+                        .edgesIgnoringSafeArea(.top)
+                }
+                
+                VStack {
+                    if !isFinished {
+                        HStack {
+                            Button(action: {
+                                self.showPopUp = true
+                            }) {
+                                Image(systemName: "xmark")
+                                    .dynamicFont(name: fontName, size: 34, weight: .bold)
+                                    .foregroundColor(.xMark)
+                            }.buttonStyle(PlainButtonStyle())
+                            
+                            Spacer()
+                            
+                            LifeComponent(showLifeBanner: Binding.constant(false))
+                        }.padding(.leading, screenWidth*0.0385)
+                        .padding(.trailing, screenWidth*0.016)
+                    }
+                    Spacer()
+                }
             }
             
             if self.showPopUp {

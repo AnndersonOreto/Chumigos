@@ -33,16 +33,22 @@ struct LifeBanner: View {
                     Spacer()
                     //Main VStack
                     VStack(spacing: 12) {
-                        CustomText("Você possui \(self.environmentManager.profile?.lifeManager.totalLifes ?? 0) energias!")
+                        if self.environmentManager.profile?.lifeManager.totalLifes == 0 {
+                            CustomText("Suas energias acabaram!")
                             .dynamicFont(size: 20, weight: .medium)
                             .foregroundColor(.textColor)
                             .padding(.top)
+                        } else {
+                            CustomText("Você possui \(self.environmentManager.profile?.lifeManager.totalLifes ?? 0) energias!")
+                            .dynamicFont(size: 20, weight: .medium)
+                            .foregroundColor(.textColor)
+                            .padding(.top)
+                        }
                         
                         HStack(spacing: 0) {
                             CustomText("A próxima energia recarrega em ")
                                 .dynamicFont(size: 20, weight: .medium)
                                 .foregroundColor(.textColor)
-                            #warning("trocar isso pelo tempo restante")
                             CustomText(remainingTime)
                                 .dynamicFont(size: 25, weight: .medium)
                                 .foregroundColor(.Owl)
