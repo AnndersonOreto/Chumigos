@@ -17,37 +17,35 @@ class AuthenticationProfile {
     var phone: String = ""
     var role: String = ""
     var pending: String = ""
-//    @Published var feelings: FeelingsInfoArray = FeelingsInfoArray(user_array: [])
-//    @Published var patients: [Patient] = []
+    var lives: Int = 0
+    var bonusLives: Int = 0
+    var lastErrorDate = ""
+    var trail: [TrailSection] = []
+    var lifeManager: LifeManager
     
-    init(id: String, email: String?) {
-        
-        self.id = id
-        self.email = email
-    }
-    
-    init(id: String, email: String?, name: String, phone: String, role: String, pending: String) {
+    init(name: String, id: String, email: String?, lives: Int, trail: [TrailSection], lastErrorDate: String) {
         
         self.id = id
         self.email = email
         self.name = name
-        self.phone = phone
-        self.role = role
-        self.pending = pending
+        self.trail = trail
+        self.lives = lives
+        self.lastErrorDate = lastErrorDate
+        self.lifeManager = LifeManager(userLifes: lives, lastErrorDate: lastErrorDate, userEmail: email ?? "")
     }
     
-//    init(id: String, email: String?, name: String, phone: String, role: String, pending: String, patients: [Patient]) {
-//        
-//        self.id = id
-//        self.email = email
-//        self.name = name
-//        self.phone = phone
-//        self.role = role
-//        self.pending = pending
-//        self.patients = patients
-//    }
-//    
-//    func setPatients(_ patients: [Patient]) {
-//        self.patients = patients
-//    }
+    func saveGameObject(_ gameObject: GameObject) {
+        
+        #warning("Muitos for aninhados! Precisamos refatorar.")
+        for section in 0..<trail.count {
+            for line in 0..<trail[section].lines.count {
+                for column in 0..<trail[section].lines[line].count {
+                    let game = trail[section].lines[line][column]
+                    if game.id == gameObject.id {
+                        trail[section].lines[line][column] = gameObject
+                    }
+                }
+            }
+        }
+    }
 }

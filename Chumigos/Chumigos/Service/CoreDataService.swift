@@ -12,6 +12,7 @@ import CoreData
 class CoreDataService {
     
     static var shared = CoreDataService()
+    let database = DatabaseManager()
     
     // MARK: - Core Data stack
     
@@ -59,7 +60,7 @@ class CoreDataService {
         }
     }
     
-    func retrieveMatrixTrail() -> [TrailSection] {
+    func retrieveTrailSections() -> [TrailSection] {
         let request: NSFetchRequest<UserData> = UserData.fetchRequest()
         
         do {
@@ -71,9 +72,9 @@ class CoreDataService {
         }
     }
     
-    func saveMatrixTrail(_ trail: TrailMatrixList) {
+    func saveTrail(_ trail: Trail) {
         let request: NSFetchRequest<UserData> = UserData.fetchRequest()
-        let encodedTrail = encode(matrix: trail)
+        let encodedTrail = encode(trail: trail)
         
         if let object = try? self.persistentContainer.viewContext.fetch(request), !object.isEmpty {
             object.first?.trail = encodedTrail
@@ -84,11 +85,11 @@ class CoreDataService {
         self.saveContext()
     }
     
-    func encode(matrix: TrailMatrixList) -> Data {
+    func encode(trail: Trail) -> Data {
         let encoder = JSONEncoder()
         do {
-            let encodedMatrix = try encoder.encode(matrix)
-            return encodedMatrix
+            let encodedTrail = try encoder.encode(trail)
+            return encodedTrail
         } catch {
             fatalError("Não conseguiu encodar data!")
         }
@@ -102,35 +103,35 @@ class CoreDataService {
             guard let trailData = result[0].trail else { return [] }
             
             do {
-                let matrixObjectList = try decoder.decode(TrailMatrixList.self, from: trailData)
-                return matrixObjectList.matrixList
+                let trail = try decoder.decode(Trail.self, from: trailData)
+                return trail.sections
             } catch {
                 fatalError("Não conseguiu decodar data!")
             }
         } else {
             let mockSections = self.mockSections()
-            let matrixList = TrailMatrixList(matrixList: mockSections)
-            self.saveMatrixTrail(matrixList)
+            let trail = Trail(sections: mockSections)
+            self.saveTrail(trail)
             return mockSections
         }
     }
     
     func saveGameObject(_ gameObject: GameObject) {
-        var sectionsTrail = self.retrieveMatrixTrail()
+        var trailSections = self.retrieveTrailSections()
         
         #warning("Muitos for aninhados! Precisamos refatorar.")
-        for section in 0..<sectionsTrail.count {
-            for line in 0..<sectionsTrail[section].trail.count {
-                for column in 0..<sectionsTrail[section].trail[line].count {
-                    let game = sectionsTrail[section].trail[line][column]
+        for section in 0..<trailSections.count {
+            for line in 0..<trailSections[section].lines.count {
+                for column in 0..<trailSections[section].lines[line].count {
+                    let game = trailSections[section].lines[line][column]
                     if game.id == gameObject.id {
-                        sectionsTrail[section].trail[line][column] = gameObject
+                        trailSections[section].lines[line][column] = gameObject
                     }
                 }
             }
         }
-        let matrix = TrailMatrixList(matrixList: sectionsTrail)
-        self.saveMatrixTrail(matrix)
+        let trail = Trail(sections: trailSections)
+        self.saveTrail(trail)
     }
     
     // MARK: - MOCK
@@ -151,8 +152,8 @@ class CoreDataService {
         
         let linha5 = [GameObject(id: UUID(), gameType: .abstraction, gameName: GameNames.totemGameName3)]
 
-        let matrix = [linha1, linha2, linha3, linha4, linha5]
+        let linhas = [linha1, linha2, linha3, linha4, linha5]
 
-        return [TrailSection(available: true, trail: matrix)]
+        return [TrailSection(available: true, lines: linhas)]
     }
 }

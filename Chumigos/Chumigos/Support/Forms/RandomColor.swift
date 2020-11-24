@@ -15,7 +15,7 @@ extension Color {
     // MARK: - Default colors
     
     // Dark mode headline color
-    static let Ghost = Color(UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1))
+    static let Ghost = Color(UIColor(red: 1, green: 1, blue: 1, alpha: 1))
     
     // Dark mode body color
     static let Swan = Color(UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1))

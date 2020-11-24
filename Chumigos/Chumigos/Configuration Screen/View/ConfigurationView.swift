@@ -58,6 +58,7 @@ struct ConfigurationView: View {
                             Button(action: {
                                 AppAnalytics.shared.logEvent(of: .launchAvatarScreen)
                                 self.showAvatarSelection.toggle()
+                                SoundManager.shared.playAppleDefaultButtonSound()
                             }) {
                                 CustomText("Mudar Avatar")
                                     .dynamicFont(size: screenWidth * 0.016, weight: .medium)
@@ -188,7 +189,7 @@ struct ConfigurationView: View {
                     .padding(.bottom, screenWidth * 0.014)
                 
                 //User not logged
-                if !User.shared.isLogged {
+                if !(self.environmentManager.profile != nil) {
                     CustomText("Para ter acesso às configurações de perfil, é necessário realizar login ou cadastrar-se no aplicativo")
                         .dynamicFont(size: screenWidth * 0.015, weight: .medium)
                         .foregroundColor(.descriptionTextColor)
@@ -216,7 +217,7 @@ struct ConfigurationView: View {
                                 .dynamicFont(size: screenWidth * 0.015 , weight: .medium)
                                 .foregroundColor(.Humpback)
                                 .padding(.trailing, screenWidth * 0.041)
-                            CustomText(User.shared.name)
+                            CustomText(self.environmentManager.profile?.name ?? "")
                                 .dynamicFont(size: screenWidth * 0.015 , weight: .medium)
                                 .foregroundColor(.textColor)
         
@@ -234,7 +235,7 @@ struct ConfigurationView: View {
                                 .dynamicFont(size: screenWidth * 0.015 , weight: .medium)
                                 .foregroundColor(.Humpback)
                                 .padding(.trailing, screenWidth * 0.035)
-                            CustomText(User.shared.email)
+                            CustomText(self.environmentManager.profile?.email ?? "")
                                 .dynamicFont(size: screenWidth * 0.015 , weight: .medium)
                                 .foregroundColor(.textColor)
                             

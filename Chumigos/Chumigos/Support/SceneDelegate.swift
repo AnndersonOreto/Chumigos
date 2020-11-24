@@ -29,7 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         
         let contentView = PreLaunchView().environment(\.managedObjectContext, context).environmentObject(environmentManager)
-        User.shared.environmentManager = environmentManager
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -99,6 +98,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        CoreDataService.shared.saveContext()
     }
 }

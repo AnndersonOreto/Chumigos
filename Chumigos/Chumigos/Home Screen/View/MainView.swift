@@ -139,7 +139,7 @@ extension MainView {
             return AnyView(UnderConstructionView())
         case .shop:
             //as bolinhas
-            return AnyView(UnderConstructionView())
+            return AnyView(ProductsView())
         }
     }
 }

@@ -48,7 +48,7 @@ class EnvironmentManager: NSObject, ObservableObject {
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
-        let charset: Array<Character> =
+        let charset: [Character] =
             Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
         var remainingLength = length
@@ -156,7 +156,7 @@ class EnvironmentManager: NSObject, ObservableObject {
                 
                 if let userResult = user?.user {
                     
-                    self.database.saveNewProfile(email: self.replaceEmail(email: email), name: name, userUid: userResult.uid)
+                    self.database.saveNewProfile(email: self.replaceEmail(email: email), name: name, userUid: userResult.uid, lives: 5)
                 } else {
                     
                     print(error?.localizedDescription ?? "")
@@ -229,6 +229,32 @@ class EnvironmentManager: NSObject, ObservableObject {
             } else {
                 print("Reset password email has been successfully sent")
             }
+        }
+    }
+    
+    func reauthenticate(password: String) {
+        
+        guard let email = profile?.email else { return }
+        
+        let user = Auth.auth().currentUser
+        var credential: AuthCredential = EmailAuthProvider.credential(withEmail: email, password: password)
+        
+        // Prompt the user to re-provide their sign-in credentials
+        
+        user?.reauthenticate(with: credential) { (result, err) in
+            if let err = err {
+                // An error happened.
+                print(err.localizedDescription)
+            } else {
+                // User re-authenticated.
+            }
+        }
+    }
+    
+    func changePassword(newPassword: String) {
+        
+        Auth.auth().currentUser?.updatePassword(to: newPassword) { (error) in
+          // ...
         }
     }
     
@@ -335,7 +361,7 @@ extension EnvironmentManager: ASAuthorizationControllerDelegate {
                             (appleIDCredential.fullName?.familyName ?? "")
                         self.database.saveNewProfile(email: replacedEmail,
                                                      name: name,
-                                                     userUid: authResult?.user.email ?? "")
+                                                     userUid: authResult?.user.email ?? "", lives: 5)
                     }
                 })
             }
@@ -352,5 +378,15 @@ extension EnvironmentManager: ASAuthorizationControllerDelegate {
 extension EnvironmentManager: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.window!
+    }
+}
+
+extension String {
+    func replaceEmail() -> String {
+        if self.contains(".") {
+            return self.replacingOccurrences(of: ".", with: "(dot)").lowercased()
+        } else {
+            return self.replacingOccurrences(of: "(dot)", with: ".").lowercased()
+        }
     }
 }
