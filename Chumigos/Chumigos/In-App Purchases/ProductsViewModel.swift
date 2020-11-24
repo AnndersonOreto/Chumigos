@@ -15,6 +15,7 @@ class ProductsViewModel: ObservableObject {
     // MARK: - Combine variables
     
     @Published var products: [SKProduct] = []
+    @Published var environmentManager: EnvironmentManager?
     
     // MARK: - Variables
     

@@ -10,9 +10,13 @@ import Foundation
 
 public struct ConsumableProducts {
     
-    public static let SwiftShopping = "generaluserlife"
+    public static let energy5 = "com.mc.Chumigos.energy5"
+    public static let energy10 = "com.mc.Chumigos.energy10"
+    public static let energy20 = "com.mc.Chumigos.energy20"
     
-    private static let productIdentifiers: Set<ProductIdentifier> = [ConsumableProducts.SwiftShopping]
+    private static let productIdentifiers: Set<ProductIdentifier> = [ConsumableProducts.energy5,
+                                                                     ConsumableProducts.energy10,
+                                                                     ConsumableProducts.energy20]
     
     public static let store = IAPHelper(productIds: ConsumableProducts.productIdentifiers)
 }

@@ -12,6 +12,7 @@ import StoreKit
 
 struct ProductsView: View {
     
+    @EnvironmentObject var environmentManager: EnvironmentManager
     @ObservedObject var viewModel: ProductsViewModel = ProductsViewModel()
     
     var body: some View {
@@ -29,6 +30,9 @@ struct ProductsView: View {
         }.navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
+            self.viewModel.environmentManager = self.environmentManager
+        }
     }
 }
 
