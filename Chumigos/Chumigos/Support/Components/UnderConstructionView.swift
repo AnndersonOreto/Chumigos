@@ -31,7 +31,9 @@ struct UnderConstructionView: View {
                     .foregroundColor(.textColor)
                     .multilineTextAlignment(.center)
             }
-        }
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

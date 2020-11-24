@@ -27,66 +27,71 @@ struct TrailView: View {
     // MARK: - View
     
     var body: some View {
-            ZStack {
-                NavigationLink("", destination: GamesView(game: chosenGame), isActive: $allowNavigation)
-                Color.background.edgesIgnoringSafeArea(.all)
-                VStack {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        ForEach(self.matrixList) { (section) in
-                            VStack(spacing: self.screenWidth * 0.04) {
-                                ForEach(section.lines, id: \.self) { line in
-                                    HStack(spacing: self.screenWidth * 0.06) {
-                                        Spacer()
-                                        ForEach(line, id: \.self) { game in
-                                            TrailTile(game: game)
-                                                .onTapGesture {
-                                                    if let haveLifeToPlay = self.environmentManager.profile?.lifeManager.haveLifeToPlay, haveLifeToPlay {
-                                                        self.chosenGame = game
-                                                        self.allowNavigation = true
-                                                        self.isTabBarActive = false
-                                                    } else {
-                                                        self.allowNavigation = false
-                                                        self.showLifeBanner = true
-                                                    }
+        ZStack {
+            NavigationLink("", destination: GamesView(game: chosenGame), isActive: $allowNavigation)
+            Color.background.edgesIgnoringSafeArea(.all)
+            VStack {
+                ScrollView(.vertical, showsIndicators: false) {
+                    ForEach(self.matrixList) { (section) in
+                        VStack(spacing: self.screenWidth * 0.04) {
+                            ForEach(section.lines, id: \.self) { line in
+                                HStack(spacing: self.screenWidth * 0.06) {
+                                    Spacer()
+                                    ForEach(line, id: \.self) { game in
+                                        TrailTile(game: game)
+                                            .onTapGesture {
+                                                if let haveLifeToPlay = self.environmentManager.profile?.lifeManager.haveLifeToPlay, haveLifeToPlay {
+                                                    self.chosenGame = game
+                                                    self.allowNavigation = true
+                                                    self.isTabBarActive = false
+                                                } else {
+                                                    self.allowNavigation = false
+                                                    self.showLifeBanner = true
+                                                }
                                             }
-                                        }
-                                        Spacer()
                                     }
+                                    Spacer()
                                 }
-                            }.padding(.bottom, self.screenWidth * 0.04)
-                                .background(section.available ? Color.background : Color.sectionUnavailable)
-                        }
-                        .onAppear {
-                            self.isTabBarActive = true
-                            self.matrixList = self.environmentManager.profile?.trail ?? []
-                            
-                        }
+                            }
+                        }.padding(.bottom, self.screenWidth * 0.04)
+                        .background(section.available ? Color.background : Color.sectionUnavailable)
                     }
-                }.padding(.vertical)
-                    .blur(radius: self.showLifeBanner ? 27 : 0)
-                
-                if showLifeBanner {
-                    VStack {
-                        LifeBanner(showLifeBanner: self.$showLifeBanner)
-                            .edgesIgnoringSafeArea(.top)
-                        Spacer()
-                    }.onAppear {
-                        self.isTabBarActive = false
-                    }
-                    .onDisappear {
+                    .onAppear {
                         self.isTabBarActive = true
+                        self.matrixList = self.environmentManager.profile?.trail ?? []
+                        
                     }
                 }
-                
+            }.padding(.vertical)
+            .blur(radius: self.showLifeBanner ? 27 : 0)
+            
+            if showLifeBanner {
                 VStack {
-                    HStack {
-                        Spacer()
-                        LifeComponent(showLifeBanner: self.$showLifeBanner)
-                    }
+                    LifeBanner(showLifeBanner: self.$showLifeBanner)
+                        .edgesIgnoringSafeArea(.top)
                     Spacer()
-                }.padding()
+                }.onAppear {
+                    self.isTabBarActive = false
+                }
+                .onDisappear {
+                    self.isTabBarActive = true
+                }
             }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    LifeComponent(showLifeBanner: self.$showLifeBanner)
+                }
+                Spacer()
+            }.padding()
+        }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
+            SoundManager.shared.playMusic(gameMusic: .trail)
+            SoundManager.shared.currentMusicVolume = 0.5
+        }
     }
 }

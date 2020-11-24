@@ -26,7 +26,9 @@ struct ProductsView: View {
                     ProductView(product: product)
                 }
             }
-        }
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
