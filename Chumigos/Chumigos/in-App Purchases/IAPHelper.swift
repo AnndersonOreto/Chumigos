@@ -63,16 +63,16 @@ extension IAPHelper {
         SKPaymentQueue.default().add(payment)
     }
     
-    
     public func isProductPurchased(_ productIdentifier: ProductIdentifier) -> Bool {
         return purchasedProductIdentifiers.contains(productIdentifier)
     }
     
     public class func canMakePayments() -> Bool {
-        return true
+        return SKPaymentQueue.canMakePayments()
     }
     
     public func restorePurchases() {
+        SKPaymentQueue.default().restoreCompletedTransactions()
     }
 }
 
@@ -116,16 +116,15 @@ extension IAPHelper: SKPaymentTransactionObserver {
             switch transaction.transactionState {
             case .purchased:
                 complete(transaction: transaction)
-                break
             case .failed:
                 fail(transaction: transaction)
-                break
             case .restored:
                 restore(transaction: transaction)
-                break
             case .deferred:
                 break
             case .purchasing:
+                break
+            @unknown default:
                 break
             }
         }
@@ -164,4 +163,3 @@ extension IAPHelper: SKPaymentTransactionObserver {
         NotificationCenter.default.post(name: .IAPHelperPurchaseNotification, object: identifier)
     }
 }
-
