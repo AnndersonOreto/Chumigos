@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2606913F25684216001CD870 /* negative.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2606913E25684216001CD870 /* negative.mp3 */; };
+		260691442568423B001CD870 /* positive.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 260691432568423B001CD870 /* positive.mp3 */; };
 		260751F124DB4E1C005816DB /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260751F024DB4E1C005816DB /* ProgressBarView.swift */; };
 		260751F324DB4E2F005816DB /* ProgressBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */; };
 		260A412F24D9F327003553E7 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A412E24D9F327003553E7 /* GameButton.swift */; };
@@ -54,6 +56,11 @@
 		26AC83F1255C62B900419F70 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC83F0255C62B900419F70 /* ProductsView.swift */; };
 		26AC83F9255C632B00419F70 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC83F8255C632B00419F70 /* ProductsViewModel.swift */; };
 		26B7DA7125377ADE00B44BFA /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */; };
+		26B85D912566DC0C00C0CEB6 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85D902566DC0C00C0CEB6 /* SoundManager.swift */; };
+		26B85D962566F98E00C0CEB6 /* ukulele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 26B85D952566F98E00C0CEB6 /* ukulele.mp3 */; };
+		26B85D9B2566F99A00C0CEB6 /* smile.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 26B85D9A2566F99A00C0CEB6 /* smile.mp3 */; };
+		26B85DA3256701FC00C0CEB6 /* drop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 26B85DA2256701FC00C0CEB6 /* drop.mp3 */; };
+		26B85DA82567020500C0CEB6 /* pick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 26B85DA72567020500C0CEB6 /* pick.mp3 */; };
 		26BC05AB2507F7A200A918F5 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC05AA2507F7A200A918F5 /* Trail.swift */; };
 		26BCB0872537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
 		26BCB0882537613F00176274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26BCB0852537613F00176274 /* GoogleService-Info.plist */; };
@@ -151,6 +158,8 @@
 
 /* Begin PBXFileReference section */
 		0F35B1734862A0E91D3E1F11 /* Pods-Loggio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio.debug.xcconfig"; path = "Target Support Files/Pods-Loggio/Pods-Loggio.debug.xcconfig"; sourceTree = "<group>"; };
+		2606913E25684216001CD870 /* negative.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = negative.mp3; path = ../../../../../Downloads/negative.mp3; sourceTree = "<group>"; };
+		260691432568423B001CD870 /* positive.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = positive.mp3; path = ../../../../../Downloads/positive.mp3; sourceTree = "<group>"; };
 		260751F024DB4E1C005816DB /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarViewModel.swift; sourceTree = "<group>"; };
 		260A412E24D9F327003553E7 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
@@ -206,6 +215,11 @@
 		26AC83F0255C62B900419F70 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		26AC83F8255C632B00419F70 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
+		26B85D902566DC0C00C0CEB6 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		26B85D952566F98E00C0CEB6 /* ukulele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ukulele.mp3; path = ../../../../../Downloads/ukulele.mp3; sourceTree = "<group>"; };
+		26B85D9A2566F99A00C0CEB6 /* smile.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = smile.mp3; path = ../../../../../Downloads/smile.mp3; sourceTree = "<group>"; };
+		26B85DA2256701FC00C0CEB6 /* drop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = drop.mp3; path = ../../../../../Downloads/drop.mp3; sourceTree = "<group>"; };
+		26B85DA72567020500C0CEB6 /* pick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pick.mp3; path = ../../../../../Downloads/pick.mp3; sourceTree = "<group>"; };
 		26BC05AA2507F7A200A918F5 /* Trail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		26BCB0852537613F00176274 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		26C186BC24BE4AA50094AEC1 /* Loggio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loggio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -509,6 +523,20 @@
 			path = Consumable;
 			sourceTree = "<group>";
 		};
+		26B85D8F2566DBF200C0CEB6 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				26B85D902566DC0C00C0CEB6 /* SoundManager.swift */,
+				26B85D952566F98E00C0CEB6 /* ukulele.mp3 */,
+				26B85D9A2566F99A00C0CEB6 /* smile.mp3 */,
+				26B85DA2256701FC00C0CEB6 /* drop.mp3 */,
+				26B85DA72567020500C0CEB6 /* pick.mp3 */,
+				2606913E25684216001CD870 /* negative.mp3 */,
+				260691432568423B001CD870 /* positive.mp3 */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		26C186B324BE4AA50094AEC1 = {
 			isa = PBXGroup;
 			children = (
@@ -536,6 +564,7 @@
 		26C186BE24BE4AA50094AEC1 /* Chumigos */ = {
 			isa = PBXGroup;
 			children = (
+				26B85D8F2566DBF200C0CEB6 /* Sound */,
 				26AC83DD255C587E00419F70 /* in-App Purchases */,
 				E7AEEB50252B9342009F457D /* Login */,
 				AAB022B225002D2C00DE2B34 /* PopUps */,
@@ -1117,18 +1146,24 @@
 			files = (
 				E747277B251D13D600DF2449 /* .swiftlint.yml in Resources */,
 				260A416624DB2CC9003553E7 /* Rubik-Bold.ttf in Resources */,
+				26B85D962566F98E00C0CEB6 /* ukulele.mp3 in Resources */,
+				260691442568423B001CD870 /* positive.mp3 in Resources */,
+				2606913F25684216001CD870 /* negative.mp3 in Resources */,
 				260A416724DB2CC9003553E7 /* Rubik-Light.ttf in Resources */,
 				260A416024DB2CC9003553E7 /* Rubik-BoldItalic.ttf in Resources */,
 				260A416324DB2CC9003553E7 /* Rubik-Regular.ttf in Resources */,
 				26C186CF24BE4AA70094AEC1 /* LaunchScreen.storyboard in Resources */,
 				260A416424DB2CC9003553E7 /* Rubik-LightItalic.ttf in Resources */,
+				26B85D9B2566F99A00C0CEB6 /* smile.mp3 in Resources */,
 				260A416124DB2CC9003553E7 /* Rubik-Italic.ttf in Resources */,
 				E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */,
 				260A416224DB2CC9003553E7 /* Rubik-MediumItalic.ttf in Resources */,
 				E745370F2538C806002C58AC /* Podfile in Resources */,
 				260A416824DB2CC9003553E7 /* Rubik-BlackItalic.ttf in Resources */,
 				260A416924DB2CC9003553E7 /* Rubik-Black.ttf in Resources */,
+				26B85DA82567020500C0CEB6 /* pick.mp3 in Resources */,
 				26C186CC24BE4AA70094AEC1 /* Preview Assets.xcassets in Resources */,
+				26B85DA3256701FC00C0CEB6 /* drop.mp3 in Resources */,
 				26C186C924BE4AA70094AEC1 /* Assets.xcassets in Resources */,
 				E7727D602538CD2400D8CC2E /* GoogleService-Info.plist in Resources */,
 				260A416524DB2CC9003553E7 /* Rubik-Medium.ttf in Resources */,
@@ -1297,6 +1332,7 @@
 				26940AE724C0E18F00F258B6 /* CKCloudDataProtocol.swift in Sources */,
 				2656BF292500086100231678 /* NotificationManager.swift in Sources */,
 				26763D2C24C8C7690056F2BC /* RandomForm.swift in Sources */,
+				26B85D912566DC0C00C0CEB6 /* SoundManager.swift in Sources */,
 				ABBD466F255323A1002FAF66 /* LifeBanner.swift in Sources */,
 				26590E112538CEFF00AB3A1B /* PreLaunchView.swift in Sources */,
 				AB5E5197251D069400FCF777 /* UnderConstructionView.swift in Sources */,

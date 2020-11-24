@@ -134,6 +134,11 @@ struct SequenceGameView: View {
                                 //Confirm Button
                                 Button(action: {
                                     self.buttonIsPressed = true
+                                    if viewModel.allQuestionsAreCorrect() {
+                                        SoundManager.shared.playSound(gameSound: .positive)
+                                    } else {
+                                        SoundManager.shared.playSound(gameSound: .negative)
+                                    }
                                 }) {
                                     Text("Confirmar")
                                         .dynamicFont(name: fontName, size: 20, weight: .bold)

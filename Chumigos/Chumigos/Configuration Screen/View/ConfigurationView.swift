@@ -58,6 +58,7 @@ struct ConfigurationView: View {
                             Button(action: {
                                 AppAnalytics.shared.logEvent(of: .launchAvatarScreen)
                                 self.showAvatarSelection.toggle()
+                                SoundManager.shared.playAppleDefaultButtonSound()
                             }) {
                                 CustomText("Mudar Avatar")
                                     .dynamicFont(size: screenWidth * 0.016, weight: .medium)

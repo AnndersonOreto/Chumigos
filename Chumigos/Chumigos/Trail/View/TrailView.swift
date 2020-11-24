@@ -88,6 +88,10 @@ struct TrailView: View {
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
+            .onAppear {
+                SoundManager.shared.playMusic(gameMusic: .trail)
+                SoundManager.shared.currentMusicVolume = 0.5
+            }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

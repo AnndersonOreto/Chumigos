@@ -15,6 +15,10 @@ struct GamesView: View {
     
     var body: some View {
         showGame()
+            .onAppear {
+                SoundManager.shared.playMusic(gameMusic: .game)
+                SoundManager.shared.currentMusicVolume = 0.15
+            }
     }
 }
 
