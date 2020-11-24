@@ -36,7 +36,7 @@ struct ProductView: View {
     
     var product: SKProduct?
     @State var productName: String = ""
-    @State var productDescription: String = "adjkshadshijiashjsajkhask ejsadhadksjgaks kaskjhadksfj ajksh akshjakshj"
+    @State var productDescription: String = ""
     @State var productPrice: String = ""
     @State var buttonText: String = ""
     @State var productImage: String = "Avatar 1"
@@ -93,14 +93,13 @@ struct ProductView: View {
         guard let product = product else { return }
         
         productName = product.localizedTitle
+        productDescription = product.description
+        buttonText = "Comprar"
         
         if ConsumableProducts.store.isProductPurchased(product.productIdentifier) {
             productPrice = "COMPROU"
-            buttonText = "Comprar"
         } else if IAPHelper.canMakePayments() {
             productPrice = ProductsViewModel.priceFormatter.string(from: product.price) ?? ""
-            buttonText = "Comprar"
         }
     }
-    
 }

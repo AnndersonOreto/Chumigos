@@ -502,7 +502,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		26AC83DD255C587E00419F70 /* in-App Purchases */ = {
+		26AC83DD255C587E00419F70 /* In-App Purchases */ = {
 			isa = PBXGroup;
 			children = (
 				26AC83DF255C58C700419F70 /* IAPHelper.swift */,
@@ -510,7 +510,7 @@
 				26AC83F8255C632B00419F70 /* ProductsViewModel.swift */,
 				26AC83DE255C588F00419F70 /* Consumable */,
 			);
-			path = "in-App Purchases";
+			path = "In-App Purchases";
 			sourceTree = "<group>";
 		};
 		26AC83DE255C588F00419F70 /* Consumable */ = {
@@ -563,7 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				26B85D8F2566DBF200C0CEB6 /* Sound */,
-				26AC83DD255C587E00419F70 /* in-App Purchases */,
+				26AC83DD255C587E00419F70 /* In-App Purchases */,
 				E7AEEB50252B9342009F457D /* Login */,
 				AAB022B225002D2C00DE2B34 /* PopUps */,
 				AB855F1324F4340700C5A739 /* User */,
