@@ -27,7 +27,6 @@ struct TrailView: View {
     // MARK: - View
     
     var body: some View {
-        NavigationView {
             ZStack {
                 NavigationLink("", destination: GamesView(game: chosenGame), isActive: $allowNavigation)
                 Color.background.edgesIgnoringSafeArea(.all)
@@ -89,6 +88,5 @@ struct TrailView: View {
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
-        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

@@ -882,7 +882,6 @@
 				AB69C21125127FD800DF4E38 /* GameScore.swift */,
 				AAC7A058251A6591005F741A /* UIImage+Crop.swift */,
 				AAC7A056251A6083005F741A /* View+asImage.swift */,
-				26B7DA7025377ADE00B44BFA /* AppAnalytics.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1307,7 +1306,6 @@
 				26946E9824C76A6C005A316E /* RandomAngle.swift in Sources */,
 				AA7B310E252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel in Sources */,
 				AB17FB4B25193BFD0071D82A /* FeelingClassificator.swift in Sources */,
-				26B7DA7125377ADE00B44BFA /* AppAnalytics.swift in Sources */,
 				AAA0613924E30819008CD91B /* SequenceGameView.swift in Sources */,
 				26946E8C24C75D07005A316E /* GenericPolygon.swift in Sources */,
 				AAE6759E25152E2600342D7F /* UserData+CoreDataClass.swift in Sources */,
