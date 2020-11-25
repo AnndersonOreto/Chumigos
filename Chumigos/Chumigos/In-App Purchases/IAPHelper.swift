@@ -18,6 +18,10 @@ extension Notification.Name {
     static let IAPHelperPurchaseNotification = Notification.Name("IAPHelperPurchaseNotification")
 }
 
+protocol InAppProtocol: class {
+    func didCompletePayment(for product: String)
+}
+
 open class IAPHelper: NSObject {
     
     private let productIdentifiers: Set<ProductIdentifier>
@@ -25,6 +29,8 @@ open class IAPHelper: NSObject {
     private var purchasedProductIdentifiers: Set<ProductIdentifier> = []
     private var productsRequest: SKProductsRequest?
     private var productsRequestCompletionHandler: ProductsRequestCompletionHandler?
+    
+    weak var delegate: InAppProtocol?
     
     public init(productIds: Set<ProductIdentifier>) {
         productIdentifiers = productIds
@@ -134,6 +140,7 @@ extension IAPHelper: SKPaymentTransactionObserver {
         print("complete...")
         deliverPurchaseNotificationFor(identifier: transaction.payment.productIdentifier)
         SKPaymentQueue.default().finishTransaction(transaction)
+        delegate?.didCompletePayment(for: transaction.payment.productIdentifier)
     }
     
     private func restore(transaction: SKPaymentTransaction) {

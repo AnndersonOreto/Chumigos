@@ -78,7 +78,9 @@ struct ProductView: View {
                             .frame(width: self.screenWidth * 0.071, height: self.screenWidth * 0.066)
                         
                         Button(action: {
-                            //compra ae chumiga
+                            if let product = product {
+                                ConsumableProducts.store.buyProduct(product)
+                            }
                         }) {
                             CustomText("R$\(self.productPrice)" )
                         }.buttonStyle(

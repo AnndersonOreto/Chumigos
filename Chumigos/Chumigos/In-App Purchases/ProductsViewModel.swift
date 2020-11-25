@@ -31,6 +31,7 @@ class ProductsViewModel: ObservableObject {
     // MARK: - Init
     
     init() {
+        ConsumableProducts.store.delegate = self
         reloadProducts()
     }
     
@@ -50,6 +51,15 @@ class ProductsViewModel: ObservableObject {
                     self.products = products!
                 }
             }
+        }
+    }
+}
+
+extension ProductsViewModel: InAppProtocol {
+    func didCompletePayment(for product: String) {
+        if let quantity = Int(product.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)),
+           let lifeManager = environmentManager?.profile?.lifeManager {
+            lifeManager.incrementLife(by: quantity, isBonus: true)
         }
     }
 }
