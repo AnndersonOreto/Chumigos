@@ -254,17 +254,17 @@ struct ConfigurationView: View {
                         .background(Color.popUpBackground))
                         .padding(.horizontal, 1)
 
-                        // Register button
-                        Button(action: {
-                            // TODO: change password
-                        }) {
-                            CustomText("Alterar Senha")
-                                .dynamicFont(size: screenWidth * 0.016, weight: .medium)
-                        }.buttonStyle(
-                            AppButtonStyle(buttonColor: .Humpback, pressedButtonColor: .Whale,
-                                           buttonBackgroundColor: .Narwhal, isButtonEnable: true,
-                                           textColor: .Ghost, width: screenWidth * 0.39)
-                        )
+//                        // Register button
+//                        Button(action: {
+//                            // TODO: change password
+//                        }) {
+//                            CustomText("Alterar Senha")
+//                                .dynamicFont(size: screenWidth * 0.016, weight: .medium)
+//                        }.buttonStyle(
+//                            AppButtonStyle(buttonColor: .Humpback, pressedButtonColor: .Whale,
+//                                           buttonBackgroundColor: .Narwhal, isButtonEnable: true,
+//                                           textColor: .Ghost, width: screenWidth * 0.39)
+//                        )
                     }.frame(width: screenWidth * 0.39)
                 }
             }
