@@ -39,11 +39,11 @@ class LifeManager {
         }
     }
     
-    init(userLifes: Int, lastErrorDate: String, userEmail: String) {
+    init(userLifes: Int, bonusLives: Int, lastErrorDate: String, userEmail: String) {
 
         self.lastErrorDate = lastErrorDate
         countLife = userLifes
-        countBonusLife = 0
+        countBonusLife = bonusLives
         self.userEmail = userEmail
     }
     
@@ -62,6 +62,7 @@ class LifeManager {
     func incrementLife(by value: Int = 1, isBonus: Bool = false) {
         if isBonus {
             self.incrementCountBonusLife(by: value)
+            database.updateUserBonusLife(newLives: countBonusLife, email: userEmail)
         } else {
             self.incrementCountLife(by: value)
             database.updateUserLifes(newLives: countLife, email: userEmail)
@@ -73,6 +74,7 @@ class LifeManager {
     func decreaseLife(by value: Int = 1) {
         if countBonusLife > 0 {
             self.decreaseCountBonusLife(by: value)
+            database.updateUserBonusLife(newLives: countBonusLife, email: userEmail)
         } else {
             self.decreaseCountLife(by: value)
             database.updateUserLifes(newLives: countLife, email: userEmail)
@@ -143,9 +145,6 @@ class LifeManager {
     /// - Parameter value: number to increment
     private func incrementCountBonusLife(by value: Int) {
         countBonusLife += value
-        if countBonusLife > MAXLIFES {
-            countBonusLife = MAXLIFES
-        }
     }
     
     /// Decrease bonus life value by certain value

@@ -84,23 +84,25 @@ class DatabaseManager {
         }
     }
     
-    func getUserLifes(email: String, completion: @escaping(Int) -> Void) {
-        var currentLife = 0
-        ref.child("users").child(email.replaceEmail()).child("user_life").observe(.value) { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            currentLife = value?["current_life"] as? Int ?? 0
-            completion(currentLife)
+    func updateUserBonusLife(newLives: Int, email: String) {
+        
+        let post = ["bonus_life": newLives]
+        
+        ref.child("users").child(email.replaceEmail()).child("user_life").updateChildValues(post) { (err, _) in
+            if let error = err {
+                print(error.localizedDescription)
+            }
         }
     }
 
-    func updateLives(lives: Int, userUid: String) {
-        
-        let post = ["lives": lives]
-        
-        ref.child("users").child(userUid).updateChildValues(post) { (error, _) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
+    func getUserLifes(email: String, completion: @escaping(Int, Int) -> Void) {
+        var currentLife = 0
+        var bonusLife = 0
+        ref.child("users").child(email.replaceEmail()).child("user_life").observe(.value) { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            currentLife = value?["current_life"] as? Int ?? 0
+            bonusLife = value?["bonus_Life"] as? Int ?? 0
+            completion(currentLife, bonusLife)
         }
     }
     
@@ -217,6 +219,7 @@ class DatabaseManager {
             let name = value?["name"] as? String ?? ""
             let userLife = value?["user_life"] as? NSDictionary
             let lives = userLife?["current_life"] as? Int ?? 0
+            let bonusLives = userLife?["bonus_life"] as? Int ?? 0
             let lastErrorDate = userLife?["lastError_date"] as? String ?? ""
 
             self.requestTrail(of: userUid) { (result) in
@@ -228,7 +231,7 @@ class DatabaseManager {
                 }
                 
                 let profile = AuthenticationProfile(name: name, id: userUid, email: email,
-                                                    lives: lives, trail: matrixList,
+                                                    lives: lives, bonusLife: bonusLives, trail: matrixList,
                                                     lastErrorDate: lastErrorDate)
 
                 completion(profile)

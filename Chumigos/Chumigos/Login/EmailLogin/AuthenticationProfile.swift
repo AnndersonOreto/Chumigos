@@ -23,15 +23,16 @@ class AuthenticationProfile {
     var trail: [TrailSection] = []
     var lifeManager: LifeManager
     
-    init(name: String, id: String, email: String?, lives: Int, trail: [TrailSection], lastErrorDate: String) {
+    init(name: String, id: String, email: String?, lives: Int, bonusLife: Int, trail: [TrailSection], lastErrorDate: String) {
         
         self.id = id
         self.email = email
         self.name = name
         self.trail = trail
         self.lives = lives
+        self.bonusLives = bonusLife
         self.lastErrorDate = lastErrorDate
-        self.lifeManager = LifeManager(userLifes: lives, lastErrorDate: lastErrorDate, userEmail: email ?? "")
+        self.lifeManager = LifeManager(userLifes: lives, bonusLives: bonusLife, lastErrorDate: lastErrorDate, userEmail: email ?? "")
     }
     
     func saveGameObject(_ gameObject: GameObject) {
