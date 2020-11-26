@@ -31,6 +31,7 @@ struct ConfigurationView: View {
     @State var togglePreferences: Bool = false
     @State var sliderDynamicType: Double = 50.0
     @State var isAlert: Bool = false
+    @State var showTOS: Bool = false
     
     private let screenWidth = UIScreen.main.bounds.width
     private let fontName = "Rubik"
@@ -159,7 +160,7 @@ struct ConfigurationView: View {
                         
                         // Service terms button
                         Button(action: {
-                            // TODO: show terms of service
+                            showTOS = true
                         }) {
                             CustomText("Termos de Serviço")
                                 .dynamicFont(size: screenWidth * 0.016, weight: .medium)
@@ -177,6 +178,11 @@ struct ConfigurationView: View {
         }
             .navigationBarTitle("")
             .navigationBarHidden(true)
+            .sheet(isPresented: $showTOS) {
+                ScrollView {
+                    CustomText(TermsOfServices.textTOS).padding(50)
+                }
+            }
     }
     
     func headerConfigView() -> some View {

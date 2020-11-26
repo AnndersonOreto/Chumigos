@@ -21,6 +21,7 @@
 		260A416824DB2CC9003553E7 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 260A415E24DB2CC9003553E7 /* Rubik-BlackItalic.ttf */; };
 		260A416924DB2CC9003553E7 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 260A415F24DB2CC9003553E7 /* Rubik-Black.ttf */; };
 		261D0B402570307800FE5921 /* PostLaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261D0B3F2570307800FE5921 /* PostLaunchScreen.swift */; };
+		261D0B45257033C700FE5921 /* TermsOfServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261D0B44257033C700FE5921 /* TermsOfServices.swift */; };
 		2620EA0A24C759F0001F1EE0 /* FormTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620EA0924C759F0001F1EE0 /* FormTriangle.swift */; };
 		2623AC4225015EA9002A24A0 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623AC4125015EA9002A24A0 /* ConfigurationView.swift */; };
 		2623AC4425015ED9002A24A0 /* ConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623AC4325015ED9002A24A0 /* ConfigurationViewModel.swift */; };
@@ -172,6 +173,7 @@
 		260A415E24DB2CC9003553E7 /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
 		260A415F24DB2CC9003553E7 /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Black.ttf"; sourceTree = "<group>"; };
 		261D0B3F2570307800FE5921 /* PostLaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLaunchScreen.swift; sourceTree = "<group>"; };
+		261D0B44257033C700FE5921 /* TermsOfServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServices.swift; sourceTree = "<group>"; };
 		2620EA0924C759F0001F1EE0 /* FormTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTriangle.swift; sourceTree = "<group>"; };
 		2623AC4125015EA9002A24A0 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		2623AC4325015ED9002A24A0 /* ConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewModel.swift; sourceTree = "<group>"; };
@@ -911,6 +913,7 @@
 				AB69C21125127FD800DF4E38 /* GameScore.swift */,
 				AAC7A058251A6591005F741A /* UIImage+Crop.swift */,
 				AAC7A056251A6083005F741A /* View+asImage.swift */,
+				261D0B44257033C700FE5921 /* TermsOfServices.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1396,6 +1399,7 @@
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
 				2623AC4725016BCC002A24A0 /* AppButtonStyle.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
+				261D0B45257033C700FE5921 /* TermsOfServices.swift in Sources */,
 				AA04A48525195EFF00F85961 /* FeelingsClassifier.swift in Sources */,
 				AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */,
 				26BC05AB2507F7A200A918F5 /* Trail.swift in Sources */,

@@ -24,21 +24,6 @@ struct SignUpView: View {
     
     @State var keyboardOffSet: CGFloat = CGFloat.zero
     
-    let textTOS: String = """
-
-                                    TERMOS DE SERVICO LOGGIO
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla, velit a auctor bibendum, ipsum nisi feugiat nulla, ullamcorper luctus nulla neque laoreet est. Quisque lacus erat, sagittis sed facilisis id, interdum id elit. Sed ac fermentum mauris. Proin enim tellus, semper et nulla id, consectetur pretium lorem. Vivamus lorem sapien, congue quis massa eget, molestie gravida est. Praesent accumsan metus ut tellus suscipit, sed tristique libero dignissim. Nullam dapibus rhoncus mi, quis malesuada urna auctor nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed quis tempor neque.
-    
-    Mauris a facilisis odio. Duis bibendum est nulla, et maximus massa hendrerit at. Nam blandit eleifend consequat. Maecenas ut tellus et sem consectetur sollicitudin. Donec laoreet, velit in cursus sollicitudin, odio urna volutpat nibh, ac luctus lacus lacus vitae erat. Sed finibus, diam non ornare scelerisque, elit tortor luctus libero, vitae aliquam nunc nulla ut elit. Curabitur eget orci non est maximus hendrerit id sed ligula.
-    
-    Sed quis scelerisque metus, nec malesuada nunc. Sed ultricies placerat fringilla. Fusce diam orci, congue lobortis imperdiet feugiat, sodales facilisis sapien. Integer venenatis eros id diam ultricies mollis. Vivamus in semper nibh. Sed non sagittis erat. Mauris interdum velit sit amet lacus pretium venenatis. Praesent ac ligula tortor. Ut gravida nisi id odio eleifend, ac consectetur dui placerat. Duis tellus quam, commodo a vulputate a, efficitur ac ligula.
-    
-    Sed pulvinar pellentesque consequat. Mauris lobortis euismod nisi ut tempor. Aenean neque ligula, dictum sed velit ut, ullamcorper auctor diam. Phasellus id odio sem. Maecenas vel pharetra tellus. Phasellus volutpat volutpat nulla, nec tempor ipsum efficitur at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce nec auctor ante. Phasellus tristique id turpis et hendrerit. Suspendisse quis odio cursus, eleifend orci vel, vestibulum justo.
-    
-    Proin magna nunc, porttitor suscipit metus iaculis, porta sollicitudin metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. In dolor nisl, egestas ut mollis eu, bibendum ut dui. Vivamus eget nulla magna. Cras congue consequat tellus sed imperdiet. Suspendisse aliquet non nibh vitae blandit. Nulla sit amet elit sit amet sapien finibus sollicitudin id et libero. Curabitur non quam quis turpis finibus egestas. In id nisi hendrerit, fermentum massa a, ornare arcu. Mauris quis dapibus felis, et finibus lorem. Curabitur sit amet tellus vitae lectus vulputate semper. Donec arcu enim, porttitor a lectus ut, pharetra convallis est.
-    """
-    
     var body: some View {
         
         ZStack {
@@ -125,7 +110,7 @@ struct SignUpView: View {
                 }.frame(width: screenWidth/2)
                     .sheet(isPresented: $showTOS) {
                         ScrollView {
-                            CustomText(self.textTOS).padding(50)
+                            CustomText(TermsOfServices.textTOS).padding(50)
                         }
                 }
                 Spacer()
