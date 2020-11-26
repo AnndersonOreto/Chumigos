@@ -82,7 +82,7 @@ struct ProductView: View {
                                 ConsumableProducts.store.buyProduct(product)
                             }
                         }) {
-                            CustomText("R$\(self.productPrice)" )
+                            CustomText("\(self.productPrice)" )
                         }.buttonStyle(
                             AppButtonStyle(buttonColor: Color.Owl,
                                            pressedButtonColor: Color.Turtle,
