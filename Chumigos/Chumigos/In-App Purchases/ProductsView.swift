@@ -102,10 +102,10 @@ struct ProductView: View {
         productDescription = product.description
         buttonText = "Comprar"
         
-        if ConsumableProducts.store.isProductPurchased(product.productIdentifier) {
-            productPrice = "COMPROU"
-        } else if IAPHelper.canMakePayments() {
+//        if ConsumableProducts.store.isProductPurchased(product.productIdentifier) {
+//            productPrice = "COMPROU"
+//        } else if IAPHelper.canMakePayments() {
             productPrice = ProductsViewModel.priceFormatter.string(from: product.price) ?? ""
-        }
+//        }
     }
 }
