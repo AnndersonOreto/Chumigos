@@ -9,6 +9,11 @@
           "description" : "Energy to use inside the games!",
           "displayName" : "Energy 10x",
           "locale" : "en_US"
+        },
+        {
+          "description" : "Compre mais energia para os seus jogos!",
+          "displayName" : "Energia 10x",
+          "locale" : "pt_BR"
         }
       ],
       "productID" : "com.mc.Chumigos.energy10",
