@@ -35,8 +35,7 @@ struct PreLaunchView: View {
     let timer = Timer.publish(every: 0.04, on: .main, in: .common).autoconnect()
     
     //Navigation Variables
-    @State var goToMain = false
-    @State var goToLogin = false
+    @State var finishedSplashScreen = false
     
     func getUser() {
         
@@ -46,10 +45,8 @@ struct PreLaunchView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                //MainView navigation link, when goToMain become true goes to main view
-                NavigationLink("", destination: MainView(), isActive: $goToMain)
-                //LoginView navigation link, when goToLogin become true goes to login/signup view
-                NavigationLink("", destination: InitialScreen(), isActive: $goToLogin)
+                
+                NavigationLink("", destination: PostLaunchView(), isActive: $finishedSplashScreen)
                 //Background color for the animation occupy theh whole screen
                 Color.Macaw
                 //Animation image
@@ -62,14 +59,10 @@ struct PreLaunchView: View {
                         } else {
                             //Stoping the timer
                             self.timer.upstream.connect().cancel()
-                            //Change screen here
-                            if self.environmentManager.profile != nil {
-                                self.goToMain = true
-                            } else {
-                                self.goToLogin = true
-                            }
+                            
+                            finishedSplashScreen = true
                         }
-                }                
+                }
             }.onAppear(perform: getUser)
             .edgesIgnoringSafeArea(.all)
         }.navigationViewStyle(StackNavigationViewStyle())
