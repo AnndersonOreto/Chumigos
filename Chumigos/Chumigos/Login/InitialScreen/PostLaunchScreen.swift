@@ -13,12 +13,13 @@ struct PostLaunchView: View {
     @EnvironmentObject var environmentManager: EnvironmentManager
     
     var body: some View {
-        
-        //Change screen here
-        if self.environmentManager.profile != nil {
-            MainView()
-        } else {
-            InitialScreen()
+        Group {
+            //Change screen here
+            if self.environmentManager.profile != nil {
+                MainView()
+            } else {
+                InitialScreen()
+            }
         }
     }
 }

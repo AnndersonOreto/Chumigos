@@ -114,7 +114,7 @@ struct SequenceGameView: View {
                                 //Confirm Button
                                 Button(action: {
                                     self.buttonIsPressed = true
-                                    if viewModel.allQuestionsAreCorrect() {
+                                    if self.viewModel.allQuestionsAreCorrect() {
                                         SoundManager.shared.playSound(gameSound: .positive)
                                     } else {
                                         SoundManager.shared.playSound(gameSound: .negative)

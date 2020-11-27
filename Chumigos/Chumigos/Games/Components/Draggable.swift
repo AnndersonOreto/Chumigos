@@ -48,9 +48,9 @@ struct Draggable: ViewModifier {
                 DragGesture(coordinateSpace: .global)
                     .onChanged {
                         
-                        if isFirstTouchChange {
+                        if self.isFirstTouchChange {
                             SoundManager.shared.playSound(gameSound: .pick)
-                            isFirstTouchChange = false
+                            self.isFirstTouchChange = false
                         }
                         
                         //Changing dragAmount based on the drag translation
@@ -80,7 +80,7 @@ struct Draggable: ViewModifier {
                         self.newOffSet = .zero
                     }
                     SoundManager.shared.playSound(gameSound: .drop)
-                    isFirstTouchChange = true
+                    self.isFirstTouchChange = true
                 }
         )
     }

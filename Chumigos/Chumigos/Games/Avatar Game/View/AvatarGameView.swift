@@ -254,7 +254,7 @@ struct AvatarGameView: View {
         }
         //Performing this, because the first prediction is slower then the others
         .onAppear {
-            viewModel.performPrediction(UIImage())
+            self.viewModel.performPrediction(UIImage())
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)

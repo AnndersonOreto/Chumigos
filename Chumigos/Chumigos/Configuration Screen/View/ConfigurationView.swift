@@ -160,7 +160,7 @@ struct ConfigurationView: View {
                         
                         // Service terms button
                         Button(action: {
-                            showTOS = true
+                            self.showTOS = true
                         }) {
                             CustomText("Termos de Serviço")
                                 .dynamicFont(size: screenWidth * 0.016, weight: .medium)

@@ -16,8 +16,8 @@ struct ProductsView: View {
     @ObservedObject var viewModel: ProductsViewModel = ProductsViewModel()
     
     var body: some View {
-        
-        ScrollView(.vertical, showsIndicators: true) {
+        Group {
+        //ScrollView(.vertical, showsIndicators: true) {
             // Print products vertically
             VStack {
                 
@@ -78,7 +78,7 @@ struct ProductView: View {
                             .frame(width: self.screenWidth * 0.081, height: self.screenWidth * 0.076)
                         
                         Button(action: {
-                            if let product = product {
+                            if let product = self.product {
                                 ConsumableProducts.store.buyProduct(product)
                             }
                         }) {

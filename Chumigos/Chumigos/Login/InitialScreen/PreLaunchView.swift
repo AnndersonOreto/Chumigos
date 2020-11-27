@@ -60,7 +60,7 @@ struct PreLaunchView: View {
                             //Stoping the timer
                             self.timer.upstream.connect().cancel()
                             
-                            finishedSplashScreen = true
+                            self.finishedSplashScreen = true
                         }
                 }
             }.onAppear(perform: getUser)

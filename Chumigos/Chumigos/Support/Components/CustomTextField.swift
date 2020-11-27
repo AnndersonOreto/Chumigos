@@ -23,9 +23,9 @@ struct CustomTextField: View {
                 .padding(.leading, 20)
                 .dynamicFont(size: 18, weight: .regular)
             }
-            TextField("", text: $text) { _ in
-                environmentManager.signInError = false
-                environmentManager.signUpError = ""
+            TextField("", text: $text) { 
+                self.environmentManager.signInError = false
+                self.environmentManager.signUpError = ""
             }
             .padding(10)
             .padding(.leading, 20)
