@@ -16,6 +16,7 @@ struct TrailView: View {
     let screenWidth = UIScreen.main.bounds.width
     let database = DatabaseManager()
     
+    @Binding var currentTab: TabItem
     @Binding var isTabBarActive: Bool
     @State var allowNavigation: Bool = false
     @State var chosenGame: GameObject = GameObject(id: UUID(), gameType: .abstraction, gameName: ".")
@@ -67,7 +68,7 @@ struct TrailView: View {
             
             if showLifeBanner {
                 VStack {
-                    LifeBanner(showLifeBanner: self.$showLifeBanner)
+                    LifeBanner(showLifeBanner: self.$showLifeBanner, tab: $currentTab)
                         .edgesIgnoringSafeArea(.top)
                     Spacer()
                 }.onAppear {

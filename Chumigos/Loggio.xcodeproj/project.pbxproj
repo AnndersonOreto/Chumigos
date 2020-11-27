@@ -78,6 +78,7 @@
 		26FCAD94251BB9730082F9EC /* TotemPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FCAD93251BB9730082F9EC /* TotemPiece.swift */; };
 		417085B2A96D815683A587A4 /* Pods_Loggio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B48321D0B69C0B2623791CAF /* Pods_Loggio.framework */; };
 		AA04A48525195EFF00F85961 /* FeelingsClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04A48425195EFF00F85961 /* FeelingsClassifier.swift */; };
+		AA1919C725718BDE00BFF789 /* LifeBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1919C625718BDE00BFF789 /* LifeBannerViewModel.swift */; };
 		AA24C13124E5B57A006F8C5A /* SequenceGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13024E5B57A006F8C5A /* SequenceGameModel.swift */; };
 		AA24C13324E5C06A006F8C5A /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13224E5C06A006F8C5A /* Question.swift */; };
 		AA24C13524E5C9E1006F8C5A /* ShapeGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13424E5C9E1006F8C5A /* ShapeGameViewModel.swift */; };
@@ -246,6 +247,7 @@
 		9384132B622563D245ADBC9D /* Pods-Loggio-LoggioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio-LoggioUITests.debug.xcconfig"; path = "Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F79AEE4EF5A242DAFBABABF /* Pods_LoggioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoggioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA04A48425195EFF00F85961 /* FeelingsClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingsClassifier.swift; sourceTree = "<group>"; };
+		AA1919C625718BDE00BFF789 /* LifeBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeBannerViewModel.swift; sourceTree = "<group>"; };
 		AA24C13024E5B57A006F8C5A /* SequenceGameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceGameModel.swift; sourceTree = "<group>"; };
 		AA24C13224E5C06A006F8C5A /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		AA24C13424E5C9E1006F8C5A /* ShapeGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameViewModel.swift; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 			isa = PBXGroup;
 			children = (
 				ABBD466E255323A1002FAF66 /* LifeBanner.swift */,
+				AA1919C625718BDE00BFF789 /* LifeBannerViewModel.swift */,
 			);
 			path = LifeBanner;
 			sourceTree = "<group>";
@@ -1400,6 +1403,7 @@
 				26946E8E24C75EA2005A316E /* FormHexagon.swift in Sources */,
 				26946E9024C7621C005A316E /* FormHeptagon.swift in Sources */,
 				2623AC4725016BCC002A24A0 /* AppButtonStyle.swift in Sources */,
+				AA1919C725718BDE00BFF789 /* LifeBannerViewModel.swift in Sources */,
 				260A412F24D9F327003553E7 /* GameButton.swift in Sources */,
 				261D0B45257033C700FE5921 /* TermsOfServices.swift in Sources */,
 				AA04A48525195EFF00F85961 /* FeelingsClassifier.swift in Sources */,

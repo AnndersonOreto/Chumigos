@@ -222,10 +222,10 @@ struct AvatarGameView: View {
                     Spacer()
                 }.padding(.top)
                 
-                if !self.viewModel.haveLifeToPlay {
-                    LifeBanner(showLifeBanner: self.$viewModel.haveLifeToPlay)
-                        .edgesIgnoringSafeArea(.top)
-                }
+//                if !self.viewModel.haveLifeToPlay {
+//                    LifeBanner(showLifeBanner: self.$viewModel.haveLifeToPlay)
+//                        .edgesIgnoringSafeArea(.top)
+//                }
                 
                 VStack {
                     if !isFinished {

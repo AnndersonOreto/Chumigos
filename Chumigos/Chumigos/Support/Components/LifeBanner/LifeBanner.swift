@@ -7,25 +7,30 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct LifeBanner: View {
-    
+
     let screenWidth = UIScreen.main.bounds.width
     @Binding var showLifeBanner: Bool
-    @EnvironmentObject var environmentManager: EnvironmentManager
-    
+
     var timer = Timer.publish(every: 0, on: .current, in: .common).autoconnect()
     @State var remainingTime: String = ""
+
+    @EnvironmentObject var environmentManager: EnvironmentManager
+    @ObservedObject var viewModel: LifeBannerViewModel = LifeBannerViewModel()
+    
+    @Binding var tab: TabItem
     
     var body: some View {
-        
+
         ZStack {
             //Rectangle in the back to close the view when is tapped
             Rectangle().fill(Color.background).opacity(0.1)
             .onTapGesture {
                 self.showLifeBanner = false
             }
-            
+
             //VStack to push banner for the top
             VStack {
                 //HStack to make background the whole width of the screen
@@ -44,29 +49,33 @@ struct LifeBanner: View {
                             .foregroundColor(.textColor)
                             .padding(.top)
                         }
-                        
-                        HStack(spacing: 0) {
-                            CustomText("A próxima energia recarrega em ")
-                                .dynamicFont(size: 20, weight: .medium)
-                                .foregroundColor(.textColor)
-                            CustomText(remainingTime)
-                                .dynamicFont(size: 25, weight: .medium)
-                                .foregroundColor(.Owl)
-                        }.onReceive(timer) { _ in
-                            if let remaining = self.environmentManager.profile?.lifeManager.remainingTime() {
-                                self.remainingTime = remaining
+
+                        if (self.environmentManager.profile?.lifeManager.countLife ?? 0) < 5 {
+                            HStack(spacing: 0) {
+                                CustomText("A próxima energia recarrega em ")
+                                    .dynamicFont(size: 20, weight: .medium)
+                                    .foregroundColor(.textColor)
+                                CustomText(remainingTime)
+                                    .dynamicFont(size: 25, weight: .medium)
+                                    .foregroundColor(.Owl)
+                            }.onReceive(timer) { _ in
+                                if let remaining = self.environmentManager.profile?.lifeManager.remainingTime() {
+                                    self.remainingTime = remaining
+                                }
                             }
                         }
+
                         HStack(spacing: 34) {
-                            freeLife(lifeCount: 1)
-                            paidLife(lifeCount: 5)
-                            unlimitedLife()
+                            ForEach(self.viewModel.products, id: \.self) { product in
+
+                                paidLife(product: product)
+                            }
                         }.padding(.vertical)
-                        
+
                     }.padding()
-                    
+
                     Spacer()
-                    
+
                 }.background(
                     Rectangle()
                     .fill(Color.background)
@@ -75,9 +84,13 @@ struct LifeBanner: View {
                 )
                 Spacer()
             }
+            .onAppear {
+                self.viewModel.environmentManager = self.environmentManager
+            }
         }
     }
 }
+
 
 extension LifeBanner {
     
@@ -101,13 +114,14 @@ extension LifeBanner {
         )
     }
     
-    func paidLife(lifeCount: Int) -> some View {
+    func paidLife(product: SKProduct) -> some View {
         VStack {
-            Image("icon-buffed-life")
+            Image(product.productIdentifier)
                 .resizable()
-                .frame(width: screenWidth * 0.031, height: screenWidth * 0.063)
+                .aspectRatio(contentMode: .fit)
+                .frame(height: screenWidth * 0.063)
             
-            CustomText("+\(lifeCount) Energia")
+            CustomText("+\(product.productIdentifier.suffix(2)) Energias")
                 .dynamicFont(size: 16, weight: .bold)
                 .foregroundColor(.textColor)
             
@@ -126,6 +140,10 @@ extension LifeBanner {
                 )
                 .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.15000000596046448)), radius:12, x:0, y:0)
         )
+        .onTapGesture {
+            self.showLifeBanner = false
+            self.tab = .shop
+        }
     }
     
     func unlimitedLife() -> some View {
@@ -151,9 +169,3 @@ extension LifeBanner {
         )
     }
 }
-
-//struct LifeBanner_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LifeBanner()
-//    }
-//}
