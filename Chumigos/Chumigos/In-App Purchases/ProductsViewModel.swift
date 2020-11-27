@@ -17,17 +17,6 @@ class ProductsViewModel: ObservableObject {
     @Published var products: [SKProduct] = []
     @Published var environmentManager: EnvironmentManager?
     
-    // MARK: - Variables
-    
-    static let priceFormatter: NumberFormatter = {
-      let formatter = NumberFormatter()
-      
-      formatter.formatterBehavior = .behavior10_4
-      formatter.numberStyle = .currency
-      
-      return formatter
-    }()
-    
     // MARK: - Init
     
     init() {
@@ -52,6 +41,17 @@ class ProductsViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    // Formats product's price for the current locale and with currency style
+    static public func formattedPrice(for product: SKProduct) -> String {
+        let formatter = NumberFormatter()
+        
+        formatter.formatterBehavior = .behavior10_4
+        formatter.numberStyle = .currency
+        formatter.locale = product.priceLocale
+        
+        return formatter.string(from: product.price) ?? ""
     }
 }
 

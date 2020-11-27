@@ -247,6 +247,7 @@
 		AA24C13424E5C9E1006F8C5A /* ShapeGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameViewModel.swift; sourceTree = "<group>"; };
 		AA24C13824E5CB22006F8C5A /* ShapeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameView.swift; sourceTree = "<group>"; };
 		AA275AB72507FB980089F63D /* AvatarGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGameModel.swift; sourceTree = "<group>"; };
+		AA2CF30F2570675E00AEB00C /* TestConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestConfiguration.storekit; sourceTree = "<group>"; };
 		AA63616B2513E5EE00EB4E49 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		AA7B310D252BAB050099504C /* LogginhoFeelingsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LogginhoFeelingsClassifier.mlmodel; sourceTree = "<group>"; };
 		AA865AEF24E57D960066BF2A /* AlternativeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeBackground.swift; sourceTree = "<group>"; };
@@ -538,6 +539,7 @@
 		26C186B324BE4AA50094AEC1 = {
 			isa = PBXGroup;
 			children = (
+				AA2CF30F2570675E00AEB00C /* TestConfiguration.storekit */,
 				E747277A251D13D600DF2449 /* .swiftlint.yml */,
 				26C186BE24BE4AA50094AEC1 /* Chumigos */,
 				26C186D824BE4AA70094AEC1 /* ChumigosTests */,

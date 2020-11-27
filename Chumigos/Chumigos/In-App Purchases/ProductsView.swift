@@ -17,8 +17,7 @@ struct ProductsView: View {
     
     var body: some View {
         
-        ZStack {
-            
+        ScrollView(.vertical, showsIndicators: true) {
             // Print products vertically
             VStack {
                 
@@ -26,7 +25,7 @@ struct ProductsView: View {
                     
                     ProductView(product: product)
                 }
-            }
+            }.padding(50)
         }.navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
@@ -43,54 +42,56 @@ struct ProductView: View {
     @State var productDescription: String = ""
     @State var productPrice: String = ""
     @State var buttonText: String = ""
-    @State var productImage: String = "Avatar 1"
-    var backgroundImage: String =  "RECARGA VERDE"
+    @State var productImage: String = ""
+    var backgroundImage: String =  "recarga-roxo"
     
     var screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
         
         Image(backgroundImage)
-            .resizable()
             .frame(width: screenWidth * 0.64, height: screenWidth * 0.18)
             .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:12, x:0, y:0)
             .onAppear(perform: setup)
             .overlay(
-                HStack {
+                HStack(alignment: .bottom) {
                     VStack(alignment: .leading) {
                         CustomText(self.productName)
-                            .dynamicFont(size: 50, weight: .regular)
+                            .dynamicFont(size: 50, weight: .medium)
+                            .foregroundColor(.Eel)
                         
                         Spacer()
                         
                         CustomText(self.productDescription)
-                            .dynamicFont(size: 18, weight: .regular)
-//                            .frame(width: screenWidth * 0.33, height: screenWidth *  0.045)
+                            .dynamicFont(size: 18, weight: .medium)
+                            .foregroundColor(.Eel)
                             .lineLimit(nil)
-                    }.padding(.vertical)
-                        .padding(.trailing, 30)
+                    }
+                    .padding(.top, 10)
                     
                     Spacer()
                     
                     VStack {
                         Image(self.productImage)
                             .resizable()
-                            .frame(width: self.screenWidth * 0.071, height: self.screenWidth * 0.066)
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: self.screenWidth * 0.081, height: self.screenWidth * 0.076)
                         
                         Button(action: {
                             if let product = product {
                                 ConsumableProducts.store.buyProduct(product)
                             }
                         }) {
-                            CustomText("R$\(self.productPrice)" )
+                            CustomText(self.productPrice)
                         }.buttonStyle(
                             AppButtonStyle(buttonColor: Color.Owl,
                                            pressedButtonColor: Color.Turtle,
                                            buttonBackgroundColor: Color.TreeFrog,
                                            isButtonEnable: true, width: self.screenWidth * 0.16))
-                    }.padding(.vertical)
-                }.padding(.horizontal, 30)
-                .padding(.vertical, 30)
+                    }
+                }
+                .padding(.horizontal, 30)
+                .padding(.vertical, 60)
         )
     }
     
@@ -99,13 +100,20 @@ struct ProductView: View {
         guard let product = product else { return }
         
         productName = product.localizedTitle
-        productDescription = product.description
+        productDescription = product.localizedDescription
+        
+        if productName.contains("10") {
+            productImage = "energy-10x"
+        } else if productName.contains("15") {
+            productImage = "energy-15x"
+        } else if productName.contains("20") {
+            productImage = "energy-20x"
+        }
+        
         buttonText = "Comprar"
         
-        if ConsumableProducts.store.isProductPurchased(product.productIdentifier) {
-            productPrice = "COMPROU"
-        } else if IAPHelper.canMakePayments() {
-            productPrice = ProductsViewModel.priceFormatter.string(from: product.price) ?? ""
+        if IAPHelper.canMakePayments() {
+            productPrice = ProductsViewModel.formattedPrice(for: product)
         }
     }
 }

@@ -1,0 +1,59 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "F09F22D3",
+      "localizations" : [
+        {
+          "description" : "Energy to use inside the games!",
+          "displayName" : "Energy 10x",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.mc.Chumigos.energy10",
+      "referenceName" : "Energia 10x",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "163B60FF",
+      "localizations" : [
+        {
+          "description" : "Energy to use inside the games.",
+          "displayName" : "Energy 15x",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.mc.Chumigos.energy15",
+      "referenceName" : "Energia 15x",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "D3BCEE2B",
+      "localizations" : [
+        {
+          "description" : "20 more energy for you to use in all games.",
+          "displayName" : "Energy 20x",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.mc.Chumigos.energy20",
+      "referenceName" : "Energia 20x",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}
