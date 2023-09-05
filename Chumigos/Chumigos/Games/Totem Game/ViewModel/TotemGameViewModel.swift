@@ -13,6 +13,9 @@ class TotemGameViewModel: ObservableObject {
     
     @Published var model: TotemGameModel
     @Published var selectedUpTopTotem: [String] = []
+    @Published var environmentManager: EnvironmentManager?
+    
+    @Published var haveLifeToPlay: Bool = true
     
     var difficulty: Difficulty
     var game: GameObject
@@ -94,6 +97,8 @@ class TotemGameViewModel: ObservableObject {
             }
         } else {
             self.gameScore.disableStreak()
+            self.environmentManager?.profile?.lifeManager.decreaseLife()
+            self.haveLifeToPlay = self.environmentManager?.profile?.lifeManager.haveLifeToPlay ?? true
         }
     }
 }

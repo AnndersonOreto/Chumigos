@@ -30,6 +30,8 @@ struct Draggable: ViewModifier {
     //Object answer
     let answer: Int
     
+    @State var isFirstTouchChange: Bool = true
+    
     func body(content: Content) -> some View {
         
         //Generic View Here
@@ -45,6 +47,12 @@ struct Draggable: ViewModifier {
             .gesture(
                 DragGesture(coordinateSpace: .global)
                     .onChanged {
+                        
+                        if self.isFirstTouchChange {
+                            SoundManager.shared.playSound(gameSound: .pick)
+                            self.isFirstTouchChange = false
+                        }
+                        
                         //Changing dragAmount based on the drag translation
                         self.dragAmount = CGSize(width: $0.translation.width + self.newOffSet.width,
                                                  height: $0.translation.height + self.newOffSet.height)
@@ -71,6 +79,8 @@ struct Draggable: ViewModifier {
                         self.dragAmount = .zero
                         self.newOffSet = .zero
                     }
+                    SoundManager.shared.playSound(gameSound: .drop)
+                    self.isFirstTouchChange = true
                 }
         )
     }

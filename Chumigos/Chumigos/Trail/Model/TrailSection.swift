@@ -14,18 +14,25 @@ struct TrailSection: Identifiable, Codable {
     
     var id = UUID()
     private(set) var available: Bool
-    var trail: [[GameObject]]
+    var lines: [[GameObject]]
     var currentLine: Int = 0 {
         didSet {
             self.changeGamesInLineAvailability()
         }
     }
     
-    // MARK: - Init
+    // MARK: - Init(s)
     
-    init(available: Bool, trail: [[GameObject]]) {
+    init(id: UUID, lines: [[GameObject]], available: Bool, currentLine: Int) {
+        self.id = id
+        self.lines = lines
         self.available = available
-        self.trail = trail
+        self.currentLine = currentLine
+    }
+    
+    init(available: Bool, lines: [[GameObject]]) {
+        self.available = available
+        self.lines = lines
         self.changeGamesInLineAvailability()
     }
     
@@ -38,18 +45,18 @@ struct TrailSection: Identifiable, Codable {
     // MARK: - Function(s)
     
     mutating func changeGamesInLineAvailability() {
-        if self.available && currentLine < trail.count {
-            for gameIndex in 0..<trail[currentLine].count {
-                trail[currentLine][gameIndex].isAvailable = true
+        if self.available && currentLine < lines.count {
+            for gameIndex in 0..<lines[currentLine].count {
+                lines[currentLine][gameIndex].isAvailable = true
             }
         }
     }
     
     mutating func changeCurrentLine() {
-        let gamesAmount = trail[currentLine].count
+        let gamesAmount = lines[currentLine].count
         var gamesPlayed = 0
         
-        for game in trail[currentLine] {
+        for game in lines[currentLine] {
             if game.alreadyPlayed {
                 gamesPlayed += 1
             }

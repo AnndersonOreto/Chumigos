@@ -33,7 +33,7 @@ extension Color {
     }
     
     static var descriptionTextColor: Color {
-        Color("descriptionTextColor")
+        Color("DescriptionTextColor")
     }
     
     static var textColor: Color {
@@ -54,5 +54,9 @@ extension Color {
     
     static var progressBar: Color {
         Color("progressBar")
+    }
+    
+    static var textFieldColor: Color {
+        Color("textFieldColor")
     }
 }

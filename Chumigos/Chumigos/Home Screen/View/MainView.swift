@@ -15,6 +15,7 @@ enum TabItem {
 struct MainView: View {
     
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var result: FetchedResults<UserData>
+    @EnvironmentObject var environmentManager: EnvironmentManager
     
     private var screenWidth = UIScreen.main.bounds.width
     @State private var currentTab: TabItem = .trail
@@ -97,6 +98,7 @@ extension MainView {
                     //Logout
                     Button(action: {
                         //TODO: Logout action
+                        self.environmentManager.logout()
                     }) {
                         Image("logout")
                         .resizable()
@@ -130,13 +132,13 @@ extension MainView {
             //Mostrar perfil
             return AnyView(ConfigurationView())
         case .trail:
-            return AnyView(TrailView(isTabBarActive: $isTabBarActive))
+            return AnyView(TrailView(currentTab: $currentTab,isTabBarActive: $isTabBarActive))
         case .achievements:
             //coroa
             return AnyView(UnderConstructionView())
         case .shop:
             //as bolinhas
-            return AnyView(UnderConstructionView())
+            return AnyView(ProductsView())
         }
     }
 }

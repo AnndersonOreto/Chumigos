@@ -2,6 +2,7 @@
 //  AppAnalytics.swift
 //  Loggio
 //
+//  Created by Annderson Packeiser Oreto on 14/10/20.
 //  Created by Guilherme Piccoli on 15/10/20.
 //  Copyright © 2020 Chumigos. All rights reserved.
 //
@@ -74,7 +75,7 @@ class AppAnalytics {
     public func logEvent(of type: String) {
         Analytics.logEvent(type, parameters: [
             "id": "id-\(type)",
-            "item-name": type,
+            "item-name": type
             //AnalyticsParameterContentType: "cont"
         ])
     }

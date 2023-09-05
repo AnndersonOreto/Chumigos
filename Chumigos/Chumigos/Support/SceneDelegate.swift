@@ -12,7 +12,8 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    
+    let environmentManager: EnvironmentManager = EnvironmentManager()
+        
     private(set) static var shared: SceneDelegate?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -27,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         
-        let contentView = MainView().environment(\.managedObjectContext, context)
+        let contentView = PreLaunchView().environment(\.managedObjectContext, context).environmentObject(environmentManager)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -67,12 +68,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        
+        // Music plays again when back from background
+        SoundManager.shared.audioPlayerMusic?.play()
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        
+        SoundManager.shared.audioPlayerMusic?.pause()
         
         let current = UNUserNotificationCenter.current()
 
@@ -97,6 +103,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        CoreDataService.shared.saveContext()
     }
 }
