@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -52,10 +52,13 @@
 		26C186CF24BE4AA70094AEC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C186CD24BE4AA70094AEC1 /* LaunchScreen.storyboard */; };
 		26C186DA24BE4AA70094AEC1 /* ChumigosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186D924BE4AA70094AEC1 /* ChumigosTests.swift */; };
 		26C186E524BE4AA70094AEC1 /* ChumigosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C186E424BE4AA70094AEC1 /* ChumigosUITests.swift */; };
+		26CA5F3E2AA76CEC0040DC2D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 26CA5F3D2AA76CEC0040DC2D /* FirebaseAnalytics */; };
+		26CA5F402AA76CEC0040DC2D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 26CA5F3F2AA76CEC0040DC2D /* FirebaseAuth */; };
+		26CA5F422AA76CEC0040DC2D /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 26CA5F412AA76CEC0040DC2D /* FirebaseDatabase */; };
+		26CA5F442AA76CEC0040DC2D /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 26CA5F432AA76CEC0040DC2D /* FirebaseDatabaseSwift */; };
 		26E0EA4C24F59FD50078566D /* EndGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0EA4B24F59FD50078566D /* EndGameViewModel.swift */; };
 		26E0EA4E24F59FF20078566D /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0EA4D24F59FF20078566D /* EndGameView.swift */; };
 		26FCAD94251BB9730082F9EC /* TotemPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FCAD93251BB9730082F9EC /* TotemPiece.swift */; };
-		417085B2A96D815683A587A4 /* Pods_Loggio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B48321D0B69C0B2623791CAF /* Pods_Loggio.framework */; };
 		AA04A48525195EFF00F85961 /* FeelingsClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04A48425195EFF00F85961 /* FeelingsClassifier.swift */; };
 		AA24C13124E5B57A006F8C5A /* SequenceGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13024E5B57A006F8C5A /* SequenceGameModel.swift */; };
 		AA24C13324E5C06A006F8C5A /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24C13224E5C06A006F8C5A /* Question.swift */; };
@@ -95,17 +98,14 @@
 		ABC7426024DB249600CC3B7E /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7425F24DB249600CC3B7E /* Tile.swift */; };
 		ABC7426224DB29BE00CC3B7E /* QuestionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */; };
 		ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */; };
-		B0D798E9D8CCFBCB51AA012E /* Pods_Loggio_LoggioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF387EA7BE4343F3D3AC9CF2 /* Pods_Loggio_LoggioUITests.framework */; };
 		E745370D2538C7A3002C58AC /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E745370C2538C7A3002C58AC /* AppAnalytics.swift */; };
 		E745370F2538C806002C58AC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E745370E2538C806002C58AC /* Podfile */; };
-		E747277B251D13D600DF2449 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E747277A251D13D600DF2449 /* .swiftlint.yml */; };
 		E74A37752502BC47001ADBEB /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A37742502BC47001ADBEB /* CustomDivider.swift */; };
 		E74D7F8A24BF7352000BF076 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */; };
 		E751219C24FDFA5C0042FC00 /* AvatarSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */; };
 		E7712CA524F42F4200B4191C /* GameFeedbackMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7712CA424F42F4200B4191C /* GameFeedbackMessage.swift */; };
 		E7727D602538CD2400D8CC2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7727D5F2538CD2400D8CC2E /* GoogleService-Info.plist */; };
 		E78DA52D24BF7C17001A3079 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E78DA52F24BF7C17001A3079 /* Localizable.strings */; };
-		E9CD1BAE0D151B08733EE975 /* Pods_LoggioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79AEE4EF5A242DAFBABABF /* Pods_LoggioTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +126,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F35B1734862A0E91D3E1F11 /* Pods-Loggio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio.debug.xcconfig"; path = "Target Support Files/Pods-Loggio/Pods-Loggio.debug.xcconfig"; sourceTree = "<group>"; };
 		260751F024DB4E1C005816DB /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		260751F224DB4E2F005816DB /* ProgressBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarViewModel.swift; sourceTree = "<group>"; };
 		260A412E24D9F327003553E7 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
@@ -181,10 +180,6 @@
 		26E0EA4B24F59FD50078566D /* EndGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewModel.swift; sourceTree = "<group>"; };
 		26E0EA4D24F59FF20078566D /* EndGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameView.swift; sourceTree = "<group>"; };
 		26FCAD93251BB9730082F9EC /* TotemPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotemPiece.swift; sourceTree = "<group>"; };
-		406304178F0463A17D4BC216 /* Pods-LoggioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggioTests.release.xcconfig"; path = "Target Support Files/Pods-LoggioTests/Pods-LoggioTests.release.xcconfig"; sourceTree = "<group>"; };
-		5A374F1F8BE6FE8191DF6716 /* Pods-Loggio-LoggioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio-LoggioUITests.release.xcconfig"; path = "Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests.release.xcconfig"; sourceTree = "<group>"; };
-		9384132B622563D245ADBC9D /* Pods-Loggio-LoggioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio-LoggioUITests.debug.xcconfig"; path = "Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		9F79AEE4EF5A242DAFBABABF /* Pods_LoggioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoggioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA04A48425195EFF00F85961 /* FeelingsClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingsClassifier.swift; sourceTree = "<group>"; };
 		AA24C13024E5B57A006F8C5A /* SequenceGameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceGameModel.swift; sourceTree = "<group>"; };
 		AA24C13224E5C06A006F8C5A /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -225,13 +220,8 @@
 		ABC7426124DB29BE00CC3B7E /* QuestionTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTile.swift; sourceTree = "<group>"; };
 		ABCDB24024BF88EA00F9A9B8 /* Chumigos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chumigos.entitlements; sourceTree = "<group>"; };
 		ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		AF387EA7BE4343F3D3AC9CF2 /* Pods_Loggio_LoggioUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Loggio_LoggioUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B48321D0B69C0B2623791CAF /* Pods_Loggio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Loggio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3CAB839D920BC04A51F9C18 /* Pods-Loggio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loggio.release.xcconfig"; path = "Target Support Files/Pods-Loggio/Pods-Loggio.release.xcconfig"; sourceTree = "<group>"; };
-		C9D7316B1E6B79F68CD1A857 /* Pods-LoggioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggioTests.debug.xcconfig"; path = "Target Support Files/Pods-LoggioTests/Pods-LoggioTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E745370C2538C7A3002C58AC /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
 		E745370E2538C806002C58AC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E747277A251D13D600DF2449 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E74A37742502BC47001ADBEB /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		E74D7F8924BF7352000BF076 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		E751219B24FDFA5C0042FC00 /* AvatarSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionView.swift; sourceTree = "<group>"; };
@@ -247,8 +237,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26CA5F442AA76CEC0040DC2D /* FirebaseDatabaseSwift in Frameworks */,
+				26CA5F3E2AA76CEC0040DC2D /* FirebaseAnalytics in Frameworks */,
+				26CA5F402AA76CEC0040DC2D /* FirebaseAuth in Frameworks */,
+				26CA5F422AA76CEC0040DC2D /* FirebaseDatabase in Frameworks */,
 				ABCDB24324BF88EE00F9A9B8 /* CloudKit.framework in Frameworks */,
-				417085B2A96D815683A587A4 /* Pods_Loggio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +249,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9CD1BAE0D151B08733EE975 /* Pods_LoggioTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +256,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0D798E9D8CCFBCB51AA012E /* Pods_Loggio_LoggioUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,13 +390,11 @@
 		26C186B324BE4AA50094AEC1 = {
 			isa = PBXGroup;
 			children = (
-				E747277A251D13D600DF2449 /* .swiftlint.yml */,
 				26C186BE24BE4AA50094AEC1 /* Chumigos */,
 				26C186D824BE4AA70094AEC1 /* ChumigosTests */,
 				26C186E324BE4AA70094AEC1 /* ChumigosUITests */,
 				26C186BD24BE4AA50094AEC1 /* Products */,
 				ABCDB24124BF88EE00F9A9B8 /* Frameworks */,
-				AF7405CDBB8472E51E5CB9D7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -700,24 +689,8 @@
 			isa = PBXGroup;
 			children = (
 				ABCDB24224BF88EE00F9A9B8 /* CloudKit.framework */,
-				B48321D0B69C0B2623791CAF /* Pods_Loggio.framework */,
-				AF387EA7BE4343F3D3AC9CF2 /* Pods_Loggio_LoggioUITests.framework */,
-				9F79AEE4EF5A242DAFBABABF /* Pods_LoggioTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AF7405CDBB8472E51E5CB9D7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0F35B1734862A0E91D3E1F11 /* Pods-Loggio.debug.xcconfig */,
-				C3CAB839D920BC04A51F9C18 /* Pods-Loggio.release.xcconfig */,
-				9384132B622563D245ADBC9D /* Pods-Loggio-LoggioUITests.debug.xcconfig */,
-				5A374F1F8BE6FE8191DF6716 /* Pods-Loggio-LoggioUITests.release.xcconfig */,
-				C9D7316B1E6B79F68CD1A857 /* Pods-LoggioTests.debug.xcconfig */,
-				406304178F0463A17D4BC216 /* Pods-LoggioTests.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		E74D7F8524BF70F7000BF076 /* View Model */ = {
@@ -812,18 +785,22 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26C186E924BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "Loggio" */;
 			buildPhases = (
-				A00E1F7C96084B4DF277256B /* [CP] Check Pods Manifest.lock */,
 				26C186B824BE4AA50094AEC1 /* Sources */,
 				26C186B924BE4AA50094AEC1 /* Frameworks */,
 				26C186BA24BE4AA50094AEC1 /* Resources */,
 				E7472779251D0F4D00DF2449 /* ShellScript */,
-				1089D287C80467B24A4A3E62 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Loggio;
+			packageProductDependencies = (
+				26CA5F3D2AA76CEC0040DC2D /* FirebaseAnalytics */,
+				26CA5F3F2AA76CEC0040DC2D /* FirebaseAuth */,
+				26CA5F412AA76CEC0040DC2D /* FirebaseDatabase */,
+				26CA5F432AA76CEC0040DC2D /* FirebaseDatabaseSwift */,
+			);
 			productName = Chumigos;
 			productReference = 26C186BC24BE4AA50094AEC1 /* Loggio.app */;
 			productType = "com.apple.product-type.application";
@@ -832,7 +809,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26C186EC24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "LoggioTests" */;
 			buildPhases = (
-				9387257914CCAFBA493080AA /* [CP] Check Pods Manifest.lock */,
 				26C186D124BE4AA70094AEC1 /* Sources */,
 				26C186D224BE4AA70094AEC1 /* Frameworks */,
 				26C186D324BE4AA70094AEC1 /* Resources */,
@@ -851,11 +827,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26C186EF24BE4AA70094AEC1 /* Build configuration list for PBXNativeTarget "LoggioUITests" */;
 			buildPhases = (
-				4E30EAA4B5A90AF39C90D94B /* [CP] Check Pods Manifest.lock */,
 				26C186DC24BE4AA70094AEC1 /* Sources */,
 				26C186DD24BE4AA70094AEC1 /* Frameworks */,
 				26C186DE24BE4AA70094AEC1 /* Resources */,
-				2BCD31D462AF71F8ED010438 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -873,8 +847,9 @@
 		26C186B424BE4AA50094AEC1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = Chumigos;
 				TargetAttributes = {
 					26C186BB24BE4AA50094AEC1 = {
@@ -900,6 +875,9 @@
 				fr,
 			);
 			mainGroup = 26C186B324BE4AA50094AEC1;
+			packageReferences = (
+				26CA5F3C2AA76CEC0040DC2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 26C186BD24BE4AA50094AEC1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -916,7 +894,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E747277B251D13D600DF2449 /* .swiftlint.yml in Resources */,
 				260A416624DB2CC9003553E7 /* Rubik-Bold.ttf in Resources */,
 				260A416724DB2CC9003553E7 /* Rubik-Light.ttf in Resources */,
 				260A416024DB2CC9003553E7 /* Rubik-BoldItalic.ttf in Resources */,
@@ -953,106 +930,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1089D287C80467B24A4A3E62 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Loggio/Pods-Loggio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Loggio/Pods-Loggio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loggio/Pods-Loggio-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2BCD31D462AF71F8ED010438 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loggio-LoggioUITests/Pods-Loggio-LoggioUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4E30EAA4B5A90AF39C90D94B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Loggio-LoggioUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9387257914CCAFBA493080AA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LoggioTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A00E1F7C96084B4DF277256B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Loggio-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E7472779251D0F4D00DF2449 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1236,6 +1113,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1297,6 +1175,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1327,14 +1206,13 @@
 		};
 		26C186EA24BE4AA70094AEC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F35B1734862A0E91D3E1F11 /* Pods-Loggio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
-				DEVELOPMENT_TEAM = LZ4KUFVTZH;
+				DEVELOPMENT_TEAM = L3PV92TM5K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Chumigos/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1342,7 +1220,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mc.Chumigos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Loggio;
 				PRODUCT_NAME = Loggio;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1351,14 +1229,13 @@
 		};
 		26C186EB24BE4AA70094AEC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3CAB839D920BC04A51F9C18 /* Pods-Loggio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chumigos/Chumigos.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Chumigos/Preview Content\"";
-				DEVELOPMENT_TEAM = LZ4KUFVTZH;
+				DEVELOPMENT_TEAM = L3PV92TM5K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Chumigos/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1366,7 +1243,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mc.Chumigos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Loggio;
 				PRODUCT_NAME = Loggio;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1375,7 +1252,6 @@
 		};
 		26C186ED24BE4AA70094AEC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9D7316B1E6B79F68CD1A857 /* Pods-LoggioTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1398,7 +1274,6 @@
 		};
 		26C186EE24BE4AA70094AEC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 406304178F0463A17D4BC216 /* Pods-LoggioTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1421,7 +1296,6 @@
 		};
 		26C186F024BE4AA70094AEC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9384132B622563D245ADBC9D /* Pods-Loggio-LoggioUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1442,7 +1316,6 @@
 		};
 		26C186F124BE4AA70094AEC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A374F1F8BE6FE8191DF6716 /* Pods-Loggio-LoggioUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1501,6 +1374,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		26CA5F3C2AA76CEC0040DC2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		26CA5F3D2AA76CEC0040DC2D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26CA5F3C2AA76CEC0040DC2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		26CA5F3F2AA76CEC0040DC2D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26CA5F3C2AA76CEC0040DC2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		26CA5F412AA76CEC0040DC2D /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26CA5F3C2AA76CEC0040DC2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		26CA5F432AA76CEC0040DC2D /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26CA5F3C2AA76CEC0040DC2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		26C186C324BE4AA50094AEC1 /* Chumigos.xcdatamodeld */ = {
