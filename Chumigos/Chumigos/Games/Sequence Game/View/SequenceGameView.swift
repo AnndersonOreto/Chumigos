@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct SequenceGameView: View {
-    
-    @State var generateHapticFeedback: Bool = false
-    
-    let generator = UINotificationFeedbackGenerator()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var environmentManager: EnvironmentManager
+    @ObservedObject var viewModel: SequenceGameViewModel
+    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     // Save the rects of all the questions
     @State private var questionsFrames: [(question: Question, rect: CGRect)] = []
@@ -20,18 +20,16 @@ struct SequenceGameView: View {
     @State private var alternativeBeingDragged: Int?
     // Variable to know if the button is pressed or not
     @State var buttonIsPressed: Bool = false
+    @State var generateHapticFeedback: Bool = false
     @State var isFinished: Bool = false
     @State var showPopUp: Bool = false
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var environmentManager: EnvironmentManager
+    
+    let generator = UINotificationFeedbackGenerator()
     
     private var tileSize: CGSize {
         let scaleFactor: CGFloat = self.viewModel.sequence.count > 9 ? 0.067 : 0.078
         return CGSize(width: screenWidth * scaleFactor, height: screenWidth * scaleFactor)
     }
-    
-    @ObservedObject var viewModel: SequenceGameViewModel
-    @ObservedObject var progressViewModel = ProgressBarViewModel(questionAmount: 5)
     
     init(gameDifficulty: Difficulty, game: GameObject) {
         AppAnalytics.shared.logEvent(of: .launchGame, parameters: ["gameObject": game.gameName])
@@ -41,6 +39,7 @@ struct SequenceGameView: View {
     var body: some View {
         ZStack {
             Color.background.edgesIgnoringSafeArea(.all)
+            
             VStack {
                 Spacer()
                 if buttonIsPressed {
@@ -261,6 +260,7 @@ struct SequenceGameView: View {
     
     func objectMoved(location: CGPoint, alternative: Int) -> DragState {
         self.alternativeBeingDragged = alternative
+
         if let matchedFrame = questionsFrames.first(where: { $0.rect.contains(location) }) {
             if viewModel.questions.first(where: {
                 $0.correctAnswer == matchedFrame.question.correctAnswer && !$0.isOcupied }) != nil {
@@ -315,8 +315,8 @@ extension SequenceGameView {
                             .onAppear {
                                 let questionFrame = (question: self.viewModel.findQuestion(with: piece.value)!, rect: geo.frame(in: .global))
                                 self.questionsFrames.append(questionFrame)
-                        }
-                    })
+                            }
+                        })
             } else {
                 Tile(content: Image(piece.content).resizable(), size: self.tileSize)
             }
@@ -330,3 +330,24 @@ extension SequenceGameView {
 //        SequenceGameView(gameDifficulty: .medium)
 //    }
 //}
+
+extension GeometryProxy {
+    // converts from some other coordinate space to the proxy's own
+    func convert(_ point: CGPoint, from coordinateSpace: CoordinateSpace) -> CGPoint {
+        let frame = self.frame(in: coordinateSpace)
+        let localViewPoint = CGPoint(x: point.x-frame.origin.x, y: point.y-frame.origin.y)
+        
+        // Some system bug? Test in iOS 13.4, 13.5, 14.1, 14.5
+        if coordinateSpace == .global {
+            switch (UIDevice.current.systemVersion as NSString).floatValue {
+            case 13.5:
+                return CGPoint(x: localViewPoint.x, y: point.y)
+            case 14.5:
+                return point
+            default: break
+            }
+        }
+        
+        return localViewPoint
+    }
+}

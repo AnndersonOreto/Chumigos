@@ -47,7 +47,6 @@ struct Draggable: ViewModifier {
             .gesture(
                 DragGesture(coordinateSpace: .global)
                     .onChanged {
-                        
                         if self.isFirstTouchChange {
                             SoundManager.shared.playSound(gameSound: .pick)
                             self.isFirstTouchChange = false

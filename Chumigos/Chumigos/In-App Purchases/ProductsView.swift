@@ -20,13 +20,13 @@ struct ProductsView: View {
         //ScrollView(.vertical, showsIndicators: true) {
             // Print products vertically
             VStack {
-                
                 ForEach(self.viewModel.products, id: \.self) { product in
-                    
                     ProductView(product: product)
                 }
-            }.padding(50)
-        }.navigationBarTitle("")
+            }
+            .padding(50)
+        }
+        .navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
@@ -50,6 +50,7 @@ struct ProductView: View {
     var body: some View {
         
         Image(backgroundImage)
+            .resizable()
             .frame(width: screenWidth * 0.64, height: screenWidth * 0.18)
             .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:12, x:0, y:0)
             .onAppear(perform: setup)

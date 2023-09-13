@@ -1,4 +1,8 @@
 {
+  "identifier" : "B3BF0D56",
+  "nonRenewingSubscriptions" : [
+
+  ],
   "products" : [
     {
       "displayPrice" : "0.99",
@@ -21,7 +25,7 @@
       "type" : "Consumable"
     },
     {
-      "displayPrice" : "0.99",
+      "displayPrice" : "1.99",
       "familyShareable" : false,
       "internalID" : "163B60FF",
       "localizations" : [
@@ -36,7 +40,7 @@
       "type" : "Consumable"
     },
     {
-      "displayPrice" : "0.99",
+      "displayPrice" : "4.99",
       "familyShareable" : false,
       "internalID" : "D3BCEE2B",
       "localizations" : [
@@ -58,7 +62,7 @@
 
   ],
   "version" : {
-    "major" : 1,
+    "major" : 2,
     "minor" : 0
   }
 }

@@ -18,7 +18,7 @@ extension Notification.Name {
     static let IAPHelperPurchaseNotification = Notification.Name("IAPHelperPurchaseNotification")
 }
 
-protocol InAppProtocol: class {
+protocol InAppProtocol: AnyObject {
     func didCompletePayment(for product: String)
 }
 

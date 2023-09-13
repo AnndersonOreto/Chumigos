@@ -36,12 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Keep data saved when offline
         Database.database().isPersistenceEnabled = true
         
-        let title: String = "loggio-launch"
-        
-        Analytics.logEvent(title, parameters: [
-          AnalyticsParameterItemID: "id-\(title)",
-          AnalyticsParameterItemName: title
-        ])
+        // let title: String = "loggio-launch"
         
         return true
     }
