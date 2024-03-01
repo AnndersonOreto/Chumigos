@@ -107,7 +107,7 @@ struct SequenceGameView: View {
                                         GameButtonStyle(buttonColor: Color.white,
                                                         pressedButtonColor: Color.Swan,
                                                         buttonBackgroundColor: Color.Swan,
-                                                        isButtonEnable: true, textColor: Color.Humpback) )
+                                                        isButtonEnable: true, textColor: Color.Humpback))
                                     .padding(.bottom, 10)
                             } else {
                                 //Confirm Button
@@ -261,9 +261,13 @@ struct SequenceGameView: View {
     func objectMoved(location: CGPoint, alternative: Int) -> DragState {
         self.alternativeBeingDragged = alternative
 
+        print("JORGE 1 rect", questionsFrames.first!.rect)
+        print("JORGE 1 location", location)
         if let matchedFrame = questionsFrames.first(where: { $0.rect.contains(location) }) {
+            print("JORGE 2")
             if viewModel.questions.first(where: {
                 $0.correctAnswer == matchedFrame.question.correctAnswer && !$0.isOcupied }) != nil {
+                print("JORGE 3")
                 return .good
             }
         }
@@ -272,7 +276,7 @@ struct SequenceGameView: View {
     
     func objectDropped(location: CGPoint, rect: CGRect, alternative: Int, dragState: DragState) -> (x: CGFloat, y: CGFloat) {
         self.alternativeBeingDragged = nil
-        
+
         if dragState == .good {
             if let match = questionsFrames.firstIndex(where: {
                 $0.rect.contains(location) }) {
@@ -310,13 +314,16 @@ extension SequenceGameView {
                              isOccupied: self.viewModel.findQuestion(with: piece.value)!.isOcupied,
                              isCorrect: self.viewModel.findQuestion(with: piece.value)!.isCorrect,
                              buttonPressed: self.buttonIsPressed)
-                    .overlay(GeometryReader { geo in
-                        Color.clear
-                            .onAppear {
-                                let questionFrame = (question: self.viewModel.findQuestion(with: piece.value)!, rect: geo.frame(in: .global))
-                                self.questionsFrames.append(questionFrame)
-                            }
-                        })
+                    .overlay(
+                        GeometryReader { geo in
+                            Color.clear
+                                .onAppear {
+                                    print("JORGE: ", geo.frame(in: .global))
+                                    let questionFrame = (question: self.viewModel.findQuestion(with: piece.value)!, rect: geo.frame(in: .global))
+                                    self.questionsFrames.append(questionFrame)
+                                }
+                        }
+                    )
             } else {
                 Tile(content: Image(piece.content).resizable(), size: self.tileSize)
             }

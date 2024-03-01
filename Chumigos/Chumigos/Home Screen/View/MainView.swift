@@ -31,6 +31,10 @@ struct MainView: View {
                     tabBar()
                 }
             }
+            .onAppear {
+                SoundManager.shared.playMusic(gameMusic: .trail)
+                SoundManager.shared.currentMusicVolume = 0.5
+            }
         }
     }
 }

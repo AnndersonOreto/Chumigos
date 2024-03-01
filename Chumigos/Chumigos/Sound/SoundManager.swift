@@ -79,7 +79,6 @@ public class SoundManager: NSObject {
     
     /// Pause the background music.
     func pauseMusic() {
-        
         if isBackgroundMusicMuted {
             isBackgroundMusicMuted = false
             audioPlayerMusic?.volume = currentMusicVolume

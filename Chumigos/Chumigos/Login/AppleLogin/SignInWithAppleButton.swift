@@ -9,7 +9,7 @@
 import SwiftUI
 import AuthenticationServices
 
-final class SignInWithAppleButton: UIViewRepresentable {
+struct SignInWithAppleButton: UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<SignInWithAppleButton>) -> ASAuthorizationAppleIDButton {
         return ASAuthorizationAppleIDButton(type: .continue, style: .black)
