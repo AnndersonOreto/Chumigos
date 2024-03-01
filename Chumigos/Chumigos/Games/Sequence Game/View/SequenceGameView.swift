@@ -318,9 +318,10 @@ extension SequenceGameView {
                         GeometryReader { geo in
                             Color.clear
                                 .onAppear {
-                                    print("JORGE: ", geo.frame(in: .global))
-                                    let questionFrame = (question: self.viewModel.findQuestion(with: piece.value)!, rect: geo.frame(in: .global))
-                                    self.questionsFrames.append(questionFrame)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        let questionFrame = (question: self.viewModel.findQuestion(with: piece.value)!, rect: geo.frame(in: .global))
+                                        self.questionsFrames.append(questionFrame)
+                                    }
                                 }
                         }
                     )

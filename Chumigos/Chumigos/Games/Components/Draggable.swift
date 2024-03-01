@@ -40,7 +40,9 @@ struct Draggable: ViewModifier {
                 Color.clear
                     .onAppear {
                         //saving rect here
-                        self.rect = geo.frame(in: .global)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.rect = geo.frame(in: .global)
+                        }
                 }
             })
             .offset(dragAmount)

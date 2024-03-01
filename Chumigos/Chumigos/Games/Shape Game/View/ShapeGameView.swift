@@ -332,8 +332,10 @@ extension ShapeGameView {
                     .overlay(GeometryReader { geo in
                         Color.clear
                             .onAppear {
-                                let questionFrame = (id: piece.sides, rect: geo.frame(in: .global))
-                                self.questionsFrames.append(questionFrame)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    let questionFrame = (id: piece.sides, rect: geo.frame(in: .global))
+                                    self.questionsFrames.append(questionFrame)
+                                }
                         }
                     })
             }
